@@ -1,8 +1,97 @@
 {% extends "base.html" %}
 <hr />
-{% block title_content %}Contact - Jarvis Wuod{% endblock title_content %}
+{% block title_content %}Contact - Jarvis Wuod {% endblock title_content %}
 <hr />
 
 {% block body_content %}
-<p>Contact page</p>
+<section
+  class="bg-[url(https://images.unsplash.com/photo-1742217279960-977bb5d13f75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
+>
+  <div
+    class="min-h-lvh text-white flex items-center justify-center max-w-[1280px] mx-auto"
+  >
+    <h1 class="text-9xl font-semibold text-center">Reach Out.</h1>
+  </div>
+</section>
+
+<section class="my-12">
+  <div class="max-w-[1280px] mx-auto">
+    <ul class="mb-8 grid grid-cols-3 gap-12 gap-y-16">
+      <li>
+        <h3 class="text-2xl mb-4 font-medium">Code Shop Support</h3>
+        <p class="text-base/7 mb-4">
+          Purchased a Code Shop product and you're having issues? Need another
+          download request for your access file? Then you've come to the right
+          place.
+        </p>
+        <a href="#" class="text-base uppercase text-amber-700">Submit Ticket</a>
+      </li>
+
+      <li>
+        <h3 class="text-2xl mb-4 font-medium">Hire an Expert</h3>
+        <p class="text-base/7 mb-4">
+          Are you looking for a Squarespace developer? Or maybe you need some
+          consulting or training services? Send an inquiry or just call
+          717-525-1031.
+        </p>
+        <a href="#" class="text-base uppercase text-amber-700"> Send Inquiry</a>
+      </li>
+
+      <li>
+        <h3 class="text-2xl mb-4 font-medium">General Questions</h3>
+        <p class="text-base/7 mb-4">
+          Feel free to reach out to me if you have any questions or comments
+          about the services I offer. Also, you could always just send me a
+          friendly hello.
+        </p>
+        <a href="#" class="text-base uppercase text-amber-700">Say Hello</a>
+      </li>
+
+      <li class="col-span-3 self-center justify-self-center my-12">
+        <h4>Or contact me directly</h4>
+        <p class="mb-2">
+          <a
+            class="underline underline-offset-2"
+            href="mailto:jarviswuod@gmail.com"
+            >jarviswuod@gmail.com</a
+          >
+        </p>
+        <p>
+          <a class="underline underline-offset-2" href="tel:+254757464904"
+            >+254 757 464 904</a
+          >
+        </p>
+      </li>
+    </ul>
+
+    {% comment %}
+    <form
+      action=""
+      method="post"
+      class="flex justify-center items-center flex-col"
+    >
+      <h3 class="text-3xl mb-4">Subscribe to jarviswuod.com</h3>
+      <p class="text-base mb-4">
+        Only sending out 6 messages a year. No bullshit, just some thoughtful
+        content.
+      </p>
+      <div class="flex-items-center justify-center gap-2">
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Email Address"
+          class="bg-white text-black text-base w-[24rem] p-4 py-4 border-1"
+        />
+        <button
+          class="uppercase text-amber-700 border-1 border-amber-700 px-8 py-4"
+          type="submit"
+        >
+          sign up
+        </button>
+      </div>
+    </form>
+    {% endcomment %}
+  </div>
+</section>
 {% endblock body_content %}
