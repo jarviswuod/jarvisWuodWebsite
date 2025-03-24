@@ -39,7 +39,7 @@
       href="{% static '/favicon/favicon.ico' %}"
     />
   </head>
-  <body>
+  <body class="bg-black text-white">
     <header class="bg-black text-white">
       <nav
         class="max-w-[1320px] p-4 px-2 mx-auto flex items-center justify-between text-xl"
@@ -61,7 +61,7 @@
     </header>
     {% block body_content %} {%endblock body_content %}
 
-    <footer class="">
+    <footer class="bg-[#111] text-white">
       <div class="border-y-1 border-red-100">
         <ul
           class="max-w-6xl mx-auto py-24 grid grid-cols-3 gap-8 items-center justify-center"
