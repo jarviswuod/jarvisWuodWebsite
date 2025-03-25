@@ -9,21 +9,73 @@
   class="bg-[url(https://images.unsplash.com/photo-1617042375876-a13e36732a04?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
 >
   <div
-    class="min-h-96 text-white flex items-center justify-center max-w-[1280px] mx-auto flex-col"
+    class="min-h-112 text-white flex items-center justify-center max-w-[1280px] mx-auto flex-col"
   >
     <h2 class="text-6xl font-semibold text-center mb-6">
       Find Your Dream Dev Job
     </h2>
     <p class="text-3xl mb-4">Search dev jobs at top remote companies</p>
-    <div>
-      <p>107,610 Jobs</p>
-      <input type="text" placeholder="Date Added" />
-    </div>
   </div>
 </section>
 
 <section class="bg-black text-white my-8">
   <div class="max-w-[1280px] mx-auto px-4">
+    <ul class="flex items-center justify-center gap-4 mb-6">
+      <li>
+        <label class="bg-black text-white">
+          <select required class="w-full p-2 border border-gray-300 rounded">
+            <option class="bg-black text-white" value="">Job Title</option>
+            <option class="bg-black text-white">Python Developer</option>
+            <option class="bg-black text-white">Backend Developer</option>
+          </select>
+        </label>
+      </li>
+      <li>
+        <label class="bg-black text-white">
+          <select required class="w-full p-2 border border-gray-300 rounded">
+            <option class="bg-black text-white" value="">Location</option>
+            <option class="bg-black text-white">United Kingdom</option>
+          </select>
+        </label>
+      </li>
+
+      <li>
+        <label class="bg-black text-white">
+          <select required class="w-full p-2 border border-gray-300 rounded">
+            <option class="bg-black text-white" value="">Minimum Salary</option>
+            <option class="bg-black text-white">Below $30k</option>
+            <option class="bg-black text-white">Between $30 - $50 k</option>
+            <option class="bg-black text-white">Between $50 - $70 k</option>
+            <option class="bg-black text-white">Between $70 - $100 k</option>
+            <option class="bg-black text-white">Above $100 k</option>
+            <option class="bg-black text-white">Above $300 k</option>
+          </select>
+        </label>
+      </li>
+
+      <li>
+        <label class="bg-black text-white">
+          <select required class="w-full p-2 border border-gray-300 rounded">
+            <option class="bg-black text-white" value="">Experience</option>
+            <option class="bg-black text-white">Entry</option>
+            <option class="bg-black text-white">Junior Dev</option>
+            <option class="bg-black text-white">Mid level</option>
+            <option class="bg-black text-white">Senior</option>
+            <option class="bg-black text-white">Lead</option>
+          </select>
+        </label>
+      </li>
+    </ul>
+    <div class="flex items-center justify-between gap-4 mb-3">
+      <p>107,610 Jobs</p>
+
+      <label class="block bg-black text-white">
+        <select required class="w-full p-2 border border-gray-300 rounded">
+          <option class="bg-black text-white" value="">Date Added</option>
+          <option class="bg-black text-white">Highest Salary</option>
+        </select>
+      </label>
+    </div>
     <ul class="space-y-8">
       <li
         class="border-2 border-[#333333] hover:bg-[#222] transition duration-300 text-lg group relative rounded space-y-4 p-6 px-8"
