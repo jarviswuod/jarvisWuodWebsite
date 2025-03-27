@@ -1,4 +1,4 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %}
 <hr />
 {% block title_content %}Jarvis Wuod - Ultimate guide to learning web
 development, land your first job and acces to convert your ideas into website
@@ -6,5 +6,453 @@ you will fall in love with{% endblock title_content %}
 <hr />
 
 {% block body_content %}
-<p>Home page</p>
+<section
+  class="bg-[url(https://images.unsplash.com/photo-1742217279960-977bb5d13f75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
+>
+  <div
+    class="min-h-lvh text-white flex items-center justify-center flex-col max-w-[1280px] mx-auto"
+  >
+    <h1 class="text-5xl mb-4 font-semibold text-center">
+      A guided mentorship delivered to you, every single month.
+    </h1>
+    <p class="text-xl text-center mb-2">
+      The smart, flexible mentorship program that will help you grow your web
+      development skills and career. Tailored to your goals and learning pace.
+    </p>
+
+    <div class="flex items-center gap-4">
+      <a class="bg-red-100 text-black text-xl p-2 -x-4" href="#">
+        Start leveling up
+      </a>
+      <a class="bg-red-100 text-black text-xl p-2 -x-4" href="#">
+        Learn more ↓
+      </a>
+    </div>
+
+    {% comment %}
+    <h1 class="text-9xl font-semibold text-center">
+      A hands-on web & mobile development mentorship, delivered to you every
+      month.
+    </h1>
+    <p>
+      The flexible program that helps you master full-stack development and
+      launch your career—tailored to your goals and learning pace.
+    </p>
+
+    <div class="flex items-center gap-4">
+      <a class="bg-red-100 text-white text-xl p-2 -x-4" href="#"
+        >Start building today</a
+      >
+      <a class="bg-red-100 text-white text-xl p-2 -x-4" href="#"
+        >Learn more ↓</a
+      >
+    </div>
+    {% endcomment %}
+    <hr />
+    {% comment %}
+    <h1 class="text-9xl font-semibold text-center">
+      A personalized CV & LinkedIn review, delivered to you on demand.
+    </h1>
+    <p>
+      The expert service that helps you optimize your resume, craft standout
+      cover letters, and land more job opportunities in tech.
+    </p>
+
+    <div class="flex items-center gap-4">
+      <a class="bg-red-100 text-white text-xl p-2 -x-4" href="#"
+        >Get hired faster</a
+      >
+      <a class="bg-red-100 text-white text-xl p-2 -x-4" href="#"
+        >Learn more ↓</a
+      >
+    </div>
+    {% endcomment %}
+  </div>
+</section>
+
+<section class="my-12">
+  <ul
+    class="max-w-5xl mx-auto px-4 py-12 text-center bg-white text-black rounded-xl grid grid-cols-3 divide-x-1 divide-[#444]"
+  >
+    <li>
+      <h5 class="text-base uppercase mb-2 text-[#333]">Devs Mentored</h5>
+      <p class="text-6xl font-bold">+50</p>
+    </li>
+    <li>
+      <h5 class="text-base uppercase mb-2 text-[#333]">
+        Software/ Websites Built
+      </h5>
+      <p class="text-6xl font-bold">+10</p>
+    </li>
+
+    <li>
+      <h5 class="text-base uppercase mb-2 text-[#333]">Resumes Improved</h5>
+      <p class="text-6xl font-bold">+10</p>
+    </li>
+  </ul>
+</section>
+
+<section class="bg-black text-white my-12">
+  <div class="max-w-[1280px] mx-auto px-4">
+    <h2 class="text-center text-3xl font-semibold mb-4">Wall of Love</h2>
+    <p class="text-center text-xl max-w-5xl mx-auto">
+      Buy Me a Coffee testimonials The testimonials page of Buy Me a Coffee
+      shares its story, which began in late 2017, and highlights how the
+      platform has supported over a million creators since then.Buy Me a Coffee
+      testimonials The testimonials page of Buy Me a Coffee shares its story,
+      which began in late 2017, and highlights how the platform has supported
+      over a million creators since then.
+    </p>
+    <div class="text-center flex items-center justify-center mt-4 mb-16 gap-2">
+      <p><img class="w-6" src={% static "/star.svg" %}/></p>
+      <p><img class="w-6" src={% static "/star.svg" %}/></p>
+      <p><img class="w-6" src={% static "/star.svg" %}/></p>
+      <p><img class="w-6" src={% static "/star.svg" %}/></p>
+      <p><img class="w-6" src={% static "/star.svg" %}/></p>
+      <span class="ml-4"> 4.7 star review </span>
+    </div>
+
+    <h4 class="flex items-center justify-between mb-8">
+      <p>Twitter</p>
+      <ul class="flex items-center gap-4">
+        <li
+          class="flex items-center justify-center text-2xl w-10 h-10 rounded-full border-1 border-[#dedede]"
+        >
+          &lt;
+        </li>
+        <li
+          class="flex items-center justify-center text-2xl w-10 h-10 rounded-full border-1 border-[#dedede]"
+        >
+          &gt;
+        </li>
+      </ul>
+    </h4>
+
+    {% comment %}
+    <ul class="grid grid-cols-4 gap-6">
+      <li>
+        <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark">
+          <p lang="en" dir="ltr">
+            Had an amazing mentorship session with
+            <a href="https://twitter.com/jarviswuod?ref_src=twsrc%5Etfw"
+              >@jarviswuod</a
+            >
+            last week. He shared so many valuable tips and took a genuine
+            interest in my tech journey. I appreciate how he plans to structure
+            the mentorship around what I hope to learn. So excited for what’s
+            ahead. Thank you
+            <a href="https://twitter.com/jarviswuod?ref_src=twsrc%5Etfw"
+              >@jarviswuod</a
+            >
+          </p>
+          &mdash; Ayomide (@Mhiiiide)
+          <a
+            href="https://twitter.com/Mhiiiide/status/1904553037475049820?ref_src=twsrc%5Etfw"
+            >March 25, 2025</a
+          >
+        </blockquote>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        ></script>
+      </li>
+      <li>
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="en" dir="ltr">
+            I just finished having a call with
+            <a href="https://twitter.com/jarviswuod?ref_src=twsrc%5Etfw"
+              >@jarviswuod</a
+            >
+            and I must say that he reassured me about my tech journey and
+            promised to guide me through it. Thanks a lot Jarvis
+          </p>
+          &mdash; Annie (@annabel_okeke)
+          <a
+            href="https://twitter.com/annabel_okeke/status/1902088394659746273?ref_src=twsrc%5Etfw"
+            >March 18, 2025</a
+          >
+        </blockquote>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        ></script>
+      </li>
+      <li>
+        <blockquote class="twitter-tweet" data-theme="dark">
+          <p lang="en" dir="ltr">
+            I remember when I started learning website development. I remember
+            starting on my own and it seemed like a lonely journey with
+            questions in mind. So I reached out to a friend on x who introduced
+            me to
+            <a href="https://twitter.com/jarviswuod?ref_src=twsrc%5Etfw"
+              >@jarviswuod</a
+            >, reaching out to him was the best decision I ever made.
+          </p>
+          &mdash; Odilia Sharon (@odilia_sharon)
+          <a
+            href="https://twitter.com/odilia_sharon/status/1888301517251264807?ref_src=twsrc%5Etfw"
+            >February 8, 2025</a
+          >
+        </blockquote>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        ></script>
+      </li>
+      <li>
+        <blockquote class="twitter-tweet">
+          <p lang="en" dir="ltr">
+            Had an amazing call with
+            <a href="https://twitter.com/jarviswuod?ref_src=twsrc%5Etfw"
+              >@jarviswuod</a
+            >
+            he cleared my doubts and gave me clear direction in my software
+            development journey. Since then, I’ve been making steady progress,
+            learning a new framework, and improving my coding skills.<br />Grateful
+            for his guidance and highly recommend him!
+          </p>
+          &mdash; rian(✸,✸) ♦️(Ø,G) (@sands007821566)
+          <a
+            href="https://twitter.com/sands007821566/status/1887810839882641531?ref_src=twsrc%5Etfw"
+            >February 7, 2025</a
+          >
+        </blockquote>
+        <script
+          async
+          src="https://platform.twitter.com/widgets.js"
+          charset="utf-8"
+        ></script>
+      </li>
+    </ul>
+    {% endcomment %}
+
+    <ul class="grid grid-cols-3 gap-4 items-start">
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_1.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_2.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_3.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_4.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_5.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_6.png" %}" alt="twitter
+        testimonial">
+      </li>
+
+      {% comment %}
+
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_7.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_8.png" %}" alt="twitter
+        testimonial">
+      </li>
+
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_9.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_10.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_11.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_12.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_13.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_14.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_15.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_16.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_17.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_18.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_19.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_20.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_21.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_22.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_23.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_24.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_25.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_26.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_27.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_28.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_29.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_30.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_31.png" %}" alt="twitter
+        testimonial">
+      </li>
+      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        <img src="{% static "testimonials/image_32.png" %}" alt="twitter
+        testimonial">
+      </li>
+      {% endcomment %}
+    </ul>
+  </div>
+</section>
+
+<section class="my-12">
+  <div
+    class="max-w-5xl mx-auto px-8 py-12 bg-white text-black rounded-xl grid grid-cols-[3fr_2fr]"
+  >
+    <div class="py-18">
+      <h3 class="text-5xl font-bold mb-4">
+        Register for our ‍Free 7-Day Trial now!
+      </h3>
+      <p class="text-xl mb-4">
+        Lorem ipsum dolor sit amet consectet piscing elit.
+      </p>
+      <div
+        class="border-red-100 border-1 rounded-lg overlow-hidden flex justify-between"
+      >
+        <input
+          type="email"
+          name="email"
+          id="email"
+          placeholder="Enter your email"
+          class="p-3 px-4 w-full mr-1"
+        />
+        <button class="bg-blue-100 px-4 text-lg rounded-lg" type="submit">
+          Subscribe
+        </button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="hero">
+    <p>Mentorship | Software Solutions | Career Growth</p>
+    <a href="#mentorship" class="btn">Join Mentorship</a>
+    <a href="#development" class="btn">Hire Us for Development</a>
+    <a href="#cvreview" class="btn">Get CV Review</a>
+  </div>
+</section>
+
+<section>
+  <div class="section">
+    <h2>Our Services</h2>
+    <div class="grid">
+      <div class="card" id="mentorship">
+        <h3>Mentorship Program</h3>
+        <p>Personalized guidance for beginner & junior devs.</p>
+      </div>
+      <div class="card" id="development">
+        <h3>Software Development</h3>
+        <p>Web & mobile solutions for businesses.</p>
+      </div>
+      <div class="card" id="cvreview">
+        <h3>CV & LinkedIn Review</h3>
+        <p>Optimize your profile for better job opportunities.</p>
+      </div>
+    </div>
+  </div>
+</section>
+<section>
+  <div class="section">
+    <h2>Success Stories</h2>
+    <p>Real feedback from mentees, clients & job seekers.</p>
+  </div>
+</section>
+<section>
+  <div class="section">
+    <h2>Why Choose Us?</h2>
+    <ul>
+      <li>Hands-on mentorship</li>
+      <li>Industry-standard development solutions</li>
+      <li>Proven success in job placements</li>
+    </ul>
+  </div>
+</section>
+<section>
+  <div class="section">
+    <h2>Get Started</h2>
+    <a href="#" class="btn">Book a Free Consultation</a>
+    <a href="#" class="btn">Start Your Mentorship Journey</a>
+    <a href="#" class="btn">Request a Quote for Development</a>
+  </div>
+</section>
+<section>
+  <div class="section">
+    <h2>Blog & Resources</h2>
+    <p>Career tips, dev resources & job hunting strategies.</p>
+  </div>
+</section>
+
 {% endblock body_content %}

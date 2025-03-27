@@ -30,4 +30,4 @@ def contact(request):
 
 def jobs(request):
     context = {}
-    return render(request, 'job.html', context)
+    return render(request, 'jobs.html', context)
