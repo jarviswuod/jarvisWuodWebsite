@@ -38,6 +38,25 @@
       type="image/png"
       href="{% static '/favicon/favicon.ico' %}"
     />
+
+    <style>
+      .scrollbar-hide::-webkit-scrollbar {
+        display: nne;
+      }
+
+      ::-webkit-scrollbar {
+        width: 6px;
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: #888;
+        border-radius: 10px;
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #555;
+      }
+    </style>
   </head>
   <body class="bg-black text-white">
     <header class="bg-black text-white">
@@ -82,11 +101,13 @@
               </p>
             </div>
           </li>
-          <li>
-            <a href="/" target="_blank" rel="noopener noreferrer"
-              >Jarvis Logo</a
-            >
+
+          <li class="justify-self-center">
+            <a class="w-16 block" href="{% url 'home'%}">
+              <img src="{% static '/logo_.png' %}" alt="" />
+            </a>
           </li>
+
           <li>
             <ul class="flex items-center justify-center space-x-4">
               <li><a href="#">X</a></li>
