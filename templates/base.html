@@ -9,6 +9,16 @@
     <title>{% block title_content %}{% endblock title_content %}</title>
 
     <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/regular/style.css"
+    />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="https://cdn.jsdelivr.net/npm/@phosphor-icons/web@2.1.1/src/fill/style.css"
+    />
+    <link
       rel="apple-touch-icon"
       sizes="180x180"
       href="{% static
@@ -61,59 +71,74 @@
   <body class="bg-black text-white">
     <header class="bg-black text-white">
       <nav
-        class="max-w-[1320px] p-4 px-2 mx-auto flex items-center justify-between text-xl"
+        class="max-w-[1320px] p-4 px-2 mx-auto flex items-center justify-between text-base tracking-wide font-bold uppercase"
       >
         <div>
           <a class="max-w-16 block" href="{% url 'home'%}">
             <img src="{% static '/logo_.png' %}" alt="" />
           </a>
         </div>
-        <ul class="flex items-center justify-between gap-8">
-          <li><a href="{% url 'home'%}">Home</a></li>
+        <ul class="flex items-center justify-between gap-12">
           <li><a href="{% url 'services'%}">Services</a></li>
           <li><a href="{% url 'blogs'%}">Blogs</a></li>
           <li><a href="{% url 'about'%}">About</a></li>
           <li><a href="{% url 'jobs'%}">Jobs</a></li>
-          <li><a href="{% url 'contact'%}">Connect</a></li>
+          <li>
+            <a
+              class="text-black bg-amber-700 hover:bg-amber-200 duration-300 transform-all p-4 px-6"
+              href="{% url 'contact'%}"
+            >
+              Connect
+            </a>
+          </li>
         </ul>
       </nav>
     </header>
     {% block body_content %} {%endblock body_content %}
 
     <footer class="bg-[#111] text-white">
-      <div class="border-y-1 border-red-100">
+      <div class="border-y-1 border-[#444]">
         <ul
           class="max-w-6xl mx-auto py-24 grid grid-cols-3 gap-8 items-center justify-center"
         >
-          <li class="flex items-start justify-center flex-col">
-            <div class="max-w-base text-center">
-              <p class="mb-2">
-                <a
-                  class="underline underline-offset-6"
-                  href="mailto:jarviswuod@gmail.com"
-                  >jarviswuod@gmail.com</a
-                >
-              </p>
-              <p>
-                <a class="underline underline-offset-6" href="tel:+254757464904"
-                  >+254 757 464 904</a
-                >
-              </p>
-            </div>
+          <li class="text-center text-base text-amber-700">
+            <p class="mb-2">
+              <a
+                class="underline underline-offset-6"
+                href="mailto:jarviswuod@gmail.com"
+              >
+                jarviswuod@gmail.com
+              </a>
+            </p>
+            <p>
+              <a class="underline underline-offset-6" href="tel:+254757464904">
+                +254 757 464 904
+              </a>
+            </p>
           </li>
 
           <li class="justify-self-center">
-            <a class="w-16 block" href="{% url 'home'%}">
+            <a class="w-24 block" href="{% url 'home'%}">
               <img src="{% static '/logo_.png' %}" alt="" />
             </a>
           </li>
 
           <li>
-            <ul class="flex items-center justify-center space-x-4">
-              <li><a href="#">X</a></li>
-              <li><a href="#">YT</a></li>
-              <li><a href="#">Li</a></li>
-              <li><a href="#">IG</a></li>
+            <ul
+              class="flex items-center justify-center gap-8 text-center text-2xl text-amber-700"
+            >
+              <li>
+                <a href="#"><i class="ph ph-x-logo"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ph ph-youtube-logo"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+              </li>
+              <li>
+                <a href="#"><i class="ph ph-instagram-logo"></i></a>
+              </li>
             </ul>
           </li>
         </ul>
@@ -121,18 +146,24 @@
       <div class="py-8 text-sm">
         <p class="text-center mb-4">
           &copy; 2025 Jarvis Wuod. All rights reserved.
-          <a class="underline underline-offset-6" href="http://social"
+          <a
+            class="underline underline-offset-6 text-amber-700"
+            href="http://social"
             >Terms of Service</a
           >
         </p>
         <ul class="flex items-center justify-center space-x-4">
           <li>
-            <a class="underline underline-offset-6" href="http://social"
+            <a
+              class="underline underline-offset-6 text-amber-700"
+              href="http://social"
               >Return Policy</a
             >
           </li>
           <li>
-            <a class="underline underline-offset-6" href="http://social"
+            <a
+              class="underline underline-offset-6 text-amber-700"
+              href="http://social"
               >Privacy Policy</a
             >
           </li>

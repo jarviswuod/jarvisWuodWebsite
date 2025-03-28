@@ -7,93 +7,121 @@ you will fall in love with{% endblock title_content %}
 
 {% block body_content %}
 <section
-  class="bg-[url(https://images.unsplash.com/photo-1742217279960-977bb5d13f75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
+  class="relative bg-cover bg-center"
+  style="background-image: url('{% static 'hero-img.webp' %}')"
 >
   <div
-    class="min-h-lvh text-white flex items-center justify-center flex-col max-w-[1280px] mx-auto"
+    class="absolute inset-0 bg-gradient-to-br from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)]"
+  ></div>
+  <div
+    class="relative z-10 min-h-lvh text-white flex items-center justify-center flex-col max-w-[980px] mx-auto"
   >
-    <h1 class="text-5xl mb-4 font-semibold text-center">
-      A guided mentorship delivered to you, every single month.
+    <h1 class="text-6xl mb-4 font-bold text-center mb-8">
+      A guided mentorship deliveamber to you, every single day.
     </h1>
-    <p class="text-xl text-center mb-2">
+    <p class="text-2xl text-center max-w-[840px] mb-16">
       The smart, flexible mentorship program that will help you grow your web
-      development skills and career. Tailored to your goals and learning pace.
+      development skills and career. Tailoamber to your goals and learning pace.
     </p>
 
-    <div class="flex items-center gap-4">
-      <a class="bg-red-100 text-black text-xl p-2 -x-4" href="#">
+    <div class="w-full flex items-center justify-center gap-12">
+      <a
+        class="w-1/4 text-black text-base tracking-wide bg-amber-400 hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
+        href="#"
+      >
         Start leveling up
       </a>
-      <a class="bg-red-100 text-black text-xl p-2 -x-4" href="#">
-        Learn more ↓
+      <a
+        class="w-1/4 text-white text-base tracking-wide text-center font-bold uppercase border-1 border-amber-400 p-4 px-4"
+        href="#"
+      >
+        Learn more <span class="ml-2 text-xl">↓</span>
       </a>
     </div>
 
-    {% comment %}
-    <h1 class="text-9xl font-semibold text-center">
-      A hands-on web & mobile development mentorship, delivered to you every
-      month.
-    </h1>
-    <p>
-      The flexible program that helps you master full-stack development and
-      launch your career—tailored to your goals and learning pace.
-    </p>
+    <div class="hidden">
+      <h1 class="text-6xl mb-4 font-bold text-center mb-8">
+        A hands-on web & mobile development mentorship, deliveamber to you every
+        month.
+      </h1>
+      <p class="text-2xl text-center max-w-[840px] mb-16">
+        The flexible program that helps you master full-stack development and
+        launch your career—tailoamber to your goals and learning pace.
+      </p>
 
-    <div class="flex items-center gap-4">
-      <a class="bg-red-100 text-white text-xl p-2 -x-4" href="#"
-        >Start building today</a
-      >
-      <a class="bg-red-100 text-white text-xl p-2 -x-4" href="#"
-        >Learn more ↓</a
-      >
+      <div class="w-full flex items-center justify-center gap-12">
+        <a
+          class="w-1/4 text-black text-base tracking-wide bg-amber-400 hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
+          href="#"
+        >
+          Start building today
+        </a>
+        <a
+          class="w-1/4 text-white text-base tracking-wide text-center font-bold uppercase border-1 border-amber-400 p-4 px-4"
+          href="#"
+        >
+          Learn more <span class="ml-2 text-xl">↓</span>
+        </a>
+      </div>
     </div>
-    {% endcomment %}
-    <hr />
-    {% comment %}
-    <h1 class="text-9xl font-semibold text-center">
-      A personalized CV & LinkedIn review, delivered to you on demand.
-    </h1>
-    <p>
-      The expert service that helps you optimize your resume, craft standout
-      cover letters, and land more job opportunities in tech.
-    </p>
 
-    <div class="flex items-center gap-4">
-      <a class="bg-red-100 text-white text-xl p-2 -x-4" href="#"
-        >Get hired faster</a
-      >
-      <a class="bg-red-100 text-white text-xl p-2 -x-4" href="#"
-        >Learn more ↓</a
-      >
+    <div class="hidden">
+      <h1 class="text-6xl mb-4 font-bold text-center mb-8">
+        A personalized CV & LinkedIn review, deliveamber to you on demand.
+      </h1>
+      <p class="text-2xl text-center max-w-[840px] mb-16">
+        The expert service that helps you optimize your resume, craft standout
+        cover letters, and land more job opportunities in tech.
+      </p>
+
+      <div class="w-full flex items-center justify-center gap-12">
+        <a
+          class="w-1/4 text-black text-base tracking-wide bg-amber-400 hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
+          href="#"
+        >
+          Get hiamber faster
+        </a>
+        <a
+          class="w-1/4 text-white text-base tracking-wide text-center font-bold uppercase border-1 border-amber-400 p-4 px-4"
+          href="#"
+        >
+          Learn more <span class="ml-2 text-xl">↓</span>
+        </a>
+      </div>
     </div>
-    {% endcomment %}
   </div>
 </section>
 
-<section class="my-18">
+<section class="my-24">
   <ul
-    class="max-w-5xl mx-auto px-4 py-12 text-center bg-white text-black rounded-xl grid grid-cols-3 divide-x-1 divide-[#444]"
+    class="max-w-6xl mx-auto px-4 py-12 text-center bg-white text-black rounded-xl grid grid-cols-3 divide-x-1 divide-[#555] text-base uppercase text-[#333]"
   >
     <li>
-      <h5 class="text-base uppercase mb-2 text-[#333]">Devs Mentored</h5>
+      <h5 class="mb-2">Devs Mentoamber</h5>
       <p class="text-6xl font-bold">+50</p>
     </li>
     <li>
-      <h5 class="text-base uppercase mb-2 text-[#333]">
-        Software/ Websites Built
-      </h5>
+      <h5 class="mb-2">Software/ Websites Built</h5>
       <p class="text-6xl font-bold">+10</p>
     </li>
 
     <li>
-      <h5 class="text-base uppercase mb-2 text-[#333]">Resumes Improved</h5>
+      <h5 class="mb-2">Resumes Improved</h5>
       <p class="text-6xl font-bold">+10</p>
     </li>
   </ul>
 </section>
 
-<section class="bg-[#111] text-white">
+<section class="bg-[#222] text-white">
   <div class="max-w-[1280px] py-18 mx-auto px-4 space-y-24">
+    <h3
+      class="text-left text-base font-bold uppercase text-amber-700 mb-4 max-w-6xl"
+    >
+      Explore My Services
+    </h3>
+    <p class="text-5xl/14 font-medium mb-18 text-left max-w-6xl">
+      Discover how I can help you through tailored solutions.
+    </p>
     <div class="grid grid-cols-2 gap-12 items-center">
       <div class="w-full">
         <img
@@ -101,41 +129,43 @@ you will fall in love with{% endblock title_content %}
           alt="Random ducks"
         />
       </div>
-      <div>
-        <h4 class="text-3xl font-medium mb-6">
+      <div class="flex flex-col">
+        <h3 class="text-3xl text-[#fefefe] font-medium mb-6">
           Being a Squarespace Developer & Designer is my primary focus.
-        </h4>
-        <p class="text-lg/8 mb-8">
+        </h3>
+        <p class="text-lg/8 text-[#dedede] mb-8">
           Let's be honest and cut through the marketing bullshit, you need a
           website that looks amazing and actually works. Bottom line, that's
           what I do. If you want to learn more about working with me, take a
           look through my website.
         </p>
+
         <a
-          class="border-1 border-amber-700 p-4 px-8 uppercase text-white text-bold text-base"
+          class="w-1/2 text-white text-sm tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
           href="#"
         >
-          Learn More ↓
+          Learn more <span class="ml-2 text-xl">↓</span>
         </a>
       </div>
     </div>
 
     <div class="grid grid-cols-2 gap-12 items-center">
-      <div>
-        <h4 class="text-3xl font-medium mb-6">
+      <div class="flex flex-col">
+        <h3 class="text-3xl text-[#fefefe] font-medium mb-6">
           Being a Squarespace Developer & Designer is my primary focus.
-        </h4>
-        <p class="text-lg/8 mb-8">
+        </h3>
+        <p class="text-lg/8 text-[#dedede] mb-8">
           Let's be honest and cut through the marketing bullshit, you need a
           website that looks amazing and actually works. Bottom line, that's
           what I do. If you want to learn more about working with me, take a
           look through my website.
         </p>
+
         <a
-          class="border-1 border-amber-700 p-4 px-8 uppercase text-white text-bold text-base"
+          class="w-1/2 text-white text-sm tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
           href="#"
         >
-          Learn More ↓
+          Learn more <span class="ml-2 text-xl">↓</span>
         </a>
       </div>
 
@@ -154,21 +184,22 @@ you will fall in love with{% endblock title_content %}
           alt="Random ducks"
         />
       </div>
-      <div>
-        <h4 class="text-3xl font-medium mb-6">
+      <div class="flex flex-col">
+        <h3 class="text-3xl text-[#fefefe] font-medium mb-6">
           Being a Squarespace Developer & Designer is my primary focus.
-        </h4>
-        <p class="text-lg/8 mb-8">
+        </h3>
+        <p class="text-lg/8 text-[#dedede] mb-8">
           Let's be honest and cut through the marketing bullshit, you need a
           website that looks amazing and actually works. Bottom line, that's
           what I do. If you want to learn more about working with me, take a
           look through my website.
         </p>
+
         <a
-          class="border-1 border-amber-700 p-4 px-8 uppercase text-white text-bold text-base"
+          class="w-1/2 text-white text-sm tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
           href="#"
         >
-          Learn More ↓
+          Learn more <span class="ml-2 text-xl">↓</span>
         </a>
       </div>
     </div>
@@ -176,9 +207,11 @@ you will fall in love with{% endblock title_content %}
 </section>
 
 <section class="bg-black text-white my-12">
-  <div class="max-w-[1280px] mx-auto px-4">
-    <h2 class="text-center text-3xl font-semibold mb-4">Wall of Love</h2>
-    <p class="text-center text-xl max-w-5xl mx-auto">
+  <div class="max-w-[1280px] text-xl/9 mx-auto px-4">
+    <p class="text-5xl/14 text-center font-medium mb-4 max-w-6xl">
+      Wall of Love ❤️
+    </p>
+    <p class="text-center max-w-6xl mx-auto mb-8">
       Buy Me a Coffee testimonials The testimonials page of Buy Me a Coffee
       shares its story, which began in late 2017, and highlights how the
       platform has supported over a million creators since then.Buy Me a Coffee
@@ -186,17 +219,13 @@ you will fall in love with{% endblock title_content %}
       which began in late 2017, and highlights how the platform has supported
       over a million creators since then.
     </p>
-    <div class="text-center flex items-center justify-center mt-4 mb-16 gap-2">
-      <p><img class="w-6" src={% static "/star.svg" %}/></p>
-      <p><img class="w-6" src={% static "/star.svg" %}/></p>
-      <p><img class="w-6" src={% static "/star.svg" %}/></p>
-      <p><img class="w-6" src={% static "/star.svg" %}/></p>
-      <p><img class="w-6" src={% static "/star.svg" %}/></p>
-      <span class="ml-4"> 4.7 star review </span>
+
+    <div class="mt-4 mb-16 space-x-2 text-center">
+      ⭐ ⭐ ⭐ ⭐ ⭐ <span class="text-base ml-2">Reviews of My Services</span>
     </div>
 
     <h4 class="flex items-center justify-between mb-8">
-      <p>Twitter</p>
+      <p class="text-3xl text-[#fefefe] font-medium mb-6">Twitter</p>
       <ul class="flex items-center gap-4">
         <li
           class="flex items-center justify-center text-2xl w-10 h-10 rounded-full border-1 border-[#dedede]"
@@ -211,108 +240,7 @@ you will fall in love with{% endblock title_content %}
       </ul>
     </h4>
 
-    {% comment %}
-    <ul class="grid grid-cols-4 gap-6">
-      <li>
-        <blockquote class="twitter-tweet" data-dnt="true" data-theme="dark">
-          <p lang="en" dir="ltr">
-            Had an amazing mentorship session with
-            <a href="https://twitter.com/jarviswuod?ref_src=twsrc%5Etfw"
-              >@jarviswuod</a
-            >
-            last week. He shared so many valuable tips and took a genuine
-            interest in my tech journey. I appreciate how he plans to structure
-            the mentorship around what I hope to learn. So excited for what’s
-            ahead. Thank you
-            <a href="https://twitter.com/jarviswuod?ref_src=twsrc%5Etfw"
-              >@jarviswuod</a
-            >
-          </p>
-          &mdash; Ayomide (@Mhiiiide)
-          <a
-            href="https://twitter.com/Mhiiiide/status/1904553037475049820?ref_src=twsrc%5Etfw"
-            >March 25, 2025</a
-          >
-        </blockquote>
-        <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charset="utf-8"
-        ></script>
-      </li>
-      <li>
-        <blockquote class="twitter-tweet" data-theme="dark">
-          <p lang="en" dir="ltr">
-            I just finished having a call with
-            <a href="https://twitter.com/jarviswuod?ref_src=twsrc%5Etfw"
-              >@jarviswuod</a
-            >
-            and I must say that he reassured me about my tech journey and
-            promised to guide me through it. Thanks a lot Jarvis
-          </p>
-          &mdash; Annie (@annabel_okeke)
-          <a
-            href="https://twitter.com/annabel_okeke/status/1902088394659746273?ref_src=twsrc%5Etfw"
-            >March 18, 2025</a
-          >
-        </blockquote>
-        <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charset="utf-8"
-        ></script>
-      </li>
-      <li>
-        <blockquote class="twitter-tweet" data-theme="dark">
-          <p lang="en" dir="ltr">
-            I remember when I started learning website development. I remember
-            starting on my own and it seemed like a lonely journey with
-            questions in mind. So I reached out to a friend on x who introduced
-            me to
-            <a href="https://twitter.com/jarviswuod?ref_src=twsrc%5Etfw"
-              >@jarviswuod</a
-            >, reaching out to him was the best decision I ever made.
-          </p>
-          &mdash; Odilia Sharon (@odilia_sharon)
-          <a
-            href="https://twitter.com/odilia_sharon/status/1888301517251264807?ref_src=twsrc%5Etfw"
-            >February 8, 2025</a
-          >
-        </blockquote>
-        <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charset="utf-8"
-        ></script>
-      </li>
-      <li>
-        <blockquote class="twitter-tweet">
-          <p lang="en" dir="ltr">
-            Had an amazing call with
-            <a href="https://twitter.com/jarviswuod?ref_src=twsrc%5Etfw"
-              >@jarviswuod</a
-            >
-            he cleared my doubts and gave me clear direction in my software
-            development journey. Since then, I’ve been making steady progress,
-            learning a new framework, and improving my coding skills.<br />Grateful
-            for his guidance and highly recommend him!
-          </p>
-          &mdash; rian(✸,✸) ♦️(Ø,G) (@sands007821566)
-          <a
-            href="https://twitter.com/sands007821566/status/1887810839882641531?ref_src=twsrc%5Etfw"
-            >February 7, 2025</a
-          >
-        </blockquote>
-        <script
-          async
-          src="https://platform.twitter.com/widgets.js"
-          charset="utf-8"
-        ></script>
-      </li>
-    </ul>
-    {% endcomment %}
-
-    <ul class="grid grid-cols-3 gap-4 items-start">
+    <ul class="grid grid-cols-2 gap-4 items-start">
       <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
         <img src="{% static "testimonials/image_1.png" %}" alt="twitter
         testimonial">
@@ -339,186 +267,203 @@ you will fall in love with{% endblock title_content %}
       </li>
 
       {% comment %}
+      <div>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_7.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_8.png" %}" alt="twitter
+          testimonial">
+        </li>
 
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_7.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_8.png" %}" alt="twitter
-        testimonial">
-      </li>
-
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_9.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_10.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_11.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_12.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_13.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_14.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_15.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_16.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_17.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_18.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_19.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_20.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_21.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_22.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_23.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_24.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_25.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_26.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_27.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_28.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_29.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_30.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_31.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_32.png" %}" alt="twitter
-        testimonial">
-      </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_9.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_10.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_11.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_12.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_13.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_14.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_15.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_16.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_17.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_18.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_19.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_20.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_21.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_22.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_23.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_24.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_25.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_26.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_27.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_28.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_29.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_30.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_31.png" %}" alt="twitter
+          testimonial">
+        </li>
+        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_32.png" %}" alt="twitter
+          testimonial">
+        </li>
+      </div>
       {% endcomment %}
     </ul>
   </div>
 </section>
 
 <section class="my-12">
-  <div
-    class="max-w-5xl mx-auto px-8 py-12 bg-white text-black rounded-xl grid grid-cols-[3fr_2fr]"
+  <form
+    class="max-w-6xl mx-auto px-16 py-12 bg-white text-black rounded-lg grid grid-cols-[3fr_2fr]"
   >
     <div class="py-18">
-      <h3 class="text-6xl font-bold mb-4">Book your first call for free</h3>
+      <h3 class="text-6xl/14 font-medium mb-8 text-left max-w-6xl">
+        Book your first call for free
+      </h3>
       <p class="text-xl mb-12">
         Lorem ipsum dolor sit amet consectet piscing elit.
       </p>
 
-      <div class="grid grid-cols-2 gap-4 justify-between">
+      <div class="grid grid-cols-2 gap-4 gap-y-8 justify-between text-sm">
         <input
           type="text"
           name="name"
+          id="name"
           placeholder="Full Name"
-          class="p-2 px-4 border-1 rounded-lg"
+          class="border-1 border-amber-400 p-5"
         />
         <input
           type="email"
           name="email"
           id="email"
           placeholder="Enter your email"
-          class="p-2 px-4 border-1 rounded-lg"
+          class="border-1 border-amber-400 p-5"
         />
-        <select name="reason" id="reason" class="p-2 px-4 border-1 rounded-lg">
+        <select
+          name="reason"
+          id="reason"
+          class="text-sm border-1 border-amber-400 p-5"
+        >
           <option value="">Choose Discussion Topic</option>
           <option value="mentorship">The Mentorship Program</option>
           <option value="software">I need a software</option>
           <option value="cvreview">I need Resume review</option>
           <option value="cvreview">Other reasons</option>
         </select>
+
         <button
-          class="p-2 px-4 border-1 font-bold text-xl rounded-lg"
+          class="text-black text-sm tracking-wide bg-amber-700 hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5"
           type="submit"
         >
           Book Now
         </button>
       </div>
     </div>
-  </div>
+  </form>
 </section>
 
 <section class="my-12">
   <div class="max-w-7xl mx-auto px-8 py-12">
-    <h3 class="text-center text-lg font-bold uppercase text-amber-700 mb-4">
+    <h3
+      class="text-left text-base font-bold uppercase text-amber-700 mb-4 max-w-6xl"
+    >
       Latest Software projects
     </h3>
-    <p class="text-5xl font-medium leading-14 mb-18 text-center">
+    <p class="text-5xl/14 font-medium mb-18 text-left max-w-6xl">
       As a Squarespace developer, here are some of the latest Squarespace
       projects I’ve worked on.
     </p>
-    <div class="grid grid-cols-[3fr_1fr] gap-8">
+    <div class="grid grid-cols-[3fr_2fr] gap-16 mb-28">
       <div>
-        <a class="" href="#">
+        <a class="mb-4 block" href="#">
           <img
+            class="w-full"
             src="https://images.pexels.com/photos/31308251/pexels-photo-31308251/free-photo-of-cozy-cat-and-dog-relaxing-indoors-on-bed.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="Just a radon image picked online"
           />
         </a>
-        <p>KandaFocus Photography</p>
+        <a href="#" class="underline uppercase text-amber-700"
+          >KandaFocus Photography</a
+        >
       </div>
-      <div>
-        <a class="" href="#">
+      <div class="self-end translate-y-28">
+        <a class="mb-4 block" href="#">
           <img
+            class="w-full"
             src="https://images.unsplash.com/photo-1742646895349-93c71c08e693?q=80&w=1613&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Just a radon image picked online"
           />
         </a>
-        <p>KeyMoney website</p>
+        <a href="#" class="underline uppercase text-amber-700"
+          >KeyMoney website</a
+        >
       </div>
     </div>
   </div>
@@ -526,60 +471,72 @@ you will fall in love with{% endblock title_content %}
 
 <section class="my-12">
   <div class="max-w-7xl mx-auto px-8 py-12">
-    <h3 class="text-center text-lg font-bold uppercase text-amber-700 mb-4">
+    <h3
+      class="text-left text-base font-bold uppercase text-amber-700 mb-4 max-w-6xl"
+    >
       Latest Blog Posts
     </h3>
-    <p class="text-5xl font-medium leading-14 mb-18 text-center">
+    <p class="text-5xl/14 font-medium mb-18 text-left max-w-6xl">
       Read through some of my thoughts and insights through being a Squarespace
       developer.
     </p>
 
     <ul class="grid grid-cols-3 gap-8">
       <li>
-        <div>
+        <div class="mb-4">
           <img
             src="https://images.pexels.com/photos/31173342/pexels-photo-31173342/free-photo-of-two-dogs-in-amsterdam-street-portrait.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="random image from online"
           />
         </div>
-        <h4 class="text-3xl mb-6">Reason for bloging</h4>
-        <p class="text-base leading-9 mb-8">
+
+        <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
+          Reason for bloging
+        </h3>
+        <p class="text-lg/8 text-[#dedede] mb-4">
           Read through some of my thoughts and insights through being a
           Squarespace developer. Read through some of my thoughts and insights
           through being a Squarespacer.
         </p>
-        <a class="underline text-amber-700 text-base" href="#">Read More</a>
+
+        <a class="underline text-amber-700" href="#"> Learn More </a>
       </li>
       <li>
-        <div>
+        <div class="mb-4">
           <img
             src="https://images.pexels.com/photos/31173342/pexels-photo-31173342/free-photo-of-two-dogs-in-amsterdam-street-portrait.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="random image from online"
           />
         </div>
-        <h4 class="text-3xl mb-6">Reason for bloging</h4>
-        <p class="text-base leading-9 mb-8">
+        <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
+          Reason for bloging
+        </h3>
+        <p class="text-lg/8 text-[#dedede] mb-4">
           Read through some of my thoughts and insights through being a
           Squarespace developer. Read through some of my thoughts and insights
           through being a Squarespacer.
         </p>
-        <a class="underline text-amber-700 text-base" href="#">Read More</a>
+
+        <a class="underline text-amber-700" href="#"> Learn More </a>
       </li>
 
       <li>
-        <div>
+        <div class="mb-4">
           <img
             src="https://images.pexels.com/photos/31173342/pexels-photo-31173342/free-photo-of-two-dogs-in-amsterdam-street-portrait.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="random image from online"
           />
         </div>
-        <h4 class="text-3xl mb-6">Reason for bloging</h4>
-        <p class="text-base leading-9 mb-8">
+        <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
+          Reason for bloging
+        </h3>
+        <p class="text-lg/8 text-[#dedede] mb-4">
           Read through some of my thoughts and insights through being a
           Squarespace developer. Read through some of my thoughts and insights
           through being a Squarespacer.
         </p>
-        <a class="underline text-amber-700 text-base" href="#">Read More</a>
+
+        <a class="underline text-amber-700" href="#"> Learn More </a>
       </li>
     </ul>
   </div>
