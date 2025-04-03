@@ -89,10 +89,12 @@
         </div>
         <ul class="flex items-center justify-between gap-12">
           <li>
-            <a href="{% url 'services'%}">Services</a> down arrow
+            <a href="{% url 'services'%}">Services</a>
+            {% comment %} down arrow
             <p>web dev</p>
             <p>Mentorship</p>
             <p>Resume</p>
+            {% endcomment %}
           </li>
           <li><a href="{% url 'blogs'%}">Blogs</a></li>
           <li><a href="{% url 'about'%}">About</a></li>
