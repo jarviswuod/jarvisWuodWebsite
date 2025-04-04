@@ -90,10 +90,15 @@
         <ul class="flex items-center justify-between gap-12">
           <li>
             <a href="{% url 'services'%}">Services</a>
-            {% comment %} down arrow
+            <i class="ph ph-caret-down"></i>
+            {% comment %}
+
+            <i class="ph ph-caret-up"></i>
+
             <p>web dev</p>
             <p>Mentorship</p>
             <p>Resume</p>
+
             {% endcomment %}
           </li>
           <li><a href="{% url 'blogs'%}">Blogs</a></li>
