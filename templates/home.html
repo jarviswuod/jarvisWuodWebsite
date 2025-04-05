@@ -13,10 +13,10 @@ you will fall in love with{% endblock title_content %}
   <div
     class="absolute inset-0 bg-gradient-to-br from-[rgba(0,0,0,0.5)] to-[rgba(0,0,0,0.5)]"
   ></div>
-  <div
-    class="relative z-10 min-h-lvh text-white flex items-center justify-center flex-col max-w-[980px] mx-auto"
-  >
-    <div class="home-hero-card">
+  <div class="relative z-10 text-white max-w-[980px] mx-auto">
+    <div
+      class="home-hero-card min-h-lvh flex items-center justify-center flex-col"
+    >
       <h1 class="text-6xl mb-4 font-bold text-center mb-8">
         A guided mentorship delivered to you, every single day.
       </h1>
@@ -40,7 +40,9 @@ you will fall in love with{% endblock title_content %}
         </a>
       </div>
     </div>
-    <div class="home-hero-card hidden">
+    <div
+      class="home-hero-card hidden min-h-lvh flex items-center justify-center flex-col"
+    >
       <h1 class="text-6xl mb-4 font-bold text-center mb-8">
         A hands-on web & mobile development mentorship.
       </h1>
@@ -65,7 +67,9 @@ you will fall in love with{% endblock title_content %}
       </div>
     </div>
 
-    <div class="home-hero-card hidden">
+    <div
+      class="home-hero-card hidden min-h-lvh flex items-center justify-center flex-col"
+    >
       <h1 class="text-6xl mb-4 font-bold text-center mb-8">
         A personalized CV & LinkedIn review, deliver to you on demand.
       </h1>
@@ -122,6 +126,7 @@ you will fall in love with{% endblock title_content %}
     <p class="text-5xl/14 font-medium mb-18 text-left max-w-6xl">
       Discover how I can help you through tailored solutions.
     </p>
+    {% comment %}
     <div class="grid grid-cols-2 gap-12 items-center">
       <div class="w-full">
         <img
@@ -193,6 +198,85 @@ you will fall in love with{% endblock title_content %}
           website that looks amazing and actually works. Bottom line, that's
           what I do. If you want to learn more about working with me, take a
           look through my website.
+        </p>
+
+        <a
+          class="w-1/2 text-white text-sm tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
+          href="{% url 'resume' %}"
+        >
+          Learn more <span class="ml-2 text-xl">↓</span>
+        </a>
+      </div>
+    </div>
+    {% endcomment %}
+    <div class="grid grid-cols-2 gap-12 items-center">
+      <div class="w-full">
+        <img
+          src="https://images.unsplash.com/photo-1742646895322-1d439c21c2b5?q=80&w=1638&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Random ducks"
+        />
+      </div>
+      <div class="flex flex-col">
+        <h3 class="text-3xl text-[#fefefe] font-medium mb-6">
+          1-on-1 Mentorship
+        </h3>
+        <p class="text-lg/8 text-[#dedede] mb-8">
+          I help beginners become confident web developers with personalized
+          guidance, weekly calls, and a proven roadmap. If you're ready to take
+          your skills seriously, let's work together.
+        </p>
+
+        <a
+          class="w-1/2 text-white text-sm tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
+          href="{% url 'mentorship' %}"
+        >
+          Learn more <span class="ml-2 text-xl">↓</span>
+        </a>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-12 items-center">
+      <div class="flex flex-col">
+        <h3 class="text-3xl text-[#fefefe] font-medium mb-6">
+          Custom Software Solutions
+        </h3>
+        <p class="text-lg/8 text-[#dedede] mb-8">
+          Need a website or Android app that works and looks amazing? I build
+          full-stack solutions for startups, NGOs, and solo businesses. Let’s
+          bring your idea to life.
+        </p>
+
+        <a
+          class="w-1/2 text-white text-sm tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
+          href="{% url 'software' %}"
+        >
+          Learn more <span class="ml-2 text-xl">↓</span>
+        </a>
+      </div>
+
+      <div class="w-full">
+        <img
+          src="https://images.unsplash.com/photo-1742646895322-1d439c21c2b5?q=80&w=1638&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Random ducks"
+        />
+      </div>
+    </div>
+
+    <div class="grid grid-cols-2 gap-12 items-center">
+      <div class="w-full">
+        <img
+          src="https://images.unsplash.com/photo-1742646895322-1d439c21c2b5?q=80&w=1638&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+          alt="Random ducks"
+        />
+      </div>
+      <div class="flex flex-col">
+        <h3 class="text-3xl text-[#fefefe] font-medium mb-6">
+          Resume & LinkedIn Review
+        </h3>
+        <p class="text-lg/8 text-[#dedede] mb-8">
+          I'll optimize your resume, fine-tune your LinkedIn profile, and show
+          you how to apply for jobs the smart way. Get noticed by recruiters and
+          land more interviews.
         </p>
 
         <a
@@ -431,7 +515,8 @@ you will fall in love with{% endblock title_content %}
         Book your first call for free
       </h3>
       <p class="text-xl mb-12">
-        Lorem ipsum dolor sit amet consectet piscing elit.
+        Let’s talk about your goals and how I can help you grow—no strings
+        attached.
       </p>
 
       <div class="grid grid-cols-2 gap-4 gap-y-8 justify-between text-sm">
@@ -480,8 +565,8 @@ you will fall in love with{% endblock title_content %}
       Latest Software projects
     </h3>
     <p class="text-5xl/14 font-medium mb-18 text-left max-w-6xl">
-      As a Squarespace developer, here are some of the latest Squarespace
-      projects I’ve worked on.
+      As a Fullstack developer, here are some of the latest software projects
+      I’ve worked on.
     </p>
     <div class="grid grid-cols-[3fr_2fr] gap-16 mb-28">
       <div>
@@ -535,9 +620,10 @@ you will fall in love with{% endblock title_content %}
     >
       Latest Blog Posts
     </h3>
+
     <p class="text-5xl/14 font-medium mb-18 text-left max-w-6xl">
-      Read through some of my thoughts and insights through being a Squarespace
-      developer.
+      Dev life, growth plans, health wins, money moves * real talk, my journey,
+      unfiltered. *
     </p>
 
     <ul class="grid grid-cols-3 gap-8">
@@ -550,12 +636,10 @@ you will fall in love with{% endblock title_content %}
         </div>
 
         <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
-          Reason for bloging
+          My Journey of Progress
         </h3>
         <p class="text-lg/8 text-[#dedede] mb-4">
-          Read through some of my thoughts and insights through being a
-          Squarespace developer. Read through some of my thoughts and insights
-          through being a Squarespacer.
+          Hard Truths, Habits, and Hustle
         </p>
 
         <a class="underline text-amber-700" href="#"> Learn More </a>
@@ -568,12 +652,10 @@ you will fall in love with{% endblock title_content %}
           />
         </div>
         <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
-          Reason for bloging
+          The 4-Step Blueprint
         </h3>
         <p class="text-lg/8 text-[#dedede] mb-4">
-          Read through some of my thoughts and insights through being a
-          Squarespace developer. Read through some of my thoughts and insights
-          through being a Squarespacer.
+          How I'm Supercharging My Personal Brand Growth on X
         </p>
 
         <a class="underline text-amber-700" href="#"> Learn More </a>
@@ -587,12 +669,10 @@ you will fall in love with{% endblock title_content %}
           />
         </div>
         <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
-          Reason for bloging
+          From Struggles to Strength:
         </h3>
         <p class="text-lg/8 text-[#dedede] mb-4">
-          Read through some of my thoughts and insights through being a
-          Squarespace developer. Read through some of my thoughts and insights
-          through being a Squarespacer.
+          How James Clear, Alex Hormozi, and Dan Koe are transforming my life.
         </p>
 
         <a class="underline text-amber-700" href="#"> Learn More </a>
