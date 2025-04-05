@@ -230,151 +230,194 @@ you will fall in love with{% endblock title_content %}
       </p>
       <p class="flex items-center gap-4">
         <i
-          class="ph ph-caret-left p-3 border-1 border-[#dedede] text-2xl rounded-full"
+          onclick="prevSlide()"
+          class="ph ph-caret-left p-2 border-1 border-[#dedede] text-2xl rounded-full cursor-pointer hover:bg-white hover:text-black duration-300 transform-all"
         >
         </i>
         <i
-          class="ph ph-caret-right p-3 border-1 border-[#dedede] text-2xl rounded-full"
+          onclick="nextSlide()"
+          class="ph ph-caret-right p-2 border-1 border-[#dedede] text-2xl rounded-full cursor-pointer hover:bg-white hover:text-black duration-300 transform-all"
         >
         </i>
       </p>
     </h4>
 
-    <ul class="grid grid-cols-3 gap-4 items-start">
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_1.png" %}" alt="twitter
-        testimonial">
+    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24">
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_1.png" %}" alt="twitter
+          testimonial">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_2.png" %}" alt="twitter
+          testimonial">
+        </div>
       </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_2.png" %}" alt="twitter
-        testimonial">
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_3.png" %}" alt="twitter
+          testimonial">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_4.png" %}" alt="twitter
+          testimonial">
+        </div>
       </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_3.png" %}" alt="twitter
-        testimonial">
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_5.png" %}" alt="twitter
+          testimonial">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+          <img src="{% static "testimonials/image_6.png" %}" alt="twitter
+          testimonial">
+        </div>
       </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_4.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_5.png" %}" alt="twitter
-        testimonial">
-      </li>
-      <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
-        <img src="{% static "testimonials/image_6.png" %}" alt="twitter
-        testimonial">
-      </li>
-
-      {% comment %}
-      <div>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+    </ul>
+    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24 hidden">
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_7.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_8.png" %}" alt="twitter
           testimonial">
-        </li>
-
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_9.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_10.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_11.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_12.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+    </ul>
+    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24 hidden">
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_13.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_14.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_15.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_16.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_17.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_18.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+    </ul>
+    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24 hidden">
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_19.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_20.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_21.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_22.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_23.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_24.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+    </ul>
+    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24 hidden">
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_25.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_26.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_27.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_28.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_29.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_30.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+      </li>
+    </ul>
+    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24 hidden">
+      <li class="space-y-4">
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_31.png" %}" alt="twitter
           testimonial">
-        </li>
-        <li class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
+        </div>
+        <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_32.png" %}" alt="twitter
           testimonial">
-        </li>
-      </div>
-      {% endcomment %}
+        </div>
+      </li>
     </ul>
   </div>
 </section>
