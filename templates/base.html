@@ -88,18 +88,25 @@
           </a>
         </div>
         <ul class="flex items-center justify-between gap-12">
-          <li>
+          <li class="group relative">
             <a href="{% url 'services'%}">Services</a>
-            <i class="ph ph-caret-down"></i>
-            {% comment %}
+            <i class="ph ph-caret-down group-hover:hidden"></i>
+            <i class="ph ph-caret-up hidden group-hover:inline-block"></i>
 
-            <i class="ph ph-caret-up"></i>
+            <ul
+              class="z-10 absolute top-6 left-0 bg-black text-white w-36 p-4 rounded-lg shadow-lg hidden group-hover:block"
+            >
+              <li>
+                <a href="{% url 'mentorship'%}">Mentorship</a>
+              </li>
+              <li>
+                <a href="{% url 'web_dev'%}">web dev</a>
+              </li>
 
-            <p>web dev</p>
-            <p>Mentorship</p>
-            <p>Resume</p>
-
-            {% endcomment %}
+              <li>
+                <a href="{% url 'resume_review'%}">Resume</a>
+              </li>
+            </ul>
           </li>
           <li><a href="{% url 'blogs'%}">Blogs</a></li>
           <li><a href="{% url 'about'%}">About</a></li>
