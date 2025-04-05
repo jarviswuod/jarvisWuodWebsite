@@ -1,11 +1,8 @@
 // "use strict";
 
 // TWITTER TESTIMONIAL SLIDER
-console.log(121212);
-const testimonialUls = document.querySelectorAll("ul.testimonial.grid");
-console.log(testimonialUls);
-
 let current = 0;
+const testimonialUls = document.querySelectorAll("ul.testimonial.grid");
 
 function showSlide(index) {
   testimonialUls.forEach((ul, i) => ul.classList.toggle("hidden", i !== index));
