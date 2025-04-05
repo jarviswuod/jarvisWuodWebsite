@@ -33,7 +33,7 @@ you will fall in love with{% endblock title_content %}
       </a>
       <a
         class="w-1/4 text-white text-base tracking-wide text-center font-bold uppercase border-1 border-amber-400 p-4 px-4"
-        href="#"
+        href="{% url 'mentorship' %}"
       >
         Learn more <span class="ml-2 text-xl">↓</span>
       </a>
@@ -58,7 +58,7 @@ you will fall in love with{% endblock title_content %}
         </a>
         <a
           class="w-1/4 text-white text-base tracking-wide text-center font-bold uppercase border-1 border-amber-400 p-4 px-4"
-          href="#"
+          href="{% url 'software' %}"
         >
           Learn more <span class="ml-2 text-xl">↓</span>
         </a>
@@ -83,7 +83,7 @@ you will fall in love with{% endblock title_content %}
         </a>
         <a
           class="w-1/4 text-white text-base tracking-wide text-center font-bold uppercase border-1 border-amber-400 p-4 px-4"
-          href="#"
+          href="{% url 'resume' %}"
         >
           Learn more <span class="ml-2 text-xl">↓</span>
         </a>
@@ -97,7 +97,7 @@ you will fall in love with{% endblock title_content %}
     class="max-w-6xl mx-auto px-4 py-12 text-center bg-white text-black rounded-xl grid grid-cols-3 divide-x-1 divide-[#555] text-base uppercase text-[#333]"
   >
     <li>
-      <h5 class="mb-2">Devs Mentoamber</h5>
+      <h5 class="mb-2">Devs Mentored</h5>
       <p class="text-6xl font-bold">+50</p>
     </li>
     <li>
@@ -142,7 +142,7 @@ you will fall in love with{% endblock title_content %}
 
         <a
           class="w-1/2 text-white text-sm tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
-          href="#"
+          href="{% url 'mentorship' %}"
         >
           Learn more <span class="ml-2 text-xl">↓</span>
         </a>
@@ -163,7 +163,7 @@ you will fall in love with{% endblock title_content %}
 
         <a
           class="w-1/2 text-white text-sm tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
-          href="#"
+          href="{% url 'software' %}"
         >
           Learn more <span class="ml-2 text-xl">↓</span>
         </a>
@@ -197,7 +197,7 @@ you will fall in love with{% endblock title_content %}
 
         <a
           class="w-1/2 text-white text-sm tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border-1 border-amber-400 p-5 px-4"
-          href="#"
+          href="{% url 'resume' %}"
         >
           Learn more <span class="ml-2 text-xl">↓</span>
         </a>
@@ -442,28 +442,44 @@ you will fall in love with{% endblock title_content %}
     </p>
     <div class="grid grid-cols-[3fr_2fr] gap-16 mb-28">
       <div>
-        <a class="mb-4 block" href="#">
+        <a
+          target="_blank"
+          href="https://kandafocusphotography.com/"
+          class="mb-4 block"
+        >
           <img
             class="w-full"
             src="https://images.pexels.com/photos/31308251/pexels-photo-31308251/free-photo-of-cozy-cat-and-dog-relaxing-indoors-on-bed.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="Just a radon image picked online"
           />
         </a>
-        <a href="#" class="underline uppercase text-amber-700"
-          >KandaFocus Photography</a
+        <a
+          target="_blank"
+          href="https://kandafocusphotography.com/"
+          class="underline uppercase text-amber-700"
         >
+          KandaFocus Photography
+        </a>
       </div>
       <div class="self-end translate-y-28">
-        <a class="mb-4 block" href="#">
+        <a
+          target="_blank"
+          href="https://keymoneyfinance.co.ke/"
+          class="mb-4 block"
+        >
           <img
             class="w-full"
             src="https://images.unsplash.com/photo-1742646895349-93c71c08e693?q=80&w=1613&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt="Just a radon image picked online"
           />
         </a>
-        <a href="#" class="underline uppercase text-amber-700"
-          >KeyMoney website</a
+        <a
+          target="_blank"
+          href="https://keymoneyfinance.co.ke/"
+          class="underline uppercase text-amber-700"
         >
+          KeyMoney website
+        </a>
       </div>
     </div>
   </div>

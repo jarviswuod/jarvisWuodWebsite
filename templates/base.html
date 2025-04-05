@@ -88,23 +88,23 @@
           </a>
         </div>
         <ul class="flex items-center justify-between gap-12">
-          <li class="group relative">
+          <li class="group space-x-2 relative">
             <a href="{% url 'services'%}">Services</a>
             <i class="ph ph-caret-down group-hover:hidden"></i>
             <i class="ph ph-caret-up hidden group-hover:inline-block"></i>
 
             <ul
-              class="z-10 absolute top-6 left-0 bg-black text-white w-36 p-4 rounded-lg shadow-lg hidden group-hover:block"
+              class="z-10 absolute space-y-2 top-6 left-0 bg-black text-white w-64 p-4 rounded-lg shadow-lg hidden group-hover:block"
             >
               <li>
-                <a href="{% url 'mentorship'%}">Mentorship</a>
+                <a href="{% url 'mentorship'%}">Mentorship program</a>
               </li>
               <li>
-                <a href="{% url 'web_dev'%}">web dev</a>
+                <a href="{% url 'resume'%}">Resume review</a>
               </li>
 
               <li>
-                <a href="{% url 'resume_review'%}">Resume</a>
+                <a href="{% url 'software'%}">Software solution</a>
               </li>
             </ul>
           </li>
@@ -156,16 +156,27 @@
               class="flex items-center justify-center gap-8 text-center text-2xl text-amber-700"
             >
               <li>
-                <a href="#"><i class="ph ph-x-logo"></i></a>
+                <a target="_blank" href="https://twitter.com/jarviswuod">
+                  <i class="ph ph-x-logo"></i>
+                </a>
               </li>
               <li>
-                <a href="#"><i class="ph ph-youtube-logo"></i></a>
+                <a target="_blank" href="https://www.youtube.com/@JarvisWuod">
+                  <i class="ph ph-youtube-logo"></i>
+                </a>
               </li>
               <li>
-                <a href="#"><i class="ph ph-linkedin-logo"></i></a>
+                <a
+                  target="_blank"
+                  href="https://www.linkedin.com/in/jarviswuod"
+                >
+                  <i class="ph ph-linkedin-logo"></i>
+                </a>
               </li>
               <li>
-                <a href="#"><i class="ph ph-instagram-logo"></i></a>
+                <a target="_blank" href="https://www.instagram.com/jarviswuod/">
+                  <i class="ph ph-instagram-logo"></i>
+                </a>
               </li>
             </ul>
           </li>
@@ -177,23 +188,26 @@
           <a
             class="underline underline-offset-6 text-amber-700"
             href="http://social"
-            >Terms of Service</a
           >
+            Terms of Service
+          </a>
         </p>
         <ul class="flex items-center justify-center space-x-4">
           <li>
             <a
               class="underline underline-offset-6 text-amber-700"
               href="http://social"
-              >Return Policy</a
             >
+              Return Policy
+            </a>
           </li>
           <li>
             <a
               class="underline underline-offset-6 text-amber-700"
               href="http://social"
-              >Privacy Policy</a
             >
+              Privacy Policy
+            </a>
           </li>
         </ul>
       </div>

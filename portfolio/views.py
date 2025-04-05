@@ -28,14 +28,14 @@ def mentorship(request):
     return render(request, 'mentorship.html', context)
 
 
-def resume_review(request):
+def resume(request):
     context = {}
-    return render(request, 'resume_review.html', context)
+    return render(request, 'resume.html', context)
 
 
-def web_dev(request):
+def software(request):
     context = {}
-    return render(request, 'web_dev.html', context)
+    return render(request, 'software.html', context)
 
 
 def contact(request):
