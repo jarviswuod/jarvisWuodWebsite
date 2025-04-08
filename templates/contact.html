@@ -105,11 +105,14 @@
   </div>
 </section>
 
+{% include "contact-form.html" %}
+
 <section class="my-12">
   <div class="max-w-[1280px] mx-auto relative">
-    <ul class="mb-8 grid grid-cols-3">
+    <ul class="contact-options mb-8 grid grid-cols-3">
       <li
-        class="pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transform-all cursor-pointer"
+        class="contact--resume pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transform-all cursor-pointer"
+        onclick="showFormSection('ticket')"
       >
         <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
           Code Shop Support
@@ -123,288 +126,11 @@
         <button class="text-amber-700 uppercase font-semibold">
           Submit Ticket
         </button>
-
-        <div class="hidden">
-          <div
-            class="absolute left-0 -top-48- min-w-[1380px] block min-h-dvh bg-[#00000010]"
-          ></div>
-
-          <form
-            class="w-1/2 absolute top-1/2 left-1/2 transform -translate-x-1/2 p-8 bg-white text-black"
-          >
-            <button class="text-right">x</button>
-            <h3
-              class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4"
-            >
-              Contact Details
-            </h3>
-            <label class="block mb-4">
-              <p class="text-sm col-span-2 mb-2">
-                Full Name
-                <span class="mb-2 text-xs text-[#444]"> (required)</span>
-              </p>
-              <input
-                type="text"
-                required
-                class="w-full p-2 border border-gray-300 rounded mb-2"
-              />
-            </label>
-
-            <label class="block mb-4">
-              <p class="text-sm col-span-2 mb-2">
-                Email Address
-                <span class="mb-2 text-xs text-[#444]"> (required)</span>
-              </p>
-              <input
-                type="email"
-                required
-                class="w-full p-2 border border-gray-300 rounded mb-2"
-              />
-            </label>
-            <label class="block mb-4">
-              <p class="text-sm col-span-2">Phone Number</p>
-              <p class="mb-2 text-xs text-[#444] inline-block">
-                Not required but sometimes it's easier to just connnect directly
-              </p>
-              <input
-                type="tel"
-                class="w-full p-2 border border-gray-300 rounded mb-2"
-              />
-            </label>
-
-            <div class="hidden">
-              <h3
-                class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
-              >
-                Product Details
-              </h3>
-
-              <label class="block mb-4">
-                <p class="text-sm col-span-2 mb-2">
-                  Product Name in Question
-                  <span class="mb-2 text-xs text-[#444]"> (required)</span>
-                </p>
-                <input
-                  type="text"
-                  required
-                  class="w-full p-2 border border-gray-300 rounded mb-2"
-                />
-              </label>
-
-              <label class="block mb-4">
-                <p class="text-sm col-span-2 mb-2">
-                  Services Needed
-                  <span class="mb-2 text-xs text-[#444]"> (required)</span>
-                </p>
-                <div class="flex flex-col">
-                  <label class="flex items-center mb-2">
-                    <input
-                      type="radio"
-                      name="services"
-                      value="Digital Download Request"
-                      class="mr-2"
-                    />
-                    Digital Download Request
-                  </label>
-                  <label class="flex items-center mb-2">
-                    <input
-                      type="radio"
-                      name="services"
-                      value="Not Working as Intended"
-                      class="mr-2"
-                    />
-                    Not Working as Intended
-                  </label>
-                  <label class="flex items-center mb-2">
-                    <input
-                      type="radio"
-                      name="services"
-                      value="Completely Broken"
-                      class="mr-2"
-                    />
-                    Completely Broken
-                  </label>
-                  <label class="flex items-center mb-2">
-                    <input
-                      type="radio"
-                      name="services"
-                      value="Installation Problem"
-                      class="mr-2"
-                    />
-                    Installation Problem
-                  </label>
-                  <label class="flex items-center mb-2">
-                    <input
-                      type="radio"
-                      name="services"
-                      value="Other"
-                      class="mr-2"
-                    />
-                    Other (provide details below)
-                  </label>
-                </div>
-              </label>
-
-              <label class="block mb-4">
-                <p class="text-sm col-span-2">Relevant Link</p>
-                <p class="mb-2 text-xs text-[#444] inline-block">
-                  If you have an active link to the product in question
-                </p>
-
-                <input
-                  type="url"
-                  class="w-full p-2 border border-gray-300 rounded mb-2"
-                />
-              </label>
-
-              <label class="block mb-4">
-                <p class="text-sm col-span-2">
-                  Details About the Problem (required)
-                </p>
-                <p class="mb-2 text-xs text-[#444] inline-block">
-                  Please provide as much detail about the product in question
-                </p>
-                <textarea
-                  rows="4"
-                  required
-                  class="w-full p-2 border border-gray-300 rounded mb-4"
-                ></textarea>
-              </label>
-
-              <button
-                type="submit"
-                class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
-              >
-                Submit Ticket
-              </button>
-            </div>
-
-            <div class="hidden">
-              <h3
-                class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
-              >
-                Project Details
-              </h3>
-
-              <label class="block mb-4">
-                <p class="text-sm col-span-2 mb-2">
-                  Product Name in Question
-                  <span class="mb-2 text-xs text-[#444]"> (required)</span>
-                </p>
-                <input
-                  type="text"
-                  required
-                  class="w-full p-2 border border-gray-300 rounded mb-2"
-                />
-              </label>
-
-              <label class="block mb-4">
-                <p class="text-sm col-span-2 mb-2">
-                  Services Needed
-                  <span class="mb-2 text-xs text-[#444]"> (required)</span>
-                </p>
-                <div class="flex flex-col">
-                  <label class="flex items-center mb-2">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="Digital Download Request"
-                      class="mr-2"
-                    />
-                    Digital Download Request
-                  </label>
-                  <label class="flex items-center mb-2">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="Not Working as Intended"
-                      class="mr-2"
-                    />
-                    Not Working as Intended
-                  </label>
-                  <label class="flex items-center mb-2">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="Completely Broken"
-                      class="mr-2"
-                    />
-                    Completely Broken
-                  </label>
-                  <label class="flex items-center mb-2">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="Installation Problem"
-                      class="mr-2"
-                    />
-                    Installation Problem
-                  </label>
-                  <label class="flex items-center mb-2">
-                    <input
-                      type="checkbox"
-                      name="services"
-                      value="Other"
-                      class="mr-2"
-                    />
-                    Other (provide details below)
-                  </label>
-                </div>
-              </label>
-
-              <label class="block mb-4">
-                <p class="text-sm col-span-2">A Few Details (required)</p>
-                <p class="mb-2 text-xs text-[#444] inline-block">
-                  Just give me a quick rundown (the more information, the
-                  better).
-                </p>
-                <textarea
-                  rows="4"
-                  required
-                  class="w-full p-2 border border-gray-300 rounded mb-4"
-                ></textarea>
-              </label>
-
-              <button
-                type="submit"
-                class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
-              >
-                Send Inquiry
-              </button>
-            </div>
-
-            <div class="">
-              <h3
-                class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
-              >
-                Message Details
-              </h3>
-
-              <label class="block mb-4">
-                <p class="text-sm col-span-2">Your Message (required)</p>
-                <p class="mb-2 text-xs text-[#444] inline-block">
-                  Send something awesome to my inbox.
-                </p>
-                <textarea
-                  rows="4"
-                  required
-                  class="w-full p-2 border border-gray-300 rounded mb-4"
-                ></textarea>
-              </label>
-
-              <button
-                type="submit"
-                class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
-              >
-                Send Message
-              </button>
-            </div>
-          </form>
-        </div>
       </li>
 
       <li
-        class="pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transform-all cursor-pointer"
+        class="contact--expert pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transform-all cursor-pointer"
+        onclick="showFormSection('inquiry')"
       >
         <h3 class="text-3xl text-[#fefefe] font-medium mb-4">Hire an Expert</h3>
         <p class="text-lg/8 text-[#dedede] mb-8">
@@ -419,7 +145,8 @@
       </li>
 
       <li
-        class="pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transform-all cursor-pointer"
+        class="contact--general-quiz pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transform-all cursor-pointer"
+        onclick="showFormSection('message')"
       >
         <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
           General Questions
