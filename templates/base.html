@@ -50,6 +50,22 @@
     <link rel="stylesheet" href="{% static 'styles/index.css' %}" />
     <script defer src="{% static 'js/index.js' %}"></script>
   </head>
+
+  <!-- Google tag (gtag.js) -->
+  <script
+    async
+    src="https://www.googletagmanager.com/gtag/js?id=G-BZYGCYN5RL"
+  ></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() {
+      dataLayer.push(arguments);
+    }
+    gtag("js", new Date());
+
+    gtag("config", "G-BZYGCYN5RL");
+  </script>
+
   <body class="bg-black text-white relative">
     <header class="bg-black text-white">
       <nav
