@@ -12,14 +12,14 @@ const newImageUrl = [
 
 let index = 0;
 
-function rotateContent(i) {
+const rotateContent = (i) => {
   cards.forEach((card, idx) => {
     card.classList.toggle("hidden", idx !== i);
   });
   if (section) {
     section.style.backgroundImage = `url('${newImageUrl[i]}')`;
   }
-}
+};
 
 rotateContent(index);
 setInterval(() => {
