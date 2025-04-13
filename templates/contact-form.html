@@ -53,7 +53,327 @@
         <h3
           class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
         >
-          Product Details
+          Progress Details
+        </h3>
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            When did you begin coding
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            What goal do you aim to achieve?
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            What is holding you back the most from hitting your goal in tech
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">
+            Details About your Progress and Challenges
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Please provide as much detail about the skills learnt, progress made
+            and challenges faced
+          </p>
+          <textarea
+            rows="4"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-4"
+          ></textarea>
+        </label>
+
+        <button
+          type="submit"
+          class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
+        >
+          Get mentorship
+        </button>
+      </div>
+
+      <div class="form--contact hire-an-expert-form hidden" id="inquiry-form">
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Project Details
+        </h3>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Product Name in Question
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Services Needed
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <div class="flex text-sm text-[#333] flex-col">
+            <label class="flex items-center mb-2">
+              <input
+                type="checkbox"
+                name="services"
+                value="Digital Download Request"
+                class="mr-2"
+              />
+              Digital Download Request
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="checkbox"
+                name="services"
+                value="Not Working as Intended"
+                class="mr-2"
+              />
+              Not Working as Intended
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="checkbox"
+                name="services"
+                value="Completely Broken"
+                class="mr-2"
+              />
+              Completely Broken
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="checkbox"
+                name="services"
+                value="Installation Problem"
+                class="mr-2"
+              />
+              Installation Problem
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="checkbox"
+                name="services"
+                value="Other"
+                class="mr-2"
+              />
+              Other (provide details below)
+            </label>
+          </div>
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">A Few Details (required)</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Just give me a quick rundown (the more information, the better).
+          </p>
+          <textarea
+            rows="4"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-4"
+          >
+          </textarea>
+        </label>
+
+        <button
+          type="submit"
+          class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
+        >
+          Send Inquiry
+        </button>
+      </div>
+
+      <div
+        class="form--contact general-questions-form hidden"
+        id="message-form"
+      >
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Job Hunter Profile Details
+        </h3>
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            How Often Do You Update Your Resume
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <div class="flex text-sm text-[#333] flex-col">
+            <label class="flex items-center mb-2">
+              <input type="radio" name="reviewed" value="Weekly" class="mr-2" />
+              Weekly
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="reviewed"
+                value="Monthly"
+                class="mr-2"
+              />
+              Monthly
+            </label>
+
+            <label class="flex items-center mb-2">
+              <input type="radio" name="reviewed" value="Never" class="mr-2" />
+              Never
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="reviewed"
+                value="six_months"
+                class="mr-2"
+              />
+              Ever six Months
+            </label>
+
+            <label class="flex items-center mb-2">
+              <input
+                type="text"
+                name="reviewed"
+                placeholder="Other"
+                value=""
+                class="p-2 border border-gray-300 rounded mb-2"
+              />
+            </label>
+          </div>
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Ever Done a Resume Review Before?
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <div class="flex text-sm text-[#333] flex-col">
+            <label class="flex items-center mb-2">
+              <input type="radio" name="reviewed" value="Yes" class="mr-2" />
+              Yes
+            </label>
+            <label class="flex items-center mb-2">
+              <input type="radio" name="reviewed" value="No" class="mr-2" />
+              No
+            </label>
+          </div>
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Upload Your Upated Resume
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="file"
+            name="resume"
+            id="resume"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">LinkedIn Profile Link</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Share your active linkedin profile account link
+          </p>
+          <input
+            type="url"
+            name="linkedin"
+            id="linkedin"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">Portfolio or Github Links</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Share links to either your portfolio or github profile
+          </p>
+          <input
+            type="url"
+            name="portfolio"
+            id="portfolio"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        {% comment %}
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Product Name in Question
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">Relevant Links</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            If you have an active link to the product in question
+          </p>
+
+          <input
+            type="url"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+        {% endcomment %}
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">
+            Details About your Job Hunting Experience (required)
+          </p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Please provide as much detail about your experience looking for a
+            job
+          </p>
+          <textarea
+            rows="4"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-4"
+          ></textarea>
+        </label>
+
+        <button
+          type="submit"
+          class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
+        >
+          Submit Resume
+        </button>
+      </div>
+
+      {% comment %}
+      <div class="form--contact mentorship-resume-form hidden" id="ticket-form">
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Progress Details
         </h3>
 
         <label class="block mb-4">
@@ -145,134 +465,10 @@
           type="submit"
           class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
         >
-          Submit Ticket
+          Get mentorship
         </button>
       </div>
-
-      <div class="form--contact hire-an-expert-form hidden" id="inquiry-form">
-        <h3
-          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
-        >
-          Project Details
-        </h3>
-
-        <label class="block mb-4">
-          <p class="text-sm col-span-2 mb-2">
-            Product Name in Question
-            <span class="mb-2 text-xs text-[#444]"> (required)</span>
-          </p>
-          <input
-            type="text"
-            required
-            class="w-full p-2 border border-gray-300 rounded mb-2"
-          />
-        </label>
-
-        <label class="block mb-4">
-          <p class="text-sm col-span-2 mb-2">
-            Services Needed
-            <span class="mb-2 text-xs text-[#444]"> (required)</span>
-          </p>
-          <div class="flex flex-col">
-            <label class="flex items-center mb-2">
-              <input
-                type="checkbox"
-                name="services"
-                value="Digital Download Request"
-                class="mr-2"
-              />
-              Digital Download Request
-            </label>
-            <label class="flex items-center mb-2">
-              <input
-                type="checkbox"
-                name="services"
-                value="Not Working as Intended"
-                class="mr-2"
-              />
-              Not Working as Intended
-            </label>
-            <label class="flex items-center mb-2">
-              <input
-                type="checkbox"
-                name="services"
-                value="Completely Broken"
-                class="mr-2"
-              />
-              Completely Broken
-            </label>
-            <label class="flex items-center mb-2">
-              <input
-                type="checkbox"
-                name="services"
-                value="Installation Problem"
-                class="mr-2"
-              />
-              Installation Problem
-            </label>
-            <label class="flex items-center mb-2">
-              <input
-                type="checkbox"
-                name="services"
-                value="Other"
-                class="mr-2"
-              />
-              Other (provide details below)
-            </label>
-          </div>
-        </label>
-
-        <label class="block mb-4">
-          <p class="text-sm col-span-2">A Few Details (required)</p>
-          <p class="mb-2 text-xs text-[#444] inline-block">
-            Just give me a quick rundown (the more information, the better).
-          </p>
-          <textarea
-            rows="4"
-            required
-            class="w-full p-2 border border-gray-300 rounded mb-4"
-          >
-          </textarea>
-        </label>
-
-        <button
-          type="submit"
-          class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
-        >
-          Send Inquiry
-        </button>
-      </div>
-
-      <div
-        class="form--contact general-questions-form hidden"
-        id="message-form"
-      >
-        <h3
-          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
-        >
-          Message Details
-        </h3>
-
-        <label class="block mb-4">
-          <p class="text-sm col-span-2">Your Message (required)</p>
-          <p class="mb-2 text-xs text-[#444] inline-block">
-            Send something awesome to my inbox.
-          </p>
-          <textarea
-            rows="4"
-            required
-            class="w-full p-2 border border-gray-300 rounded mb-4"
-          >
-          </textarea>
-        </label>
-
-        <button
-          type="submit"
-          class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
-        >
-          Send Message
-        </button>
-      </div>
+      {% endcomment %}
     </form>
   </div>
 </div>
