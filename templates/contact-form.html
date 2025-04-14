@@ -22,6 +22,7 @@
         </p>
         <input
           type="text"
+          name="fullName"
           required
           class="w-full p-2 border border-gray-300 rounded mb-2"
         />
@@ -34,27 +35,31 @@
         </p>
         <input
           type="email"
+          name="emailAddress"
           required
           class="w-full p-2 border border-gray-300 rounded mb-2"
         />
       </label>
+
       <label class="block mb-4">
         <p class="text-sm col-span-2">Phone Number</p>
         <p class="mb-2 text-xs text-[#444] inline-block">
-          Not required but sometimes it's easier to just connnect directly
+          Not required but sometimes it's easier to just connect directly
         </p>
         <input
           type="tel"
+          name="phoneNumber"
           class="w-full p-2 border border-gray-300 rounded mb-2"
         />
       </label>
 
-      <div class="form--contact mentorship-resume-form hidden" id="ticket-form">
+      <div class="form--contact mentorship-form hidden">
         <h3
           class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
         >
-          Progress Details
+          Dev Journey Details
         </h3>
+
         <label class="block mb-4">
           <p class="text-sm col-span-2 mb-2">
             When did you begin coding
@@ -62,6 +67,7 @@
           </p>
           <input
             type="text"
+            name="startCoding"
             required
             class="w-full p-2 border border-gray-300 rounded mb-2"
           />
@@ -74,6 +80,7 @@
           </p>
           <input
             type="text"
+            name="goal"
             required
             class="w-full p-2 border border-gray-300 rounded mb-2"
           />
@@ -86,6 +93,7 @@
           </p>
           <input
             type="text"
+            name="obstacle"
             required
             class="w-full p-2 border border-gray-300 rounded mb-2"
           />
@@ -101,6 +109,7 @@
             and challenges faced
           </p>
           <textarea
+            name="progressDetails"
             rows="4"
             required
             class="w-full p-2 border border-gray-300 rounded mb-4"
@@ -115,77 +124,81 @@
         </button>
       </div>
 
-      <div class="form--contact hire-an-expert-form hidden" id="inquiry-form">
+      <div class="form--contact expertise-form hidden">
         <h3
           class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
         >
-          Project Details
+          Expertise Details
         </h3>
 
         <label class="block mb-4">
           <p class="text-sm col-span-2 mb-2">
-            Product Name in Question
-            <span class="mb-2 text-xs text-[#444]"> (required)</span>
-          </p>
-          <input
-            type="text"
-            required
-            class="w-full p-2 border border-gray-300 rounded mb-2"
-          />
-        </label>
-
-        <label class="block mb-4">
-          <p class="text-sm col-span-2 mb-2">
-            Services Needed
+            What do you need help with?
             <span class="mb-2 text-xs text-[#444]"> (required)</span>
           </p>
           <div class="flex text-sm text-[#333] flex-col">
             <label class="flex items-center mb-2">
               <input
-                type="checkbox"
-                name="services"
-                value="Digital Download Request"
+                type="radio"
+                name="serviceType"
+                value="webapp"
+                required
                 class="mr-2"
               />
-              Digital Download Request
+              Build a New Website
             </label>
             <label class="flex items-center mb-2">
               <input
-                type="checkbox"
-                name="services"
-                value="Not Working as Intended"
+                type="radio"
+                name="serviceType"
+                value="web_redesign"
                 class="mr-2"
               />
-              Not Working as Intended
+              Redesign My Website
             </label>
             <label class="flex items-center mb-2">
               <input
-                type="checkbox"
-                name="services"
-                value="Completely Broken"
+                type="radio"
+                name="serviceType"
+                value="mobile_app"
                 class="mr-2"
               />
-              Completely Broken
+              Create a Mobile App
             </label>
             <label class="flex items-center mb-2">
               <input
-                type="checkbox"
-                name="services"
-                value="Installation Problem"
+                type="radio"
+                name="serviceType"
+                value="custom_software"
                 class="mr-2"
               />
-              Installation Problem
+              Develop Custom Software
+            </label>
+            <label class="flex items-center mb-2">
+              <input type="radio" name="serviceType" value="job" class="mr-2" />
+              I'm Hiring (Job Offer)
             </label>
             <label class="flex items-center mb-2">
               <input
-                type="checkbox"
-                name="services"
-                value="Other"
+                type="radio"
+                name="serviceType"
+                value="other"
                 class="mr-2"
               />
-              Other (provide details below)
+              Something Else (Explain Below)
             </label>
           </div>
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Got a live website or app? Share the link so we can check it out.
+          </p>
+          <input
+            type="url"
+            name="projectLink"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
         </label>
 
         <label class="block mb-4">
@@ -194,11 +207,11 @@
             Just give me a quick rundown (the more information, the better).
           </p>
           <textarea
+            name="projectDetails"
             rows="4"
             required
             class="w-full p-2 border border-gray-300 rounded mb-4"
-          >
-          </textarea>
+          ></textarea>
         </label>
 
         <button
@@ -209,15 +222,13 @@
         </button>
       </div>
 
-      <div
-        class="form--contact general-questions-form hidden"
-        id="message-form"
-      >
+      <div class="form--contact resume-review-form hidden">
         <h3
           class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
         >
           Job Hunter Profile Details
         </h3>
+
         <label class="block mb-4">
           <p class="text-sm col-span-2 mb-2">
             How Often Do You Update Your Resume
@@ -225,42 +236,48 @@
           </p>
           <div class="flex text-sm text-[#333] flex-col">
             <label class="flex items-center mb-2">
-              <input type="radio" name="reviewed" value="Weekly" class="mr-2" />
+              <input
+                type="radio"
+                name="resumeFrequency"
+                value="Weekly"
+                required
+                class="mr-2"
+              />
               Weekly
             </label>
             <label class="flex items-center mb-2">
               <input
                 type="radio"
-                name="reviewed"
+                name="resumeFrequency"
                 value="Monthly"
                 class="mr-2"
               />
               Monthly
             </label>
-
             <label class="flex items-center mb-2">
-              <input type="radio" name="reviewed" value="Never" class="mr-2" />
-              Never
+              <input
+                type="radio"
+                name="resumeFrequency"
+                value="six_months"
+                class="mr-2"
+              />
+              Every six Months
             </label>
             <label class="flex items-center mb-2">
               <input
                 type="radio"
-                name="reviewed"
-                value="six_months"
+                name="resumeFrequency"
+                value="Never"
                 class="mr-2"
               />
-              Ever six Months
+              Never
             </label>
-
-            <label class="flex items-center mb-2">
-              <input
-                type="text"
-                name="reviewed"
-                placeholder="Other"
-                value=""
-                class="p-2 border border-gray-300 rounded mb-2"
-              />
-            </label>
+            <input
+              type="text"
+              name="resumeFrequencyOther"
+              placeholder="Other"
+              class="p-2 border border-gray-300 rounded mb-2"
+            />
           </div>
         </label>
 
@@ -271,11 +288,22 @@
           </p>
           <div class="flex text-sm text-[#333] flex-col">
             <label class="flex items-center mb-2">
-              <input type="radio" name="reviewed" value="Yes" class="mr-2" />
+              <input
+                type="radio"
+                name="resumeReviewedBefore"
+                value="Yes"
+                required
+                class="mr-2"
+              />
               Yes
             </label>
             <label class="flex items-center mb-2">
-              <input type="radio" name="reviewed" value="No" class="mr-2" />
+              <input
+                type="radio"
+                name="resumeReviewedBefore"
+                value="No"
+                class="mr-2"
+              />
               No
             </label>
           </div>
@@ -283,26 +311,25 @@
 
         <label class="block mb-4">
           <p class="text-sm col-span-2 mb-2">
-            Upload Your Upated Resume
+            Upload Your Updated Resume
             <span class="mb-2 text-xs text-[#444]"> (required)</span>
           </p>
           <input
             type="file"
-            name="resume"
-            id="resume"
+            name="uploadedResume"
             class="w-full p-2 border border-gray-300 rounded mb-2"
+            required
           />
         </label>
 
         <label class="block mb-4">
           <p class="text-sm col-span-2">LinkedIn Profile Link</p>
           <p class="mb-2 text-xs text-[#444] inline-block">
-            Share your active linkedin profile account link
+            Share your active LinkedIn profile account link
           </p>
           <input
             type="url"
-            name="linkedin"
-            id="linkedin"
+            name="linkedinProfile"
             class="w-full p-2 border border-gray-300 rounded mb-2"
           />
         </label>
@@ -310,40 +337,14 @@
         <label class="block mb-4">
           <p class="text-sm col-span-2">Portfolio or Github Links</p>
           <p class="mb-2 text-xs text-[#444] inline-block">
-            Share links to either your portfolio or github profile
+            Share links to either your portfolio or GitHub profile
           </p>
           <input
             type="url"
-            name="portfolio"
-            id="portfolio"
+            name="portfolioLinks"
             class="w-full p-2 border border-gray-300 rounded mb-2"
           />
         </label>
-
-        {% comment %}
-        <label class="block mb-4">
-          <p class="text-sm col-span-2 mb-2">
-            Product Name in Question
-            <span class="mb-2 text-xs text-[#444]"> (required)</span>
-          </p>
-          <input
-            type="text"
-            required
-            class="w-full p-2 border border-gray-300 rounded mb-2"
-          />
-        </label>
-        <label class="block mb-4">
-          <p class="text-sm col-span-2">Relevant Links</p>
-          <p class="mb-2 text-xs text-[#444] inline-block">
-            If you have an active link to the product in question
-          </p>
-
-          <input
-            type="url"
-            class="w-full p-2 border border-gray-300 rounded mb-2"
-          />
-        </label>
-        {% endcomment %}
 
         <label class="block mb-4">
           <p class="text-sm col-span-2">
@@ -354,6 +355,7 @@
             job
           </p>
           <textarea
+            name="jobHuntingExperience"
             rows="4"
             required
             class="w-full p-2 border border-gray-300 rounded mb-4"

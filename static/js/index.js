@@ -76,6 +76,6 @@ function showFormSection(section) {
   const forms = document.querySelectorAll(".form--contact");
   forms.forEach((form) => form.classList.add("hidden"));
 
-  const formToShow = document.getElementById(`${section}-form`);
+  const formToShow = document.querySelector(`.${section}`);
   formToShow.classList.remove("hidden");
 }
