@@ -67,24 +67,41 @@
   </script>
 
   <body class="bg-black text-white relative">
+    {% comment %}
     <section class="bg-blue-500 text-black py-4">
-      <div class="max-w-7xl mx-auto text-xl">
+      <div class="max-w-7xl mx-auto text-base sm:text-lg md:text-xl">
         <p class="text-center">
           Website under construction 🚧. A team is working round the clock to
           spin it up (lol, I'm the team 😅)
         </p>
       </div>
     </section>
-    <header class="bg-black text-white">
+    {% endcomment %}
+    <header class="">
       <nav
-        class="max-w-[1320px] p-4 px-2 mx-auto flex items-center justify-between text-base tracking-wide font-bold uppercase"
+        class="max-w-[1320px] mx-auto p-4 px-8 flex items-center justify-between text-base tracking-wide font-bold uppercase"
       >
         <div>
           <a class="max-w-16 block" href="{% url 'home'%}">
             <img src="{% static '/logo_.png' %}" alt="" />
           </a>
         </div>
-        <ul class="flex items-center justify-between gap-12">
+
+        <p
+          class="md:hidden block text-3xl cursor-pointer"
+          onclick="toggleMenu()"
+        >
+          <i id="menu-icon" class="ph ph-list"></i>
+        </p>
+
+        {% comment %}
+        <ul class="flex items-center justify-between gap-8 lg:gap-12"></ul>
+        {% endcomment %}
+        <ul
+          class="max-md:absolute max-md:w-full max-md:bg-[#222] max-md:top-24 max-md:left-0 max-md:z-50 max-md:h-screen max-md:p-6 max-md:border-t flex word-spacing list-none justify-start items-center gap-8 xl:gap-12 xl:text-lg md:flex-row flex-col max-md:hidden"
+          id="menu"
+        >
+          {% comment %}
           <li class="group space-x-2 relative">
             <a href="#">Services</a>
             <i class="ph ph-caret-down group-hover:hidden"></i>
@@ -103,6 +120,32 @@
               <li>
                 <a href="{% url 'software'%}">Software solution</a>
               </li>
+            </ul>
+          </li>
+          {% endcomment %}
+
+          <li
+            class="flex lg:items-center gap-2 relative flex-col items-center"
+            onmouseenter="showSubmenu()"
+            onmouseleave="hideSubmenu()"
+            onclick="toggleSubmenu(event)"
+          >
+            <a
+              href="#"
+              class="relative after:absolute after:-bottom-1 after:left-0 after:right-0 after:w-0 after:content-[''] after:bg-[#444] after:h-[3px] after:transition-all after:duration-300 hover:after:w-full"
+            >
+              Services
+              <p class="absolute top-[25%] -right-6">
+                <i id="submenu-icon" class="ph ph-caret-down"></i>
+              </p>
+            </a>
+            <ul
+              id="submenu"
+              class="hidden max-md:relative shadow-xl shadow-[#222] absolute z-20 text-nowrap p-4 md:top-7 max-md:-right-[50%] space-y-3 bg-[#111]"
+            >
+              <li><a href="{% url 'mentorship'%}">Mentorship program</a></li>
+              <li><a href="{% url 'resume'%}">Resume review</a></li>
+              <li><a href="{% url 'software'%}">Software solution</a></li>
             </ul>
           </li>
           <li><a href="{% url 'blogs'%}">Blogs</a></li>

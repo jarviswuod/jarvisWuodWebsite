@@ -79,3 +79,38 @@ function showFormSection(section) {
   const formToShow = document.querySelector(`.${section}`);
   formToShow.classList.remove("hidden");
 }
+
+// MENU RESPONSIVENESS
+const menu = document.getElementById("menu");
+const icon = document.getElementById("menu-icon");
+
+const toggleMenu = () => {
+  menu.classList.toggle("max-md:hidden");
+  menu.classList.toggle("max-md:flex");
+  icon.classList.toggle("ph-list");
+  icon.classList.toggle("ph-x");
+};
+
+const submenu = document.getElementById("submenu");
+const submenuIcon = document.getElementById("submenu-icon");
+
+function showSubmenu() {
+  submenu.classList.remove("hidden");
+  submenuIcon.classList.remove("ph-caret-down");
+  submenuIcon.classList.add("ph-caret-up");
+}
+
+function hideSubmenu() {
+  submenu.classList.add("hidden");
+  submenuIcon.classList.remove("ph-caret-up");
+  submenuIcon.classList.add("ph-caret-down");
+}
+
+function toggleSubmenu(e) {
+  if (window.innerWidth < 768) {
+    e.preventDefault();
+    submenu.classList.toggle("hidden");
+    submenuIcon.classList.toggle("ph-caret-down");
+    submenuIcon.classList.toggle("ph-caret-up");
+  }
+}
