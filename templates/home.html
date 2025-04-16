@@ -78,11 +78,11 @@ you will fall in love with{% endblock title_content %}
     <div
       class="home-hero-card min-h-lvh flex items-center justify-center flex-col hidden"
     >
-      <h1
+      <h2
         class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-4 sm:mb-6 lg:mb-8"
       >
         A personalized CV & LinkedIn review, deliver to you on demand.
-      </h1>
+      </h2>
       <p
         class="text-lg sm:text-xl lg:text-2xl text-center max-w-[840px] mb-8 sm:mb-12 lg:mb-16"
       >
@@ -140,8 +140,6 @@ you will fall in love with{% endblock title_content %}
     >
       Discover how I can help you through tailored solutions.
     </p>
-
-    {% comment %} text-4xl sm:text-5xl lg:text-6xl {% endcomment %}
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
       <div class="w-full">
@@ -230,12 +228,16 @@ you will fall in love with{% endblock title_content %}
   </div>
 </section>
 
-<section class="bg-black text-white my-12">
-  <div class="max-w-[1280px] text-xl/9 mx-auto px-4">
-    <p class="text-5xl/14 text-center font-medium mb-4 max-w-6xl">
+<section class="my-12 px-8">
+  <div class="max-w-[1280px] text-xl/9 mx-auto">
+    <p
+      class="text-3xl sm:text-4xl lg:text-5xl/14 mb-2 lg:mb-4 text-center font-medium max-w-6xl"
+    >
       Wall of Love ❤️
     </p>
-    <p class="text-center max-w-6xl mx-auto mb-8">
+    {% comment %} text-4xl sm:text-5xl lg:text-6xl {% endcomment %}
+
+    <p class="text-lg md:text-xl text-center max-w-6xl mx-auto mb-6 md:mb-8">
       Buy Me a Coffee testimonials The testimonials page of Buy Me a Coffee
       shares its story, which began in late 2017, and highlights how the
       platform has supported over a million creators since then.Buy Me a Coffee
@@ -266,7 +268,9 @@ you will fall in love with{% endblock title_content %}
       </p>
     </h4>
 
-    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24">
+    <ul
+      class="testimonial grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-start mb-24"
+    >
       <li class="space-y-4">
         <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_34.png" %}" alt="twitter
@@ -298,7 +302,9 @@ you will fall in love with{% endblock title_content %}
         </div>
       </li>
     </ul>
-    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24 hidden">
+    <ul
+      class="testimonial grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-start mb-24 hidden"
+    >
       <li class="space-y-4">
         <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_5.png" %}" alt="twitter
@@ -330,7 +336,9 @@ you will fall in love with{% endblock title_content %}
         </div>
       </li>
     </ul>
-    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24 hidden">
+    <ul
+      class="testimonial grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-start mb-24 hidden"
+    >
       <li class="space-y-4">
         <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_11.png" %}" alt="twitter
@@ -364,7 +372,9 @@ you will fall in love with{% endblock title_content %}
         </div>
       </li>
     </ul>
-    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24 hidden">
+    <ul
+      class="testimonial grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-start mb-24 hidden"
+    >
       <li class="space-y-4">
         <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_17.png" %}" alt="twitter
@@ -397,7 +407,9 @@ you will fall in love with{% endblock title_content %}
         </div>
       </li>
     </ul>
-    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24 hidden">
+    <ul
+      class="testimonial grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-start mb-24 hidden"
+    >
       <li class="space-y-4">
         <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_23.png" %}" alt="twitter
@@ -431,7 +443,9 @@ you will fall in love with{% endblock title_content %}
         </div>
       </li>
     </ul>
-    <ul class="testimonial grid grid-cols-3 gap-4 items-start mb-24 hidden">
+    <ul
+      class="testimonial grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4 items-start mb-24 hidden"
+    >
       <li class="space-y-4">
         <div class="border-1 border-[#434343] rounded-2xl overlow-hidden p-2">
           <img src="{% static "testimonials/image_29.png" %}" alt="twitter
@@ -457,25 +471,34 @@ you will fall in love with{% endblock title_content %}
   </div>
 </section>
 
-<section class="my-12">
+<section class="my-12 md:my-18 sm:px-8">
   <form
-    class="max-w-6xl mx-auto px-16 py-12 bg-white text-black rounded-lg grid grid-cols-[3fr_2fr]"
+    class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-12 md:py-18 lg:py-24 bg-white text-black rounded-base grid grid-cols-2 lg:grid-cols-[3fr_1fr] xl:grid-cols-[3fr_2fr]"
   >
-    <div class="py-18">
-      <h3 class="text-6xl/14 font-medium mb-8 text-left max-w-6xl">
+    <div class="">
+      <h1 class="text-6xl/14 font-medium mb-8 text-left max-w-6xl">
         Book your first call for free
-      </h3>
+      </h1>
       <p class="text-xl mb-12">
         Let’s talk about your goals and how I can help you grow—no strings
         attached.
       </p>
 
-      <div class="grid grid-cols-2 gap-4 gap-y-8 justify-between text-sm">
+      <div
+        class="grid grid-cols-1 sm:grid-cols-2 gap-4 gap-y-8 justify-between text-sm"
+      >
         <input
           type="text"
           name="name"
           id="name"
           placeholder="Full Name"
+          class="border-1 border-amber-400 p-5"
+        />
+        <input
+          type="tel"
+          name="phone"
+          id="phone"
+          placeholder="+254 712 345 678"
           class="border-1 border-amber-400 p-5"
         />
         <input
@@ -508,18 +531,23 @@ you will fall in love with{% endblock title_content %}
   </form>
 </section>
 
-<section class="my-12">
-  <div class="max-w-7xl mx-auto px-8 py-12">
+<section class="my-12 px-8">
+  <div class="max-w-7xl mx-auto py-12">
     <h3
       class="text-left text-base font-bold uppercase text-amber-700 mb-4 max-w-6xl"
     >
       Latest Software projects
     </h3>
-    <p class="text-5xl/14 font-medium mb-18 text-left max-w-6xl">
+    <p
+      class="text-3xl sm:text-4xl lg:text-5xl/14 mb-12 lg:mb-18 font-medium text-left max-w-6xl"
+    >
       As a Fullstack developer, here are some of the latest software projects
       I’ve worked on.
     </p>
-    <div class="grid grid-cols-[3fr_2fr] gap-16 mb-28">
+
+    <div
+      class="grid grid-cols-1 lg:grid-cols-[3fr_2fr] gap-16 sm:mb-8 lg:mb-28"
+    >
       <div>
         <a
           target="_blank"
@@ -540,7 +568,7 @@ you will fall in love with{% endblock title_content %}
           KandaFocus Photography
         </a>
       </div>
-      <div class="self-end translate-y-28">
+      <div class="self-center lg:self-end translate-y-0 lg:translate-y-28">
         <a
           target="_blank"
           href="https://www.keymoneyfinance.co.ke/"
@@ -564,32 +592,37 @@ you will fall in love with{% endblock title_content %}
   </div>
 </section>
 
-<section class="my-12">
-  <div class="max-w-7xl mx-auto px-8 py-12">
+<section class="mt-12 px-8 bg-[#222]">
+  <div class="max-w-7xl mx-auto py-12">
     <h3
       class="text-left text-base font-bold uppercase text-amber-700 mb-4 max-w-6xl"
     >
       Latest Blog Posts
     </h3>
-
-    <p class="text-5xl/14 font-medium mb-18 text-left max-w-6xl">
+    <p
+      class="text-3xl sm:text-4xl lg:text-5xl/14 mb-12 lg:mb-18 font-medium text-left max-w-6xl"
+    >
       Dev life, growth plans, health wins, money moves * real talk, my journey,
       unfiltered. *
     </p>
 
-    <ul class="grid grid-cols-3 gap-8">
+    <ul
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-8 items-center justify-center"
+    >
       <li>
-        <div class="mb-4">
+        <div class="mb-4 md:mb-6">
           <img
             src="https://images.pexels.com/photos/31173342/pexels-photo-31173342/free-photo-of-two-dogs-in-amsterdam-street-portrait.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="random image from online"
           />
         </div>
 
-        <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
+        <h3
+          class="text-2xl md:text-3xl text-[#fefefe] font-medium mb-2 md:mb-4"
+        >
           My Journey of Progress
         </h3>
-        <p class="text-lg/8 text-[#dedede] mb-4">
+        <p class="text-lg/8 text-[#dedede] mb-2 md:mb-4">
           Hard Truths, Habits, and Hustle
         </p>
 
@@ -601,16 +634,18 @@ you will fall in love with{% endblock title_content %}
         </a>
       </li>
       <li>
-        <div class="mb-4">
+        <div class="mb-4 md:mb-6">
           <img
             src="https://images.pexels.com/photos/31173342/pexels-photo-31173342/free-photo-of-two-dogs-in-amsterdam-street-portrait.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="random image from online"
           />
         </div>
-        <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
+        <h3
+          class="text-2xl md:text-3xl text-[#fefefe] font-medium mb-2 md:mb-4"
+        >
           The 4-Step Blueprint
         </h3>
-        <p class="text-lg/8 text-[#dedede] mb-4">
+        <p class="text-lg/8 text-[#dedede] mb-2 md:mb-4">
           How I'm Supercharging My Personal Brand Growth on X
         </p>
 
@@ -622,17 +657,21 @@ you will fall in love with{% endblock title_content %}
         </a>
       </li>
 
-      <li>
-        <div class="mb-4">
+      <li
+        class="col-span-1 sm:col-span-2 lg:col-span-1 max-w-full sm:max-w-1/2 lg:max-w-full self-center justify-self-center"
+      >
+        <div class="mb-4 md:mb-6">
           <img
             src="https://images.pexels.com/photos/31173342/pexels-photo-31173342/free-photo-of-two-dogs-in-amsterdam-street-portrait.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
             alt="random image from online"
           />
         </div>
-        <h3 class="text-3xl text-[#fefefe] font-medium mb-4">
+        <h3
+          class="text-2xl md:text-3xl text-[#fefefe] font-medium mb-2 md:mb-4"
+        >
           From Struggles to Strength
         </h3>
-        <p class="text-lg/8 text-[#dedede] mb-4">
+        <p class="text-lg/8 text-[#dedede] mb-2 md:mb-4">
           How James Clear, Alex Hormozi, and Dan Koe are transforming my life.
         </p>
 
