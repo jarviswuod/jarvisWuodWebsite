@@ -95,15 +95,19 @@ const submenu = document.getElementById("submenu");
 const submenuIcon = document.getElementById("submenu-icon");
 
 function showSubmenu() {
-  submenu.classList.remove("hidden");
-  submenuIcon.classList.remove("ph-caret-down");
-  submenuIcon.classList.add("ph-caret-up");
+  if (window.innerWidth >= 768) {
+    submenu.classList.remove("hidden");
+    submenuIcon.classList.remove("ph-caret-down");
+    submenuIcon.classList.add("ph-caret-up");
+  }
 }
 
 function hideSubmenu() {
-  submenu.classList.add("hidden");
-  submenuIcon.classList.remove("ph-caret-up");
-  submenuIcon.classList.add("ph-caret-down");
+  if (window.innerWidth >= 768) {
+    submenu.classList.add("hidden");
+    submenuIcon.classList.remove("ph-caret-up");
+    submenuIcon.classList.add("ph-caret-down");
+  }
 }
 
 function toggleSubmenu(e) {

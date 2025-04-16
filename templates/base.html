@@ -67,19 +67,9 @@
   </script>
 
   <body class="bg-black text-white relative">
-    {% comment %}
-    <section class="bg-blue-500 text-black py-4">
-      <div class="max-w-7xl mx-auto text-base sm:text-lg md:text-xl">
-        <p class="text-center">
-          Website under construction 🚧. A team is working round the clock to
-          spin it up (lol, I'm the team 😅)
-        </p>
-      </div>
-    </section>
-    {% endcomment %}
-    <header class="">
+    <header class="py-4 p-8 sm:px-12">
       <nav
-        class="max-w-[1320px] mx-auto p-4 sm:p- px-12 flex items-center justify-between text-base tracking-wide font-bold uppercase"
+        class="max-w-[1320px] mx-auto flex items-center justify-between text-base tracking-wide font-bold uppercase"
       >
         <div>
           <a class="max-w-16 block" href="{% url 'home'%}">
@@ -88,42 +78,16 @@
         </div>
 
         <p
-          class="md:hidden block text-3xl cursor-pointer"
+          class="md:hidden max-md:block text-3xl cursor-pointer"
           onclick="toggleMenu()"
         >
           <i id="menu-icon" class="ph ph-list"></i>
         </p>
 
-        {% comment %}
-        <ul class="flex items-center justify-between gap-8 lg:gap-12"></ul>
-        {% endcomment %}
         <ul
-          class="max-md:absolute max-md:w-2/3 max-md:bg-[#222] max-sm:top-18 max-md:top-24 max-md:left-0 max-md:z-50 max-md:h-screen max-md:p-6 max-md:border-t border-[#444] word-spacing list-none flex justify-start items-center gap-10 lg:gap-12 md:flex-row flex-col max-md:hidden"
+          class="max-md:hidden max-md:absolute max-md:w-3/4 max-md:bg-[#222] max-sm:top-18 max-md:top-24 max-md:left-0 max-md:z-50 max-md:min-h-screen max-md:p-8 max-md:border-t border-[#333] word-spacing list-none md:flex justify-start items-center gap-10 lg:gap-12 md:flex-row flex-col"
           id="menu"
         >
-          {% comment %}
-          <li class="group space-x-2 relative">
-            <a href="#">Services</a>
-            <i class="ph ph-caret-down group-hover:hidden"></i>
-            <i class="ph ph-caret-up hidden group-hover:inline-block"></i>
-
-            <ul
-              class="z-10 absolute space-y-2 top-6 left-0 bg-black text-white w-64 p-4 rounded-lg shadow-lg hidden group-hover:block"
-            >
-              <li>
-                <a href="{% url 'mentorship'%}">Mentorship program</a>
-              </li>
-              <li>
-                <a href="{% url 'resume'%}">Resume review</a>
-              </li>
-
-              <li>
-                <a href="{% url 'software'%}">Software solution</a>
-              </li>
-            </ul>
-          </li>
-          {% endcomment %}
-
           <li
             class="flex lg:items-center gap-2 relative flex-col items-center"
             onmouseenter="showSubmenu()"
