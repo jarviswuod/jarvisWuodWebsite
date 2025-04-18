@@ -112,7 +112,7 @@ function hideSubmenu() {
 
 function toggleSubmenu(e) {
   if (window.innerWidth < 768) {
-    e.preventDefault();
+    // e.preventDefault();
     submenu.classList.toggle("hidden");
     submenuIcon.classList.toggle("ph-caret-down");
     submenuIcon.classList.toggle("ph-caret-up");
