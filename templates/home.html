@@ -149,10 +149,7 @@ you will fall in love with{% endblock title_content %}
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
       <div class="w-full">
-        <img
-          src="https://images.unsplash.com/photo-1742646895322-1d439c21c2b5?q=80&w=1638&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Random ducks"
-        />
+        <img src=" {% static '/imgs/mentorship_1.webp' %}" alt="Random ducks" />
       </div>
       <div class="flex flex-col text-[#dedede]">
         <h3
@@ -197,19 +194,13 @@ you will fall in love with{% endblock title_content %}
       </div>
 
       <div class="w-full max-md:row-start-1">
-        <img
-          src="https://images.unsplash.com/photo-1742646895322-1d439c21c2b5?q=80&w=1638&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Random ducks"
-        />
+        <img src=" {% static '/imgs/software_2.webp' %}" alt="Random ducks" />
       </div>
     </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
       <div class="w-full">
-        <img
-          src="https://images.unsplash.com/photo-1742646895322-1d439c21c2b5?q=80&w=1638&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-          alt="Random ducks"
-        />
+        <img src=" {% static '/imgs/resume_4.webp' %}" alt="Random ducks" />
       </div>
       <div class="flex flex-col text-[#dedede]">
         <h3
@@ -562,12 +553,12 @@ you will fall in love with{% endblock title_content %}
         <a
           target="_blank"
           href="https://www.kandafocusphotography.com/"
-          class="mb-4 block"
+          class="mb-4 block max-h-[24rem] overflow-hidden"
         >
           <img
-            class="w-full"
-            src="https://images.pexels.com/photos/31308251/pexels-photo-31308251/free-photo-of-cozy-cat-and-dog-relaxing-indoors-on-bed.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-            alt="Just a radon image picked online"
+            class="w-full transform-all duration-12000 hover:-translate-y-[81%]"
+            src=" {% static '/imgs/kandafocusphotography.png' %}"
+            alt="kandafocusphotography website screenshot"
           />
         </a>
         <a
@@ -582,12 +573,12 @@ you will fall in love with{% endblock title_content %}
         <a
           target="_blank"
           href="https://www.keymoneyfinance.co.ke/"
-          class="mb-4 block"
+          class="mb-4 block max-h-[24rem] overflow-hidden"
         >
           <img
-            class="w-full"
-            src="https://images.unsplash.com/photo-1742646895349-93c71c08e693?q=80&w=1613&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-            alt="Just a radon image picked online"
+            class="w-full transform-all duration-12000 hover:-translate-y-[74%]"
+            src=" {% static '/imgs/keymoneyfinance.png' %}"
+            alt="keymoneyfinance website screenshot"
           />
         </a>
         <a
@@ -616,15 +607,11 @@ you will fall in love with{% endblock title_content %}
       unfiltered. *
     </p>
 
-    <ul
-      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-8 items-center justify-center"
-    >
+    <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-8">
       <li>
         <div class="mb-4 md:mb-6">
-          <img
-            src="https://images.pexels.com/photos/31173342/pexels-photo-31173342/free-photo-of-two-dogs-in-amsterdam-street-portrait.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-            alt="random image from online"
-          />
+          <img class='w-full' src="{% static "imgs/blog_1.png" %}" alt="x
+          account" />
         </div>
 
         <h3
@@ -645,10 +632,8 @@ you will fall in love with{% endblock title_content %}
       </li>
       <li>
         <div class="mb-4 md:mb-6">
-          <img
-            src="https://images.pexels.com/photos/31173342/pexels-photo-31173342/free-photo-of-two-dogs-in-amsterdam-street-portrait.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-            alt="random image from online"
-          />
+          <img class='w-full' src="{% static "imgs/blog_2.png" %}" alt="x
+          account" />
         </div>
         <h3
           class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
@@ -671,10 +656,8 @@ you will fall in love with{% endblock title_content %}
         class="col-span-1 sm:col-span-2 lg:col-span-1 max-w-full sm:max-w-1/2 lg:max-w-full self-center justify-self-center"
       >
         <div class="mb-4 md:mb-6">
-          <img
-            src="https://images.pexels.com/photos/31173342/pexels-photo-31173342/free-photo-of-two-dogs-in-amsterdam-street-portrait.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-            alt="random image from online"
-          />
+          <img class='w-full' src="{% static "imgs/blog_3.png" %}" alt="x
+          account" />
         </div>
         <h3
           class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
