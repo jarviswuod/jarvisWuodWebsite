@@ -1,4 +1,5 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %}
+
 <hr />
 {% block title_content %}About Us - Jarvis Wuod {% endblock title_content %}
 <hr />
@@ -25,8 +26,8 @@
   >
     <div>
       <img
-        src="https://images.pexels.com/photos/1157803/pexels-photo-1157803.jpeg"
-        alt="Random ghurl pic"
+        src=" {% static 'imgs/my_photo.jpg' %}"
+        alt="A photo a man smiling next to a closed door"
       />
     </div>
     <div>
@@ -132,17 +133,19 @@
       <li class="w-md inline-block align-middle">
         <div class="max-h-136 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1741627872533-52df24885303"
-            alt="Dream things"
+            class="w-full h-full object-cover"
+            src=" {% static 'imgs/range_rover.webp' %}"
+            alt="a grey range rover parked in front of a building"
           />
         </div>
+
         <p class="text-center mt-4 text-lg text-[#dedede]">Dream Car</p>
       </li>
       <li class="w-md inline-block align-middle">
         <div class="max-h-136 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1741722604183-7d94a0403152"
-            alt="Dream things"
+            src=" {% static 'imgs/dream_house.webp' %}"
+            alt="A-black-trendsetting-propertie-for-the-luxury-living"
           />
         </div>
         <p class="text-center mt-4 text-lg text-[#dedede]">Dream House</p>
@@ -150,8 +153,8 @@
       <li class="w-md inline-block align-middle">
         <div class="max-h-136 overflow-hidden">
           <img
-            src="https://images.unsplash.com/photo-1741627872533-52df24885303"
-            alt="Dream things"
+            src=" {% static 'imgs/setup_5.webp' %}"
+            alt="Nicely set workdesk setup"
           />
         </div>
         <p class="text-center mt-4 text-lg text-[#dedede]">Dream Setup</p>

@@ -1,4 +1,5 @@
-{% extends "base.html" %}
+{% extends "base.html" %} {% load static %}
+
 <hr />
 {% block title_content %}Blogs - Jarvis Wuod {% endblock title_content %}
 <hr />
@@ -41,11 +42,8 @@
           class="max-h-120 block overflow-hidden"
           href="https://jarviswuod.substack.com/p/hard-truths-habits-and-hustle"
         >
-          <img
-            class="w-full"
-            src="https://images.pexels.com/photos/31331181/pexels-photo-31331181/free-photo-of-cozy-cafe-latte-with-latte-art-by-window.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-            alt="Random image 2 from online"
-          />
+          <img class='w-full' src="{% static "imgs/blog_1.png" %}" alt="x
+          account" />
         </a>
 
         <div class="flex flex-col">
@@ -93,11 +91,8 @@
           href="https://jarviswuod.substack.com/p/hard-truths-habits-and-hustle"
           class=""
         >
-          <img
-            class="mb-6"
-            src="https://images.squarespace-cdn.com/content/v1/5f2983f35c36512f35fee7a6/f273102d-695c-4844-8913-6e826f812c8f/Video-Content-is-Worth-Investing.jpg?format=2500w"
-            alt="Video Content is Worth Investing"
-          />
+          <img class='w-full mb-4 md:mb-6' src="{% static "imgs/blog_1.png" %}"
+          alt="x account profile" />
         </a>
 
         <h3
@@ -124,11 +119,8 @@
           href="https://jarviswuod.substack.com/p/how-im-supercharging-my-personal"
           class=""
         >
-          <img
-            class="mb-6"
-            src="https://images.squarespace-cdn.com/content/v1/5f2983f35c36512f35fee7a6/f273102d-695c-4844-8913-6e826f812c8f/Video-Content-is-Worth-Investing.jpg?format=2500w"
-            alt="Video Content is Worth Investing"
-          />
+          <img class='w-full mb-4 md:mb-6' src="{% static "imgs/blog_2.png" %}"
+          alt="'Superchanging my personal brand' text on a blue background" />
         </a>
         <h3
           class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
@@ -154,11 +146,8 @@
           href="https://jarviswuod.substack.com/p/from-struggles-to-strength"
           class=""
         >
-          <img
-            class="mb-6"
-            src="https://images.squarespace-cdn.com/content/v1/5f2983f35c36512f35fee7a6/f273102d-695c-4844-8913-6e826f812c8f/Video-Content-is-Worth-Investing.jpg?format=2500w"
-            alt="Video Content is Worth Investing"
-          />
+          <img class='w-full mb-4 md:mb-6' src="{% static "imgs/blog_3.png" %}"
+          alt="'From stuggle to strength' text on a cream background" />
         </a>
         <h3
           class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
@@ -185,9 +174,9 @@
           class=""
         >
           <img
-            class="mb-6"
-            src="https://images.squarespace-cdn.com/content/v1/5f2983f35c36512f35fee7a6/f273102d-695c-4844-8913-6e826f812c8f/Video-Content-is-Worth-Investing.jpg?format=2500w"
-            alt="Video Content is Worth Investing"
+            class="w-full mb-4 md:mb-6"
+            src="{% static 'imgs/no_img.png' %}"
+            alt="'Oops!! No image' text"
           />
         </a>
         <h3
@@ -215,9 +204,9 @@
           class=""
         >
           <img
-            class="mb-6"
-            src="https://images.squarespace-cdn.com/content/v1/5f2983f35c36512f35fee7a6/f273102d-695c-4844-8913-6e826f812c8f/Video-Content-is-Worth-Investing.jpg?format=2500w"
-            alt="Video Content is Worth Investing"
+            class="w-full mb-4 md:mb-6"
+            src="{% static 'imgs/no_img.png' %}"
+            alt="'Oops!! No image' text"
           />
         </a>
         <h3
@@ -245,9 +234,9 @@
           class=""
         >
           <img
-            class="mb-6"
-            src="https://images.squarespace-cdn.com/content/v1/5f2983f35c36512f35fee7a6/f273102d-695c-4844-8913-6e826f812c8f/Video-Content-is-Worth-Investing.jpg?format=2500w"
-            alt="Video Content is Worth Investing"
+            class="w-full mb-4 md:mb-6"
+            src="{% static 'imgs/no_img.png' %}"
+            alt="'Oops!! No image' text"
           />
         </a>
         <h3
