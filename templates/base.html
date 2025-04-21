@@ -126,18 +126,7 @@
         </ul>
       </nav>
     </header>
-    {% block body_content %} {%endblock body_content %} {% comment %}
-    <a
-      class="fixed bottom-10 right-10"
-      href="https://wa.me/254757464904"
-      target="_blank"
-    >
-      <img
-        src="https://img.icons8.com/color/48/whatsapp--v1.png"
-        alt="Chat on WhatsApp"
-      />
-    </a>
-    {% endcomment %}
+    {% block body_content %} {%endblock body_content %}
 
     <a
       class="fixed bottom-10 right-10"
@@ -153,9 +142,9 @@
     <footer class="bg-[#111]">
       <div class="border-y-1 border-[#444] px-8">
         <ul
-          class="max-w-6xl mx-auto py-12 sm:py-18 md:py-24 grid grid-cols-1 sm:grid-cols-3 gap-8 items-center justify-center"
+          class="max-w-6xl mx-auto py-4 sm:py-8 grid grid-cols-1 sm:grid-cols-3 gap-8 items-center justify-center"
         >
-          <li class="text-center text-base text-amber-700">
+          <li class="text-center text-sm sm:text-base text-amber-700">
             <p class="mb-2">
               <a
                 class="underline underline-offset-6"
@@ -208,6 +197,14 @@
           </li>
         </ul>
       </div>
+
+      <div class="py-4 sm:py-8 text-sm px-8">
+        <p class="text-center mb-4">
+          &copy; 2025 Jarvis Wuod. All rights reserved.
+        </p>
+      </div>
+
+      {% comment %}
       <div class="py-4 sm:py-8 text-sm px-8">
         <p class="text-center mb-4">
           &copy; 2025 Jarvis Wuod. All rights reserved.
@@ -237,6 +234,7 @@
           </li>
         </ul>
       </div>
+      {% endcomment %}
     </footer>
   </body>
 </html>
