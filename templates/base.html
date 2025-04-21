@@ -126,7 +126,29 @@
         </ul>
       </nav>
     </header>
-    {% block body_content %} {%endblock body_content %}
+    {% block body_content %} {%endblock body_content %} {% comment %}
+    <a
+      class="fixed bottom-10 right-10"
+      href="https://wa.me/254757464904"
+      target="_blank"
+    >
+      <img
+        src="https://img.icons8.com/color/48/whatsapp--v1.png"
+        alt="Chat on WhatsApp"
+      />
+    </a>
+    {% endcomment %}
+
+    <a
+      class="fixed bottom-10 right-10"
+      href="https://api.whatsapp.com/send?phone=254757464904"
+      target="_blank"
+    >
+      <img
+        src="https://img.icons8.com/color/48/whatsapp--v1.png"
+        alt="Chat on WhatsApp"
+      />
+    </a>
 
     <footer class="bg-[#111]">
       <div class="border-y-1 border-[#444] px-8">
