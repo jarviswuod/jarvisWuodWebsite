@@ -1,62 +1,68 @@
 <div
-  class="max-w-[1280px] contact-modal hidden fixed overflow-y-auto top-0 left-0 w-full h-full z-10"
+  class="contact-modal hidden fixed overflow-y-auto top-0 left-0 w-full h-full z-10"
 >
   <div class="relative">
     <div
       class="modal-overlay absolute top-0 left-0 w-full h-full bg-[#00000010]"
     ></div>
 
-    <form class="my-10 max-w-3xl mx-auto p-8 bg-white text-black relative">
+    <form
+      method="POST"
+      action=""
+      class="my-10 max-w-3xl mx-auto p-8 bg-white text-black relative"
+    >
+      {% csrf_token %}
       <button class="absolute cursor-pointer top-8 right-12 text-xl close-btn">
         <i class="ph ph-x"></i>
       </button>
-      <h3
-        class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
-      >
-        Contact Details
-      </h3>
-      <label class="block mb-4">
-        <p class="text-sm col-span-2 mb-2">
-          Full Name
-          <span class="mb-2 text-xs text-[#444]"> (required)</span>
-        </p>
-        <input
-          type="text"
-          name="fullName"
-          placeholder="e.g. Jane Doe"
-          required
-          class="w-full p-2 border border-gray-300 rounded mb-2"
-        />
-      </label>
-
-      <label class="block mb-4">
-        <p class="text-sm col-span-2 mb-2">
-          Email Address
-          <span class="mb-2 text-xs text-[#444]"> (required)</span>
-        </p>
-        <input
-          type="email"
-          name="emailAddress"
-          placeholder="e.g. jane.doe@example.com"
-          required
-          class="w-full p-2 border border-gray-300 rounded mb-2"
-        />
-      </label>
-
-      <label class="block mb-4">
-        <p class="text-sm col-span-2">Phone Number</p>
-        <p class="mb-2 text-xs text-[#444] inline-block">
-          Not required but sometimes it's easier to just connect directly
-        </p>
-        <input
-          type="tel"
-          name="phoneNumber"
-          placeholder="e.g. +1234567890"
-          class="w-full p-2 border border-gray-300 rounded mb-2"
-        />
-      </label>
 
       <div class="form--contact mentorship-form hidden">
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Contact Details
+        </h3>
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Full Name
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            name="fullName"
+            placeholder="e.g. Jane Doe"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Email Address
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="email"
+            name="emailAddress"
+            placeholder="e.g. jane.doe@example.com"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">Phone Number</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Not required but sometimes it's easier to just connect directly
+          </p>
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="e.g. +1234567890"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
         <h3
           class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
         >
@@ -132,6 +138,52 @@
       </div>
 
       <div class="form--contact expertise-form hidden">
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Contact Details
+        </h3>
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Full Name
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            name="fullName"
+            placeholder="e.g. Jane Doe"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Email Address
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="email"
+            name="emailAddress"
+            placeholder="e.g. jane.doe@example.com"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">Phone Number</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Not required but sometimes it's easier to just connect directly
+          </p>
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="e.g. +1234567890"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
         <h3
           class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
         >
@@ -235,6 +287,51 @@
         <h3
           class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
         >
+          Contact Details
+        </h3>
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Full Name
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            name="fullName"
+            placeholder="e.g. Jane Doe"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Email Address
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="email"
+            name="emailAddress"
+            placeholder="e.g. jane.doe@example.com"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">Phone Number</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Not required but sometimes it's easier to just connect directly
+          </p>
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="e.g. +1234567890"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
           Job Hunter Profile Details
         </h3>
 
@@ -283,7 +380,7 @@
             </label>
             <input
               type="text"
-              name="resumeFrequencyOther"
+              name="resumeFrequency"
               placeholder="Other (please specify)"
               class="p-2 border border-gray-300 rounded mb-2"
             />

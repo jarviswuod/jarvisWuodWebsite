@@ -19,99 +19,6 @@
   </div>
 </section>
 
-<section class="my-12 sm:my-18 md:my-24 px-8">
-  <div
-    class="max-w-[1280px] mx-auto relative grid grid-cols-1 lg:grid-cols-2 gap-12"
-  >
-    <div class="max-h-158 overflow-hidden rounded-xl relative">
-      <img
-        class="w-full"
-        src="https://images.pexels.com/photos/30447802/pexels-photo-30447802/free-photo-of-charming-gallery-entrance-in-dijon-france.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
-        alt="Random online photo"
-      />
-
-      <span
-        class="text-3xl bg-black text-white font-bold absolute top-0 left-0 px-2 max-w-1/2"
-      >
-        Here’s what my satisfied clients have to say
-      </span>
-    </div>
-    <div class="max-h-158 overflow-auto scrollbar-hide">
-      <ul class="space-y-6 mr-4">
-        <li class="border-1 rounded-2xl p-6">
-          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
-
-          <p class="text-lg/8 text-[#dedede] mb-8">
-            "Take that step today. One thing I can assure you of is this will be
-            a profitable step for you "
-          </p>
-          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
-            <div class="max-w-12 overflow-hidden rounded-full">
-              <img class='w-full' src={% static "/profile.jpg" %} alt="">
-            </div>
-            <div>
-              <h6 class="font-semibold">Jarvis Wuod</h6>
-              <p class="text-[#dedede]">@jarviswuod</p>
-            </div>
-          </div>
-        </li>
-        <li class="border-1 rounded-2xl p-6">
-          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
-
-          <p class="text-lg/8 text-[#dedede] mb-8">
-            "I recommend everyone to enroll because the host is friendly and a
-            good mentor "
-          </p>
-          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
-            <div class="max-w-12 overflow-hidden rounded-full">
-              <img class='w-full' src={% static "/profile.jpg" %} alt="">
-            </div>
-            <div>
-              <h6 class="font-semibold">Jarvis Wuod</h6>
-              <p class="text-[#dedede]">@jarviswuod</p>
-            </div>
-          </div>
-        </li>
-        <li class="border-1 rounded-2xl p-6">
-          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
-
-          <p class="text-lg/8 text-[#dedede] mb-8">
-            "My message is, they should get on that call, it's a career saving
-            call "
-          </p>
-          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
-            <div class="max-w-12 overflow-hidden rounded-full">
-              <img class='w-full' src={% static "/profile.jpg" %} alt="">
-            </div>
-            <div>
-              <h6 class="font-semibold">Jarvis Wuod</h6>
-              <p class="text-[#dedede]">@jarviswuod</p>
-            </div>
-          </div>
-        </li>
-        <li class="border-1 rounded-2xl p-6">
-          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
-
-          <p class="text-lg/8 text-[#dedede] mb-8">
-            "Get on board, the right mentorship is the path to success.
-            Sometime, all you need is someone who had gone through what you are
-            going through..."
-          </p>
-          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
-            <div class="max-w-12 overflow-hidden rounded-full">
-              <img class='w-full' src={% static "/profile.jpg" %} alt="">
-            </div>
-            <div>
-              <h6 class="font-semibold">Jarvis Wuod</h6>
-              <p class="text-[#dedede]">@jarviswuod</p>
-            </div>
-          </div>
-        </li>
-      </ul>
-    </div>
-  </div>
-</section>
-
 {% include "contact-form.html" %}
 
 <section class="my-12 px-8">
@@ -208,4 +115,98 @@
     </ul>
   </div>
 </section>
-{% endblock body_content %}
+
+{% comment %}
+<section class="my-12 sm:my-18 md:my-24 px-8">
+  <div
+    class="max-w-[1280px] mx-auto relative grid grid-cols-1 lg:grid-cols-2 gap-12"
+  >
+    <div class="max-h-158 overflow-hidden rounded-xl relative">
+      <img
+        class="w-full"
+        src="https://images.pexels.com/photos/30447802/pexels-photo-30447802/free-photo-of-charming-gallery-entrance-in-dijon-france.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+        alt="Random online photo"
+      />
+
+      <span
+        class="text-3xl bg-black text-white font-bold absolute top-0 left-0 px-2 max-w-1/2"
+      >
+        Here’s what my satisfied clients have to say
+      </span>
+    </div>
+    <div class="max-h-158 overflow-auto scrollbar-hide">
+      <ul class="space-y-6 mr-4">
+        <li class="border-1 rounded-2xl p-6">
+          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
+
+          <p class="text-lg/8 text-[#dedede] mb-8">
+            "Take that step today. One thing I can assure you of is this will be
+            a profitable step for you "
+          </p>
+          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
+            <div class="max-w-12 overflow-hidden rounded-full">
+              <img class='w-full' src={% static "/profile.jpg" %} alt="">
+            </div>
+            <div>
+              <h6 class="font-semibold">Jarvis Wuod</h6>
+              <p class="text-[#dedede]">@jarviswuod</p>
+            </div>
+          </div>
+        </li>
+        <li class="border-1 rounded-2xl p-6">
+          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
+
+          <p class="text-lg/8 text-[#dedede] mb-8">
+            "I recommend everyone to enroll because the host is friendly and a
+            good mentor "
+          </p>
+          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
+            <div class="max-w-12 overflow-hidden rounded-full">
+              <img class='w-full' src={% static "/profile.jpg" %} alt="">
+            </div>
+            <div>
+              <h6 class="font-semibold">Jarvis Wuod</h6>
+              <p class="text-[#dedede]">@jarviswuod</p>
+            </div>
+          </div>
+        </li>
+        <li class="border-1 rounded-2xl p-6">
+          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
+
+          <p class="text-lg/8 text-[#dedede] mb-8">
+            "My message is, they should get on that call, it's a career saving
+            call "
+          </p>
+          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
+            <div class="max-w-12 overflow-hidden rounded-full">
+              <img class='w-full' src={% static "/profile.jpg" %} alt="">
+            </div>
+            <div>
+              <h6 class="font-semibold">Jarvis Wuod</h6>
+              <p class="text-[#dedede]">@jarviswuod</p>
+            </div>
+          </div>
+        </li>
+        <li class="border-1 rounded-2xl p-6">
+          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
+
+          <p class="text-lg/8 text-[#dedede] mb-8">
+            "Get on board, the right mentorship is the path to success.
+            Sometime, all you need is someone who had gone through what you are
+            going through..."
+          </p>
+          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
+            <div class="max-w-12 overflow-hidden rounded-full">
+              <img class='w-full' src={% static "/profile.jpg" %} alt="">
+            </div>
+            <div>
+              <h6 class="font-semibold">Jarvis Wuod</h6>
+              <p class="text-[#dedede]">@jarviswuod</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% endcomment %} {% endblock body_content %}
