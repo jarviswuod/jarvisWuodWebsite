@@ -3,6 +3,14 @@ from django.db import models
 # Create your models here.
 
 
+class BookCall(models.Model):
+    full_name = models.CharField(max_length=100)
+    email_address = models.EmailField()
+    phone_number = models.CharField(max_length=20, blank=True)
+    booking_reason = models.CharField(max_length=50, blank=True)
+    submitted_at = models.DateTimeField(auto_now_add=True, null=True)
+
+
 class MentorshipContact(models.Model):
     full_name = models.CharField(max_length=100)
     email_address = models.EmailField()

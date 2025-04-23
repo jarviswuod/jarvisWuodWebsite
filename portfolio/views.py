@@ -4,12 +4,26 @@ from django.core.mail import send_mail
 
 from django.contrib import messages
 
-from .models import MentorshipContact, ExpertiseContact, ResumeReviewContact
-from .forms import MentorshipForm, ExpertiseForm, ResumeReviewForm
+from .forms import BookCallForm, MentorshipForm, ExpertiseForm, ResumeReviewForm
 
 
 def home(request):
-    context = {}
+    book_call_form = ResumeReviewForm()
+
+    if request.method == 'POST':
+        book_call_form = BookCallForm(request.POST)
+        if book_call_form.is_valid():
+            book_call_contact = book_call_form.save()
+            send_confirmation_email(
+                name=book_call_contact.full_name,
+                email=book_call_contact.email_address,
+                service_type="Booked a Call"
+            )
+            messages.success(
+                request, "Thank you for booking a call!")
+            return redirect('home')
+
+    context = {'book_call_form': book_call_form}
     return render(request, "home.html", context)
 
 
@@ -77,13 +91,8 @@ def contact(request):
         form_type = request.POST.get('form_type')
 
         if form_type == 'mentorship':
-            print("Mentorship form submitted")
-            print(request.POST)
-            print(request.FILES)
             mentorship_form = MentorshipForm(request.POST)
-            print(mentorship_form.data)
             if mentorship_form.is_valid():
-                print("Mentorship form submitted")
                 mentorship_contact = mentorship_form.save()
                 send_confirmation_email(
                     name=mentorship_contact.full_name,
@@ -95,13 +104,8 @@ def contact(request):
                 return redirect('contact')
 
         elif form_type == 'expertise':
-            print("Expertise form submitted")
-            print(request.POST)
-            print(request.FILES)
             expertise_form = ExpertiseForm(request.POST)
             if expertise_form.is_valid():
-                print("Expertise form submitted")
-
                 expertise_contact = expertise_form.save()
                 send_confirmation_email(
                     name=expertise_contact.full_name,
@@ -113,12 +117,7 @@ def contact(request):
                 return redirect('contact')
 
         elif form_type == 'resume_review':
-            print("Resume Review form submitted")
-            print(request.POST)
-            print(request.FILES)
             resume_review_form = ResumeReviewForm(request.POST, request.FILES)
-            print("Resume Review form submitted")
-
             if resume_review_form.is_valid():
                 resume_review_contact = resume_review_form.save()
                 send_confirmation_email(

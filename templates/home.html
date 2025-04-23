@@ -470,8 +470,11 @@ you will fall in love with{% endblock title_content %}
 
 <section class="my-12 md:my-18 sm:px-8">
   <form
+    method="POST"
+    action=""
     class="max-w-6xl mx-auto px-8 sm:px-12 lg:px-16 py-12 md:py-18 lg:py-24 bg-white text-black rounded-base grid grid-cols-1 lg:grid-cols-[3fr_1fr] xl:grid-cols-[3fr_2fr]"
   >
+    {% csrf_token %}
     <div class="">
       <h1
         class="text-5xl md:text-6xl/14 font-medium mb-6 md:mb-8 text-left max-w-6xl"
@@ -488,28 +491,28 @@ you will fall in love with{% endblock title_content %}
       >
         <input
           type="text"
-          name="name"
-          id="name"
+          name="full_name"
+          id="full_name"
           placeholder="Full Name"
           class="border-1 border-amber-400 p-5"
         />
         <input
           type="tel"
-          name="phone"
-          id="phone"
+          name="phone_number"
+          id="phone_number"
           placeholder="+254 712 345 678"
           class="border-1 border-amber-400 p-5"
         />
         <input
           type="email"
-          name="email"
-          id="email"
+          name="email_address"
+          id="email_address"
           placeholder="Enter your email"
           class="border-1 border-amber-400 p-5"
         />
         <select
-          name="reason"
-          id="reason"
+          name="booking_reason"
+          id="booking_reason"
           class="text-sm border-1 border-amber-400 p-5"
         >
           <option value="">Choose Discussion Topic</option>

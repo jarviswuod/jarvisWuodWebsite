@@ -264,7 +264,12 @@
               I'm Hiring (Job Offer)
             </label>
             <label class="flex items-center mb-2">
-              <input type="radio" name="service_type" class="mr-2" />
+              <input
+                type="radio"
+                name="service_type"
+                value="other"
+                class="mr-2"
+              />
               Something Else (Explain Below)
             </label>
           </div>
@@ -308,6 +313,7 @@
     <!-- For Resume Review Form -->
     <form
       method="POST"
+      enctype="multipart/form-data"
       action=""
       class="my-10 max-w-3xl mx-auto bg-white text-black relative"
     >
@@ -415,12 +421,15 @@
               />
               Never
             </label>
-            <input
-              type="text"
-              name="resume_frequency"
-              placeholder="Other (please specify)"
-              class="p-2 border border-gray-300 rounded mb-2"
-            />
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="resume_frequency"
+                value="other"
+                class="mr-2"
+              />
+              Other (please specify below)
+            </label>
           </div>
         </label>
 

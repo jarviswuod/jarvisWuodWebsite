@@ -1,5 +1,11 @@
 from django import forms
-from .models import MentorshipContact, ExpertiseContact, ResumeReviewContact
+from .models import BookCall, MentorshipContact, ExpertiseContact, ResumeReviewContact
+
+
+class BookCallForm(forms.ModelForm):
+    class Meta:
+        model = BookCall
+        fields = '__all__'
 
 
 class MentorshipForm(forms.ModelForm):

@@ -2,10 +2,24 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import (
+    BookCall,
     MentorshipContact,
     ExpertiseContact,
     ResumeReviewContact,
 )
+
+
+class BookCallAdmin(admin.ModelAdmin):
+    list_display = (
+        'full_name',
+        'email_address',
+        'phone_number',
+        'booking_reason',
+        'submitted_at'
+    )
+    search_fields = ('full_name', 'email_address')
+    list_filter = ('submitted_at',)
+    ordering = ('-submitted_at',)
 
 
 class MentorshipContactAdmin(admin.ModelAdmin):
@@ -56,6 +70,7 @@ class ResumeReviewContactAdmin(admin.ModelAdmin):
     ordering = ('-submitted_at',)
 
 
+admin.site.register(BookCall, BookCallAdmin)
 admin.site.register(MentorshipContact, MentorshipContactAdmin)
 admin.site.register(ExpertiseContact, ExpertiseContactAdmin)
 admin.site.register(ResumeReviewContact, ResumeReviewContactAdmin)
