@@ -11,6 +11,7 @@ class MentorshipContact(models.Model):
     goal = models.CharField(max_length=255, blank=True)
     obstacle = models.CharField(max_length=255, blank=True)
     progress_details = models.TextField(blank=True)
+
     submitted_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -21,6 +22,7 @@ class ExpertiseContact(models.Model):
     service_type = models.CharField(max_length=50, blank=True)
     project_link = models.URLField(blank=True)
     project_details = models.TextField(blank=True)
+
     submitted_at = models.DateTimeField(auto_now_add=True)
 
 
@@ -33,4 +35,6 @@ class ResumeReviewContact(models.Model):
     uploaded_resume = models.FileField(upload_to='resumes/', blank=True)
     linkedin_profile = models.URLField(blank=True)
     portfolio_links = models.URLField(blank=True)
+    job_hunting_experience = models.TextField(blank=True)
+
     submitted_at = models.DateTimeField(auto_now_add=True)

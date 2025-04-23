@@ -126,3 +126,9 @@ function toggleSubmenu(e) {
     submenuIcon.classList.toggle("ph-caret-up");
   }
 }
+
+// //////////////////////////////////////////////////////////
+// MESSAGES IN CONTACT PAGE
+setTimeout(() => {
+  document.querySelectorAll(".messages li").forEach((el) => el.remove());
+}, 5000); // 5 seconds

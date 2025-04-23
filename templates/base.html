@@ -126,6 +126,33 @@
         </ul>
       </nav>
     </header>
+
+    <section
+      class="message-notification absolute top-24 right-0 text-base sm:text-lg md:text-xl space-y-2 z-50"
+    >
+      <div class="max-w-[1280px] mx-auto">
+        {% if messages %}
+        <ul class="messages">
+          {% for message in messages %}
+
+          <li
+            {%
+            if
+            message.tags
+            %}
+            class=" text-white py-2 px-4 shadow {{ message.tags }}"
+            {%
+            endif
+            %}
+          >
+            {{ message }}
+          </li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+      </div>
+    </section>
+
     {% block body_content %} {%endblock body_content %}
 
     <a
