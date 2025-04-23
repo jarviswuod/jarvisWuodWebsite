@@ -12,5 +12,4 @@ urlpatterns = [
     path('mentorship/', mentorship, name="mentorship"),
     path('resume/', resume, name="resume"),
     path('software/', software, name="software"),
-
 ]

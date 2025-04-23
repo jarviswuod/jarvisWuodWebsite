@@ -6,6 +6,530 @@
       class="modal-overlay absolute top-0 left-0 w-full h-full bg-[#00000010]"
     ></div>
 
+    <!-- For Mentorship Form -->
+    <form
+      method="POST"
+      action=""
+      class="my-10 max-w-3xl mx-auto bg-white text-black relative"
+    >
+      {% csrf_token %}
+
+      <input type="hidden" name="form_type" value="mentorship" />
+
+      <div class="form--contact p-8 mentorship-form">
+        <button
+          class="absolute cursor-pointer top-8 right-12 text-xl close-btn"
+        >
+          <i class="ph ph-x"></i>
+        </button>
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Contact Details
+        </h3>
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Full Name
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            name="full_name"
+            placeholder="e.g. Jane Doe"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Email Address
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="email"
+            name="email_address"
+            placeholder="e.g. jane.doe@example.com"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">Phone Number</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Not required but sometimes it's easier to just connect directly
+          </p>
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="e.g. +1234567890"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Dev Journey Details
+        </h3>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            When did you begin coding
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            name="startCoding"
+            required
+            placeholder="e.g. January 2023"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            What goal do you aim to achieve?
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            name="goal"
+            required
+            placeholder="e.g. Land a remote junior developer job"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            What is holding you back the most from hitting your goal in tech
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            name="obstacle"
+            required
+            placeholder="e.g. Lack of structure, guidance or confidence"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">
+            Details About your Progress and Challenges
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Please provide as much detail about the skills learnt, progress made
+            and challenges faced
+          </p>
+          <textarea
+            name="progressDetails"
+            rows="4"
+            required
+            placeholder="e.g. Completed HTML/CSS, started learning JavaScript. Struggle with consistency and project planning..."
+            class="w-full p-2 border border-gray-300 rounded mb-4"
+          ></textarea>
+        </label>
+
+        <button
+          type="submit"
+          class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
+        >
+          Get mentorship
+        </button>
+      </div>
+    </form>
+
+    <!-- For Expertise Form -->
+
+    <form
+      method="POST"
+      action=""
+      class="my-10 max-w-3xl mx-auto bg-white text-black relative"
+    >
+      {% csrf_token %}
+
+      <input type="hidden" name="form_type" value="expertise" />
+
+      <div class="form--contact p-8 expertise-form">
+        <button
+          class="absolute cursor-pointer top-8 right-12 text-xl close-btn"
+        >
+          <i class="ph ph-x"></i>
+        </button>
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Contact Details
+        </h3>
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Full Name
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            name="full_name"
+            placeholder="e.g. Jane Doe"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Email Address
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="email"
+            name="email_address"
+            placeholder="e.g. jane.doe@example.com"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">Phone Number</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Not required but sometimes it's easier to just connect directly
+          </p>
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="e.g. +1234567890"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Expertise Details
+        </h3>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            What do you need help with?
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <div class="flex text-sm text-[#333] flex-col">
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="serviceType"
+                value="webapp"
+                required
+                class="mr-2"
+              />
+              Build a New Website
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="serviceType"
+                value="web_redesign"
+                class="mr-2"
+              />
+              Redesign My Website
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="serviceType"
+                value="mobile_app"
+                class="mr-2"
+              />
+              Create a Mobile App
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="serviceType"
+                value="custom_software"
+                class="mr-2"
+              />
+              Develop Custom Software
+            </label>
+            <label class="flex items-center mb-2">
+              <input type="radio" name="serviceType" value="job" class="mr-2" />
+              I'm Hiring (Job Offer)
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="serviceType"
+                value="other"
+                class="mr-2"
+              />
+              Something Else (Explain Below)
+            </label>
+          </div>
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Got a live website or app? Share the link so we can check it out.
+          </p>
+          <input
+            type="url"
+            name="projectLink"
+            placeholder="e.g. https://mycoolstartup.com"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">A Few Details (required)</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Just give me a quick rundown (the more information, the better).
+          </p>
+          <textarea
+            name="projectDetails"
+            rows="4"
+            required
+            placeholder="e.g. I want a responsive portfolio site with contact form and blog section..."
+            class="w-full p-2 border border-gray-300 rounded mb-4"
+          ></textarea>
+        </label>
+
+        <button
+          type="submit"
+          class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
+        >
+          Send Inquiry
+        </button>
+      </div>
+    </form>
+
+    <!-- For Resume Review Form -->
+
+    <form
+      method="POST"
+      action=""
+      class="my-10 max-w-3xl mx-auto bg-white text-black relative"
+    >
+      {% csrf_token %}
+
+      <input type="hidden" name="form_type" value="resume_review" />
+
+      <div class="form--contact p-8 resume-review-form">
+        <button
+          class="absolute cursor-pointer top-8 right-12 text-xl close-btn"
+        >
+          <i class="ph ph-x"></i>
+        </button>
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Contact Details
+        </h3>
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Full Name
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="text"
+            name="full_name"
+            placeholder="e.g. Jane Doe"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Email Address
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="email"
+            name="email_address"
+            placeholder="e.g. jane.doe@example.com"
+            required
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">Phone Number</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Not required but sometimes it's easier to just connect directly
+          </p>
+          <input
+            type="tel"
+            name="phoneNumber"
+            placeholder="e.g. +1234567890"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+        <h3
+          class="uppercase text-sm border-l-2 pl-2 border-black font-semibold mb-4 mt-8"
+        >
+          Job Hunter Profile Details
+        </h3>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            How Often Do You Update Your Resume
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <div class="flex text-sm text-[#333] flex-col">
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="resumeFrequency"
+                value="Weekly"
+                required
+                class="mr-2"
+              />
+              Weekly
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="resumeFrequency"
+                value="Monthly"
+                class="mr-2"
+              />
+              Monthly
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="resumeFrequency"
+                value="six_months"
+                class="mr-2"
+              />
+              Every six Months
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="resumeFrequency"
+                value="Never"
+                class="mr-2"
+              />
+              Never
+            </label>
+            <input
+              type="text"
+              name="resumeFrequency"
+              placeholder="Other (please specify)"
+              class="p-2 border border-gray-300 rounded mb-2"
+            />
+          </div>
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Ever Done a Resume Review Before?
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <div class="flex text-sm text-[#333] flex-col">
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="resumeReviewedBefore"
+                value="Yes"
+                required
+                class="mr-2"
+              />
+              Yes
+            </label>
+            <label class="flex items-center mb-2">
+              <input
+                type="radio"
+                name="resumeReviewedBefore"
+                value="No"
+                class="mr-2"
+              />
+              No
+            </label>
+          </div>
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2 mb-2">
+            Upload Your Updated Resume
+            <span class="mb-2 text-xs text-[#444]"> (required)</span>
+          </p>
+          <input
+            type="file"
+            name="uploadedResume"
+            accept=".pdf,.doc,.docx"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+            required
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">LinkedIn Profile Link</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Share your active LinkedIn profile account link
+          </p>
+          <input
+            type="url"
+            name="linkedinProfile"
+            placeholder="e.g. https://www.linkedin.com/in/yourname"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">Portfolio or Github Links</p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Share links to either your portfolio or GitHub profile
+          </p>
+          <input
+            type="url"
+            name="portfolioLinks"
+            placeholder="e.g. https://github.com/yourusername"
+            class="w-full p-2 border border-gray-300 rounded mb-2"
+          />
+        </label>
+
+        <label class="block mb-4">
+          <p class="text-sm col-span-2">
+            Details About your Job Hunting Experience (required)
+          </p>
+          <p class="mb-2 text-xs text-[#444] inline-block">
+            Please provide as much detail about your experience looking for a
+            job
+          </p>
+          <textarea
+            name="jobHuntingExperience"
+            rows="4"
+            required
+            placeholder="e.g. Been applying for junior dev roles since Jan, but not getting interviews. Used LinkedIn, AngelList, and referrals..."
+            class="w-full p-2 border border-gray-300 rounded mb-4"
+          ></textarea>
+        </label>
+        <button
+          type="submit"
+          class="uppercase font-semibold text-sm text-black hover:text-white hover:bg-amber-700 w-full py-4 rounded border-1 border-amber-700 transform transition-all duration-300"
+        >
+          Submit Resume
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
+
+{% comment %}
+<div
+  class="contact-modal hidden fixed overflow-y-auto top-0 left-0 w-full h-full z-10"
+>
+  <div class="relative">
+    <div
+      class="modal-overlay absolute top-0 left-0 w-full h-full bg-[#00000010]"
+    ></div>
+
     <form
       method="POST"
       action=""
@@ -29,7 +553,7 @@
           </p>
           <input
             type="text"
-            name="fullName"
+            name="full_name"
             placeholder="e.g. Jane Doe"
             required
             class="w-full p-2 border border-gray-300 rounded mb-2"
@@ -43,7 +567,7 @@
           </p>
           <input
             type="email"
-            name="emailAddress"
+            name="email_address"
             placeholder="e.g. jane.doe@example.com"
             required
             class="w-full p-2 border border-gray-300 rounded mb-2"
@@ -150,7 +674,7 @@
           </p>
           <input
             type="text"
-            name="fullName"
+            name="full_name"
             placeholder="e.g. Jane Doe"
             required
             class="w-full p-2 border border-gray-300 rounded mb-2"
@@ -164,7 +688,7 @@
           </p>
           <input
             type="email"
-            name="emailAddress"
+            name="email_address"
             placeholder="e.g. jane.doe@example.com"
             required
             class="w-full p-2 border border-gray-300 rounded mb-2"
@@ -296,7 +820,7 @@
           </p>
           <input
             type="text"
-            name="fullName"
+            name="full_name"
             placeholder="e.g. Jane Doe"
             required
             class="w-full p-2 border border-gray-300 rounded mb-2"
@@ -310,7 +834,7 @@
           </p>
           <input
             type="email"
-            name="emailAddress"
+            name="email_address"
             placeholder="e.g. jane.doe@example.com"
             required
             class="w-full p-2 border border-gray-300 rounded mb-2"
@@ -482,3 +1006,4 @@
     </form>
   </div>
 </div>
+{% endcomment %}
