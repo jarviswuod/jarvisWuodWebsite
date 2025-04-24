@@ -43,8 +43,24 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'meta',
+
     'portfolio.apps.PortfolioConfig',
 ]
+
+# SEO STAFF BOOSTER
+META_SITE_PROTOCOL = 'https'
+META_SITE_DOMAIN = 'jarviswuod.com'
+META_DEFAULT_KEYWORDS = ['jarvis wuod', 'mentorship africa', 'free mentorship program', 'software programming,' 'resume review', 'linkedin revamp', 'world best tech mentor', 'why you need a mentor in tech', 'tech mentorship', 'developer mentorship', 'software developer mentor', 'coding help', 'hire a developer', 'coding mentor', 'tech mentor africa', 'web development mentorship', 'full-stack development', 'full-stack  mentor', 'resume optimization', 'career guidance', 'frontend mentor', 'freelance developer', 'software developer for hire',
+                         'best software developer', 'developer from africa', 'coding bootcamp alternative', 'personalized tech mentorship', 'tech career coaching', 'web developer portfolio', 'tech job application help', 'android app development mentor',  'software engineering mentorship', 'coding interview preparation', 'tech industry insights', 'software project guidance', 'programming language mentorship', 'tech career advancement', 'software development best practices', 'coding skills improvement', 'tech networking opportunities', 'software development resources']
+
+META_DEFAULT_TITLE = 'Jarvis Wuod | Ultimate guide to learning web development, land your first job and get to convert your ideas into website you will fall in love with'
+META_DEFAULT_IMAGE = 'https://jarviswuod.com/static/logo_.png'
+META_DEFAULT_URL = 'https://jarviswuod.com'
+META_DEFAULT_AUTHOR = 'Jarvis Wuod'
+META_DEFAULT_DESCRIPTION = 'Your site default description'
+META_USE_OG_PROPERTIES = True
+META_USE_TWITTER_PROPERTIES = True
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
