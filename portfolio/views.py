@@ -14,11 +14,15 @@ def home(request):
         book_call_form = BookCallForm(request.POST)
         if book_call_form.is_valid():
             book_call_contact = book_call_form.save()
-            send_confirmation_email(
-                name=book_call_contact.full_name,
-                email=book_call_contact.email_address,
-                service_type="Booked a Call"
-            )
+            try:
+                send_confirmation_email(
+                    name=book_call_contact.full_name,
+                    email=book_call_contact.email_address,
+                    service_type="Booked a Call"
+                )
+            except Exception as e:
+                print(f"Email error: {e}")
+
             messages.success(
                 request, "Thank you for booking a call!")
             return redirect('home')
