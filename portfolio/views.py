@@ -41,11 +41,6 @@ def blogs(request):
     return render(request, 'blogs.html', context)
 
 
-def services(request):
-    context = {}
-    return render(request, 'services.html', context)
-
-
 def mentorship(request):
     context = {}
     return render(request, 'mentorship.html', context)
