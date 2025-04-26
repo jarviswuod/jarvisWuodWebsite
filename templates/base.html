@@ -22,13 +22,13 @@
 
     <meta
       name="og:image"
-      content="{% static 'media/images/jarvis_wuod_logo.png' %}"
+      content="https://{{ request.META.HTTP_HOST }}{% static 'media/images/jarvis_wuod_logo.png' %}"
     />
     <meta name="og:image:alt" content="A photo of jarvis Wuod logo" />
     <meta name="twitter:name" content="@jarviswuod" />
     <meta
       name="twitter:image"
-      content="{% static 'media/images/jarvis_wuod_logo_twitter.png' %}"
+      content="https://{{ request.META.HTTP_HOST }}{% static 'media/images/jarvis_wuod_logo_twitter.png' %}"
     />
     <meta name="og:site_name" content="Jarvis Wuod" />
     <meta name="twitter:card" content="summary_large_image" />
