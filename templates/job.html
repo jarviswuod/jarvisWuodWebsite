@@ -2,11 +2,19 @@
 <hr />
 {% load static %}
 <hr />
+{% block meta %}
+<title>About Me | Jarvis Wuod</title>
+<meta
+  name="description"
+  content="About me - Jarvis Wuod, a software developer and tech enthusiast."
+/>
+<meta name="keywords" content="about me, jarvis wuod, software developer" />
 
-{% block title %}Job | {% endblock title %}
+{% endblock meta %}
+
 <hr />
 
-{% block body_content %}
+{% block body %}
 
 <section class="bg-black text-white my-8">
   <div
@@ -295,4 +303,4 @@
     </ul>
   </div>
 </section>
-{% endblock body_content %}
+{% endblock body %}

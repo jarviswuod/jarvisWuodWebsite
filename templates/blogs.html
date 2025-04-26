@@ -2,11 +2,26 @@
 
 <hr />
 
-{% block title %}Blogs | {% endblock title %}
+{% block meta %}
+<title>
+  My Insights | Jarvis Wuod - Personal Growth, financial independence/ freedom,
+  Tech Career & Digital Marketing Tips
+</title>
+
+<meta
+  name="description"
+  content="Explore actionable insights on tech career development, personal growth habits, financial freedom, and social media strategy. Follow my journey from coding struggles to success with practical tips for developers and entrepreneurs."
+/>
+
+<meta
+  name="keywords"
+  content="tech career advice, jarvis wuod blogs, jarvis stories, developer personal growth, X marketing strategy, twitter growth tips, tech skill mastery, coding journey, personal development insights, james clear habits, alex hormozi influence, dan koe inspiration, tech learning resources, developer success stories, personal branding for developers, generation wealth in tech, social media growth for tech professionals, financial freedom, financial success in tech, financial independece in tech, habit formation, tech career transformation, free tech learning, developer mindset, hustle culture, consistency in tech, brand building for developers, personal growth journey, tech industry insights, software developer blog, tech mentorship insights"
+/>
+{% endblock meta %}
 
 <hr />
 
-{% block body_content %}
+{% block body %}
 
 <section
   class="bg-[url(https://images.unsplash.com/photo-1742217279960-977bb5d13f75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
@@ -14,11 +29,11 @@
   <div
     class="min-h-lvh text-white flex items-center justify-center max-w-[1280px] mx-auto"
   >
-    <h2
+    <h1
       class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-4 sm:mb-6 lg:mb-8"
     >
       My Insights.
-    </h2>
+    </h1>
   </div>
 </section>
 
@@ -306,4 +321,4 @@
     </form>
   </div>
 </section>
-{% endblock body_content %}
+{% endblock body %}

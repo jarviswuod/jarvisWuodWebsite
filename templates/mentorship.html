@@ -1,10 +1,22 @@
 {% extends "base.html" %}
 <hr />
-{% block title %}Mentorship Program | {% endblock title %}
+{% block meta %}
+<title>Mentorship Program | Jarvis Wuod</title>
 
+<meta
+  name="description"
+  content="Join my free mentorship program and get personalized guidance in software programming, resume review, and LinkedIn revamp. Learn from the best tech mentor in Africa."
+/>
+
+<meta
+  name="keywords"
+  content="why mentorship, mentorship africa, free mentorship program, world best tech mentor, why you need a mentor in tech, tech mentorship, developer mentorship, software developer mentor, coding help, coding mentor, tech mentor africa, web development mentorship, full-stack  mentor, career guidance, frontend mentor, path to become freelance developer,  coding bootcamp alternative, personalized tech mentorship, tech career coaching, android app development mentor,  software engineering mentorship, software project guidance, javascript mentorship program, tech career advancement,  coding skills improvement guide, access software development resources, software architecture mentorship coding best practices, tech startup mentorship, reactjs mentorship, mobile app development mentorship, coding challenges and solutions"
+/>
+
+{% endblock meta %}
 <hr />
 
-{% block body_content %}
+{% block body %}
 
 <section
   class="bg-[url(https://images.unsplash.com/photo-1742217279960-977bb5d13f75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
@@ -12,16 +24,12 @@
   <div
     class="min-h-lvh text-white flex items-center justify-center max-w-[1280px] mx-auto"
   >
-    <h2
+    <h1
       class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-4 sm:mb-6 lg:mb-8"
     >
       Mentorship program.
-    </h2>
+    </h1>
   </div>
-
-  {% comment %} {% block title_content %} Mentorship program - The ultimate
-  guide you need to become the developer you wanna be by Jarvis Wuod {% endblock
-  title_content %} {% endcomment %}
 </section>
 
-{% endblock body_content %}
+{% endblock body %}

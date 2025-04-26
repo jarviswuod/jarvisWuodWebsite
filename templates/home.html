@@ -1,11 +1,23 @@
 {% extends "base.html" %} {% load static %}
 <hr />
-{% comment %} {% block title_content %}Jarvis Wuod - Ultimate guide to learning
-web development, land your first job and get to convert your ideas into website
-you will fall in love with{% endblock title_content %} {% endcomment %}
+
+{% block meta %}
+<title>Jarvis Wuod | Web Development Mentorship & Resume Review Services</title>
+<meta
+  name="description"
+  content="Transform your tech career with personalized web development mentorship, CV/LinkedIn optimization, and custom software solutions. 50+ developers mentored, 10+ projects built. Book a free call today."
+/>
+
+<meta
+  name="keywords"
+  content="jarvis wuod, learn web development, coding mentor, developer resume review, linkedin profile optimization, software career guidance, tech job application help, beginner programming help, web development roadmap, fullstack developer mentorship, custom website development, android app development, tech career coaching, coding bootcamp alternative, personal tech mentor, software project portfolio, web development tutorials, developer job hunt, tech interview preparation, code review services, programming career advice, web developer skills, affordable coding mentorship, tech resume templates, remote developer jobs, freelance developer guidance, custom software solutions,  why you need a mentor in tech"
+/>
+
+{% endblock meta %}
+
 <hr />
 
-{% block body_content %}
+{% block body %}
 <section
   class="home-hero-section relative bg-cover bg-center px-8"
   style="background-image: url('{% static 'hero-img.webp' %}')"
@@ -680,4 +692,4 @@ you will fall in love with{% endblock title_content %} {% endcomment %}
   </div>
 </section>
 
-{% endblock body_content %}
+{% endblock body %}

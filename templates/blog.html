@@ -1,11 +1,19 @@
 {% extends "base.html" %}
 <hr />
 
-{% block title %}Blog | {% endblock title %}
+{% block meta %}
+<title>Blog | Jarvis Wuod</title>
+<meta
+  name="description"
+  content="Blog | , a software developer and tech enthusiast."
+/>
+<meta name="keywords" content="about me, jarvis wuod, software developer" />
+
+{% endblock meta %}
 
 <hr />
 
-{% block body_content %}
+{% block body %}
 <section class="bg-black text-white">
   <div
     class="min-h-[32rem] flex items-start justify-center flex-col max-w-[1280px] mx-auto"
@@ -187,4 +195,4 @@
     </ul>
   </div>
 </section>
-{% endblock body_content %}
+{% endblock body %}

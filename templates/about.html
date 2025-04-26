@@ -1,10 +1,27 @@
 {% extends "base.html" %} {% load static %}
 
 <hr />
-{% block title %}About Us | {% endblock title %}
-<hr />
 
-{% block body_content %}
+{% block meta %}
+<title>
+  About Me | Self-Taught Developer, Tech Mentor & African Success Story | Jarvis
+  Wuod
+</title>
+
+<meta
+  name="description"
+  content="From first seeing a laptop at 12 to becoming a fullstack developer, discover Jarvis Wuod's inspiring journey from rural Africa to tech success. Now mentoring developers across Africa while building digital products and pursuing remote work opportunities."
+/>
+
+<meta
+  name="keywords"
+  content="jarvis wuod, african developer story, self-taught programmer, tech mentorship africa, fullstack developer journey, developer success story, coding mentor, remote work aspirations, tech career development, software developer africa, generational wealth building, tech entrepreneurship, developer inspiration, afrisol technologies, bambanet, jan briddhi foundation, tech startup experience, african tech talent, developer personal brand, software career growth, digital product builder, overcoming coding challenges and solutions, my tech story, coding journey, software development journey, tech career path, self-taught developer story."
+/>
+
+{% endblock meta %}
+
+<hr />
+{% block body %}
 
 <section
   class="bg-[url(https://images.unsplash.com/photo-1742217279960-977bb5d13f75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
@@ -12,11 +29,11 @@
   <div
     class="min-h-lvh text-white flex items-center justify-center max-w-[1280px] mx-auto"
   >
-    <h2
+    <h1
       class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-4 sm:mb-6 lg:mb-8"
     >
       Dig Deeper.
-    </h2>
+    </h1>
   </div>
 </section>
 
@@ -214,4 +231,4 @@
     </ul>
   </div>
 </section>
-{% endblock body_content %}
+{% endblock body %}

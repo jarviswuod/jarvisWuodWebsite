@@ -1,11 +1,25 @@
 {% extends "base.html" %} {% load static %}
 <hr />
 
-{% block title %}Contact | {% endblock title %}
+{% block meta %}
+<title>
+  Contact Me | Developer Mentorship, Hiring & Resume Services | Jarvis Wuod
+</title>
+
+<meta
+  name="description"
+  content="Get personalized tech support from Jarvis Wuod. Whether you need developer mentorship, want to hire a fullstack developer, or need resume help to land a tech job—reach out today for expert guidance."
+/>
+
+<meta
+  name="keywords"
+  content="contact tech mentor, hire fullstack developer, talk to jarvis, hire a developer, developer mentorship program, mentorship support, tech career guidance, resume review service, tech job application help, web development consulting, mobile app development services, web app development, developer for hire kenya, tech beginner guidance, stuck developer help, personalized coding mentorship, tech career advancement, coding career support, tech job interview preparation, programming career advice, software developer contact, app development services africa, tech recruitment assistance, career transition to tech, coding support services, tech resume optimization"
+/>
+{% endblock meta %}
 
 <hr />
 
-{% block body_content %}
+{% block body %}
 
 <section
   class="bg-[url(https://images.unsplash.com/photo-1742217279960-977bb5d13f75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
@@ -13,11 +27,11 @@
   <div
     class="min-h-lvh text-white flex items-center justify-center max-w-[1280px] mx-auto"
   >
-    <h2
+    <h1
       class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-4 sm:mb-6 lg:mb-8"
     >
       Reach Out.
-    </h2>
+    </h1>
   </div>
 </section>
 
@@ -211,4 +225,4 @@
     </div>
   </div>
 </section>
-{% endcomment %} {% endblock body_content %}
+{% endcomment %} {% endblock body %}

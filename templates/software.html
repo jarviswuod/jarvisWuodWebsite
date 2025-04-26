@@ -1,9 +1,21 @@
 {% extends "base.html" %}
 <hr />
-{% block title %}Custom Software Solution | {% endblock title %}
+{% block meta %}
+<title>Custom software Solutions | Web & Mobile Solutions | Jarvis Wuod</title>
+<meta
+  name="description"
+  content="Just the right tech tool you need for your business to grow. From responsive websites to Android apps, I build tailored digital products for businesses, startups and NGOs. 10+ successful projects delivered. Get a free consultation."
+/>
+
+<meta
+  name="keywords"
+  content="custom software development, web application development, android app developer, responsive website design, business software solutions, freelance developer, reliable developer, startup technology partner, NGO website development, full-stack development services, mobile app development kenya, custom business software, software development consultation, affordable web development, e-commerce website development, progressive web apps, business process automation, software project management, best developer from africa, trustworthy developer, web development portfolio, software development africa, API development, frontend development services, backend development solutions"
+/>
+
+{% endblock meta %}
 <hr />
 
-{% block body_content %}
+{% block body %}
 
 <section
   class="bg-[url(https://images.unsplash.com/photo-1742217279960-977bb5d13f75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
@@ -11,15 +23,12 @@
   <div
     class="min-h-lvh text-white flex items-center justify-center max-w-[1280px] mx-auto"
   >
-    <h2
+    <h1
       class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-4 sm:mb-6 lg:mb-8"
     >
       Software solution.
-    </h2>
+    </h1>
   </div>
-  {% comment %} {% block title_content %} Custom Software solution - Just the
-  right software you need for your business to grow by Jarvis Wuod {% endblock
-  title_content %} {% endcomment %}
 </section>
 
-{% endblock body_content %}
+{% endblock body %}
