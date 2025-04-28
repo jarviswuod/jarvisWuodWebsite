@@ -107,11 +107,14 @@
       <nav
         class="max-w-[1320px] mx-auto flex items-center justify-between text-base tracking-wide font-bold uppercase"
       >
-        <div>
-          <a class="max-w-16 block" href="{% url 'home'%}">
-            <img src="{% static '/logo_.png' %}" alt="" />
+        <figure class="max-w-16 block">
+          <a href="{% url 'home'%}" aria-label="Jarvis Wuod Home">
+            <img
+              src="{% static '/media/images/jarvis_wuod_logo_sm.png' %}"
+              alt="Jarvis Wuod logo"
+            />
           </a>
-        </div>
+        </figure>
 
         <p
           class="md:hidden max-md:block text-3xl cursor-pointer"
@@ -163,47 +166,49 @@
       </nav>
     </header>
 
-    <section
-      class="message-notification absolute top-24 right-0 text-base sm:text-lg md:text-xl space-y-2 z-50"
-    >
-      <div class="max-w-[1280px] mx-auto">
-        {% if messages %}
-        <ul class="messages">
-          {% for message in messages %}
+    <main>
+      <section
+        class="message-notification absolute top-24 right-0 text-base sm:text-lg md:text-xl space-y-2 z-50"
+      >
+        <div class="max-w-[1280px] mx-auto">
+          {% if messages %}
+          <ul class="messages">
+            {% for message in messages %}
 
-          <li
-            {%
-            if
-            message.tags
-            %}
-            class=" text-white py-2 px-4 shadow {{ message.tags }}"
-            {%
-            endif
-            %}
-          >
-            {{ message }}
-          </li>
-          {% endfor %}
-        </ul>
-        {% endif %}
-      </div>
-    </section>
+            <li
+              {%
+              if
+              message.tags
+              %}
+              class=" text-white py-2 px-4 shadow {{ message.tags }}"
+              {%
+              endif
+              %}
+            >
+              {{ message }}
+            </li>
+            {% endfor %}
+          </ul>
+          {% endif %}
+        </div>
+      </section>
 
-    {% block body %} {%endblock body %}
+      {% block body %} {%endblock body %}
 
-    <a
-      class="fixed bottom-10 right-10"
-      href="https://api.whatsapp.com/send?phone=254757464904"
-      target="_blank"
-    >
-      <img
-        src="https://img.icons8.com/color/48/whatsapp--v1.png"
-        alt="Chat on WhatsApp"
-      />
-    </a>
+      <a
+        class="fixed bottom-10 right-10"
+        href="https://api.whatsapp.com/send?phone=254757464904"
+        target="_blank"
+      >
+        <img
+          src="https://img.icons8.com/color/48/whatsapp--v1.png"
+          alt="Chat on WhatsApp"
+        />
+      </a>
+    </main>
 
-    <footer class="bg-[#111]">
-      <div class="border-y-1 border-[#444] px-8">
+    <footer class="bg-[#000]">
+      <div class="border-y-1 border-[#222] px-8">
         <ul
           class="max-w-6xl mx-auto py-8 sm:py-12 md:py-16 lg:py-22 xl:py-28 grid grid-cols-1 sm:grid-cols-3 gap-8 items-center justify-center"
         >
@@ -224,9 +229,18 @@
           </li>
 
           <li class="justify-self-center">
-            <a class="w-24 block" href="{% url 'home'%}">
-              <img src="{% static '/logo_.png' %}" alt="" />
-            </a>
+            <figure class="max-w-16 block">
+              <a
+                class="w-24 block"
+                href="{% url 'home'%}"
+                aria-label="Jarvis Wuod Home"
+              >
+                <img
+                  src="{% static '/media/images/jarvis_wuod_logo_sm.png' %}"
+                  alt="Jarvis Wuod logo"
+                />
+              </a>
+            </figure>
           </li>
 
           <li>
@@ -266,38 +280,6 @@
           &copy; 2025 Jarvis Wuod. All rights reserved.
         </p>
       </div>
-
-      {% comment %}
-      <div class="py-4 sm:py-8 text-sm px-8">
-        <p class="text-center mb-4">
-          &copy; 2025 Jarvis Wuod. All rights reserved.
-          <a
-            class="underline underline-offset-6 text-amber-700"
-            href="http://social"
-          >
-            Terms of Service
-          </a>
-        </p>
-        <ul class="flex items-center justify-center space-x-4">
-          <li>
-            <a
-              class="underline underline-offset-6 text-amber-700"
-              href="http://social"
-            >
-              Return Policy
-            </a>
-          </li>
-          <li>
-            <a
-              class="underline underline-offset-6 text-amber-700"
-              href="http://social"
-            >
-              Privacy Policy
-            </a>
-          </li>
-        </ul>
-      </div>
-      {% endcomment %}
     </footer>
   </body>
 </html>
