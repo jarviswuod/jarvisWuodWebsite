@@ -37,7 +37,7 @@ setInterval(() => {
 
 // TWITTER TESTIMONIAL SLIDER
 let current = 0;
-const testimonialUls = document.querySelectorAll("ul.testimonial.grid");
+const testimonialUls = document.querySelectorAll(".testimonial-set");
 
 function showSlide(index) {
   testimonialUls.forEach((ul, i) => ul.classList.toggle("hidden", i !== index));
