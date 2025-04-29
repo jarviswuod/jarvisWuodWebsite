@@ -6,6 +6,7 @@ from .models import (
     MentorshipContact,
     ExpertiseContact,
     ResumeReviewContact,
+    NewsletterSubscriber
 )
 
 
@@ -70,7 +71,15 @@ class ResumeReviewContactAdmin(admin.ModelAdmin):
     ordering = ('-submitted_at',)
 
 
+class NewsletterSubscriberAdmin(admin.ModelAdmin):
+    list_display = ('email_address', 'subscribed_at', 'is_active')
+    search_fields = ('email_address',)
+    list_filter = ('is_active',)
+    ordering = ('-subscribed_at',)
+
+
 admin.site.register(BookCall, BookCallAdmin)
 admin.site.register(MentorshipContact, MentorshipContactAdmin)
 admin.site.register(ExpertiseContact, ExpertiseContactAdmin)
 admin.site.register(ResumeReviewContact, ResumeReviewContactAdmin)
+admin.site.register(NewsletterSubscriber, NewsletterSubscriberAdmin)
