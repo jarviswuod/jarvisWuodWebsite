@@ -63,11 +63,12 @@
 </section>
 
 {% include "contact-form.html" %}
-
-<section class="my-12 px-8">
+<section class="my-12 px-8" aria-labelledby="contact-options-heading">
   <div class="max-w-[1280px] mx-auto relative">
+    <h2 id="contact-options-heading" class="sr-only">Contact Options</h2>
     <ul
       class="contact-options mb-8 grid grid-cols-1 md:grid-cols-3 text-[#dedede]"
+      role="list"
     >
       <li
         class="pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transform-all cursor-pointer"
@@ -84,7 +85,10 @@
           developers. Let me get you there.
         </p>
 
-        <button class="text-amber-700 uppercase font-semibold">
+        <button
+          class="text-amber-700 uppercase font-semibold"
+          aria-label="Get mentorship support for web development"
+        >
           Get mentorship
         </button>
       </li>
@@ -104,7 +108,10 @@
           757 464 904.
         </p>
 
-        <button class="text-amber-700 uppercase font-semibold">
+        <button
+          class="text-amber-700 uppercase font-semibold"
+          aria-label="Send inquiry to hire for development work"
+        >
           Send Inquiry
         </button>
       </li>
@@ -124,7 +131,10 @@
           help you land your first job. Ready to grow?
         </p>
 
-        <button class="text-amber-700 uppercase font-semibold">
+        <button
+          class="text-amber-700 uppercase font-semibold"
+          aria-label="Submit resume for professional review"
+        >
           Submit Resume
         </button>
       </li>
@@ -143,6 +153,7 @@
           <a
             class="underline underline-offset-2"
             href="mailto:jarviswuod@gmail.com"
+            aria-label="Email me at jarviswuod@gmail.com"
           >
             jarviswuod@gmail.com
           </a>
@@ -150,7 +161,11 @@
         <p
           class="text-base sm:text-lg/8 text-[#dedede] text-center text-amber-700"
         >
-          <a class="underline underline-offset-2" href="tel:+254757464904">
+          <a
+            class="underline underline-offset-2"
+            href="tel:+254757464904"
+            aria-label="Call me at +254 757 464 904"
+          >
             +254 757 464 904
           </a>
         </p>
@@ -160,6 +175,125 @@
 </section>
 
 {% comment %}
+<section
+  class="contact-options-section my-12 px-8"
+  aria-labelledby="contact-options-heading"
+>
+  <div class="max-w-[1280px] mx-auto relative">
+    <h2 id="contact-options-heading" class="sr-only">Contact Options</h2>
+
+    <ul
+      class="contact-options mb-8 grid grid-cols-1 md:grid-cols-3 text-[#dedede] gap-4"
+      role="list"
+    >
+      <li
+        class="service-option pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transition-all group focus-within:border-amber-700"
+      >
+        <div class="service-content">
+          <h3
+            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+          >
+            Dev Support
+          </h3>
+          <p class="text-base sm:text-lg/8 mb-8">
+            Are you new to tech and no idea where to start? Or been here but
+            feel like you stuck? I offer personalized mentorship for aspiring
+            web developers. Let me get you there.
+          </p>
+
+          <button
+            class="text-amber-700 uppercase font-semibold hover:underline focus:outline-none focus:underline"
+            aria-label="Get mentorship support for web development"
+            onclick="showFormSection('mentorship-form')"
+          >
+            Get Mentorship
+          </button>
+        </div>
+      </li>
+
+      <li
+        class="service-option pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transition-all group focus-within:border-amber-700"
+      >
+        <div class="service-content">
+          <h3
+            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+          >
+            Hire an Expert
+          </h3>
+          <p class="text-base sm:text-lg/8 mb-8">
+            Need a skilled Full stack developer? Whether it's building mobile
+            app, web app or consulting. Send an inquiry or just call/WhatsApp me
+            +254 757 464 904.
+          </p>
+
+          <button
+            class="text-amber-700 uppercase font-semibold hover:underline focus:outline-none focus:underline"
+            aria-label="Send inquiry to hire for development work"
+            onclick="showFormSection('expertise-form')"
+          >
+            Send Inquiry
+          </button>
+        </div>
+      </li>
+
+      <li
+        class="service-option pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transition-all group focus-within:border-amber-700"
+      >
+        <div class="service-content">
+          <h3
+            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+          >
+            Get That Job
+          </h3>
+          <p class="text-base sm:text-lg/8 mb-8">
+            Have you applied to several tech jobs but you only get negative
+            feedback or no response at all? I've got you, I do resume reviews to
+            help you land your first job. Ready to grow?
+          </p>
+
+          <button
+            class="text-amber-700 uppercase font-semibold hover:underline focus:outline-none focus:underline"
+            aria-label="Submit resume for professional review"
+            onclick="showFormSection('resume-review-form')"
+          >
+            Submit Resume
+          </button>
+        </div>
+      </li>
+
+      <li
+        class="direct-contact col-span-1 md:col-span-3 self-center justify-self-center my-24 text-center"
+      >
+        <h3
+          class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+        >
+          Or Contact Me Directly
+        </h3>
+        <address class="not-italic">
+          <p class="text-base sm:text-lg/8 text-[#dedede] text-center mb-2">
+            <a
+              class="text-amber-700 underline underline-offset-2 hover:text-amber-500 focus:outline-none focus:text-amber-500"
+              href="mailto:jarviswuod@gmail.com"
+              aria-label="Email me at jarviswuod@gmail.com"
+            >
+              jarviswuod@gmail.com
+            </a>
+          </p>
+          <p class="text-base sm:text-lg/8 text-[#dedede] text-center">
+            <a
+              class="text-amber-700 underline underline-offset-2 hover:text-amber-500 focus:outline-none focus:text-amber-500"
+              href="tel:+254757464904"
+              aria-label="Call me at +254 757 464 904"
+            >
+              +254 757 464 904
+            </a>
+          </p>
+        </address>
+      </li>
+    </ul>
+  </div>
+</section>
+{% endcomment %} {% comment %}
 <section class="my-12 sm:my-18 md:my-24 px-8">
   <div
     class="max-w-[1280px] mx-auto relative grid grid-cols-1 lg:grid-cols-2 gap-12"
