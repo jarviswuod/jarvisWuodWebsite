@@ -5,6 +5,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 
 from .forms import BookCallForm, MentorshipForm, ExpertiseForm, ResumeReviewForm, NewsletterForm
+from .tasks import send_confirmation_email_celery
 
 
 def home(request):
@@ -15,11 +16,19 @@ def home(request):
         if book_call_form.is_valid():
             book_call_contact = book_call_form.save()
             try:
-                send_confirmation_email(
-                    name=book_call_contact.full_name,
-                    email=book_call_contact.email_address,
-                    service_type="Booked a Call"
+
+                send_confirmation_email_celery.delay(
+                    subject='Your Call Booking Confirmation',
+                    message='Thank you for booking a call...',
+                    from_email='your@email.com',
+                    recipient_list=[
+                        book_call_form.cleaned_data['email_address']]
                 )
+                # send_confirmation_email(
+                #     name=book_call_contact.full_name,
+                #     email=book_call_contact.email_address,
+                #     service_type="Booked a Call"
+                # )
             except Exception as e:
                 print(f"Email error: {e}")
 
