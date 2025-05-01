@@ -97,11 +97,18 @@ def contact(request):
             mentorship_form = MentorshipForm(request.POST)
             if mentorship_form.is_valid():
                 mentorship_contact = mentorship_form.save()
-                send_confirmation_email(
-                    name=mentorship_contact.full_name,
-                    email=mentorship_contact.email_address,
-                    service_type="Developer Mentorship Support Program"
+                send_confirmation_email_celery.delay(
+                    subject='Your Call Booking Confirmation',
+                    message='Thank you for booking a call...',
+                    from_email='jarviswuod@gmail.com',
+                    recipient_list=[
+                        mentorship_contact.cleaned_data['email_address']]
                 )
+                # send_confirmation_email(
+                #     name=mentorship_contact.full_name,
+                #     email=mentorship_contact.email_address,
+                #     service_type="Developer Mentorship Support Program"
+                # )
                 messages.success(
                     request, "Thank you for your mentorship inquiry!")
                 return redirect('contact')
@@ -110,11 +117,18 @@ def contact(request):
             expertise_form = ExpertiseForm(request.POST)
             if expertise_form.is_valid():
                 expertise_contact = expertise_form.save()
-                send_confirmation_email(
-                    name=expertise_contact.full_name,
-                    email=expertise_contact.email_address,
-                    service_type="Hire an Expert"
+                send_confirmation_email_celery.delay(
+                    subject='Your Call Booking Confirmation',
+                    message='Thank you for booking a call...',
+                    from_email='jarviswuod@gmail.com',
+                    recipient_list=[
+                        expertise_contact.cleaned_data['email_address']]
                 )
+                # send_confirmation_email(
+                #     name=expertise_contact.full_name,
+                #     email=expertise_contact.email_address,
+                #     service_type="Hire an Expert"
+                # )
                 messages.success(
                     request, "Thank you for your expertise inquiry!")
                 return redirect('contact')
@@ -123,11 +137,18 @@ def contact(request):
             resume_review_form = ResumeReviewForm(request.POST, request.FILES)
             if resume_review_form.is_valid():
                 resume_review_contact = resume_review_form.save()
-                send_confirmation_email(
-                    name=resume_review_contact.full_name,
-                    email=resume_review_contact.email_address,
-                    service_type="Resume Review"
+                send_confirmation_email_celery.delay(
+                    subject='Your Call Booking Confirmation',
+                    message='Thank you for booking a call...',
+                    from_email='jarviswuod@gmail.com',
+                    recipient_list=[
+                        resume_review_contact.cleaned_data['email_address']]
                 )
+                # send_confirmation_email(
+                #     name=resume_review_contact.full_name,
+                #     email=resume_review_contact.email_address,
+                #     service_type="Resume Review"
+                # )
                 messages.success(
                     request, "Thank you for submitting your resume!")
                 return redirect('contact')
@@ -172,8 +193,14 @@ def blogs(request):
             # recipient_list = [email_address]
 
             try:
-                send_mail(subject, message, 'your@email.com',
-                          [email_address], fail_silently=False)
+                # send_mail(subject, message, 'your@email.com',
+                #           [email_address], fail_silently=False)
+                send_confirmation_email_celery.delay(
+                    subject='Your Call Booking Confirmation',
+                    message='Thank you for booking a call...',
+                    from_email='jarviswuod@gmail.com',
+                    recipient_list=[email_address]
+                )
                 messages.success(request, "You have successfully subscribed!")
             except Exception as e:
 
