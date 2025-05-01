@@ -61,16 +61,19 @@ showSlide(current); // init
 const contactFormModal = document.querySelector(".contact-modal");
 const contactOptions = document.querySelector(".contact-options");
 
-const contactFormModalClose = document.querySelector(".close-btn");
+const contactFormModalClose = document.querySelectorAll(".close-btn");
 const contactFormModalOverlay = document.querySelector(".modal-overlay");
 
 contactOptions?.addEventListener("click", () => {
   contactFormModal.classList.remove("hidden");
 });
 
-contactFormModalClose?.addEventListener("click", () => {
-  contactFormModal.classList.add("hidden");
-});
+contactFormModalClose.forEach((button) =>
+  button.addEventListener("click", (e) => {
+    e.preventDefault();
+    contactFormModal.classList.add("hidden");
+  })
+);
 
 contactFormModalOverlay?.addEventListener("click", () => {
   contactFormModal.classList.add("hidden");
