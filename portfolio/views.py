@@ -9,7 +9,7 @@ from .tasks import send_confirmation_email_celery
 
 
 def home(request):
-    book_call_form = ResumeReviewForm()
+    book_call_form = BookCallForm()
 
     if request.method == 'POST':
         book_call_form = BookCallForm(request.POST)
@@ -20,7 +20,7 @@ def home(request):
                 send_confirmation_email_celery.delay(
                     subject='Your Call Booking Confirmation',
                     message='Thank you for booking a call...',
-                    from_email='your@email.com',
+                    from_email='jarviswuod@gmail.com',
                     recipient_list=[
                         book_call_form.cleaned_data['email_address']]
                 )
