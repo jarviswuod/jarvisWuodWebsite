@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 """
 
 from pathlib import Path
+from django.conf import settings
+
 import os
 
 import environ
@@ -34,12 +36,23 @@ if ENVIRONMENT == 'development':
 else:
     DEBUG = False
 
+ # DEBUG context processor
+
+
+def global_debug(request):
+    return {'debug': settings.DEBUG}
+
+
 SECRET_KEY = env("SECRET_KEY")
 
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
 
 
+INTERNAL_IPS = [
+    'localhost:8000',
+    '127.0.0.1:8000',
+]
 # Application definition
 
 INSTALLED_APPS = [
@@ -55,6 +68,7 @@ INSTALLED_APPS = [
     'admin_honeypot',
 
     'portfolio.apps.PortfolioConfig',
+
 ]
 
 # CELERY CONFIGURATION
@@ -68,6 +82,8 @@ CELERY_TIMEZONE = 'UTC'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
+
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -91,6 +107,10 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+
+                # DEBUG context processor
+                'jarvisWuodPWebsite.settings.global_debug',
+
             ],
         },
     },
@@ -147,6 +167,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 MEDIA_URL = 'media/'
+
+STATIC_ROOT = BASE_DIR / "staticfiles"
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'static/media')
 
