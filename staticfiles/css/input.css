@@ -28,16 +28,6 @@ ul {
   scrollbar-width: none;
 }
 
-.border-full {
-  border: 1px solid #222;
-}
-.border-2 {
-  border-width: 2px;
-}
-.border-4 {
-  border-width: 4px;
-}
-
 /* DJANGO MESSAGES STYLING */
 .success {
   background: green;
