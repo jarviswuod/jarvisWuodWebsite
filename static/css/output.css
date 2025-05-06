@@ -1198,6 +1198,11 @@ video {
   border-color: rgb(67 67 67 / var(--tw-border-opacity, 1));
 }
 
+.border-\[\#444\] {
+  --tw-border-opacity: 1;
+  border-color: rgb(68 68 68 / var(--tw-border-opacity, 1));
+}
+
 .border-\[\#dedede\] {
   --tw-border-opacity: 1;
   border-color: rgb(222 222 222 / var(--tw-border-opacity, 1));
@@ -1584,7 +1589,7 @@ video {
 }
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: nne;
+  display: none;
 }
 
 ::-webkit-scrollbar {
@@ -2056,6 +2061,11 @@ ul {
 
   .md\:col-span-3 {
     grid-column: span 3 / span 3;
+  }
+
+  .md\:my-16 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
   }
 
   .md\:my-24 {

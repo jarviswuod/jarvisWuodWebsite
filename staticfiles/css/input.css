@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 .scrollbar-hide::-webkit-scrollbar {
-  display: nne;
+  display: none;
 }
 
 ::-webkit-scrollbar {
@@ -26,6 +26,16 @@ ul::-webkit-scrollbar {
 ul {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+.border-full {
+  border: 1px solid #222;
+}
+.border-2 {
+  border-width: 2px;
+}
+.border-4 {
+  border-width: 4px;
 }
 
 /* DJANGO MESSAGES STYLING */
