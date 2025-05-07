@@ -45,6 +45,11 @@ def about(request):
     return render(request, 'about.html', context)
 
 
+def pricing(request):
+    context = {}
+    return render(request, 'pricing.html', context)
+
+
 def mentorship(request):
     context = {}
     return render(request, 'mentorship.html', context)
