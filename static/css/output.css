@@ -1976,6 +1976,10 @@ ul {
   background: orange;
 }
 
+.\*\:flex > * {
+  display: flex;
+}
+
 .after\:absolute::after {
   content: var(--tw-content);
   position: absolute;
