@@ -91,6 +91,7 @@
 
     <script defer src="{% static 'js/index.js' %}"></script>
     <script defer src="{% static 'js/form-validation.js' %}"></script>
+    <script defer src="{% static 'js/mentorship-pricing.js' %}"></script>
   </head>
 
   <!-- Google tag (gtag.js) -->
@@ -125,14 +126,14 @@
         </figure>
 
         <p
-          class="md:hidden max-md:block text-3xl cursor-pointer"
+          class="lg:hidden max-lg:block text-3xl cursor-pointer"
           onclick="toggleMenu()"
         >
           <i id="menu-icon" class="ph ph-list"></i>
         </p>
 
         <ul
-          class="max-md:hidden max-md:absolute max-md:w-3/4 max-md:bg-black max-md:top-20 max-md:left-0 max-md:z-50 max-md:min-h-screen max-md:p-8 max-md:border-t border-[#333] word-spacing list-none md:flex justify-start items-center gap-10 lg:gap-12 md:flex-row flex-col"
+          class="max-lg:hidden max-lg:absolute max-lg:w-3/4 max-lg:bg-black max-lg:top-20 max-lg:left-0 max-lg:z-50 max-lg:min-h-screen max-lg:p-8 max-lg:border-t border-[#333] word-spacing list-none flex justify-start items-center gap-10 lg:gap-12 lg:flex-row flex-col"
           id="menu"
         >
           <li
@@ -152,7 +153,7 @@
             </a>
             <ul
               id="submenu"
-              class="hidden max-md:relative shadow-xl shadow-[#222] absolute z-20 text-nowrap p-4 md:top-7 max-md:-right-[50%] space-y-3 bg-[#111]"
+              class="hidden max-lg:relative shadow-xl shadow-[#222] absolute z-20 text-nowrap p-4 lg:top-7 max-md:-right-[25%] max-lg:-right-[50%] space-y-3 bg-[#111]"
             >
               <li><a href="{% url 'mentorship'%}">Mentorship program</a></li>
               <li><a href="{% url 'resume'%}">Resume review</a></li>
@@ -160,10 +161,7 @@
             </ul>
           </li>
           <li><a href="{% url 'blogs'%}">Blogs</a></li>
-          <!-- {% if debug %} -->
           <li><a href="{% url 'pricing'%}">Pricing</a></li>
-          <!-- {% endif %} -->
-
           <li><a href="{% url 'about'%}">About</a></li>
           <li><a href="{% url 'jobs'%}">Jobs</a></li>
           <li>

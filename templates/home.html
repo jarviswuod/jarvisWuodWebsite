@@ -834,7 +834,13 @@
             aria-label="Visit KandaFocus Photography website"
           >
             <img
-              class="w-full transform-all duration-12000 hover:-translate-y-[81%]"
+              style="
+                width: 100%;
+                transition-property: all;
+                transition-duration: 12000ms;
+              "
+              onmouseover="this.style.transform = 'translateY(-81%)'"
+              onmouseout="this.style.transform = 'translateY(0)'"
               src="{% static '/media/images/kandaFocus_Photography_website.png' %}"
               alt="KandaFocus Photography website showing portfolio gallery and photography services"
               width="800"
@@ -865,7 +871,13 @@
             aria-label="Visit KeyMoney Finance website"
           >
             <img
-              class="w-full transform-all duration-12000 hover:-translate-y-[74%]"
+              style="
+                width: 100%;
+                transition-property: all;
+                transition-duration: 12000ms;
+              "
+              onmouseover="this.style.transform = 'translateY(-74%)'"
+              onmouseout="this.style.transform = 'translateY(0)'"
               src="{% static '/media/images/key_money_finance_website.png' %}"
               alt="KeyMoney Finance website featuring financial services and investment opportunities"
               width="800"

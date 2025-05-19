@@ -4,14 +4,6 @@
 const cards = document.querySelectorAll(".home-hero-card");
 const section = document.querySelector(".home-hero-section");
 
-// Business person using laptop multitasking to finish daily startup tasks
-// medium-promote-yourself-writing-text-post-it-paper-in-office-on-laptop-computer-keyboard
-
-// Mentorship
-// 22343850_Help and support to climbing employee from mentor or leader hand
-
-// Isometric view of a software development team working on a computer with gears and code , on a blue background
-
 const newImageUrl = [
   "static/hero-img.webp",
   "static/hero-img2.webp",
@@ -96,8 +88,8 @@ const menu = document.getElementById("menu");
 const icon = document.getElementById("menu-icon");
 
 const toggleMenu = () => {
-  menu.classList.toggle("max-md:hidden");
-  menu.classList.toggle("max-md:flex");
+  menu.classList.toggle("max-lg:hidden");
+  menu.classList.toggle("max-lg:flex");
   icon.classList.toggle("ph-list");
   icon.classList.toggle("ph-x");
 };

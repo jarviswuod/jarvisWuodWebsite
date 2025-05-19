@@ -1,0 +1,58 @@
+[
+  {
+    "name": "Free",
+    "price": "0",
+    "targetAudience": "For Beginners",
+    "billingPeriod": "Billed annually",
+    "buttonText": "Start for free",
+    "features": [
+      "1-on-1 coaching",
+      "Personalized learning",
+      "Hands-on project guidance",
+      "Code reviews & feedback"
+    ],
+    "highlight": false
+  },
+  {
+    "name": "Pro",
+    "price": "29",
+    "targetAudience": "For Professionals",
+    "billingPeriod": "Billed annually",
+    "buttonText": "Continue with Plus",
+    "features": [
+      "1-on-1 coaching",
+      "Personalized learning",
+      "Hands-on project guidance",
+      "Code reviews & feedback"
+    ],
+    "highlight": false
+  },
+  {
+    "name": "Business",
+    "price": "59",
+    "targetAudience": "For Teams",
+    "billingPeriod": "Billed annually",
+    "buttonText": "Continue with Pro",
+    "features": [
+      "1-on-1 coaching",
+      "Personalized learning",
+      "Hands-on project guidance",
+      "Code reviews & feedback"
+    ],
+    "highlight": true
+  },
+  {
+    "name": "Enterprise",
+    "price": "119",
+    "targetAudience": "For Corporates",
+    "billingPeriod": "Billed annually",
+    "buttonText": "Continue with Max",
+    "features": [
+      "1-on-1 coaching",
+      "Personalized learning",
+      "Hands-on project guidance",
+      "Code reviews & feedback"
+    ],
+    "highlight": false
+  }
+]
