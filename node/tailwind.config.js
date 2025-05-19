@@ -5,6 +5,9 @@ module.exports = {
     "../**/templates/**/*.html",
     "../**/forms.py",
     "../**/views.py",
+    "../**/templates/**/*.html",
+    "../**/static/**/*.js",
+    "../**/static/**/*.css",
   ],
   theme: {
     extend: {},
