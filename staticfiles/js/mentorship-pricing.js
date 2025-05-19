@@ -3,56 +3,51 @@ const pricingData = [
   {
     name: "Free",
     price: "0",
-    targetAudience: "For Beginners",
+    targetAudience: "Free Tier",
     billingPeriod: "Billed annually",
     buttonText: "Start for free",
+    features: ["1 portfolio project", "Up to 30mins call", "Weekly follow ups"],
+    highlight: false,
+  },
+  {
+    name: "Plus",
+    price: "29",
+    targetAudience: "Plus Tier",
+    billingPeriod: "Billed annually",
+    buttonText: "Continue with Plus",
     features: [
-      "1-on-1 coaching",
-      "Personalized learning",
-      "Hands-on project guidance",
-      "Code reviews & feedback",
+      "2 portfolio projects",
+      "Up to 30mins call",
+      "Weekly follow ups",
     ],
     highlight: false,
   },
   {
     name: "Pro",
-    price: "29",
-    targetAudience: "For Professionals",
-    billingPeriod: "Billed annually",
-    buttonText: "Continue with Plus",
-    features: [
-      "1-on-1 coaching",
-      "Personalized learning",
-      "Hands-on project guidance",
-      "Code reviews & feedback",
-    ],
-    highlight: false,
-  },
-  {
-    name: "Business",
     price: "59",
-    targetAudience: "For Teams",
+    targetAudience: "Pro Tier",
     billingPeriod: "Billed annually",
     buttonText: "Continue with Pro",
     features: [
-      "1-on-1 coaching",
-      "Personalized learning",
-      "Hands-on project guidance",
-      "Code reviews & feedback",
+      "Upto 5 strong projects",
+      "Up to 1.5hrs call",
+      "BiWeekly follow ups",
     ],
     highlight: true,
   },
   {
-    name: "Enterprise",
+    name: "Max",
     price: "119",
-    targetAudience: "For Corporates",
+    targetAudience: "Max Tier",
     billingPeriod: "Billed annually",
     buttonText: "Continue with Max",
     features: [
-      "1-on-1 coaching",
-      "Personalized learning",
-      "Hands-on project guidance",
-      "Code reviews & feedback",
+      "Real-world projects",
+      "Unlimited call duration",
+      "Priority support",
+      "Premium resources",
+      "Job application support",
+      "Full cv + linkedin revamp",
     ],
     highlight: false,
   },
@@ -62,7 +57,7 @@ const phoneNumber = "+254757464904";
 
 function handleWhatsAppContact(packageName) {
   const message = encodeURIComponent(
-    `Hi Jarvis, I'm interested in ${packageName} package`
+    `Hi Jarvis, I was checking your website and I'm interested in ${packageName} mentorship package`
   );
   window.open(`https://wa.me/${phoneNumber}?text=${message}`, "_blank");
 }
