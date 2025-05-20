@@ -1,58 +1,324 @@
-[
-  {
-    "name": "Free",
-    "price": "0",
-    "targetAudience": "For Beginners",
-    "billingPeriod": "Billed annually",
-    "buttonText": "Start for free",
-    "features": [
-      "1-on-1 coaching",
-      "Personalized learning",
-      "Hands-on project guidance",
-      "Code reviews & feedback"
-    ],
-    "highlight": false
-  },
-  {
-    "name": "Pro",
-    "price": "29",
-    "targetAudience": "For Professionals",
-    "billingPeriod": "Billed annually",
-    "buttonText": "Continue with Plus",
-    "features": [
-      "1-on-1 coaching",
-      "Personalized learning",
-      "Hands-on project guidance",
-      "Code reviews & feedback"
-    ],
-    "highlight": false
-  },
-  {
-    "name": "Business",
-    "price": "59",
-    "targetAudience": "For Teams",
-    "billingPeriod": "Billed annually",
-    "buttonText": "Continue with Pro",
-    "features": [
-      "1-on-1 coaching",
-      "Personalized learning",
-      "Hands-on project guidance",
-      "Code reviews & feedback"
-    ],
-    "highlight": true
-  },
-  {
-    "name": "Enterprise",
-    "price": "119",
-    "targetAudience": "For Corporates",
-    "billingPeriod": "Billed annually",
-    "buttonText": "Continue with Max",
-    "features": [
-      "1-on-1 coaching",
-      "Personalized learning",
-      "Hands-on project guidance",
-      "Code reviews & feedback"
-    ],
-    "highlight": false
-  }
-]
+{
+  "plans": [
+    {
+      "name": "Free Developer Path",
+      "price": "$0",
+      "period": "per month",
+      "cta": "Start Learning",
+      "highlightFeature": "12-week introduction to web development"
+    },
+    {
+      "name": "Growth Developer",
+      "price": "$10",
+      "period": "per month",
+      "cta": "Level Up",
+      "highlightFeature": "Build your first professional portfolio"
+    },
+    {
+      "name": "Code Pro",
+      "price": "$20",
+      "period": "per month",
+      "cta": "Get Serious",
+      "highlightFeature": "Recommended for career changers"
+    },
+    {
+      "name": "Career Accelerator",
+      "price": "$112",
+      "period": "per month",
+      "cta": "Transform Now",
+      "highlightFeature": "Premium career services included"
+    }
+  ],
+  "categories": [
+    {
+      "name": "Learning & Development",
+      "features": [
+        {
+          "name": "Learning Modules",
+          "values": [
+            "First 12 weeks only",
+            "Unlimited",
+            "Unlimited",
+            "Unlimited + Advanced"
+          ]
+        },
+        {
+          "name": "Coding Challenges",
+          "values": [
+            "5 per month",
+            "20 per month",
+            "Unlimited",
+            "Unlimited + Custom"
+          ]
+        },
+        {
+          "name": "Project Reviews",
+          "values": [
+            "1 basic review",
+            "3 detailed reviews",
+            "Weekly reviews",
+            "Priority unlimited reviews"
+          ]
+        },
+        {
+          "name": "Tech Stack Coverage",
+          "values": [
+            "HTML, CSS, JS basics",
+            "Full frontend stack",
+            "Full-stack development",
+            "Enterprise architecture"
+          ]
+        },
+        {
+          "name": "Advanced Topics",
+          "values": [
+            false,
+            "Selected topics",
+            "Complete curriculum",
+            "Specialized expertise"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Tools & Technologies",
+      "features": [
+        {
+          "name": "Docker & Containerization",
+          "values": [
+            "Basic concepts",
+            "Practical implementation",
+            "Advanced usage",
+            "Enterprise solutions"
+          ]
+        },
+        {
+          "name": "Cloud Platforms",
+          "values": [
+            "Intro to AWS/GCP",
+            "AWS/GCP essentials",
+            "Multi-cloud strategies",
+            "Cloud architecture design"
+          ]
+        },
+        {
+          "name": "GitHub & Version Control",
+          "values": [
+            "Basic commands",
+            "Branching strategies",
+            "CI/CD implementation",
+            "Advanced workflows"
+          ]
+        },
+        {
+          "name": "CI/CD Pipeline Access",
+          "values": [
+            false,
+            "Basic pipeline",
+            "Complete pipeline",
+            "Custom pipelines + training"
+          ]
+        },
+        {
+          "name": "Microservices Training",
+          "values": [
+            "Basic concepts",
+            "Implementation guides",
+            "Architecture design",
+            "System optimization"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Career Development",
+      "features": [
+        {
+          "name": "Portfolio Projects",
+          "values": [
+            "1 guided project",
+            "3 portfolio-ready",
+            "5 advanced projects",
+            "Real-world applications"
+          ]
+        },
+        {
+          "name": "Resume Reviews",
+          "values": [
+            false,
+            "One-time review",
+            "Quarterly updates",
+            "Unlimited optimization"
+          ]
+        },
+        {
+          "name": "LinkedIn Optimization",
+          "values": [
+            false,
+            "Basic tips",
+            "Profile overhaul",
+            "Personal branding strategy"
+          ]
+        },
+        {
+          "name": "Job Application Support",
+          "values": [
+            false,
+            "Application tips",
+            "Application reviews",
+            "Personalized job search"
+          ]
+        },
+        {
+          "name": "Interview Preparation",
+          "values": [
+            false,
+            "Basic Q&A prep",
+            "Mock interviews",
+            "Advanced interview coaching"
+          ]
+        },
+        {
+          "name": "Job Connections",
+          "values": [
+            false,
+            "Job board access",
+            "Regional opportunities",
+            "Direct employer connections"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mentorship Access",
+      "features": [
+        {
+          "name": "1:1 Sessions",
+          "values": [
+            "30 min monthly",
+            "30 min bi-weekly",
+            "1 hour weekly",
+            "Unlimited access"
+          ]
+        },
+        {
+          "name": "Group Sessions",
+          "values": [
+            "Weekly",
+            "Weekly",
+            "Weekly + recordings",
+            "Weekly + priority Q&A"
+          ]
+        },
+        {
+          "name": "Response Time",
+          "values": ["48 hours", "24 hours", "Same day", "Priority support"]
+        },
+        {
+          "name": "Code Reviews",
+          "values": [
+            "Basic review",
+            "Detailed feedback",
+            "In-depth analysis",
+            "Architecture consultation"
+          ]
+        },
+        {
+          "name": "Project Debugging",
+          "values": [
+            false,
+            "Limited assistance",
+            "Complete support",
+            "Emergency support"
+          ]
+        },
+        {
+          "name": "Career Guidance",
+          "values": [
+            "General advice",
+            "Personalized path",
+            "Strategic planning",
+            "Executive coaching"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Community & Resources",
+      "features": [
+        {
+          "name": "Community Access",
+          "values": [
+            "Read-only",
+            "Full participation",
+            "Featured projects",
+            "Leadership opportunities"
+          ]
+        },
+        {
+          "name": "Resource Library",
+          "values": [
+            "Limited articles",
+            "Complete library",
+            "Premium resources",
+            "Early access content"
+          ]
+        },
+        {
+          "name": "Event Access",
+          "values": [
+            "Public webinars",
+            "Monthly workshops",
+            "Weekly masterclasses",
+            "Private industry events"
+          ]
+        },
+        {
+          "name": "Networking",
+          "values": [
+            "Community forum",
+            "Peer connections",
+            "Industry introductions",
+            "Executive connections"
+          ]
+        },
+        {
+          "name": "Project Collaboration",
+          "values": [
+            false,
+            "Team projects",
+            "Client projects",
+            "Revenue-sharing options"
+          ]
+        },
+        {
+          "name": "Code Repositories",
+          "values": [
+            "Sample code",
+            "Framework templates",
+            "Enterprise patterns",
+            "Proprietary solutions"
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Requirements",
+      "features": [
+        {
+          "name": "Attendance Policy",
+          "values": [
+            "Must attend weekly sessions",
+            "Active participation",
+            "Monthly progress reviews",
+            "Commitment to goals"
+          ]
+        },
+        {
+          "name": "Trial Period",
+          "values": ["One month", "One month", "One month", "One month"]
+        }
+      ]
+    }
+  ]
+}
