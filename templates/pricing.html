@@ -62,8 +62,8 @@
 </section>
 
 <section
-  class="about-me py-4 sm:py-12 lg:py-16 px-8 sm:mb-8"
-  id="about-me"
+  class="pricing-heading py-4 sm:py-12 lg:py-16 px-8 sm:mb-8"
+  id="pricing-heading"
   aria-labelledby="pricing-heading"
 >
   <div class="max-w-[1280px] mx-auto">
@@ -320,6 +320,7 @@
       </li>
     </ul>
     {% endcomment %}
+
     <ul
       class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 text-base md:text-lg mb-1 lg:mb-2"
       role="list"
@@ -328,4 +329,35 @@
   </div>
 </section>
 
+<section
+  class="pricing-heading py-4 sm:py-12 lg:py-16 px-8 sm:mb-8"
+  id="pricing-heading"
+  aria-labelledby="pricing-heading"
+>
+  <div class="max-w-[1280px] mx-auto bg-black">
+    <div class="flex flex-wrap gap-4 justify-center mb-8" id="plan-buttons">
+      <!-- Will be populated by JavaScript -->
+    </div>
+
+    <div
+      class="responsive-table overflow-hidden rounded-lg shadow-xl border border-gray-200 bg"
+    >
+      <table class="w-full text-sm">
+        <thead>
+          <tr class="sticky-header">
+            <th class="p-4 text-left w-64 border-b-2 border-gray-200">
+              Features
+            </th>
+            <div id="plan-headers">
+              <!-- Will be populated by JavaScript -->
+            </div>
+          </tr>
+        </thead>
+        <tbody id="features-container">
+          <!-- Will be populated by JavaScript -->
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
 {% endblock body %}
