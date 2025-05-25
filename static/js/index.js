@@ -1,25 +1,25 @@
 "use strict";
 
 // HOME HERO CARD SLIDER
-const cards = document.querySelectorAll(".home-hero-card");
-const section = document.querySelector(".home-hero-section");
+// const cards = document.querySelectorAll(".home-hero-card");
+// const section = document.querySelector(".home-hero-section");
 
-const newImageUrl = [
-  "static/hero-img.webp",
-  "static/hero-img2.webp",
-  "static/hero-img3.webp",
-];
+// const newImageUrl = [
+//   // "static/hero-img.webp",
+//   // "static/hero-img2.webp",
+//   "static/hero-img3.webp",
+// ];
 
-let index = 0;
+// let index = 0;
 
-const rotateContent = (i) => {
-  cards.forEach((card, idx) => {
-    card.classList.toggle("hidden", idx !== i);
-  });
-  if (section) {
-    section.style.backgroundImage = `url('${newImageUrl[i]}')`;
-  }
-};
+// const rotateContent = (i) => {
+//   cards.forEach((card, idx) => {
+//     card.classList.toggle("hidden", idx !== i);
+//   });
+//   if (section) {
+//     section.style.backgroundImage = `url('${newImageUrl[i]}')`;
+//   }
+// };
 
 rotateContent(index);
 setInterval(() => {

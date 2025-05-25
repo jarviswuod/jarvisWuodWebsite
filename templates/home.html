@@ -42,7 +42,9 @@
 {% block body %}
 <section
   class="home-hero-section relative bg-cover bg-center px-8"
-  style="background-image: url('{% static 'hero-img.webp' %}')"
+  style="
+    background-image: url('{% static 'laptop-in-a-dark-room-with-screen-slightly-open.webp' %}');
+  "
   aria-label="Services Overview"
 >
   <div
@@ -83,90 +85,6 @@
           href="{% url 'mentorship' %}"
           role="button"
           aria-label="Learn more about our mentorship program"
-        >
-          Learn more
-          <span class="ml-2 text-base sm:text-lg" aria-hidden="true">↓</span>
-        </a>
-      </div>
-    </article>
-
-    <article
-      class="home-hero-card min-h-lvh flex items-center justify-center flex-col"
-      aria-labelledby="development-title"
-      aria-hidden="true"
-    >
-      <header>
-        <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-4 sm:mb-6 lg:mb-8"
-        >
-          Bespoke web development for growing businesses.
-        </h2>
-      </header>
-      <p
-        class="text-lg sm:text-xl lg:text-2xl text-center max-w-[840px] mb-8 sm:mb-12 lg:mb-16"
-      >
-        The complete technical service that delivers custom websites, web app,
-        and integrations that scale with your business needs.
-      </p>
-
-      <div
-        class="w-full flex items-center justify-center gap-4 sm:gap-8 md:gap-12"
-      >
-        <a
-          class="w-1/2 sm:w-1/3 lg:w-1/4 text-black text-sm md:text-base tracking-normal sm:tracking-wide bg-amber-400 hover:bg-amber-200 duration-300 transform-all text-center font-semibold sm:font-medium capitalize sm:uppercase border-2 border-amber-400 p-4 px-2 sm:px-4"
-          href="#book-a-call"
-          role="button"
-          aria-label="Start building today your skills"
-        >
-          Start building today
-        </a>
-        <a
-          class="w-1/2 sm:w-1/3 lg:w-1/4 text-white text-sm sm:text-base tracking-wide text-center font-semibold sm:font-medium capitalize sm:uppercase border-2 border-amber-400 p-4 px-2 sm:px-4"
-          href="{% url 'software' %}"
-          role="button"
-          aria-label="Learn more about our mentorship program"
-        >
-          Learn more
-          <span class="ml-2 text-base sm:text-lg" aria-hidden="true">↓</span>
-        </a>
-      </div>
-    </article>
-
-    <article
-      class="home-hero-card min-h-lvh flex items-center justify-center flex-col"
-      aria-labelledby="resume-title"
-      aria-hidden="true"
-    >
-      <header>
-        <h2
-          class="text-4xl sm:text-5xl lg:text-6xl font-bold text-center mb-4 sm:mb-6 lg:mb-8"
-        >
-          A personalized CV & LinkedIn review, just for you.
-        </h2>
-      </header>
-      <p
-        class="text-lg sm:text-xl lg:text-2xl text-center max-w-[840px] mb-8 sm:mb-12 lg:mb-16"
-      >
-        The expert service that helps you optimize your resume, craft standout
-        cover letters, and land more job opportunities in tech.
-      </p>
-
-      <div
-        class="w-full flex items-center justify-center gap-4 sm:gap-8 md:gap-12"
-      >
-        <a
-          class="w-1/2 sm:w-1/3 lg:w-1/4 text-black text-sm md:text-base tracking-normal sm:tracking-wide bg-amber-400 hover:bg-amber-200 duration-300 transform-all text-center font-semibold sm:font-medium capitalize sm:uppercase border-2 border-amber-400 p-4 px-2 sm:px-4"
-          href="#book-a-call"
-          role="button"
-          aria-label="Get hired faster"
-        >
-          Get hired faster
-        </a>
-        <a
-          class="w-1/2 sm:w-1/3 lg:w-1/4 text-white text-sm sm:text-base tracking-wide text-center font-semibold sm:font-medium capitalize sm:uppercase border-2 border-amber-400 p-4 px-2 sm:px-4"
-          href="{% url 'resume' %}"
-          role="button"
-          aria-label="Learn more about our resume review service"
         >
           Learn more
           <span class="ml-2 text-base sm:text-lg" aria-hidden="true">↓</span>
