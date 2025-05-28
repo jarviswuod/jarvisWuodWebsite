@@ -69,6 +69,7 @@ INSTALLED_APPS = [
     'admin_honeypot',
 
     'portfolio.apps.PortfolioConfig',
+    'blog.apps.BlogConfig',
 
 ]
 
