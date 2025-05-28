@@ -1,0 +1,17 @@
+venv
+
+node_modules
+.vscode
+.env
+*.log
+__pycache__/
+__pycache__
+*.pyc
+
+.idea
+*.pyo
+local_settings.py
+Lib
+Scripts
+*.sqlite3
+migrations
