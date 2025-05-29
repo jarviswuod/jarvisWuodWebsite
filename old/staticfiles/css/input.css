@@ -1,0 +1,46 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+ul::-webkit-scrollbar {
+  display: none;
+}
+
+ul {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+/* DJANGO MESSAGES STYLING */
+.success {
+  background: green;
+}
+
+.error {
+  background: red;
+}
+
+.info {
+  background: blue;
+}
+
+.warning {
+  background: orange;
+}

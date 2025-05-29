@@ -1,0 +1,385 @@
+{% extends "base.html" %} {% load static %}
+<hr />
+
+{% block meta %}
+<title>
+  Contact Me | Developer Mentorship, Hiring & Resume Services | Jarvis Wuod
+</title>
+
+<meta
+  name="description"
+  content="Get personalized tech support from Jarvis Wuod. Whether you need developer mentorship, want to hire a fullstack developer, or need resume help to land a tech job—reach out today for expert guidance."
+/>
+
+<meta
+  name="keywords"
+  content="contact tech mentor, hire fullstack developer, talk to jarvis, hire a developer, developer mentorship program, mentorship support, tech career guidance, resume review service, tech job application help, web development consulting, mobile app development services, web app development, developer for hire kenya, tech beginner guidance, stuck developer help, personalized coding mentorship, tech career advancement, coding career support, tech job interview preparation, programming career advice, software developer contact, app development services africa, tech recruitment assistance, career transition to tech, coding support services, tech resume optimization"
+/>
+
+<!-- Open Grapg Tags -->
+<meta
+  property="og:title"
+  content="Contact Me | Developer Mentorship, Hiring & Resume Services | Jarvis Wuod"
+/>
+<meta
+  property="og:description"
+  content="Get personalized tech support from Jarvis Wuod. Whether you need developer mentorship, want to hire a fullstack developer, or need resume help to land a tech job—reach out today for expert guidance."
+/>
+
+<!-- Twitter/ X  Tags -->
+<meta
+  name="twitter:title"
+  content="Contact Me | Developer Mentorship, Hiring & Resume Services | Jarvis Wuod"
+/>
+<meta
+  name="twitter:description"
+  content="Get personalized tech support from Jarvis Wuod. Whether you need developer mentorship, want to hire a fullstack developer, or need resume help to land a tech job—reach out today for expert guidance."
+/>
+{% endblock meta %}
+
+<hr />
+
+{% block body %}
+
+<section
+  class="hero-section bg-[url(https://images.unsplash.com/photo-1742217279960-977bb5d13f75?q=80&w=1740&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)]"
+>
+  <div
+    class="min-h-lvh text-white flex items-center justify-center max-w-[1280px] mx-auto"
+  >
+    <div class="text-center">
+      <h1
+        class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 lg:mb-8"
+        aria-label="Reach Out"
+      >
+        Reach Out.
+      </h1>
+      <meta
+        name="description"
+        content="Reach out to me for any query concern or issue or maybe just say hey."
+      />
+    </div>
+  </div>
+</section>
+
+{% include "main/contact-form.html" %}
+<section class="my-12 px-8" aria-labelledby="contact-options-heading">
+  <div class="max-w-[1280px] mx-auto relative">
+    <h2 id="contact-options-heading" class="sr-only">Contact Options</h2>
+    <ul
+      class="contact-options mb-8 grid grid-cols-1 md:grid-cols-3 text-[#dedede]"
+      role="list"
+    >
+      <li
+        class="pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transform-all cursor-pointer"
+        onclick="showFormSection('mentorship-form')"
+      >
+        <h3
+          class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+        >
+          Dev support
+        </h3>
+        <p class="text-base sm:text-lg/8 mb-8">
+          Are you new to tech and no idea where to start? Or been here but feel
+          like you stuck? I offer personalized mentorship for aspiring web
+          developers. Let me get you there.
+        </p>
+
+        <button
+          class="text-amber-700 uppercase font-semibold"
+          aria-label="Get mentorship support for web development"
+        >
+          Get mentorship
+        </button>
+      </li>
+
+      <li
+        class="pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transform-all cursor-pointer"
+        onclick="showFormSection('expertise-form')"
+      >
+        <h3
+          class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+        >
+          Hire an Expert
+        </h3>
+        <p class="text-base sm:text-lg/8 mb-8">
+          Need a skilled Full stack developer? Whether it's building mobile app,
+          web app or consulting. Send an inquiry or just call/ WhatsApp me +254
+          757 464 904.
+        </p>
+
+        <button
+          class="text-amber-700 uppercase font-semibold"
+          aria-label="Send inquiry to hire for development work"
+        >
+          Send Inquiry
+        </button>
+      </li>
+
+      <li
+        class="pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transform-all cursor-pointer"
+        onclick="showFormSection('resume-review-form')"
+      >
+        <h3
+          class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+        >
+          Get That Job
+        </h3>
+        <p class="text-base sm:text-lg/8 mb-8">
+          Have you applied to several tech jobs but you only get negative
+          feedback or no response at all? I've got you, I do resume reviews to
+          help you land your first job. Ready to grow?
+        </p>
+
+        <button
+          class="text-amber-700 uppercase font-semibold"
+          aria-label="Submit resume for professional review"
+        >
+          Submit Resume
+        </button>
+      </li>
+
+      <li
+        class="col-span-1 md:col-span-3 self-center justify-self-center my-24"
+      >
+        <h3
+          class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+        >
+          Or Contact Me Directly
+        </h3>
+        <p class="text-base sm:text-lg/8 text-center text-amber-700">
+          <a
+            class="underline underline-offset-2"
+            href="mailto:jarviswuod@gmail.com"
+            aria-label="Email me at jarviswuod@gmail.com"
+          >
+            jarviswuod@gmail.com
+          </a>
+        </p>
+        <p class="text-base sm:text-lg/8 text-center text-amber-700">
+          <a
+            class="underline underline-offset-2"
+            href="tel:+254757464904"
+            aria-label="Call me at +254 757 464 904"
+          >
+            +254 757 464 904
+          </a>
+        </p>
+      </li>
+    </ul>
+  </div>
+</section>
+
+{% comment %}
+<section
+  class="contact-options-section my-12 px-8"
+  aria-labelledby="contact-options-heading"
+>
+  <div class="max-w-[1280px] mx-auto relative">
+    <h2 id="contact-options-heading" class="sr-only">Contact Options</h2>
+
+    <ul
+      class="contact-options mb-8 grid grid-cols-1 md:grid-cols-3 text-[#dedede] gap-4"
+      role="list"
+    >
+      <li
+        class="service-option pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transition-all group focus-within:border-amber-700"
+      >
+        <div class="service-content">
+          <h3
+            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+          >
+            Dev Support
+          </h3>
+          <p class="text-base sm:text-lg/8 mb-8">
+            Are you new to tech and no idea where to start? Or been here but
+            feel like you stuck? I offer personalized mentorship for aspiring
+            web developers. Let me get you there.
+          </p>
+
+          <button
+            class="text-amber-700 uppercase font-semibold hover:underline focus:outline-none focus:underline"
+            aria-label="Get mentorship support for web development"
+            onclick="showFormSection('mentorship-form')"
+          >
+            Get Mentorship
+          </button>
+        </div>
+      </li>
+
+      <li
+        class="service-option pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transition-all group focus-within:border-amber-700"
+      >
+        <div class="service-content">
+          <h3
+            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+          >
+            Hire an Expert
+          </h3>
+          <p class="text-base sm:text-lg/8 mb-8">
+            Need a skilled Full stack developer? Whether it's building mobile
+            app, web app or consulting. Send an inquiry or just call/WhatsApp me
+            +254 757 464 904.
+          </p>
+
+          <button
+            class="text-amber-700 uppercase font-semibold hover:underline focus:outline-none focus:underline"
+            aria-label="Send inquiry to hire for development work"
+            onclick="showFormSection('expertise-form')"
+          >
+            Send Inquiry
+          </button>
+        </div>
+      </li>
+
+      <li
+        class="service-option pl-4 p-2 py-8 border-l-4 border-[#222] hover:border-amber-700 duration-500 transition-all group focus-within:border-amber-700"
+      >
+        <div class="service-content">
+          <h3
+            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+          >
+            Get That Job
+          </h3>
+          <p class="text-base sm:text-lg/8 mb-8">
+            Have you applied to several tech jobs but you only get negative
+            feedback or no response at all? I've got you, I do resume reviews to
+            help you land your first job. Ready to grow?
+          </p>
+
+          <button
+            class="text-amber-700 uppercase font-semibold hover:underline focus:outline-none focus:underline"
+            aria-label="Submit resume for professional review"
+            onclick="showFormSection('resume-review-form')"
+          >
+            Submit Resume
+          </button>
+        </div>
+      </li>
+
+      <li
+        class="direct-contact col-span-1 md:col-span-3 self-center justify-self-center my-24 text-center"
+      >
+        <h3
+          class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+        >
+          Or Contact Me Directly
+        </h3>
+        <address class="not-italic">
+          <p class="text-base sm:text-lg/8 text-[#dedede] text-center mb-2">
+            <a
+              class="text-amber-700 underline underline-offset-2 hover:text-amber-500 focus:outline-none focus:text-amber-500"
+              href="mailto:jarviswuod@gmail.com"
+              aria-label="Email me at jarviswuod@gmail.com"
+            >
+              jarviswuod@gmail.com
+            </a>
+          </p>
+          <p class="text-base sm:text-lg/8 text-[#dedede] text-center">
+            <a
+              class="text-amber-700 underline underline-offset-2 hover:text-amber-500 focus:outline-none focus:text-amber-500"
+              href="tel:+254757464904"
+              aria-label="Call me at +254 757 464 904"
+            >
+              +254 757 464 904
+            </a>
+          </p>
+        </address>
+      </li>
+    </ul>
+  </div>
+</section>
+{% endcomment %} {% comment %}
+<section class="my-12 sm:my-18 md:my-24 px-8">
+  <div
+    class="max-w-[1280px] mx-auto relative grid grid-cols-1 lg:grid-cols-2 gap-12"
+  >
+    <div class="max-h-158 overflow-hidden rounded-xl relative">
+      <img
+        class="w-full"
+        src="https://images.pexels.com/photos/30447802/pexels-photo-30447802/free-photo-of-charming-gallery-entrance-in-dijon-france.jpeg?auto=compress&cs=tinysrgb&w=600&lazy=load"
+        alt="Random online photo"
+      />
+
+      <span
+        class="text-3xl bg-black text-white font-bold absolute top-0 left-0 px-2 max-w-1/2"
+      >
+        Here’s what my satisfied clients have to say
+      </span>
+    </div>
+    <div class="max-h-158 overflow-auto scrollbar-hide">
+      <ul class="space-y-6 mr-4">
+        <li class="border-1 rounded-2xl p-6">
+          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
+
+          <p class="text-lg/8 text-[#dedede] mb-8">
+            "Take that step today. One thing I can assure you of is this will be
+            a profitable step for you "
+          </p>
+          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
+            <div class="max-w-12 overflow-hidden rounded-full">
+              <img class='w-full' src={% static "/profile.jpg" %} alt="">
+            </div>
+            <div>
+              <h6 class="font-semibold">Jarvis Wuod</h6>
+              <p class="text-[#dedede]">@jarviswuod</p>
+            </div>
+          </div>
+        </li>
+        <li class="border-1 rounded-2xl p-6">
+          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
+
+          <p class="text-lg/8 text-[#dedede] mb-8">
+            "I recommend everyone to enroll because the host is friendly and a
+            good mentor "
+          </p>
+          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
+            <div class="max-w-12 overflow-hidden rounded-full">
+              <img class='w-full' src={% static "/profile.jpg" %} alt="">
+            </div>
+            <div>
+              <h6 class="font-semibold">Jarvis Wuod</h6>
+              <p class="text-[#dedede]">@jarviswuod</p>
+            </div>
+          </div>
+        </li>
+        <li class="border-1 rounded-2xl p-6">
+          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
+
+          <p class="text-lg/8 text-[#dedede] mb-8">
+            "My message is, they should get on that call, it's a career saving
+            call "
+          </p>
+          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
+            <div class="max-w-12 overflow-hidden rounded-full">
+              <img class='w-full' src={% static "/profile.jpg" %} alt="">
+            </div>
+            <div>
+              <h6 class="font-semibold">Jarvis Wuod</h6>
+              <p class="text-[#dedede]">@jarviswuod</p>
+            </div>
+          </div>
+        </li>
+        <li class="border-1 rounded-2xl p-6">
+          <p class="mb-4">⭐ ⭐ ⭐ ⭐ ⭐</p>
+
+          <p class="text-lg/8 text-[#dedede] mb-8">
+            "Get on board, the right mentorship is the path to success.
+            Sometime, all you need is someone who had gone through what you are
+            going through..."
+          </p>
+          <div class="grid grid-cols-[auto_1fr] items-center gap-4 gap-y-2">
+            <div class="max-w-12 overflow-hidden rounded-full">
+              <img class='w-full' src={% static "/profile.jpg" %} alt="">
+            </div>
+            <div>
+              <h6 class="font-semibold">Jarvis Wuod</h6>
+              <p class="text-[#dedede]">@jarviswuod</p>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+{% endcomment %} {% endblock body %}
