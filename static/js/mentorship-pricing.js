@@ -1,20 +1,10 @@
-// Pricing data as JavaScript object
 const pricingData = [
-  {
-    name: "Free",
-    price: "0",
-    targetAudience: "Free Tier",
-    billingPeriod: "Billed annually",
-    buttonText: "Start for free",
-    features: ["1 portfolio project", "Up to 30mins call", "Weekly follow ups"],
-    highlight: false,
-  },
   {
     name: "Plus",
     price: "29",
     targetAudience: "Plus Tier",
     billingPeriod: "Billed annually",
-    buttonText: "Continue with Plus",
+    buttonText: "Start with Plus",
     features: [
       "2 portfolio projects",
       "Up to 30mins call",
@@ -71,7 +61,6 @@ function renderPricingPlans() {
       "border border-[#dedede63] p-4 py-8 flex flex-col gap-2";
     planElement.setAttribute("aria-labelledby", `plan-${index}`);
 
-    // Create plan HTML
     planElement.innerHTML = `
           <p 
             id="plan-${index}"
@@ -114,7 +103,6 @@ function renderPricingPlans() {
 
     pricingGrid.appendChild(planElement);
 
-    // Add event listener to button
     document
       .getElementById(`contact-btn-${index}`)
       .addEventListener("click", () => {
@@ -123,5 +111,4 @@ function renderPricingPlans() {
   });
 }
 
-// Initialize the page
 document.addEventListener("DOMContentLoaded", renderPricingPlans);

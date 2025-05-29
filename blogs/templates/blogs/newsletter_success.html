@@ -1,0 +1,191 @@
+{% extends "base.html" %} {% load static %}
+
+<hr />
+
+{% block meta %}
+
+<title>
+  Welcome to Newsletter | Jarvis Wuod - Personal Growth, Financial
+  Independence/Freedom, Tech Career
+</title>
+
+<meta
+  name="description"
+  content="Welcome to my newsletter! You've successfully joined 500+ subscribers receiving weekly insights on tech career development, financial freedom strategies, personal growth habits, and digital marketing. Get ready for exclusive content and actionable advice delivered straight to your inbox."
+/>
+
+<meta
+  name="keywords"
+  content="newsletter welcome, jarvis wuod newsletter, tech career newsletter subscription, financial freedom newsletter, personal growth newsletter, developer newsletter welcome, tech career advice newsletter, financial independence newsletter, digital marketing insights newsletter, weekly tech insights, exclusive developer content, tech entrepreneurship newsletter, wealth building newsletter, personal branding newsletter, social media growth newsletter, X marketing newsletter, twitter growth newsletter, coding journey newsletter, developer success newsletter, tech industry newsletter, startup advice newsletter, newsletter subscription success, tech learning newsletter, career transformation newsletter"
+/>
+
+<!-- Open Graph Tags -->
+<meta
+  property="og:title"
+  content="Welcome to Newsletter | Jarvis Wuod - Personal Growth, Financial Independence/Freedom, Tech Career"
+/>
+<meta
+  property="og:description"
+  content="Welcome to my newsletter! You've successfully joined 500+ subscribers receiving weekly insights on tech career development, financial freedom strategies, personal growth habits, and digital marketing. Get ready for exclusive content and actionable advice."
+/>
+
+<!-- Twitter/ X  Tags -->
+<meta
+  name="twitter:title"
+  content="Welcome to Newsletter | Jarvis Wuod - Personal Growth, Financial Independence/Freedom, Tech Career"
+/>
+<meta
+  name="twitter:description"
+  content="Welcome to my newsletter! You've successfully joined 500+ subscribers receiving weekly insights on tech career development, financial freedom strategies, personal growth habits, and digital marketing. Get ready for exclusive content and actionable advice."
+/>
+{% endblock meta %}
+<hr />
+{% block body %}
+
+<section
+  class="welcome-subscription-section my-12 px-8"
+  aria-labelledby="welcome-subscription-heading"
+>
+  <div class="max-w-[1280px] mx-auto">
+    <!-- Success Icon -->
+    <div class="mb-8 flex justify-center">
+      <div
+        class="w-24 h-24 bg-amber-100 rounded-full flex items-center justify-center"
+      >
+        <svg
+          class="w-12 h-12 text-amber-700"
+          fill="currentColor"
+          viewBox="0 0 20 20"
+          aria-hidden="true"
+        >
+          <path
+            fill-rule="evenodd"
+            d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
+            clip-rule="evenodd"
+          ></path>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Success Message -->
+    <header class="text-center mb-12">
+      <h1
+        id="welcome-subscription-heading"
+        class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#fefefe] mb-4 sm:mb-6"
+      >
+        Welcome Aboard! 🎉
+      </h1>
+      <p
+        class="text-lg sm:text-xl lg:text-2xl text-[#dedede] max-w-[840px] mx-auto"
+      >
+        You've successfully subscribed to jarviswuod.com newsletter. No
+        bullshit, just some thoughtful content.
+      </p>
+    </header>
+
+    <!-- What's Next Section -->
+    <div class="bg-[#222] rounded-base p-8 sm:p-12 lg:p-16 mb-12 lg:mb-18">
+      <h2
+        class="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#fefefe] mb-8 lg:mb-12"
+      >
+        What Happens Next?
+      </h2>
+      <div class="space-y-8 lg:space-y-12 text-left">
+        <div class="flex items-start gap-6">
+          <div
+            class="flex-shrink-0 w-12 h-12 bg-amber-700 text-white rounded-full flex items-center justify-center text-lg font-bold"
+          >
+            1
+          </div>
+          <div>
+            <h3 class="text-xl sm:text-2xl font-semibold text-[#fefefe] mb-2">
+              Check Your Email
+            </h3>
+            <p class="text-base sm:text-lg/8 text-[#dedede]">
+              A confirmation email has been sent to your inbox to verify your
+              subscription.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-6">
+          <div
+            class="flex-shrink-0 w-12 h-12 bg-amber-700 text-white rounded-full flex items-center justify-center text-lg font-bold"
+          >
+            2
+          </div>
+          <div>
+            <h3 class="text-xl sm:text-2xl font-semibold text-[#fefefe] mb-2">
+              Weekly Insights
+            </h3>
+            <p class="text-base sm:text-lg/8 text-[#dedede]">
+              Every week, you'll receive curated insights on web development,
+              freelancing, and building a personal brand.
+            </p>
+          </div>
+        </div>
+
+        <div class="flex items-start gap-6">
+          <div
+            class="flex-shrink-0 w-12 h-12 bg-amber-700 text-white rounded-full flex items-center justify-center text-lg font-bold"
+          >
+            3
+          </div>
+          <div>
+            <h3 class="text-xl sm:text-2xl font-semibold text-[#fefefe] mb-2">
+              Exclusive Content
+            </h3>
+            <p class="text-base sm:text-lg/8 text-[#dedede]">
+              Get first access to new blog posts, development tips, and
+              behind-the-scenes content.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Call to Action -->
+    <div class="text-center mb-16 lg:mb-24">
+      <p class="text-lg sm:text-xl text-[#dedede] mb-8 lg:mb-12">
+        While you're here, why not explore some of my latest insights and
+        projects?
+      </p>
+      <div
+        class="flex flex-col sm:flex-row gap-4 sm:gap-8 justify-center max-w-xl mx-auto"
+      >
+        <a
+          href="{% url 'blogs' %}"
+          class="w-full sm:w-1/2 text-black text-sm sm:text-base tracking-normal sm:tracking-wide bg-amber-400 hover:bg-amber-200 duration-300 transform-all text-center font-semibold sm:font-medium capitalize sm:uppercase border-2 border-amber-400 p-4 px-2 sm:px-4"
+          aria-label="Read latest blog posts"
+        >
+          Read Latest Posts
+        </a>
+        <a
+          href="/"
+          class="w-full sm:w-1/2 text-white text-sm sm:text-base tracking-wide text-center font-semibold sm:font-medium capitalize sm:uppercase border-2 border-amber-400 p-4 px-2 sm:px-4 hover:bg-amber-400 hover:text-black duration-300 transform-all"
+          aria-label="Return to homepage"
+        >
+          Back to Home
+        </a>
+      </div>
+    </div>
+
+    <!-- Social Proof -->
+    <div class="border-t-2 border-[#434343] pt-12 lg:pt-18 text-center">
+      <blockquote class="mb-6">
+        <p
+          class="text-base sm:text-lg/8 text-[#dedede] italic max-w-3xl mx-auto"
+        >
+          "Jarvis delivers real, actionable insights that help me level up my
+          development skills and career. No fluff, just valuable content that
+          actually makes a difference."
+        </p>
+      </blockquote>
+      <cite class="text-sm uppercase font-bold text-amber-700">
+        — Sarah K., Newsletter Subscriber & Frontend Developer
+      </cite>
+    </div>
+  </div>
+</section>
+
+{% endblock %}

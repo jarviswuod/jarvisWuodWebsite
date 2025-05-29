@@ -3,7 +3,7 @@
 
 {% block meta %}
 
-<title>Jarvis Wuod | Web Development Mentorship & Resume Review Services</title>
+<title>Jarvis Wuod | Web Development Mentorship</title>
 
 <meta
   name="description"
@@ -16,20 +16,14 @@
 />
 
 <!-- Open Grapg Tags -->
-<meta
-  property="og:title"
-  content="Jarvis Wuod | Web Development Mentorship & Resume Review Services"
-/>
+<meta property="og:title" content="Jarvis Wuod | Web Development Mentorship" />
 <meta
   property="og:description"
   content="Transform your tech career with personalized web development mentorship, CV/LinkedIn optimization, and custom software solutions. 50+ developers mentored, 10+ projects built. Book a free call today."
 />
 
 <!-- Twitter/ X  Tags -->
-<meta
-  name="twitter:title"
-  content="Jarvis Wuod | Web Development Mentorship & Resume Review Services"
-/>
+<meta name="twitter:title" content="Jarvis Wuod | Web Development Mentorship" />
 <meta
   name="twitter:description"
   content="Transform your tech career with personalized web development mentorship, CV/LinkedIn optimization, and custom software solutions. 50+ developers mentored, 10+ projects built. Book a free call today."
@@ -82,7 +76,7 @@
         </a>
         <a
           class="w-1/2 sm:w-1/3 lg:w-1/4 text-white text-sm sm:text-base tracking-wide text-center font-semibold sm:font-medium capitalize sm:uppercase border-2 border-amber-400 p-4 px-2 sm:px-4"
-          href="{% url 'home' %}"
+          href="#services-section"
           role="button"
           aria-label="Learn more about our mentorship program"
         >
@@ -118,6 +112,7 @@
 </section>
 
 <section
+  id="services-section"
   class="services-section bg-[#222] px-8"
   aria-labelledby="services-heading"
 >
@@ -252,18 +247,17 @@
   <div class="max-w-[1280px] text-xl/9 mx-auto">
     <header>
       <h2
-        id="testimonials-heading"
-        class="text-3xl sm:text-4xl lg:text-5xl/14 mb-2 lg:mb-4 text-center font-medium max-w-6xl"
+        id="services-heading"
+        class="text-left text-base font-bold uppercase text-amber-700 mb-4 max-w-6xl"
       >
         Wall of Love ❤️
       </h2>
       <p
-        class="text-base sm:text-lg md:text-xl text-center text-[#dedede] max-w-6xl mx-auto mb-6 md:mb-8"
+        class="text-3xl sm:text-4xl lg:text-5xl/14 mb-12 lg:mb-18 font-medium text-left max-w-6xl"
       >
         I've helped dozens of aspiring developers learn web development and land
-        opportunities. This section shares their stories, from mentorship and
-        resume reviews to LinkedIn revamps, and job tips. But don't just take my
-        word for it, see the success stories!
+        opportunities. But don't just take my word for it, see the success
+        stories!
       </p>
       <div class="mt-2 sm:mt-4 mb-12 sm:mb-16 space-x-2 text-center">
         <span aria-label="5-star rating">⭐ ⭐ ⭐ ⭐ ⭐</span>
@@ -691,23 +685,6 @@
               required
               aria-required="true"
             />
-          </div>
-
-          <div class="form-field">
-            <label for="booking_reason" class="sr-only">Booking Reason</label>
-            <select
-              name="booking_reason"
-              id="booking_reason"
-              class="text-sm border-2 border-amber-400 p-5 w-full"
-              required
-              aria-required="true"
-            >
-              <option value="">Choose Discussion Topic</option>
-              <option value="mentorship">The Mentorship Program</option>
-              <option value="software">I need a software</option>
-              <option value="cvreview">I need Resume review</option>
-              <option value="other">Other reasons</option>
-            </select>
           </div>
 
           <button
