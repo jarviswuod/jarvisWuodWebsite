@@ -63,86 +63,6 @@
         inbox every week.
       </p>
     </header>
-
-    <div class="bg-[#222] rounded-base p-8 sm:p-12 lg:p-16 mb-12 lg:mb-18">
-      <h2
-        class="text-2xl sm:text-3xl md:text-4xl font-semibold text-[#fefefe] mb-8 lg:mb-12"
-      >
-        What You'll Get:
-      </h2>
-      <ul class="space-y-6 lg:space-y-8">
-        <li class="flex items-start gap-4">
-          <svg
-            class="w-6 h-6 text-amber-700 mt-1 flex-shrink-0"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <span class="text-base sm:text-lg/8 text-[#dedede]">
-            Weekly insights on web development, freelancing, and building a
-            personal brand
-          </span>
-        </li>
-        <li class="flex items-start gap-4">
-          <svg
-            class="w-6 h-6 text-amber-700 mt-1 flex-shrink-0"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <span class="text-base sm:text-lg/8 text-[#dedede]">
-            Early access to new blog posts and exclusive content
-          </span>
-        </li>
-        <li class="flex items-start gap-4">
-          <svg
-            class="w-6 h-6 text-amber-700 mt-1 flex-shrink-0"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <span class="text-base sm:text-lg/8 text-[#dedede]">
-            Behind-the-scenes updates from my journey as a developer and mentor
-          </span>
-        </li>
-        <li class="flex items-start gap-4">
-          <svg
-            class="w-6 h-6 text-amber-700 mt-1 flex-shrink-0"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            aria-hidden="true"
-          >
-            <path
-              fill-rule="evenodd"
-              d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z"
-              clip-rule="evenodd"
-            ></path>
-          </svg>
-          <span class="text-base sm:text-lg/8 text-[#dedede]">
-            No spam, unsubscribe anytime with one click
-          </span>
-        </li>
-      </ul>
-    </div>
-
     <div class="max-w-6xl mx-auto">
       <form
         method="POST"
@@ -169,24 +89,17 @@
             class="form-fields grid grid-cols-1 sm:grid-cols-2 gap-4 gap-y-4 md:gap-y-8 justify-between text-sm"
           >
             <div class="form-field w-full sm:col-span-2">
-              <label for="{{ form.email_address.id_for_label }}" class="sr-only"
-                >Email Address</label
-              >
+              <label for="email_address" class="sr-only"> Email Address </label>
               <input
                 type="email"
-                name="{{ form.email_address.name }}"
-                id="{{ form.email_address.id_for_label }}"
+                name="email_address"
+                id="email_address"
                 pattern="[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}"
                 placeholder="Enter your email address"
                 class="border-2 border-amber-400 p-5 w-full"
                 required
                 aria-required="true"
               />
-              {% if form.email_address.errors %}
-              <div class="mt-2 text-sm text-red-600" role="alert">
-                {{ form.email_address.errors }}
-              </div>
-              {% endif %}
             </div>
 
             <button
@@ -200,11 +113,11 @@
         </div>
       </form>
     </div>
+
     <!-- Trust Indicators -->
-    <div class="text-center border-t-2 border-[#434343] pt-12 lg:pt-18">
+    <div class="text-center pt-12 lg:pt-18">
       <p class="text-base sm:text-lg/8 text-[#dedede] mb-6">
-        Join <strong class="text-amber-700">500+</strong> readers who trust me
-        for weekly insights
+        Become the first reader who trusts me for weekly insights
       </p>
       <div
         class="flex justify-center items-center gap-8 text-sm uppercase font-bold text-amber-700"

@@ -1,9 +1,21 @@
 
 from django.shortcuts import render, redirect
 from django.core.mail import send_mail
-from .forms import BookCallForm
+from .forms import BookCallForm, MentorshipForm, ExpertiseForm, ResumeReviewForm
 
 from django.contrib import messages
+
+
+def about(request):
+    context = {}
+
+    return render(request, 'main/about.html', context)
+
+
+def pricing(request):
+    context = {}
+
+    return render(request, 'main/pricing.html', context)
 
 
 def home(request):
@@ -33,20 +45,70 @@ def home(request):
     return render(request, "main/home.html", context)
 
 
-def about(request):
-    context = {}
-
-    return render(request, 'main/about.html', context)
-
-
-def pricing(request):
-    context = {}
-
-    return render(request, 'main/pricing.html', context)
-
-
 def contact(request):
-    context = {}
+    mentorship_form = MentorshipForm()
+    expertise_form = ExpertiseForm()
+    resume_review_form = ResumeReviewForm()
+
+    if request.method == 'POST':
+        form_type = request.POST.get('form_type')
+
+        if form_type == 'mentorship':
+            mentorship_form = MentorshipForm(request.POST)
+
+            if mentorship_form.is_valid():
+                mentorship_contact = mentorship_form.save()
+
+                send_mail(
+                    'Your Call Booking Confirmation Developer Mentorship Support Program',
+                    'Thank you for booking a call...',
+                    'jarviswuod@gmail.com',
+                    [mentorship_contact.email_address],
+                    fail_silently=False,
+                )
+                messages.success(
+                    request, "Thank you for your mentorship inquiry!")
+                return redirect('contact')
+
+        elif form_type == 'expertise':
+            expertise_form = ExpertiseForm(request.POST)
+
+            if expertise_form.is_valid():
+                expertise_contact = expertise_form.save()
+
+                send_mail(
+                    'Your Call Booking Confirmation Hire an Expert',
+                    'Thank you for booking a call...',
+                    'jarviswuod@gmail.com',
+                    [expertise_contact.email_address],
+                    fail_silently=False,
+                )
+                messages.success(
+                    request, "Thank you for your expertise inquiry!")
+                return redirect('contact')
+
+        elif form_type == 'resume_review':
+            resume_review_form = ResumeReviewForm(request.POST, request.FILES)
+
+            if resume_review_form.is_valid():
+                resume_review_contact = resume_review_form.save()
+
+                send_mail(
+                    'Your Call Booking Confirmation Resume Review Service',
+                    'Thank you for booking a call...',
+                    'jarviswuod@gmail.com',
+                    [resume_review_contact.email_address],
+                    fail_silently=False,
+                )
+                messages.success(
+                    request, "Thank you for submitting your resume!")
+                return redirect('contact')
+
+    context = {
+        'mentorship_form': mentorship_form,
+        'expertise_form': expertise_form,
+        'resume_review_form': resume_review_form,
+    }
 
     return render(request, 'main/contact.html', context)
 
@@ -61,7 +123,7 @@ def send_confirmation_email(name, email):
     message = f"""
     Hi {name},
 
-    Your application for web development mentorhip program has been successfuly received.
+    Your application for web development mentorship program has been successfuly received.
 
     Details:
         Name: {name}
