@@ -1,0 +1,287 @@
+{% extends "base.html" %} {% load static %}
+
+<!-- HEAD SECTION -->
+
+{% block meta %}
+<title>
+  My Insights | Personal Growth, financial freedom, Tech Career || Jarvis Wuod
+</title>
+
+<meta
+  name="description"
+  content="Explore actionable insights on tech career development, personal growth habits, financial freedom, and social media strategy. Follow my journey from coding struggles to success with practical tips for developers and entrepreneurs."
+/>
+
+<meta
+  name="keywords"
+  content="tech career advice, jarvis wuod blogs, jarvis stories, developer personal growth, X marketing strategy, twitter growth tips, tech skill mastery, coding journey, personal development insights, james clear habits, alex hormozi influence, dan koe inspiration, tech learning resources, developer success stories, personal branding for developers, generation wealth in tech, social media growth for tech professionals, financial freedom, financial success in tech, financial independence in tech, habit formation, tech career transformation, free tech learning, developer mindset, hustle culture, consistency in tech, brand building for developers, personal growth journey, tech industry insights, software developer blog, tech mentorship insights"
+/>
+
+<!-- Open Grapg Tags -->
+<meta
+  property="og:title"
+  content="My Insights | Personal Growth, financial freedom,
+  Tech Career || Jarvis Wuod"
+/>
+<meta
+  property="og:description"
+  content="Explore actionable insights on tech career development, personal growth habits, financial freedom, and social media strategy. Follow my journey from coding struggles to success with practical tips for developers and entrepreneurs."
+/>
+
+<!-- Twitter/ X  Tags -->
+<meta
+  name="twitter:title"
+  content="My Insights | Personal Growth, financial freedom,
+  Tech Career || Jarvis Wuod"
+/>
+<meta
+  name="twitter:description"
+  content="Explore actionable insights on tech career development, personal growth habits, financial freedom, and social media strategy. Follow my journey from coding struggles to success with practical tips for developers and entrepreneurs."
+/>
+{% endblock meta %}
+
+<!-- BODY SECTION -->
+
+{% block body %}
+
+<section class="bg-[#111] min-h-screen">
+  <div class="max-w-[1280px] mx-auto px-8 py-12 md:py-16">
+    <!-- Header -->
+    <header class="text-center mb-12 lg:mb-18">
+      <h1
+        class="text-4xl sm:text-5xl lg:text-6xl font-bold text-[#fefefe] mb-6"
+      >
+        Welcome to My Blog
+      </h1>
+      <p class="text-xl sm:text-2xl text-[#dedede] max-w-2xl mx-auto">
+        Discover amazing stories, insights, and ideas from our community
+      </p>
+    </header>
+
+    <!-- Search Bar -->
+    <div class="max-w-lg mx-auto mb-12 lg:mb-16">
+      <form method="GET" class="relative">
+        <input
+          type="text"
+          name="search"
+          value="{{ search_query|default:'' }}"
+          placeholder="Search blogs..."
+          class="w-full px-6 py-4 pl-14 pr-32 border-2 border-amber-400 bg-white text-black text-base rounded focus:outline-none focus:ring-2 focus:ring-amber-300"
+        />
+        <i
+          class="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-[#666] text-lg"
+        ></i>
+        <button
+          type="submit"
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-amber-700 text-black px-6 py-2 font-medium uppercase text-sm tracking-wide hover:bg-amber-600 transition-colors"
+        >
+          Search
+        </button>
+      </form>
+    </div>
+
+    <!-- Blog Grid -->
+    {% if blogs %}
+    <div
+      class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12 mb-16 lg:mb-24"
+    >
+      {% for blog in blogs %}
+      <article
+        class="bg-[#222] border-2 border-[#434343] rounded overflow-hidden hover:border-amber-400 transition-colors duration-300"
+      >
+        {% if blog.featured_image %}
+        <div
+          class="h-48 sm:h-56 md:h-64 bg-cover bg-center relative overflow-hidden"
+        >
+          <img
+            src="{{ blog.featured_image.url }}"
+            alt="{{ blog.title }}"
+            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+          />
+        </div>
+        {% else %}
+        <div
+          class="h-48 sm:h-56 md:h-64 bg-gradient-to-br from-amber-700 to-amber-600 flex items-center justify-center"
+        >
+          <i class="fas fa-image text-white text-4xl opacity-50"></i>
+        </div>
+        {% endif %}
+
+        <div class="p-6 lg:p-8">
+          <div class="flex items-center text-sm text-[#dedede] mb-4 space-x-4">
+            <div class="flex items-center">
+              <i class="fas fa-user mr-2 text-amber-700"></i>
+              <span
+                >{{ blog.author.get_full_name|default:blog.author.username
+                }}</span
+              >
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-calendar mr-2 text-amber-700"></i>
+              <span>{{ blog.created_at|date:"M d, Y" }}</span>
+            </div>
+          </div>
+
+          <h2
+            class="text-xl sm:text-2xl md:text-3xl font-semibold text-[#fefefe] mb-4 line-clamp-2"
+          >
+            <a
+              href="{{ blog.get_absolute_url }}"
+              class="hover:text-amber-400 transition-colors"
+            >
+              {{ blog.title }}
+            </a>
+          </h2>
+
+          {% if blog.excerpt %}
+          <p
+            class="text-base sm:text-lg text-[#dedede] mb-6 line-clamp-3 leading-relaxed"
+          >
+            {{ blog.excerpt }}
+          </p>
+          {% endif %}
+
+          <div class="flex items-center justify-between">
+            <div class="flex items-center space-x-6 text-sm text-[#dedede]">
+              <span class="flex items-center">
+                <i class="far fa-heart mr-2 text-amber-700"></i>
+                {{ blog.total_likes }}
+              </span>
+              <span class="flex items-center">
+                <i class="far fa-comment mr-2 text-amber-700"></i>
+                {{ blog.total_comments }}
+              </span>
+            </div>
+            <a
+              href="{{ blog.get_absolute_url }}"
+              class="text-amber-700 font-medium uppercase text-sm tracking-wide hover:underline underline-offset-4"
+            >
+              Read More
+            </a>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+
+    <!-- Pagination -->
+    {% if blogs.has_other_pages %}
+    <nav class="flex justify-center" aria-label="Blog pagination">
+      <div class="flex items-center space-x-4">
+        {% if blogs.has_previous %}
+        <a
+          href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}"
+          class="p-3 bg-[#222] border-2 border-[#434343] text-[#dedede] hover:border-amber-400 hover:text-amber-400 transition-colors"
+          aria-label="First page"
+        >
+          <i class="fas fa-angle-double-left"></i>
+        </a>
+        <a
+          href="?page={{ blogs.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}"
+          class="p-3 bg-[#222] border-2 border-[#434343] text-[#dedede] hover:border-amber-400 hover:text-amber-400 transition-colors"
+          aria-label="Previous page"
+        >
+          <i class="fas fa-angle-left"></i>
+        </a>
+        {% endif %}
+
+        <span class="px-6 py-3 bg-amber-700 text-black font-medium">
+          Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
+        </span>
+
+        {% if blogs.has_next %}
+        <a
+          href="?page={{ blogs.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}"
+          class="p-3 bg-[#222] border-2 border-[#434343] text-[#dedede] hover:border-amber-400 hover:text-amber-400 transition-colors"
+          aria-label="Next page"
+        >
+          <i class="fas fa-angle-right"></i>
+        </a>
+        <a
+          href="?page={{ blogs.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}"
+          class="p-3 bg-[#222] border-2 border-[#434343] text-[#dedede] hover:border-amber-400 hover:text-amber-400 transition-colors"
+          aria-label="Last page"
+        >
+          <i class="fas fa-angle-double-right"></i>
+        </a>
+        {% endif %}
+      </div>
+    </nav>
+    {% endif %} {% else %}
+    <!-- Empty State -->
+    <div class="text-center py-24">
+      <i class="fas fa-blog text-8xl text-[#434343] mb-8"></i>
+      <h2 class="text-3xl sm:text-4xl font-semibold text-[#dedede] mb-6">
+        {% if search_query %} No blogs found for "{{ search_query }}" {% else %}
+        No blogs available yet {% endif %}
+      </h2>
+      <p class="text-lg sm:text-xl text-[#dedede] mb-12 max-w-xl mx-auto">
+        {% if search_query %} Try adjusting your search terms or browse all
+        blogs. {% else %} Check back later for amazing content! {% endif %}
+      </p>
+      {% if search_query %}
+      <a
+        href="{% url 'blog_list' %}"
+        class="inline-block bg-amber-700 text-black px-8 py-4 font-medium uppercase text-sm tracking-wide hover:bg-amber-600 transition-colors"
+      >
+        View All Blogs
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
+  </div>
+</section>
+
+<!-- Newsletter Section -->
+<section
+  class="newsletter-section bg-[#222] px-8 py-16 border-t border-[#434343]"
+>
+  <div class="max-w-[1280px] mx-auto">
+    <form
+      action=""
+      method="post"
+      class="flex justify-center items-center flex-col"
+      aria-label="Newsletter subscription form"
+      novalidate
+    >
+      {% csrf_token %}
+      <h2
+        class="text-center text-4xl sm:text-5xl lg:text-6xl font-medium mb-6 md:mb-8 max-w-4xl text-[#fefefe]"
+      >
+        Subscribe to My Blog
+      </h2>
+      <p class="text-lg sm:text-xl mb-12 text-center max-w-xl text-[#dedede]">
+        No bullshit, just some thoughtful content.
+      </p>
+
+      <div
+        class="flex flex-col sm:flex-row items-center justify-center w-full max-w-xl gap-4"
+      >
+        <label for="email" class="sr-only">Email Address</label>
+        <input
+          type="email"
+          name="email_address"
+          id="email_address"
+          placeholder="Email Address"
+          class="bg-white text-black text-base w-full sm:w-2/3 p-4 border-2 border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-300"
+          required
+          aria-required="true"
+          autocomplete="email"
+        />
+        <button
+          class="uppercase text-black bg-amber-700 border-2 border-amber-400 w-3/4 sm:w-1/3 p-4 font-medium tracking-wide hover:bg-amber-600 transition-colors focus:ring focus:ring-amber-300 focus:outline-none"
+          type="submit"
+          aria-label="Subscribe to newsletter"
+        >
+          Sign up
+        </button>
+      </div>
+      <div
+        id="form-error"
+        class="text-red-500 mt-2 hidden"
+        aria-live="assertive"
+      ></div>
+    </form>
+  </div>
+</section>
+{% endblock body %}

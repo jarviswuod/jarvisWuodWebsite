@@ -1,0 +1,368 @@
+{% extends "base.html" %} {% load static %}
+
+<!-- HEAD SECTION -->
+
+{% block meta %}
+<title>
+  My Insights | Personal Growth, financial freedom, Tech Career || Jarvis Wuod
+</title>
+
+<meta
+  name="description"
+  content="Explore actionable insights on tech career development, personal growth habits, financial freedom, and social media strategy. Follow my journey from coding struggles to success with practical tips for developers and entrepreneurs."
+/>
+
+<meta
+  name="keywords"
+  content="tech career advice, jarvis wuod blogs, jarvis stories, developer personal growth, X marketing strategy, twitter growth tips, tech skill mastery, coding journey, personal development insights, james clear habits, alex hormozi influence, dan koe inspiration, tech learning resources, developer success stories, personal branding for developers, generation wealth in tech, social media growth for tech professionals, financial freedom, financial success in tech, financial independence in tech, habit formation, tech career transformation, free tech learning, developer mindset, hustle culture, consistency in tech, brand building for developers, personal growth journey, tech industry insights, software developer blog, tech mentorship insights"
+/>
+
+<!-- Open Grapg Tags -->
+<meta
+  property="og:title"
+  content="My Insights | Personal Growth, financial freedom,
+  Tech Career || Jarvis Wuod"
+/>
+<meta
+  property="og:description"
+  content="Explore actionable insights on tech career development, personal growth habits, financial freedom, and social media strategy. Follow my journey from coding struggles to success with practical tips for developers and entrepreneurs."
+/>
+
+<!-- Twitter/ X  Tags -->
+<meta
+  name="twitter:title"
+  content="My Insights | Personal Growth, financial freedom,
+  Tech Career || Jarvis Wuod"
+/>
+<meta
+  name="twitter:description"
+  content="Explore actionable insights on tech career development, personal growth habits, financial freedom, and social media strategy. Follow my journey from coding struggles to success with practical tips for developers and entrepreneurs."
+/>
+{% endblock meta %}
+
+<!-- BODY SECTION -->
+
+{% block body %}
+<section class="bg-[#111] min-h-screen text-white">
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <!-- Blog Header -->
+    <article
+      class="bg-[#222] rounded-lg shadow-lg overflow-hidden border border-[#434343]"
+    >
+      {% if blog.featured_image %}
+      <div
+        class="h-64 sm:h-80 lg:h-96 bg-cover bg-center"
+        style="background-image: url('{{ blog.featured_image.url }}')"
+      ></div>
+      {% endif %}
+
+      <div class="p-6 lg:p-8">
+        <div class="flex items-center text-sm text-[#dedede] mb-6">
+          <i class="fas fa-user mr-2 text-amber-700"></i>
+          <span class="text-amber-400"
+            >{{ blog.author.get_full_name|default:blog.author.username }}</span
+          >
+          <span class="mx-3 text-[#555]">•</span>
+          <i class="fas fa-calendar mr-2 text-amber-700"></i>
+          <span>{{ blog.created_at|date:"F d, Y" }}</span>
+          <span class="mx-3 text-[#555]">•</span>
+          <i class="fas fa-clock mr-2 text-amber-700"></i>
+          <span>5 min read</span>
+        </div>
+
+        <header>
+          <h1
+            class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#fefefe] mb-6 leading-tight"
+          >
+            {{ blog.title }}
+          </h1>
+        </header>
+
+        {% if blog.excerpt %}
+        <p
+          class="text-lg sm:text-xl text-[#dedede] mb-8 leading-relaxed max-w-4xl"
+        >
+          {{ blog.excerpt }}
+        </p>
+        {% endif %}
+
+        <div
+          class="prose max-w-none text-[#dedede] leading-relaxed text-base sm:text-lg"
+        >
+          {{ blog.content|linebreaks }}
+        </div>
+      </div>
+    </article>
+
+    <!-- Engagement Section -->
+    <div
+      class="bg-[#222] rounded-lg shadow-lg mt-8 p-6 lg:p-8 border border-[#434343]"
+    >
+      <div
+        class="flex items-center justify-between border-b border-[#434343] pb-6 mb-6"
+      >
+        <div class="flex items-center space-x-8">
+          <!-- Like Button -->
+          <div class="flex items-center">
+            {% if user.is_authenticated %}
+            <button
+              id="likeBtn"
+              class="flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors duration-300 {% if user_has_liked %}bg-amber-700 text-white{% else %}bg-[#333] text-[#dedede] hover:bg-amber-700 hover:text-white{% endif %} border-2 border-amber-400"
+            >
+              <i
+                class="{% if user_has_liked %}fas fa-heart{% else %}far fa-heart{% endif %}"
+              ></i>
+              <span id="likeCount" class="font-medium">{{ total_likes }}</span>
+            </button>
+            {% else %}
+            <div
+              class="flex items-center space-x-2 text-[#dedede] bg-[#333] px-4 py-2 rounded-lg border-2 border-[#434343]"
+            >
+              <i class="far fa-heart text-amber-700"></i>
+              <span class="font-medium">{{ total_likes }}</span>
+            </div>
+            {% endif %}
+          </div>
+
+          <!-- Comment Count -->
+          <div
+            class="flex items-center space-x-2 text-[#dedede] bg-[#333] px-4 py-2 rounded-lg border-2 border-[#434343]"
+          >
+            <i class="far fa-comment text-amber-700"></i>
+            <span class="font-medium">{{ total_comments }} Comments</span>
+          </div>
+        </div>
+
+        <!-- Share Buttons -->
+        <div class="flex items-center space-x-3">
+          <span
+            class="text-[#dedede] text-sm font-medium uppercase tracking-wide"
+            >Share:</span
+          >
+          <button
+            onclick="shareOn('facebook')"
+            class="p-2 text-blue-500 hover:bg-blue-500 hover:text-white rounded-lg transition-colors duration-300 border border-[#434343]"
+            aria-label="Share on Facebook"
+          >
+            <i class="fab fa-facebook-f"></i>
+          </button>
+          <button
+            onclick="shareOn('twitter')"
+            class="p-2 text-blue-400 hover:bg-blue-400 hover:text-white rounded-lg transition-colors duration-300 border border-[#434343]"
+            aria-label="Share on Twitter"
+          >
+            <i class="fab fa-twitter"></i>
+          </button>
+          <button
+            onclick="shareOn('linkedin')"
+            class="p-2 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg transition-colors duration-300 border border-[#434343]"
+            aria-label="Share on LinkedIn"
+          >
+            <i class="fab fa-linkedin-in"></i>
+          </button>
+          <button
+            onclick="shareOn('whatsapp')"
+            class="p-2 text-green-500 hover:bg-green-500 hover:text-white rounded-lg transition-colors duration-300 border border-[#434343]"
+            aria-label="Share on WhatsApp"
+          >
+            <i class="fab fa-whatsapp"></i>
+          </button>
+          <button
+            onclick="copyLink()"
+            class="p-2 text-amber-700 hover:bg-amber-700 hover:text-white rounded-lg transition-colors duration-300 border border-amber-400"
+            aria-label="Copy link"
+          >
+            <i class="fas fa-link"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div
+      class="bg-[#222] rounded-lg shadow-lg mt-8 p-6 lg:p-8 border border-[#434343]"
+    >
+      <header>
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#fefefe] mb-8">
+          Comments ({{ total_comments }})
+        </h2>
+      </header>
+
+      <!-- Add Comment Form -->
+      {% if user.is_authenticated %}
+      <div class="mb-12">
+        <div class="flex items-start space-x-4">
+          <div
+            class="w-12 h-12 bg-gradient-to-r from-amber-600 to-amber-800 rounded-full flex items-center justify-center text-white font-bold text-lg"
+          >
+            {{ user.username|first|upper }}
+          </div>
+          <div class="flex-1">
+            <form id="commentForm" method="post" class="space-y-4">
+              {% csrf_token %}
+              <div class="relative">
+                {{ comment_form.content }}
+                <style>
+                  #id_content {
+                    background-color: #333;
+                    border: 2px solid #434343;
+                    border-radius: 8px;
+                    padding: 16px;
+                    color: #fefefe;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    resize: vertical;
+                    min-height: 120px;
+                    width: 100%;
+                  }
+                  #id_content:focus {
+                    outline: none;
+                    border-color: #f59e0b;
+                  }
+                  #id_content::placeholder {
+                    color: #9ca3af;
+                  }
+                </style>
+              </div>
+              <div class="flex justify-between items-center">
+                <span class="text-sm text-[#dedede] font-medium">
+                  Writing as
+                  <span class="text-amber-400">{{ user.username }}</span>
+                </span>
+                <button
+                  type="submit"
+                  class="bg-amber-700 text-white px-6 py-3 rounded-lg hover:bg-amber-600 transition-colors duration-300 font-medium uppercase tracking-wide text-sm"
+                >
+                  Post Comment
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div
+        class="bg-[#333] border-2 border-[#434343] p-6 rounded-lg mb-12 text-center"
+      >
+        <p class="text-[#dedede] text-lg">
+          <a
+            href="{% url 'admin:login' %}"
+            class="text-amber-400 hover:text-amber-300 font-medium underline transition-colors duration-300"
+            >Login</a
+          >
+          to join the conversation
+        </p>
+      </div>
+      {% endif %}
+
+      <!-- Comments List -->
+      <div id="commentsList" class="space-y-8">
+        {% for comment in comments %}
+        <article
+          class="comment bg-[#333] p-6 rounded-lg border border-[#434343]"
+        >
+          <div class="flex items-start space-x-4">
+            <div
+              class="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-lg"
+            >
+              {{ comment.author.username|first|upper }}
+            </div>
+            <div class="flex-1">
+              <header class="flex items-center space-x-3 mb-3">
+                <h3 class="font-bold text-[#fefefe] text-lg">
+                  {{
+                  comment.author.get_full_name|default:comment.author.username
+                  }}
+                </h3>
+                <time class="text-sm text-[#dedede]">
+                  {{ comment.created_at|date:"F d, Y \a\t g:i A" }}
+                </time>
+              </header>
+              <div class="text-[#dedede] mb-4 leading-relaxed">
+                {{ comment.content|linebreaks }}
+              </div>
+              {% if user.is_authenticated %}
+              <button
+                class="text-sm text-amber-400 hover:text-amber-300 reply-btn font-medium transition-colors duration-300"
+                data-comment-id="{{ comment.id }}"
+              >
+                <i class="fas fa-reply mr-2"></i>Reply
+              </button>
+              {% endif %}
+
+              <!-- Replies -->
+              {% for reply in comment.get_replies %}
+              <div
+                class="mt-6 ml-8 bg-[#2a2a2a] p-4 rounded-lg border-l-4 border-amber-700"
+              >
+                <div class="flex items-start space-x-4">
+                  <div
+                    class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-700 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                  >
+                    {{ reply.author.username|first|upper }}
+                  </div>
+                  <div class="flex-1">
+                    <header class="flex items-center space-x-2 mb-2">
+                      <h4 class="font-semibold text-[#fefefe]">
+                        {{
+                        reply.author.get_full_name|default:reply.author.username
+                        }}
+                      </h4>
+                      <time class="text-xs text-[#dedede]">
+                        {{ reply.created_at|date:"F d, Y \a\t g:i A" }}
+                      </time>
+                    </header>
+                    <div class="text-[#dedede] text-sm leading-relaxed">
+                      {{ reply.content|linebreaks }}
+                    </div>
+                  </div>
+                </div>
+              </div>
+              {% endfor %}
+            </div>
+          </div>
+        </article>
+        {% empty %}
+        <div class="text-center py-16">
+          <i class="fas fa-comments text-6xl text-[#555] mb-6"></i>
+          <p class="text-[#dedede] text-lg">
+            No comments yet. Be the first to share your thoughts!
+          </p>
+        </div>
+        {% endfor %}
+      </div>
+
+      <!-- Pagination -->
+      {% if comments.has_other_pages %}
+      <nav class="flex justify-center mt-12" aria-label="Comments pagination">
+        <div class="flex items-center space-x-2">
+          {% if comments.has_previous %}
+          <a
+            href="?page={{ comments.previous_page_number }}"
+            class="px-4 py-2 bg-[#333] border-2 border-[#434343] rounded-lg hover:bg-amber-700 hover:border-amber-700 text-[#dedede] hover:text-white transition-colors duration-300 font-medium"
+          >
+            Previous
+          </a>
+          {% endif %}
+
+          <span
+            class="px-4 py-2 bg-amber-700 text-white rounded-lg font-medium border-2 border-amber-700"
+          >
+            Page {{ comments.number }} of {{ comments.paginator.num_pages }}
+          </span>
+
+          {% if comments.has_next %}
+          <a
+            href="?page={{ comments.next_page_number }}"
+            class="px-4 py-2 bg-[#333] border-2 border-[#434343] rounded-lg hover:bg-amber-700 hover:border-amber-700 text-[#dedede] hover:text-white transition-colors duration-300 font-medium"
+          >
+            Next
+          </a>
+          {% endif %}
+        </div>
+      </nav>
+      {% endif %}
+    </div>
+  </div>
+</section>
+{% endblock body %}

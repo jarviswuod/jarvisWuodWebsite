@@ -1,0 +1,154 @@
+// Get CSRF token
+function getCookie(name) {
+  let cookieValue = null;
+  if (document.cookie && document.cookie !== "") {
+    const cookies = document.cookie.split(";");
+    for (let i = 0; i < cookies.length; i++) {
+      const cookie = cookies[i].trim();
+      if (cookie.substring(0, name.length + 1) === name + "=") {
+        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+        break;
+      }
+    }
+  }
+  return cookieValue;
+}
+const csrftoken = getCookie("csrftoken");
+
+// Like functionality
+document.getElementById("likeBtn")?.addEventListener("click", function () {
+  fetch(`/blog/{{ blog.slug }}/like/`, {
+    method: "POST",
+    headers: {
+      "X-CSRFToken": csrftoken,
+      "Content-Type": "application/json",
+    },
+  })
+    .then((response) => response.json())
+    .then((data) => {
+      const btn = document.getElementById("likeBtn");
+      const icon = btn.querySelector("i");
+      const count = document.getElementById("likeCount");
+
+      if (data.liked) {
+        btn.className =
+          "flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors duration-200 bg-red-100 text-red-600";
+        icon.className = "fas fa-heart";
+      } else {
+        btn.className =
+          "flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors duration-200 bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600";
+        icon.className = "far fa-heart";
+      }
+      count.textContent = data.total_likes;
+    });
+});
+
+// Share functionality
+function shareOn(platform) {
+  const url = window.location.href;
+  const title = "{{ blog.title|escapejs }}";
+  let shareUrl = "";
+
+  switch (platform) {
+    case "facebook":
+      shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(
+        url
+      )}`;
+      break;
+    case "twitter":
+      shareUrl = `https://twitter.com/intent/tweet?url=${encodeURIComponent(
+        url
+      )}&text=${encodeURIComponent(title)}`;
+      break;
+    case "linkedin":
+      shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${encodeURIComponent(
+        url
+      )}`;
+      break;
+    case "whatsapp":
+      shareUrl = `https://wa.me/?text=${encodeURIComponent(title + " " + url)}`;
+      break;
+  }
+
+  if (shareUrl) {
+    window.open(shareUrl, "_blank", "width=600,height=400");
+
+    // Track share
+    fetch(`/blog/{{ blog.slug }}/share/`, {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": csrftoken,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: `platform=${platform}`,
+    });
+  }
+}
+
+function copyLink() {
+  navigator.clipboard.writeText(window.location.href).then(() => {
+    alert("Link copied to clipboard!");
+
+    // Track share
+    fetch(`/blog/{{ blog.slug }}/share/`, {
+      method: "POST",
+      headers: {
+        "X-CSRFToken": csrftoken,
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: "platform=copy_link",
+    });
+  });
+}
+
+// Auto-hide messages
+setTimeout(() => {
+  const messages = document.getElementById("messages");
+  if (messages) {
+    messages.style.display = "none";
+  }
+}, 5000);
+
+// Reply functionality
+document.querySelectorAll(".reply-btn").forEach((btn) => {
+  btn.addEventListener("click", function () {
+    const commentId = this.dataset.commentId;
+    const form = document.getElementById("commentForm");
+    const textarea = form.querySelector("textarea");
+
+    // Add hidden parent_id field
+    let parentInput = form.querySelector('input[name="parent_id"]');
+    if (!parentInput) {
+      parentInput = document.createElement("input");
+      parentInput.type = "hidden";
+      parentInput.name = "parent_id";
+      form.appendChild(parentInput);
+    }
+    parentInput.value = commentId;
+
+    // Focus on textarea
+    textarea.focus();
+    textarea.placeholder = "Write a reply...";
+
+    // Add cancel button
+    let cancelBtn = form.querySelector(".cancel-reply");
+    if (!cancelBtn) {
+      cancelBtn = document.createElement("button");
+      cancelBtn.type = "button";
+      cancelBtn.className =
+        "cancel-reply bg-gray-500 text-white px-4 py-2 rounded-lg hover:bg-gray-600 transition-colors duration-200 mr-2";
+      cancelBtn.textContent = "Cancel Reply";
+      cancelBtn.addEventListener("click", function () {
+        parentInput.remove();
+        textarea.placeholder = "Write your comment here...";
+        this.remove();
+      });
+      form
+        .querySelector('button[type="submit"]')
+        .parentNode.insertBefore(
+          cancelBtn,
+          form.querySelector('button[type="submit"]')
+        );
+    }
+  });
+});
