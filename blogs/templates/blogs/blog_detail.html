@@ -63,7 +63,7 @@
         </div>
 
         <h1
-          class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-12 md:mb-16 lg:mb-20 font-medium text-[#fefefe] leading-tight"
+          class="capitalize text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-12 md:mb-16 lg:mb-20 font-normal text-[#fefefe] leading-tight"
         >
           {{ blog.title }}
         </h1>
@@ -72,13 +72,13 @@
       {% if blog.featured_image %}
 
       <div
-        class="h-64 sm:h-72 md:h-80 lg:h-96 w-full block bg-cover bg-center mb-4 sm:mb-8"
+        class="h-72 sm:h-80 md:h-96 lg:h-[36rem] w-full bg-cover bg-center mb-4 sm:mb-8"
         style="background-image: url('{{ blog.featured_image.url }}')"
       ></div>
       {% else %}
 
       <div
-        class="h-64 sm:h-72 md:h-80 lg:h-96 w-full block bg-cover bg-center mb-4 sm:mb-8"
+        class="h-72 sm:h-80 md:h-96 lg:h-[36rem] w-full bg-cover bg-center mb-4 sm:mb-8"
         style="
           background-image: url('{% static 'media/images/no_img_illustration.png' %}');
         "

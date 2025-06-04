@@ -2331,6 +2331,10 @@ video {
   font-weight: 600;
 }
 
+.font-normal {
+  font-weight: 400;
+}
+
 .uppercase {
   text-transform: uppercase;
 }
@@ -3080,6 +3084,10 @@ ul {
     height: 18rem;
   }
 
+  .sm\:h-80 {
+    height: 20rem;
+  }
+
   .sm\:w-1\/2 {
     width: 50%;
   }
@@ -3308,6 +3316,10 @@ ul {
     height: 20rem;
   }
 
+  .md\:h-96 {
+    height: 24rem;
+  }
+
   .md\:grid-cols-2 {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
@@ -3444,6 +3456,18 @@ ul {
 
   .lg\:h-96 {
     height: 24rem;
+  }
+
+  .lg\:h-\[24rem\] {
+    height: 24rem;
+  }
+
+  .lg\:h-\[48rem\] {
+    height: 48rem;
+  }
+
+  .lg\:h-\[36rem\] {
+    height: 36rem;
   }
 
   .lg\:w-1\/4 {
