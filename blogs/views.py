@@ -108,6 +108,32 @@ def send_newsletter_confirmation_email(request, email_address):
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
+def blog_list(request):
+    blogs = Blog.objects.filter(is_published=True)
+
+    # Search functionality
+    search_query = request.GET.get('search')
+    if search_query:
+        blogs = blogs.filter(
+            Q(title__icontains=search_query) |
+            Q(content__icontains=search_query) |
+            Q(excerpt__icontains=search_query)
+        )
+
+    # Pagination
+    paginator = Paginator(blogs, 6)
+    page_number = request.GET.get('page')
+    blogs_page = paginator.get_page(page_number)
+
+    context = {
+        'blogs': blogs_page,
+        'search_query': search_query,
+    }
+
+    return render(request, 'blogs/blog_list.html', context)
+    # return render(request, 'blogs/_blog_list.html', context)
+
+
 def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug, is_published=True)
     comments = blog.comments.filter(is_active=True, parent=None)
@@ -152,8 +178,8 @@ def blog_detail(request, slug):
         'total_comments': blog.total_comments(),
     }
 
-    return render(request, 'blogs/_blog_detail.html', context)
-    # return render(request, 'blogs/blog_detail.html', context)
+    # return render(request, 'blogs/_blog_detail.html', context)
+    return render(request, 'blogs/blog_detail.html', context)
 
 
 @login_required
@@ -225,29 +251,3 @@ def share_blog(request, slug):
         return JsonResponse({'success': True, 'message': f'Blog shared on {platform}'})
 
     return JsonResponse({'success': False, 'error': 'Invalid platform'})
-
-
-def blog_list(request):
-    blogs = Blog.objects.filter(is_published=True)
-
-    # Search functionality
-    search_query = request.GET.get('search')
-    if search_query:
-        blogs = blogs.filter(
-            Q(title__icontains=search_query) |
-            Q(content__icontains=search_query) |
-            Q(excerpt__icontains=search_query)
-        )
-
-    # Pagination
-    paginator = Paginator(blogs, 6)
-    page_number = request.GET.get('page')
-    blogs_page = paginator.get_page(page_number)
-
-    context = {
-        'blogs': blogs_page,
-        'search_query': search_query,
-    }
-
-    # return render(request, 'blogs/blog_list.html', context)
-    return render(request, 'blogs/_blog_list.html', context)

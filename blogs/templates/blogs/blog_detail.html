@@ -43,82 +43,87 @@
 <!-- BODY SECTION -->
 
 {% block body %}
-<section class="bg-[#111] min-h-screen text-white">
+
+<section class="my-12 px-4 sm:px-8" aria-labelledby="post-heading">
   <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Blog Header -->
-    <article
-      class="bg-[#222] rounded-lg shadow-lg overflow-hidden border border-[#434343]"
-    >
-      {% if blog.featured_image %}
-      <div
-        class="h-64 sm:h-80 lg:h-96 bg-cover bg-center"
-        style="background-image: url('{{ blog.featured_image.url }}')"
-      ></div>
-      {% endif %}
-
-      <div class="p-6 lg:p-8">
-        <div class="flex items-center text-sm text-[#dedede] mb-6">
-          <i class="fas fa-user mr-2 text-amber-700"></i>
-          <span class="text-amber-400"
-            >{{ blog.author.get_full_name|default:blog.author.username }}</span
-          >
+    <article>
+      <header>
+        <div class="flex items-center text-[#dedede] mb-6">
+          <i class="fas fa-user mr-2"></i>
+          <span class="">
+            {{ blog.author.get_full_name|default:blog.author.username }}
+          </span>
           <span class="mx-3 text-[#555]">•</span>
-          <i class="fas fa-calendar mr-2 text-amber-700"></i>
+          <i class="fas fa-calendar mr-2"></i>
           <span>{{ blog.created_at|date:"F d, Y" }}</span>
           <span class="mx-3 text-[#555]">•</span>
-          <i class="fas fa-clock mr-2 text-amber-700"></i>
+          <i class="fas fa-clock mr-2"></i>
           <span>5 min read</span>
         </div>
 
-        <header>
-          <h1
-            class="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#fefefe] mb-6 leading-tight"
-          >
-            {{ blog.title }}
-          </h1>
-        </header>
-
-        {% if blog.excerpt %}
-        <p
-          class="text-lg sm:text-xl text-[#dedede] mb-8 leading-relaxed max-w-4xl"
+        <h1
+          class="text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-12 md:mb-16 lg:mb-20 font-medium text-[#fefefe] leading-tight"
         >
-          {{ blog.excerpt }}
-        </p>
-        {% endif %}
+          {{ blog.title }}
+        </h1>
+      </header>
 
-        <div
-          class="prose max-w-none text-[#dedede] leading-relaxed text-base sm:text-lg"
-        >
-          {{ blog.content|linebreaks }}
-        </div>
+      {% if blog.featured_image %}
+
+      <div
+        class="h-64 sm:h-72 md:h-80 lg:h-96 w-full block bg-cover bg-center mb-4 sm:mb-8"
+        style="background-image: url('{{ blog.featured_image.url }}')"
+      ></div>
+      {% else %}
+
+      <div
+        class="h-64 sm:h-72 md:h-80 lg:h-96 w-full block bg-cover bg-center mb-4 sm:mb-8"
+        style="
+          background-image: url('{% static 'media/images/no_img_illustration.png' %}');
+        "
+      ></div>
+      {% endif %} {% if blog.excerpt %}
+      <p
+        class="text-lg sm:text-xl text-[#dedede] mb-8 leading-relaxed max-w-4xl ml-auto"
+      >
+        {{ blog.excerpt }}
+      </p>
+      {% endif %}
+
+      <div
+        class="prose text-[#dedede] leading-relaxed text-base sm:text-lg max-w-4xl ml-auto"
+      >
+        {{ blog.content|linebreaks }}
       </div>
     </article>
 
     <!-- Engagement Section -->
     <div
-      class="bg-[#222] rounded-lg shadow-lg mt-8 p-6 lg:p-8 border border-[#434343]"
+      class="bg-[#222] rounded-lg shadow-lg mt-8 p-6 lg:p-8 border border-[#434343] max-w-4xl ml-auto"
     >
       <div
-        class="flex items-center justify-between border-b border-[#434343] pb-6 mb-6"
+        class="flex items-center justify-between max-sm:flex-col border-b border-[#434343] pb-6 mb-6"
       >
-        <div class="flex items-center space-x-8">
+        <div class="flex items-center space-x-2 md:space-x-8">
           <!-- Like Button -->
           <div class="flex items-center">
             {% if user.is_authenticated %}
             <button
               id="likeBtn"
-              class="flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors duration-300 {% if user_has_liked %}bg-amber-700 text-white{% else %}bg-[#333] text-[#dedede] hover:bg-amber-700 hover:text-white{% endif %} border-2 border-amber-400"
+              data-slug="{{ blog.slug }}"
+              class="flex items-center space-x-2 py-2 rounded-lg"
             >
               <i
-                class="{% if user_has_liked %}fas fa-heart{% else %}far fa-heart{% endif %}"
+                class="{% if user_has_liked %} fas fa-heart text-red-600 {% else %} far fa-heart {% endif %}"
               ></i>
-              <span id="likeCount" class="font-medium">{{ total_likes }}</span>
+              <span id="likeCount" class="font-medium">
+                {{ total_likes }}
+              </span>
             </button>
             {% else %}
-            <div
-              class="flex items-center space-x-2 text-[#dedede] bg-[#333] px-4 py-2 rounded-lg border-2 border-[#434343]"
-            >
-              <i class="far fa-heart text-amber-700"></i>
+            <div class="flex items-center space-x-2 py-2 rounded-lg">
+              <i class="far fa-heart"></i>
               <span class="font-medium">{{ total_likes }}</span>
             </div>
             {% endif %}
@@ -126,50 +131,51 @@
 
           <!-- Comment Count -->
           <div
-            class="flex items-center space-x-2 text-[#dedede] bg-[#333] px-4 py-2 rounded-lg border-2 border-[#434343]"
+            class="flex items-center space-x-2 text-[#dedede] px-4 py-2 rounded-lg"
           >
-            <i class="far fa-comment text-amber-700"></i>
+            <i class="far fa-comment"></i>
             <span class="font-medium">{{ total_comments }} Comments</span>
           </div>
         </div>
 
         <!-- Share Buttons -->
-        <div class="flex items-center space-x-3">
+        <div class="flex items-center space-x-2 sm:space-x-3">
           <span
-            class="text-[#dedede] text-sm font-medium uppercase tracking-wide"
-            >Share:</span
+            class="text-[#dedede] text-sm font-medium uppercase tracking-wide mr-2 sm:mr-4"
           >
+            Share:
+          </span>
           <button
             onclick="shareOn('facebook')"
-            class="p-2 text-blue-500 hover:bg-blue-500 hover:text-white rounded-lg transition-colors duration-300 border border-[#434343]"
+            class="w-8 h-8 text-blue-500 hover:bg-blue-500 hover:text-white rounded-lg transition-colors duration-300"
             aria-label="Share on Facebook"
           >
             <i class="fab fa-facebook-f"></i>
           </button>
           <button
             onclick="shareOn('twitter')"
-            class="p-2 text-blue-400 hover:bg-blue-400 hover:text-white rounded-lg transition-colors duration-300 border border-[#434343]"
+            class="w-8 h-8 text-blue-400 hover:bg-blue-400 hover:text-white rounded-lg transition-colors duration-300"
             aria-label="Share on Twitter"
           >
             <i class="fab fa-twitter"></i>
           </button>
           <button
             onclick="shareOn('linkedin')"
-            class="p-2 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg transition-colors duration-300 border border-[#434343]"
+            class="w-8 h-8 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg transition-colors duration-300"
             aria-label="Share on LinkedIn"
           >
             <i class="fab fa-linkedin-in"></i>
           </button>
           <button
             onclick="shareOn('whatsapp')"
-            class="p-2 text-green-500 hover:bg-green-500 hover:text-white rounded-lg transition-colors duration-300 border border-[#434343]"
+            class="w-8 h-8 text-green-500 hover:bg-green-500 hover:text-white rounded-lg transition-colors duration-300"
             aria-label="Share on WhatsApp"
           >
             <i class="fab fa-whatsapp"></i>
           </button>
           <button
             onclick="copyLink()"
-            class="p-2 text-amber-700 hover:bg-amber-700 hover:text-white rounded-lg transition-colors duration-300 border border-amber-400"
+            class="w-8 h-8 text-amber-700 hover:bg-amber-700 hover:text-white rounded-lg transition-colors duration-300"
             aria-label="Copy link"
           >
             <i class="fas fa-link"></i>
@@ -180,101 +186,34 @@
 
     <!-- Comments Section -->
     <div
-      class="bg-[#222] rounded-lg shadow-lg mt-8 p-6 lg:p-8 border border-[#434343]"
+      class="bg-[#222] rounded-lg shadow-lg mt-8 p-4 sm:p-8 border border-[#434343] max-w-4xl ml-auto"
     >
       <header>
-        <h2 class="text-2xl sm:text-3xl font-bold text-[#fefefe] mb-8">
+        <h2 class="text-2xl sm:text-3xl font-bold text-[#fefefe] mb-4 sm:mb-8">
           Comments ({{ total_comments }})
         </h2>
       </header>
 
-      <!-- Add Comment Form -->
-      {% if user.is_authenticated %}
-      <div class="mb-12">
-        <div class="flex items-start space-x-4">
-          <div
-            class="w-12 h-12 bg-gradient-to-r from-amber-600 to-amber-800 rounded-full flex items-center justify-center text-white font-bold text-lg"
-          >
-            {{ user.username|first|upper }}
-          </div>
-          <div class="flex-1">
-            <form id="commentForm" method="post" class="space-y-4">
-              {% csrf_token %}
-              <div class="relative">
-                {{ comment_form.content }}
-                <style>
-                  #id_content {
-                    background-color: #333;
-                    border: 2px solid #434343;
-                    border-radius: 8px;
-                    padding: 16px;
-                    color: #fefefe;
-                    font-size: 16px;
-                    line-height: 1.5;
-                    resize: vertical;
-                    min-height: 120px;
-                    width: 100%;
-                  }
-                  #id_content:focus {
-                    outline: none;
-                    border-color: #f59e0b;
-                  }
-                  #id_content::placeholder {
-                    color: #9ca3af;
-                  }
-                </style>
-              </div>
-              <div class="flex justify-between items-center">
-                <span class="text-sm text-[#dedede] font-medium">
-                  Writing as
-                  <span class="text-amber-400">{{ user.username }}</span>
-                </span>
-                <button
-                  type="submit"
-                  class="bg-amber-700 text-white px-6 py-3 rounded-lg hover:bg-amber-600 transition-colors duration-300 font-medium uppercase tracking-wide text-sm"
-                >
-                  Post Comment
-                </button>
-              </div>
-            </form>
-          </div>
-        </div>
-      </div>
-      {% else %}
-      <div
-        class="bg-[#333] border-2 border-[#434343] p-6 rounded-lg mb-12 text-center"
-      >
-        <p class="text-[#dedede] text-lg">
-          <a
-            href="{% url 'admin:login' %}"
-            class="text-amber-400 hover:text-amber-300 font-medium underline transition-colors duration-300"
-            >Login</a
-          >
-          to join the conversation
-        </p>
-      </div>
-      {% endif %}
-
       <!-- Comments List -->
-      <div id="commentsList" class="space-y-8">
+      <div id="commentsList" class="space-y-4 sm:space-y-8">
         {% for comment in comments %}
         <article
           class="comment bg-[#333] p-6 rounded-lg border border-[#434343]"
         >
-          <div class="flex items-start space-x-4">
+          <div class="flex items-start space-x-0 sm:space-x-4">
             <div
-              class="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-700 rounded-full flex items-center justify-center text-white font-bold text-lg"
+              class="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-700 rounded-full max-sm:hidden flex items-center justify-center text-white font-bold text-lg"
             >
               {{ comment.author.username|first|upper }}
             </div>
             <div class="flex-1">
               <header class="flex items-center space-x-3 mb-3">
-                <h3 class="font-bold text-[#fefefe] text-lg">
-                  {{
-                  comment.author.get_full_name|default:comment.author.username
-                  }}
+                <!-- prettier-ignore -->
+                <h3 class="font-bold text-[#fefefe] text-base sm:text-lg">
+                  {{ comment.author.get_full_name|default:comment.author.username }}
                 </h3>
-                <time class="text-sm text-[#dedede]">
+
+                <time class="text-xs sm:text-sm text-[#dedede]">
                   {{ comment.created_at|date:"F d, Y \a\t g:i A" }}
                 </time>
               </header>
@@ -293,20 +232,19 @@
               <!-- Replies -->
               {% for reply in comment.get_replies %}
               <div
-                class="mt-6 ml-8 bg-[#2a2a2a] p-4 rounded-lg border-l-4 border-amber-700"
+                class="mt-6 ml-4 sm:ml-8 bg-[#2a2a2a] p-4 rounded-lg border-l-4 border-amber-700"
               >
-                <div class="flex items-start space-x-4">
+                <div class="flex items-start space-x-0 sm:space-x-4">
                   <div
-                    class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-700 rounded-full flex items-center justify-center text-white text-sm font-bold"
+                    class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-700 rounded-full max-sm:hidden flex items-center justify-center text-white text-sm font-bold"
                   >
                     {{ reply.author.username|first|upper }}
                   </div>
                   <div class="flex-1">
                     <header class="flex items-center space-x-2 mb-2">
-                      <h4 class="font-semibold text-[#fefefe]">
-                        {{
-                        reply.author.get_full_name|default:reply.author.username
-                        }}
+                      <!-- prettier-ignore -->
+                      <h4 class="font-semibold text-[#fefefe] text-sm sm:text-base">
+                        {{ reply.author.get_full_name|default:reply.author.username }}
                       </h4>
                       <time class="text-xs text-[#dedede]">
                         {{ reply.created_at|date:"F d, Y \a\t g:i A" }}
@@ -323,7 +261,7 @@
           </div>
         </article>
         {% empty %}
-        <div class="text-center py-16">
+        <div class="text-center py-8 sm:py-12 md:py-16">
           <i class="fas fa-comments text-6xl text-[#555] mb-6"></i>
           <p class="text-[#dedede] text-lg">
             No comments yet. Be the first to share your thoughts!
@@ -331,6 +269,68 @@
         </div>
         {% endfor %}
       </div>
+
+      <!-- Add Comment Form -->
+      {% if user.is_authenticated %}
+      <div class="mb-12">
+        <div class="flex items-start sm:pace-x-4">
+          <div
+            class="w-12 h-12 bg-gradient-to-r from-amber-600 to-amber-800 rounded-full max-sm:hidden flex items-center justify-center text-white font-bold text-lg"
+          >
+            {{ user.username|first|upper }}
+          </div>
+          <div class="flex-1">
+            <form id="commentForm" method="post" class="space-y-4">
+              {% csrf_token %}
+              <div class="relative">
+                {{ comment_form.content }}
+                <style>
+                  #id_content {
+                    background-color: #333;
+                    border-radius: 8px;
+                    padding: 8px;
+                    color: #fefefe;
+                    font-size: 16px;
+                    line-height: 1.5;
+                    resize: vertical;
+                    min-height: 120px;
+                    width: 100%;
+                  }
+                  #id_content:focus {
+                    outline: none;
+                  }
+                  #id_content::placeholder {
+                    color: #9ca3af;
+                  }
+                </style>
+              </div>
+              <div class="flex justify-between items-center">
+                <button
+                  type="submit"
+                  class="bg-amber-700 text-white px-6 py-3 rounded-lg hover:bg-amber-600 transition-colors duration-300 font-medium uppercase tracking-wide text-sm"
+                >
+                  Post Comment
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+      {% else %}
+      <div
+        class="bg-[#333] border-2 border-[#434343] p-6 rounded-lg mb-4 sm:mb-8 md:mb-12 text-center"
+      >
+        <p class="text-[#dedede] text-lg">
+          <a
+            href="{% url 'admin:login' %}"
+            class="text-amber-700 hover:text-amber-700 font-medium underline transition-colors duration-300"
+          >
+            Login
+          </a>
+          to join the conversation
+        </p>
+      </div>
+      {% endif %}
 
       <!-- Pagination -->
       {% if comments.has_other_pages %}

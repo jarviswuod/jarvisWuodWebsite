@@ -79,134 +79,154 @@
         </button>
       </form>
     </div>
+  </div>
+</section>
 
+<section
+  class="blog-posts-section my-12 px-8"
+  aria-labelledby="blog-posts-heading"
+>
+  <div class="max-w-[1280px] mx-auto">
     <!-- Blog Grid -->
     {% if blogs %}
-    <div
-      class="grid grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 gap-8 lg:gap-12 mb-16 lg:mb-24"
+    <ul
+      class="posts-grid mb-8 grid grid-cols-1 lg:grid-cols-2 gap-12 gap-y-8 sm:gap-y-12 md:gap-y-16"
+      role="list"
     >
       {% for blog in blogs %}
-      <article
-        class="bg-[#222] border-2 border-[#434343] rounded overflow-hidden hover:border-amber-400 transition-colors duration-300"
-      >
-        {% if blog.featured_image %}
-        <div
-          class="h-48 sm:h-56 md:h-64 bg-cover bg-center relative overflow-hidden"
-        >
-          <img
-            src="{{ blog.featured_image.url }}"
-            alt="{{ blog.title }}"
-            class="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-          />
-        </div>
-        {% else %}
-        <div
-          class="h-48 sm:h-56 md:h-64 bg-gradient-to-br from-amber-700 to-amber-600 flex items-center justify-center"
-        >
-          <i class="fas fa-image text-white text-4xl opacity-50"></i>
-        </div>
-        {% endif %}
+      <li class="post-item">
+        <article class="h-full flex flex-col">
+          <a
+            href="{{ blog.get_absolute_url }}"
+            class="post-thumbnail-link mb-2 sm:mb-4"
+            aria-label="Read article: {{ blog.title }}"
+          >
+            {% if blog.featured_image %}
 
-        <div class="p-6 lg:p-8">
-          <div class="flex items-center text-sm text-[#dedede] mb-4 space-x-4">
-            <div class="flex items-center">
-              <i class="fas fa-user mr-2 text-amber-700"></i>
-              <span
-                >{{ blog.author.get_full_name|default:blog.author.username
-                }}</span
+            <div
+              class="h-64 sm:h-72 md:h-80 lg:h-96 w-full block bg-cover bg-center"
+              style="background-image: url('{{ blog.featured_image.url }}')"
+            ></div>
+            {% else %}
+
+            <div
+              class="h-64 sm:h-72 md:h-80 lg:h-96 w-full block bg-cover bg-center"
+              style="
+                background-image: url('{% static 'media/images/no_img_illustration.png' %}');
+              "
+            ></div>
+            {% endif %}
+          </a>
+
+          <div class="px-2 sm:px-4">
+            <div
+              class="flex items-center text-sm text-[#dedede] mb-4 space-x-4"
+            >
+              <div class="flex items-center">
+                <i class="fas fa-user mr-2 text-[#dedede ]"></i>
+                <span>
+                  {{ blog.author.get_full_name|default:blog.author.username }}
+                </span>
+              </div>
+              <div class="flex items-center">
+                <i class="fas fa-calendar mr-2 text-[#dedede ]"></i>
+                <span>{{ blog.created_at|date:"M d, Y" }}</span>
+              </div>
+            </div>
+
+            <h2
+              class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+            >
+              <a
+                href="{{ blog.get_absolute_url }}"
+                class="hover:underline underline-offset-4"
+                aria-label="Read article: {{ blog.title }}"
               >
-            </div>
-            <div class="flex items-center">
-              <i class="fas fa-calendar mr-2 text-amber-700"></i>
-              <span>{{ blog.created_at|date:"M d, Y" }}</span>
+                {{ blog.title }}
+              </a>
+            </h2>
+
+            {% if blog.excerpt %}
+            <p
+              class="text-base sm:text-lg text-[#dedede] mb-6 line-clamp-3 leading-relaxed"
+            >
+              {{ blog.excerpt }}
+            </p>
+            {% endif %}
+
+            <div class="flex items-center justify-between">
+              <div class="flex items-center space-x-6 text-sm text-[#dedede]">
+                <span class="flex items-center">
+                  <i class="far fa-heart mr-2 text-[#dedede]"></i>
+                  {{ blog.total_likes }}
+                </span>
+                <span class="flex items-center">
+                  <i class="far fa-comment mr-2 text-[#dedede]"></i>
+                  {{ blog.total_comments }}
+                </span>
+              </div>
+              <a
+                href="{{ blog.get_absolute_url }}"
+                class="text-amber-700 uppercase font-medium hover:underline"
+                aria-label="Read full article: {{ blog.title }}"
+              >
+                Read More
+              </a>
             </div>
           </div>
-
-          <h2
-            class="text-xl sm:text-2xl md:text-3xl font-semibold text-[#fefefe] mb-4 line-clamp-2"
-          >
-            <a
-              href="{{ blog.get_absolute_url }}"
-              class="hover:text-amber-400 transition-colors"
-            >
-              {{ blog.title }}
-            </a>
-          </h2>
-
-          {% if blog.excerpt %}
-          <p
-            class="text-base sm:text-lg text-[#dedede] mb-6 line-clamp-3 leading-relaxed"
-          >
-            {{ blog.excerpt }}
-          </p>
-          {% endif %}
-
-          <div class="flex items-center justify-between">
-            <div class="flex items-center space-x-6 text-sm text-[#dedede]">
-              <span class="flex items-center">
-                <i class="far fa-heart mr-2 text-amber-700"></i>
-                {{ blog.total_likes }}
-              </span>
-              <span class="flex items-center">
-                <i class="far fa-comment mr-2 text-amber-700"></i>
-                {{ blog.total_comments }}
-              </span>
-            </div>
-            <a
-              href="{{ blog.get_absolute_url }}"
-              class="text-amber-700 font-medium uppercase text-sm tracking-wide hover:underline underline-offset-4"
-            >
-              Read More
-            </a>
-          </div>
-        </div>
-      </article>
+        </article>
+      </li>
       {% endfor %}
-    </div>
+    </ul>
 
     <!-- Pagination -->
     {% if blogs.has_other_pages %}
-    <nav class="flex justify-center" aria-label="Blog pagination">
-      <div class="flex items-center space-x-4">
-        {% if blogs.has_previous %}
-        <a
-          href="?page=1{% if search_query %}&search={{ search_query }}{% endif %}"
-          class="p-3 bg-[#222] border-2 border-[#434343] text-[#dedede] hover:border-amber-400 hover:text-amber-400 transition-colors"
-          aria-label="First page"
-        >
-          <i class="fas fa-angle-double-left"></i>
-        </a>
-        <a
-          href="?page={{ blogs.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}"
-          class="p-3 bg-[#222] border-2 border-[#434343] text-[#dedede] hover:border-amber-400 hover:text-amber-400 transition-colors"
-          aria-label="Previous page"
-        >
-          <i class="fas fa-angle-left"></i>
-        </a>
-        {% endif %}
-
-        <span class="px-6 py-3 bg-amber-700 text-black font-medium">
-          Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
+    <nav
+      class="pagination-nav flex items-center justify-between gap-4 my-4 sm:my-8 md:my-12 lg:my-24"
+      aria-label="Blog pagination"
+    >
+      {% if blogs.has_previous %}
+      <a
+        href="?page={{ blogs.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}"
+        class="flex items-center gap-4 text-lg group"
+        aria-label="Go to newer posts"
+      >
+        <i
+          class="fas fa-angle-left text-2xl group-hover:text-xl"
+          aria-hidden="true"
+        ></i>
+        <span class="group-hover:underline underline-offset-4">
+          Newer Posts
         </span>
+      </a>
 
-        {% if blogs.has_next %}
-        <a
-          href="?page={{ blogs.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}"
-          class="p-3 bg-[#222] border-2 border-[#434343] text-[#dedede] hover:border-amber-400 hover:text-amber-400 transition-colors"
-          aria-label="Next page"
-        >
-          <i class="fas fa-angle-right"></i>
-        </a>
-        <a
-          href="?page={{ blogs.paginator.num_pages }}{% if search_query %}&search={{ search_query }}{% endif %}"
-          class="p-3 bg-[#222] border-2 border-[#434343] text-[#dedede] hover:border-amber-400 hover:text-amber-400 transition-colors"
-          aria-label="Last page"
-        >
-          <i class="fas fa-angle-double-right"></i>
-        </a>
-        {% endif %}
-      </div>
+      {% else %} <span></span> {% endif %}
+
+      <span
+        class="max-sm:hidden px-6 py-3 border border-amber-700 text-[#dedede] font-medium"
+      >
+        Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
+      </span>
+
+      {% if blogs.has_next %}
+
+      <a
+        href="?page={{ blogs.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}"
+        class="flex items-center gap-4 text-lg group"
+        aria-label="Go to older posts"
+      >
+        <span class="group-hover:underline underline-offset-4">
+          Older Posts
+        </span>
+        <i
+          class="fas fa-angle-right text-2xl group-hover:text-xl"
+          aria-hidden="true"
+        ></i>
+      </a>
+
+      {% else %} <span></span> {% endif %}
     </nav>
+
     {% endif %} {% else %}
     <!-- Empty State -->
     <div class="text-center py-24">
@@ -222,7 +242,7 @@
       {% if search_query %}
       <a
         href="{% url 'blog_list' %}"
-        class="inline-block bg-amber-700 text-black px-8 py-4 font-medium uppercase text-sm tracking-wide hover:bg-amber-600 transition-colors"
+        class="inline-block border border-amber-700 text-[#dedede] hover:text-black px-8 py-4 font-medium uppercase text-sm tracking-wide hover:bg-amber-700 transition-colors"
       >
         View All Blogs
       </a>
@@ -232,30 +252,33 @@
   </div>
 </section>
 
-<!-- Newsletter Section -->
 <section
-  class="newsletter-section bg-[#222] px-8 py-16 border-t border-[#434343]"
+  class="newsletter-section my-12 px-8"
+  aria-labelledby="newsletter-heading"
 >
   <div class="max-w-[1280px] mx-auto">
     <form
       action=""
       method="post"
-      class="flex justify-center items-center flex-col"
+      class="flex justify-center items-center flex-col mb-24 px-4"
       aria-label="Newsletter subscription form"
       novalidate
     >
       {% csrf_token %}
       <h2
-        class="text-center text-4xl sm:text-5xl lg:text-6xl font-medium mb-6 md:mb-8 max-w-4xl text-[#fefefe]"
+        id="newsletter-heading"
+        class="text-center text-4xl sm:text-5xl lg:text-6xl font-medium mb-6 md:mb-8 max-w-4xl"
       >
-        Subscribe to My Blog
+        Subscribe to jarviswuod.com
       </h2>
-      <p class="text-lg sm:text-xl mb-12 text-center max-w-xl text-[#dedede]">
+      <p class="text-lg sm:text-xl mb-12 text-center max-w-xl">
         No bullshit, just some thoughtful content.
       </p>
 
       <div
         class="flex flex-col sm:flex-row items-center justify-center w-full max-w-xl gap-4"
+        role="group"
+        aria-labelledby="newsletter-heading"
       >
         <label for="email" class="sr-only">Email Address</label>
         <input
@@ -263,13 +286,13 @@
           name="email_address"
           id="email_address"
           placeholder="Email Address"
-          class="bg-white text-black text-base w-full sm:w-2/3 p-4 border-2 border-amber-400 focus:outline-none focus:ring-2 focus:ring-amber-300"
+          class="bg-white text-black text-base w-full sm:w-2/3 p-4 border border-gray-300 rounded"
           required
           aria-required="true"
           autocomplete="email"
         />
         <button
-          class="uppercase text-black bg-amber-700 border-2 border-amber-400 w-3/4 sm:w-1/3 p-4 font-medium tracking-wide hover:bg-amber-600 transition-colors focus:ring focus:ring-amber-300 focus:outline-none"
+          class="uppercase text-amber-700 border border-amber-700 w-3/4 sm:w-1/3 p-4 rounded hover:bg-amber-50 transition-colors focus:ring focus:ring-amber-300 focus:outline-none"
           type="submit"
           aria-label="Subscribe to newsletter"
         >
@@ -284,4 +307,5 @@
     </form>
   </div>
 </section>
+
 {% endblock body %}

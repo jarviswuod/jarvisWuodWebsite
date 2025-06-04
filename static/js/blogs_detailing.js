@@ -17,7 +17,9 @@ const csrftoken = getCookie("csrftoken");
 
 // Like functionality
 document.getElementById("likeBtn")?.addEventListener("click", function () {
-  fetch(`/blog/{{ blog.slug }}/like/`, {
+  const slug = this.dataset.slug;
+  console.log("working");
+  fetch(`/blog/${slug}/like/`, {
     method: "POST",
     headers: {
       "X-CSRFToken": csrftoken,
@@ -30,15 +32,12 @@ document.getElementById("likeBtn")?.addEventListener("click", function () {
       const icon = btn.querySelector("i");
       const count = document.getElementById("likeCount");
 
-      if (data.liked) {
-        btn.className =
-          "flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors duration-200 bg-red-100 text-red-600";
-        icon.className = "fas fa-heart";
-      } else {
-        btn.className =
-          "flex items-center space-x-2 px-4 py-2 rounded-lg transition-colors duration-200 bg-gray-100 text-gray-600 hover:bg-red-100 hover:text-red-600";
-        icon.className = "far fa-heart";
-      }
+      btn.className = "flex items-center space-x-2 px-4 py-2 rounded-lg";
+
+      icon.className = data.liked
+        ? "fas fa-heart text-red-600"
+        : "far fa-heart";
+      btn.setAttribute("aria-label", data.liked ? "Unlike" : "Like");
       count.textContent = data.total_likes;
     });
 });
