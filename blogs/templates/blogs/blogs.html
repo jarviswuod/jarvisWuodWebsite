@@ -65,84 +65,36 @@
   </div>
 </section>
 
-<section
-  class="featured-posts-section my-12 px-8"
-  aria-labelledby="featured-posts-heading"
->
-  <div class="max-w-[1280px] mx-auto">
-    <header>
-      <h2
-        id="featured-posts-heading"
-        class="text-center text-base font-bold uppercase text-amber-700 mb-16 max-w-6xl"
-      >
-        Featured Posts
-      </h2>
-    </header>
-
-    <div
-      class="carousel-container grid grid-cols-2 lg:grid-cols-[auto_1fr_auto] items-center gap-8 mb-24"
-    >
-      <button
-        aria-label="Previous post"
-        class="carousel-prev-btn justify-self-end w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center max-lg:row-start-2 border-1 border-amber-700 text-2xl sm:text-3xl rounded-full"
-      >
-        <i class="ph ph-caret-left" aria-hidden="true"></i>
-      </button>
-
-      <article
-        class="featured-post max-lg:row-start-1 max-lg:col-start-1 max-lg:col-end-3 grid grid-cols-1 lg:grid-cols-2 items-center gap-12"
-      >
-        <a
-          class="featured-post-image max-h-120 block overflow-hidden"
-          href="https://jarviswuod.substack.com/p/hard-truths-habits-and-hustle"
-          aria-label="Read Hard Truths, Habits, and Hustle article"
+<section class="bg-[#111]">
+  <div class="max-w-[1280px] mx-auto px-4 sm:px-8 py-4 sm:py-8 lg:py-12">
+    <!-- Search Bar -->
+    <div class="max-w-lg mx-auto mb-12 lg:mb-16" role="search">
+      <form method="GET" class="relative">
+        <label for="search-input" class="sr-only">Search blogs</label>
+        <input
+          type="text"
+          name="search"
+          id="search-input"
+          value="{{ search_query|default:'' }}"
+          placeholder="Search blogs..."
+          class="w-full px-6 py-4 pl-14 pr-32 border-2 border-amber-400 bg-white text-black text-base rounded focus:outline-none focus:ring-2 focus:ring-amber-300"
+          aria-describedby="search-help"
+        />
+        <span id="search-help" class="sr-only"
+          >Enter keywords to search blog posts</span
         >
-          <figure>
-            <img
-              class="w-full"
-              src="{% static 'media/blogs/jarvis_wuod_x_account_profile.png' %}"
-              alt="Blog post thumbnail for Hard Truths, Habits, and Hustle"
-              loading="lazy"
-            />
-          </figure>
-        </a>
-
-        <div class="featured-post-content flex flex-col">
-          <span
-            class="post-category text-base font-bold uppercase text-amber-700 mb-4 max-w-6xl"
-          >
-            Business
-          </span>
-
-          <h3>
-            <a
-              href="https://jarviswuod.substack.com/p/hard-truths-habits-and-hustle"
-              class="post-title text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
-            >
-              Hard Truths, Habits, and Hustle
-            </a>
-          </h3>
-
-          <p class="post-excerpt text-base sm:text-lg/8 mb-8 text-[#dedede]">
-            "WTF, Why is it so hard to start writing again?" I asked myself as I
-            began drafting this piece. It's been almost a month since...
-          </p>
-          <a
-            class="read-more-btn w-1/2 text-white text-sm tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-bold uppercase border border-amber-400 p-5 px-4"
-            href="https://jarviswuod.substack.com/p/hard-truths-habits-and-hustle"
-            aria-label="Read the full post about Hard Truths, Habits, and Hustle"
-          >
-            Read The Post
-          </a>
-        </div>
-      </article>
-
-      <button
-        aria-label="Next post"
-        class="carousel-next-btn justify-self-star w-8 h-8 sm:w-12 sm:h-12 flex items-center justify-center max-lg:row-start-2 border-1 border-amber-700 text-2xl sm:text-3xl rounded-full"
-      >
-        <i class="ph ph-caret-right" aria-hidden="true"></i>
-      </button>
+        <i
+          class="fas fa-search absolute left-5 top-1/2 transform -translate-y-1/2 text-[#666] text-lg"
+          aria-hidden="true"
+        ></i>
+        <button
+          type="submit"
+          class="absolute right-2 top-1/2 transform -translate-y-1/2 bg-amber-700 text-black px-6 py-2 font-medium uppercase text-sm tracking-wide hover:bg-amber-600 transition-colors focus:outline-none focus:ring-2 focus:ring-amber-300"
+          aria-label="Submit search"
+        >
+          Search
+        </button>
+      </form>
     </div>
   </div>
 </section>
@@ -153,319 +105,221 @@
 >
   <div class="max-w-[1280px] mx-auto">
     <h2 id="blog-posts-heading" class="sr-only">Blog Posts</h2>
-
+    <!-- Blog Grid -->
+    {% if blogs %}
     <ul
       class="posts-grid mb-8 grid grid-cols-1 lg:grid-cols-2 gap-12 gap-y-8 sm:gap-y-12 md:gap-y-16"
       role="list"
     >
+      {% for blog in blogs %}
       <li class="post-item">
-        <article class="h-full flex flex-col">
+        <article
+          class="h-full flex flex-col"
+          aria-labelledby="blog-title-{{ forloop.counter }}"
+        >
           <a
-            href="https://jarviswuod.substack.com/p/hard-truths-habits-and-hustle"
-            class="post-thumbnail-link"
-            aria-label="Read article: Hard Truths, Habits, and Hustle"
+            href="{{ blog.get_absolute_url }}"
+            class="post-thumbnail-link mb-2 sm:mb-4"
+            aria-label="Read article: {{ blog.title }}"
+            tabindex="0"
           >
-            <figure>
-              <img
-                class="w-full mb-4 md:mb-6"
-                src="{% static 'media/blogs/jarvis_wuod_x_account_profile.png' %}"
-                alt="Thumbnail for Hard Truths, Habits, and Hustle article"
-                loading="lazy"
-                width="600"
-                height="400"
-              />
-            </figure>
+            {% if blog.featured_image %}
+
+            <div
+              class="h-64 sm:h-72 md:h-80 lg:h-96 w-full block bg-cover bg-center"
+              style="background-image: url('{{ blog.featured_image.url }}')"
+              role="img"
+              aria-label="Featured image for {{ blog.title }}"
+            ></div>
+            {% else %}
+
+            <div
+              class="h-64 sm:h-72 md:h-80 lg:h-96 w-full block bg-cover bg-center"
+              style="
+                background-image: url('{% static 'media/images/no_img_illustration.png' %}');
+              "
+              role="img"
+              aria-label="Default image placeholder"
+            ></div>
+            {% endif %}
           </a>
 
-          <h3
-            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
-          >
-            <a
-              href="https://jarviswuod.substack.com/p/hard-truths-habits-and-hustle"
-              class="hover:underline"
+          <div class="px-2 sm:px-4">
+            <div
+              class="flex items-center text-sm text-[#dedede] mb-4 space-x-4"
+              aria-label="Article metadata"
             >
-              Hard Truths, Habits, and Hustle
-            </a>
-          </h3>
+              <div class="flex items-center">
+                <i
+                  class="fas fa-user mr-2 text-[#dedede]"
+                  aria-hidden="true"
+                ></i>
+                <span aria-label="Author">
+                  {{ blog.author.get_full_name|default:blog.author.username }}
+                </span>
+              </div>
+              <div class="flex items-center">
+                <i
+                  class="fas fa-calendar mr-2 text-[#dedede]"
+                  aria-hidden="true"
+                ></i>
+                <time
+                  datetime="{{ blog.created_at|date:'c' }}"
+                  aria-label="Published date"
+                >
+                  {{ blog.created_at|date:"M d, Y" }}
+                </time>
+              </div>
+            </div>
 
-          <p class="text-base sm:text-lg/8 mb-8 text-[#dedede] flex-grow">
-            "WTF, Why is it so hard to start writing again?" I asked myself as I
-            began drafting this piece. It's been almost a month since I promised
-            myself to start again, yet, despite knowing that, I didn't write...
-          </p>
+            <h3
+              id="blog-title-{{ forloop.counter }}"
+              class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+            >
+              <a
+                href="{{ blog.get_absolute_url }}"
+                class="hover:underline underline-offset-4 focus:underline focus:outline-none"
+                aria-label="Read article: {{ blog.title }}"
+                tabindex="0"
+              >
+                {{ blog.title }}
+              </a>
+            </h3>
 
-          <a
-            class="text-amber-700 uppercase font-medium hover:underline"
-            href="https://jarviswuod.substack.com/p/hard-truths-habits-and-hustle"
-            aria-label="Read full article: Hard Truths, Habits, and Hustle"
-          >
-            Read More
-          </a>
+            {% if blog.excerpt %}
+            <p
+              class="text-base sm:text-lg text-[#dedede] mb-6 line-clamp-3 leading-relaxed"
+              aria-label="Article excerpt"
+            >
+              {{ blog.excerpt }}
+            </p>
+            {% endif %}
+
+            <div class="flex items-center justify-between">
+              <div
+                class="flex items-center space-x-6 text-sm text-[#dedede]"
+                aria-label="Article engagement"
+              >
+                <span
+                  class="flex items-center"
+                  aria-label="{{ blog.total_likes }} likes"
+                >
+                  <i
+                    class="far fa-heart mr-2 text-[#dedede]"
+                    aria-hidden="true"
+                  ></i>
+                  {{ blog.total_likes }}
+                </span>
+                <span
+                  class="flex items-center"
+                  aria-label="{{ blog.total_comments }} comments"
+                >
+                  <i
+                    class="far fa-comment mr-2 text-[#dedede]"
+                    aria-hidden="true"
+                  ></i>
+                  {{ blog.total_comments }}
+                </span>
+              </div>
+              <a
+                href="{{ blog.get_absolute_url }}"
+                class="text-amber-700 uppercase font-medium hover:underline focus:underline focus:outline-none"
+                aria-label="Read full article: {{ blog.title }}"
+                tabindex="0"
+              >
+                Read More
+              </a>
+            </div>
+          </div>
         </article>
       </li>
-
-      <li class="post-item">
-        <article class="h-full flex flex-col">
-          <a
-            href="https://jarviswuod.substack.com/p/how-im-supercharging-my-personal"
-            class="post-thumbnail-link"
-            aria-label="Read article: The 4-Step Blueprint"
-          >
-            <figure>
-              <img
-                class="w-full mb-4 md:mb-6"
-                src="{% static 'media/blogs/image_about_personal_brand_growth.png' %}"
-                alt="Thumbnail showing 'Supercharging my personal brand' text on a blue background"
-                loading="lazy"
-                width="600"
-                height="400"
-              />
-            </figure>
-          </a>
-
-          <h3
-            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
-          >
-            <a
-              href="https://jarviswuod.substack.com/p/how-im-supercharging-my-personal"
-              class="hover:underline"
-            >
-              The 4-Step Blueprint
-            </a>
-          </h3>
-
-          <p class="text-base sm:text-lg/8 mb-8 text-[#dedede] flex-grow">
-            A few days ago, I decided to get more active on X to grow my
-            presence and speed up my brand's growth. Fast forward 28 days, and
-            my account shot up from 81 to 142 followers—that's a 75% increase!
-          </p>
-          <a
-            class="text-amber-700 uppercase font-medium hover:underline"
-            href="https://jarviswuod.substack.com/p/how-im-supercharging-my-personal"
-            aria-label="Read full article: The 4-Step Blueprint for personal brand growth"
-          >
-            Read More
-          </a>
-        </article>
-      </li>
-
-      <li class="post-item">
-        <article class="h-full flex flex-col">
-          <a
-            href="https://jarviswuod.substack.com/p/from-struggles-to-strength"
-            class="post-thumbnail-link"
-            aria-label="Read article: From Struggles to Strength"
-          >
-            <figure>
-              <img
-                class="w-full mb-4 md:mb-6"
-                src="{% static 'media/blogs/image_about_personal_transformation.png' %}"
-                alt="Thumbnail showing 'From struggle to strength' text on a cream background"
-                loading="lazy"
-                width="600"
-                height="400"
-              />
-            </figure>
-          </a>
-
-          <h3
-            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
-          >
-            <a
-              href="https://jarviswuod.substack.com/p/from-struggles-to-strength"
-              class="hover:underline"
-            >
-              From Struggles to Strength
-            </a>
-          </h3>
-
-          <p class="text-base sm:text-lg/8 mb-8 text-[#dedede] flex-grow">
-            I've always wanted to change, but I didn't know where to start.
-            Then, I found guidance from James Clear, Alex Hormozi, and Dan
-            Koe—mentors who've shaped my journey both online and in my personal
-            life.
-          </p>
-
-          <a
-            class="text-amber-700 uppercase font-medium hover:underline"
-            href="https://jarviswuod.substack.com/p/from-struggles-to-strength"
-            aria-label="Read full article: From Struggles to Strength"
-          >
-            Read More
-          </a>
-        </article>
-      </li>
-
-      <li class="post-item">
-        <article class="h-full flex flex-col">
-          <a
-            href="https://jarviswuod.substack.com/p/crack-the-tech-code"
-            class="post-thumbnail-link"
-            aria-label="Read article: Crack the Tech Code"
-          >
-            <figure>
-              <img
-                class="w-full mb-4 md:mb-6"
-                src="{% static 'media/images/no_img_illustration.png' %}"
-                alt="Placeholder image for Crack the Tech Code article"
-                loading="lazy"
-                width="600"
-                height="400"
-              />
-            </figure>
-          </a>
-
-          <h3
-            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
-          >
-            <a
-              href="https://jarviswuod.substack.com/p/crack-the-tech-code"
-              class="hover:underline"
-            >
-              Crack the Tech Code
-            </a>
-          </h3>
-
-          <p class="text-base sm:text-lg/8 mb-8 text-[#dedede] flex-grow">
-            2024 is winding down, with just four months left. Did you know this
-            time frame is ample to master a tech skill of your choice or level
-            up using free resources. As a result you...
-          </p>
-
-          <a
-            class="text-amber-700 uppercase font-medium hover:underline"
-            href="https://jarviswuod.substack.com/p/crack-the-tech-code"
-            aria-label="Read full article: Crack the Tech Code"
-          >
-            Read More
-          </a>
-        </article>
-      </li>
-
-      <li class="post-item">
-        <article class="h-full flex flex-col">
-          <a
-            href="https://jarviswuod.substack.com/p/from-zero-to-hero-in-3-years"
-            class="post-thumbnail-link"
-            aria-label="Read article: From Zero to Hero in 3 Years"
-          >
-            <figure>
-              <img
-                class="w-full mb-4 md:mb-6"
-                src="{% static 'media/images/no_img_illustration.png' %}"
-                alt="Placeholder image for From Zero to Hero article"
-                loading="lazy"
-                width="600"
-                height="400"
-              />
-            </figure>
-          </a>
-
-          <h3
-            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
-          >
-            <a
-              href="https://jarviswuod.substack.com/p/from-zero-to-hero-in-3-years"
-              class="hover:underline"
-            >
-              From Zero to Hero in 3 Years
-            </a>
-          </h3>
-
-          <p class="text-base sm:text-lg/8 mb-8 text-[#dedede] flex-grow">
-            Everyone has an dream at some point in their life especially during
-            early stages. Some stick to their dream, few make it happen coz
-            let's face it dreams are just dreams until you act on them.
-          </p>
-
-          <a
-            class="text-amber-700 uppercase font-medium hover:underline"
-            href="https://jarviswuod.substack.com/p/from-zero-to-hero-in-3-years"
-            aria-label="Read full article: From Zero to Hero in 3 Years"
-          >
-            Read More
-          </a>
-        </article>
-      </li>
-
-      <li class="post-item">
-        <article class="h-full flex flex-col">
-          <a
-            href="https://jarviswuod.substack.com/p/unlocking-xs-secrets"
-            class="post-thumbnail-link"
-            aria-label="Read article: Unlocking X's Secrets"
-          >
-            <figure>
-              <img
-                class="w-full mb-4 md:mb-6"
-                src="{% static 'media/images/no_img_illustration.png' %}"
-                alt="Placeholder image for Unlocking X's Secrets article"
-                loading="lazy"
-                width="600"
-                height="400"
-              />
-            </figure>
-          </a>
-
-          <h3
-            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
-          >
-            <a
-              href="https://jarviswuod.substack.com/p/unlocking-xs-secrets"
-              class="hover:underline"
-            >
-              Unlocking X's Secrets
-            </a>
-          </h3>
-
-          <p class="text-base sm:text-lg/8 mb-8 text-[#dedede] flex-grow">
-            Fact: Over 90% of top follower accounts are verified. If you can
-            afford and maintain the badge, go ahead. Otherwise, don't feel
-            pressured. Ensure you have streaming revenue from...
-          </p>
-
-          <a
-            class="text-amber-700 uppercase font-medium hover:underline"
-            href="https://jarviswuod.substack.com/p/unlocking-xs-secrets"
-            aria-label="Read full article: Unlocking X's Secrets"
-          >
-            Read More
-          </a>
-        </article>
-      </li>
+      {% endfor %}
     </ul>
 
+    <!-- Pagination -->
+    {% if blogs.has_other_pages %}
     <nav
-      class="pagination-nav flex items-center justify-between gap-4 my-24"
+      class="pagination-nav flex items-center justify-between gap-4 my-4 sm:my-8 md:my-12 lg:my-24"
       aria-label="Blog pagination"
+      role="navigation"
     >
+      {% if blogs.has_previous %}
       <a
-        href="#"
-        class="flex items-center gap-4 text-lg group"
-        aria-label="Go to newer posts"
+        href="?page={{ blogs.previous_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}"
+        class="flex items-center gap-4 text-lg group focus:outline-none focus:underline"
+        aria-label="Go to page {{ blogs.previous_page_number }}, newer posts"
+        tabindex="0"
       >
         <i
-          class="ph ph-caret-left text-2xl group-hover:text-xl"
+          class="fas fa-angle-left text-2xl group-hover:text-xl"
           aria-hidden="true"
         ></i>
         <span class="group-hover:underline underline-offset-4">
           Newer Posts
         </span>
       </a>
+
+      {% else %}
+      <span aria-hidden="true"></span>
+      {% endif %}
+
+      <span
+        class="max-sm:hidden px-6 py-3 border border-amber-700 text-[#dedede] font-medium"
+        aria-label="Current page {{ blogs.number }} of {{ blogs.paginator.num_pages }} total pages"
+        aria-live="polite"
+      >
+        Page {{ blogs.number }} of {{ blogs.paginator.num_pages }}
+      </span>
+
+      {% if blogs.has_next %}
+
       <a
-        href="#"
-        class="flex items-center gap-4 text-lg group"
-        aria-label="Go to older posts"
+        href="?page={{ blogs.next_page_number }}{% if search_query %}&search={{ search_query }}{% endif %}"
+        class="flex items-center gap-4 text-lg group focus:outline-none focus:underline"
+        aria-label="Go to page {{ blogs.next_page_number }}, older posts"
+        tabindex="0"
       >
         <span class="group-hover:underline underline-offset-4">
           Older Posts
         </span>
         <i
-          class="ph ph-caret-right text-2xl group-hover:text-xl"
+          class="fas fa-angle-right text-2xl group-hover:text-xl"
           aria-hidden="true"
         ></i>
       </a>
+
+      {% else %}
+      <span aria-hidden="true"></span>
+      {% endif %}
     </nav>
+
+    {% endif %} {% else %}
+    <!-- Empty State -->
+    <div class="text-center py-24" role="status" aria-live="polite">
+      <i
+        class="fas fa-blog text-8xl text-[#434343] mb-8"
+        aria-hidden="true"
+      ></i>
+      <h2 class="text-3xl sm:text-4xl font-semibold text-[#dedede] mb-6">
+        {% if search_query %} No blogs found for "{{ search_query }}" {% else %}
+        No blogs available yet {% endif %}
+      </h2>
+      <p class="text-lg sm:text-xl text-[#dedede] mb-12 max-w-xl mx-auto">
+        {% if search_query %} Try adjusting your search terms or browse all
+        blogs. {% else %} Check back later for amazing content! {% endif %}
+      </p>
+      {% if search_query %}
+      <a
+        href="{% url 'blog_list' %}"
+        class="inline-block border border-amber-700 text-[#dedede] hover:text-black px-8 py-4 font-medium uppercase text-sm tracking-wide hover:bg-amber-700 focus:bg-amber-700 focus:text-black focus:outline-none transition-colors"
+        aria-label="Clear search and view all blog posts"
+        tabindex="0"
+      >
+        View All Blogs
+      </a>
+      {% endif %}
+    </div>
+    {% endif %}
   </div>
 </section>
 
@@ -478,7 +332,7 @@
       action=""
       method="post"
       class="flex justify-center items-center flex-col mb-24 px-4"
-      aria-label="Newsletter subscription form"
+      aria-labelledby="newsletter-heading"
       novalidate
     >
       {% csrf_token %}
@@ -488,7 +342,10 @@
       >
         Subscribe to jarviswuod.com
       </h2>
-      <p class="text-lg sm:text-xl mb-12 text-center max-w-xl">
+      <p
+        class="text-lg sm:text-xl mb-12 text-center max-w-xl"
+        id="newsletter-description"
+      >
         No bullshit, just some thoughtful content.
       </p>
 
@@ -496,22 +353,27 @@
         class="flex flex-col sm:flex-row items-center justify-center w-full max-w-xl gap-4"
         role="group"
         aria-labelledby="newsletter-heading"
+        aria-describedby="newsletter-description"
       >
-        <label for="email" class="sr-only">Email Address</label>
+        <label for="email_address" class="sr-only">Email Address</label>
         <input
           type="email"
           name="email_address"
           id="email_address"
           placeholder="Email Address"
-          class="bg-white text-black text-base w-full sm:w-2/3 p-4 border border-gray-300 rounded"
+          class="bg-white text-black text-base w-full sm:w-2/3 p-4 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-amber-300 focus:border-amber-500"
           required
           aria-required="true"
+          aria-describedby="email-help"
           autocomplete="email"
         />
+        <span id="email-help" class="sr-only">
+          Enter your email address to subscribe to our newsletter
+        </span>
         <button
-          class="uppercase text-amber-700 border border-amber-700 w-3/4 sm:w-1/3 p-4 rounded hover:bg-amber-50 transition-colors focus:ring focus:ring-amber-300 focus:outline-none"
+          class="uppercase text-amber-700 border border-amber-700 w-3/4 sm:w-1/3 p-4 rounded hover:bg-amber-50 focus:bg-amber-50 transition-colors focus:ring-2 focus:ring-amber-300 focus:outline-none"
           type="submit"
-          aria-label="Subscribe to newsletter"
+          aria-label="Subscribe to newsletter with entered email address"
         >
           Sign up
         </button>
@@ -520,6 +382,7 @@
         id="form-error"
         class="text-red-500 mt-2 hidden"
         aria-live="assertive"
+        role="alert"
       ></div>
     </form>
   </div>

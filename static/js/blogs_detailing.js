@@ -32,12 +32,13 @@ document.getElementById("likeBtn")?.addEventListener("click", function () {
       const icon = btn.querySelector("i");
       const count = document.getElementById("likeCount");
 
-      btn.className = "flex items-center space-x-2 px-4 py-2 rounded-lg";
-
       icon.className = data.liked
         ? "fas fa-heart text-red-600"
         : "far fa-heart";
-      btn.setAttribute("aria-label", data.liked ? "Unlike" : "Like");
+      btn.setAttribute(
+        "aria-label",
+        data.liked ? "Unlike this post" : "Like this post"
+      );
       count.textContent = data.total_likes;
     });
 });

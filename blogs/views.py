@@ -15,14 +15,6 @@ from .forms import NewsletterForm, CommentForm
 def blogs(request):
     form = NewsletterForm()
     blogs = Blog.objects.filter(is_published=True)
-    search_query = request.GET.get('search')
-
-    if search_query:
-        blogs = blogs.filter(
-            Q(title__icontains=search_query) |
-            Q(content__icontains=search_query) |
-            Q(excerpt__icontains=search_query)
-        )
 
     if request.method == 'POST':
         form = NewsletterForm(request.POST)
@@ -37,6 +29,14 @@ def blogs(request):
             messages.error(
                 request, "You are already subscribed to our newsletter or invalid email.")
 
+    search_query = request.GET.get('search')
+    if search_query:
+        blogs = blogs.filter(
+            Q(title__icontains=search_query) |
+            Q(content__icontains=search_query) |
+            Q(excerpt__icontains=search_query)
+        )
+
     paginator = Paginator(blogs, 6)
     page_number = request.GET.get('page')
     blogs_page = paginator.get_page(page_number)
@@ -47,7 +47,7 @@ def blogs(request):
         'search_query': search_query,
     }
 
-    return render(request, 'blogs/blog_list.html', context)
+    return render(request, 'blogs/blogs.html', context)
 
 
 def blog_detail(request, slug):
@@ -165,7 +165,7 @@ def send_newsletter_confirmation_email(request, email_address):
             request, "Subscription successful, but there was an issue sending the confirmation email.")
 
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# ADDED SCRIPTS
+# ACTION VIEWS
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
