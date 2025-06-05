@@ -168,15 +168,9 @@
           <ul class="messages">
             {% for message in messages %}
 
+            <!-- prettier-ignore -->
             <li
-              {%
-              if
-              message.tags
-              %}
-              class=" text-white py-2 px-4 shadow {{ message.tags }}"
-              {%
-              endif
-              %}
+              {% if message.tags %} class=" text-white py-2 px-4 shadow {{ message.tags }}" {% endif %}
             >
               {{ message }}
             </li>

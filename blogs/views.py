@@ -14,6 +14,15 @@ from .forms import NewsletterForm, CommentForm
 
 def blogs(request):
     form = NewsletterForm()
+    blogs = Blog.objects.filter(is_published=True)
+    search_query = request.GET.get('search')
+
+    if search_query:
+        blogs = blogs.filter(
+            Q(title__icontains=search_query) |
+            Q(content__icontains=search_query) |
+            Q(excerpt__icontains=search_query)
+        )
 
     if request.method == 'POST':
         form = NewsletterForm(request.POST)
@@ -23,13 +32,69 @@ def blogs(request):
             subscriber = form.save()
             send_newsletter_confirmation_email(
                 request, subscriber.email_address)
-            return redirect('newsletter_success')  # Redirect to success page
+            return redirect('newsletter_success')
         else:
             messages.error(
                 request, "You are already subscribed to our newsletter or invalid email.")
 
-    context = {'form': form}
-    return render(request, 'blogs/blogs.html', context)
+    paginator = Paginator(blogs, 6)
+    page_number = request.GET.get('page')
+    blogs_page = paginator.get_page(page_number)
+
+    context = {
+        'form': form,
+        'blogs': blogs_page,
+        'search_query': search_query,
+    }
+
+    return render(request, 'blogs/blog_list.html', context)
+
+
+def blog_detail(request, slug):
+    blog = get_object_or_404(Blog, slug=slug, is_published=True)
+    comments = blog.comments.filter(is_active=True, parent=None)
+
+    # Check if user has liked the blog
+    user_has_liked = False
+    if request.user.is_authenticated:
+        user_has_liked = Like.objects.filter(
+            user=request.user, blog=blog).exists()
+
+    # Handle comment form
+    comment_form = CommentForm()
+    if request.method == 'POST' and request.user.is_authenticated:
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.blog = blog
+            new_comment.author = request.user
+
+            # Handle reply to comment
+            parent_id = request.POST.get('parent_id')
+            if parent_id:
+                parent_comment = get_object_or_404(Comment, id=parent_id)
+                new_comment.parent = parent_comment
+
+            new_comment.save()
+            messages.success(
+                request, 'Your comment has been added successfully!')
+            return redirect('blog_detail', slug=slug)
+
+    # Pagination for comments
+    paginator = Paginator(comments, 10)
+    page_number = request.GET.get('page')
+    comments_page = paginator.get_page(page_number)
+
+    context = {
+        'blog': blog,
+        'comments': comments_page,
+        'comment_form': comment_form,
+        'user_has_liked': user_has_liked,
+        'total_likes': blog.total_likes(),
+        'total_comments': blog.total_comments(),
+    }
+
+    return render(request, 'blogs/blog_detail.html', context)
 
 
 def newsletter_subscription(request):
@@ -100,86 +165,8 @@ def send_newsletter_confirmation_email(request, email_address):
             request, "Subscription successful, but there was an issue sending the confirmation email.")
 
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////
+# ADDED SCRIPTS
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# ADDED SCRIPTS FROM CLAUDE AI BLOG
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-# /////////////////////////////////////////////////////////////////////////////////////////////////////////////
-
-
-def blog_list(request):
-    blogs = Blog.objects.filter(is_published=True)
-
-    # Search functionality
-    search_query = request.GET.get('search')
-    if search_query:
-        blogs = blogs.filter(
-            Q(title__icontains=search_query) |
-            Q(content__icontains=search_query) |
-            Q(excerpt__icontains=search_query)
-        )
-
-    # Pagination
-    paginator = Paginator(blogs, 6)
-    page_number = request.GET.get('page')
-    blogs_page = paginator.get_page(page_number)
-
-    context = {
-        'blogs': blogs_page,
-        'search_query': search_query,
-    }
-
-    return render(request, 'blogs/blog_list.html', context)
-    # return render(request, 'blogs/_blog_list.html', context)
-
-
-def blog_detail(request, slug):
-    blog = get_object_or_404(Blog, slug=slug, is_published=True)
-    comments = blog.comments.filter(is_active=True, parent=None)
-
-    # Check if user has liked the blog
-    user_has_liked = False
-    if request.user.is_authenticated:
-        user_has_liked = Like.objects.filter(
-            user=request.user, blog=blog).exists()
-
-    # Handle comment form
-    comment_form = CommentForm()
-    if request.method == 'POST' and request.user.is_authenticated:
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.blog = blog
-            new_comment.author = request.user
-
-            # Handle reply to comment
-            parent_id = request.POST.get('parent_id')
-            if parent_id:
-                parent_comment = get_object_or_404(Comment, id=parent_id)
-                new_comment.parent = parent_comment
-
-            new_comment.save()
-            messages.success(
-                request, 'Your comment has been added successfully!')
-            return redirect('blog_detail', slug=slug)
-
-    # Pagination for comments
-    paginator = Paginator(comments, 10)
-    page_number = request.GET.get('page')
-    comments_page = paginator.get_page(page_number)
-
-    context = {
-        'blog': blog,
-        'comments': comments_page,
-        'comment_form': comment_form,
-        'user_has_liked': user_has_liked,
-        'total_likes': blog.total_likes(),
-        'total_comments': blog.total_comments(),
-    }
-
-    # return render(request, 'blogs/_blog_detail.html', context)
-    return render(request, 'blogs/blog_detail.html', context)
 
 
 @login_required
