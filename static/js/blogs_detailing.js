@@ -18,7 +18,7 @@ const csrftoken = getCookie("csrftoken");
 // Like functionality
 document.getElementById("likeBtn")?.addEventListener("click", function () {
   const slug = this.dataset.slug;
-  console.log("working");
+
   fetch(`/blog/${slug}/like/`, {
     method: "POST",
     headers: {
@@ -44,9 +44,12 @@ document.getElementById("likeBtn")?.addEventListener("click", function () {
 
 // Share functionality
 function shareOn(platform) {
-  const url = window.location.href;
-  const title = "{{ blog.title|escapejs }}";
+  const blogElement = document.getElementById("blog-content");
   let shareUrl = "";
+
+  const title = blogElement.dataset.title;
+  const slug = blogElement.dataset.slug;
+  const url = window.location.href;
 
   switch (platform) {
     case "facebook":
@@ -73,7 +76,7 @@ function shareOn(platform) {
     window.open(shareUrl, "_blank", "width=600,height=400");
 
     // Track share
-    fetch(`/blog/{{ blog.slug }}/share/`, {
+    fetch(`/blog/${slug}/share/`, {
       method: "POST",
       headers: {
         "X-CSRFToken": csrftoken,

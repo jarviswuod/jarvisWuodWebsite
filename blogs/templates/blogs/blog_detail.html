@@ -3,14 +3,9 @@
 <!-- HEAD SECTION -->
 
 {% block meta %}
-<title>
-  My Insights | Personal Growth, financial freedom, Tech Career || Jarvis Wuod
-</title>
+<title>{{ blog.title }} | My Insights || Jarvis Wuod</title>
 
-<meta
-  name="description"
-  content="Explore actionable insights on tech career development, personal growth habits, financial freedom, and social media strategy. Follow my journey from coding struggles to success with practical tips for developers and entrepreneurs."
-/>
+<meta name="description" content="{{ blog.excerpt }}" />
 
 <meta
   name="keywords"
@@ -20,92 +15,171 @@
 <!-- Open Grapg Tags -->
 <meta
   property="og:title"
-  content="My Insights | Personal Growth, financial freedom,
-  Tech Career || Jarvis Wuod"
+  content="{{ blog.title }} | My Insights || Jarvis Wuod"
+/>
+<meta property="og:description" content="{{ blog.excerpt }}" />
+
+<!-- Dynamic Meta Image -->
+{% if blog.featured_image %}
+<meta
+  property="og:image"
+  content="https://{{ request.META.HTTP_HOST }}{{ blog.featured_image.url }}"
 />
 <meta
-  property="og:description"
-  content="Explore actionable insights on tech career development, personal growth habits, financial freedom, and social media strategy. Follow my journey from coding struggles to success with practical tips for developers and entrepreneurs."
+  name="twitter:image"
+  content="https://{{ request.META.HTTP_HOST }}{{ blog.featured_image.url }}"
 />
+{% else %}
+<meta
+  property="og:image"
+  content="https://{{ request.META.HTTP_HOST }}{% static 'media/images/no_img_illustration.png' %}"
+/>
+<meta
+  name="twitter:image"
+  content="https://{{ request.META.HTTP_HOST }}{% static 'media/images/no_img_illustration.png' %}"
+/>
+{% endif %}
 
 <!-- Twitter/ X  Tags -->
 <meta
   name="twitter:title"
-  content="My Insights | Personal Growth, financial freedom,
-  Tech Career || Jarvis Wuod"
+  content="{{ blog.title }} | My Insights || Jarvis Wuod"
 />
-<meta
-  name="twitter:description"
-  content="Explore actionable insights on tech career development, personal growth habits, financial freedom, and social media strategy. Follow my journey from coding struggles to success with practical tips for developers and entrepreneurs."
-/>
+<meta name="twitter:description" content="{{ blog.excerpt }}" />
 {% endblock meta %}
 
 <!-- BODY SECTION -->
 
 {% block body %}
-
-<section class="my-12 px-4 sm:px-8" aria-labelledby="post-heading">
+<section
+  class="my-12 px-4 sm:px-8"
+  id="blog-content"
+  data-title="{{ blog.title|escapejs }}"
+  data-slug="{{ blog.slug }}"
+  aria-labelledby="post-heading"
+>
   <div class="max-w-[1280px] mx-auto px-4 sm:px-6 lg:px-8 py-8">
     <!-- Blog Header -->
-    <article>
+    <article itemscope itemtype="https://schema.org/BlogPosting">
       <header>
-        <div class="flex items-center text-[#dedede] mb-6">
-          <i class="fas fa-user mr-2"></i>
-          <span class="">
-            {{ blog.author.get_full_name|default:blog.author.username }}
+        <div class="flex items-center text-[#dedede] mb-6" role="contentinfo">
+          <i class="fas fa-user mr-2" aria-hidden="true"></i>
+          <span
+            class=""
+            itemprop="author"
+            itemscope
+            itemtype="https://schema.org/Person"
+          >
+            <span itemprop="name">
+              {{ blog.author.get_full_name|default:blog.author.username}}
+            </span>
           </span>
-          <span class="mx-3 text-[#555]">•</span>
-          <i class="fas fa-calendar mr-2"></i>
-          <span>{{ blog.created_at|date:"F d, Y" }}</span>
-          <span class="mx-3 text-[#555]">•</span>
-          <i class="fas fa-clock mr-2"></i>
-          <span>5 min read</span>
+          <span class="max-sm:hidden mx-3 text-[#555]" aria-hidden="true"
+            >•</span
+          >
+          <i class="max-sm:hidden fas fa-calendar mr-2" aria-hidden="true"></i>
+          <time
+            class="max-sm:hidden"
+            datetime="{{ blog.created_at|date:'c' }}"
+            itemprop="datePublished"
+          >
+            {{ blog.created_at|date:"F d, Y" }}
+          </time>
+          <span class="mx-3 text-[#555]" aria-hidden="true">•</span>
+          <i class="fas fa-clock mr-2" aria-hidden="true"></i>
+          <span>
+            <time itemprop="timeRequired" datetime="PT5M">5 min read</time>
+          </span>
         </div>
 
         <h1
+          id="post-heading"
           class="capitalize text-4xl sm:text-6xl md:text-7xl lg:text-8xl mb-6 sm:mb-12 md:mb-16 lg:mb-20 font-normal text-[#fefefe] leading-tight"
+          itemprop="headline"
         >
           {{ blog.title }}
         </h1>
       </header>
 
       {% if blog.featured_image %}
-
-      <div
-        class="h-72 sm:h-80 md:h-96 lg:h-[36rem] w-full bg-cover bg-center mb-4 sm:mb-8"
-        style="background-image: url('{{ blog.featured_image.url }}')"
-      ></div>
+      <figure
+        class="mb-4 sm:mb-8"
+        itemprop="image"
+        itemscope
+        itemtype="https://schema.org/ImageObject"
+      >
+        <div
+          class="h-72 sm:h-80 md:h-96 lg:h-[36rem] w-full bg-cover bg-center"
+          style="background-image: url('{{ blog.featured_image.url }}')"
+          role="img"
+          aria-label="Featured image for {{ blog.title }}"
+        ></div>
+        <meta itemprop="url" content="{{ blog.featured_image.url }}" />
+        <meta itemprop="width" content="1200" />
+        <meta itemprop="height" content="630" />
+      </figure>
       {% else %}
-
-      <div
-        class="h-72 sm:h-80 md:h-96 lg:h-[36rem] w-full bg-cover bg-center mb-4 sm:mb-8"
-        style="
-          background-image: url('{% static 'media/images/no_img_illustration.png' %}');
-        "
-      ></div>
+      <figure class="mb-4 sm:mb-8">
+        <div
+          class="h-72 sm:h-80 md:h-96 lg:h-[36rem] w-full bg-cover bg-center"
+          style="
+            background-image: url('{% static 'media/images/no_img_illustration.png' %}');
+          "
+          role="img"
+          aria-label="Default illustration for {{ blog.title }}"
+        ></div>
+      </figure>
       {% endif %} {% if blog.excerpt %}
-      <p
+      <div
         class="text-lg sm:text-xl text-[#dedede] mb-8 leading-relaxed max-w-4xl ml-auto"
+        itemprop="description"
       >
         {{ blog.excerpt }}
-      </p>
+      </div>
       {% endif %}
 
       <div
         class="prose text-[#dedede] leading-relaxed text-base sm:text-lg max-w-4xl ml-auto"
+        itemprop="articleBody"
       >
         {{ blog.content|linebreaks }}
+      </div>
+
+      <!-- Hidden schema data -->
+      <meta itemprop="dateModified" content="{{ blog.updated_at|date:'c' }}" />
+      <div
+        itemprop="publisher"
+        itemscope
+        itemtype="https://schema.org/Organization"
+        style="display: none"
+      >
+        <meta itemprop="name" content="Your Site Name" />
+        <div
+          itemprop="logo"
+          itemscope
+          itemtype="https://schema.org/ImageObject"
+        >
+          <meta
+            itemprop="url"
+            content="https://{{ request.META.HTTP_HOST }}{% static 'media/images/jarvis_wuod_logo.png' %}"
+          />
+        </div>
       </div>
     </article>
 
     <!-- Engagement Section -->
-    <div
-      class="bg-[#222] rounded-lg shadow-lg mt-8 p-6 lg:p-8 border border-[#434343] max-w-4xl ml-auto"
+    <aside
+      class="bg-[#222] rounded-lg shadow-lg mt-8 p-6 lg:p-8 max-w-4xl ml-auto"
+      aria-label="Post engagement and sharing options"
     >
       <div
         class="flex items-center justify-between max-sm:flex-col border-b border-[#434343] pb-6 mb-6"
       >
-        <div class="flex items-center space-x-2 md:space-x-8">
+        <div
+          class="flex items-center space-x-2 md:space-x-8"
+          role="group"
+          aria-label="Post engagement"
+        >
           <!-- Like Button -->
           <div class="flex items-center">
             {% if user.is_authenticated %}
@@ -113,17 +187,27 @@
               id="likeBtn"
               data-slug="{{ blog.slug }}"
               class="flex items-center space-x-2 py-2 rounded-lg"
+              aria-label="{% if user_has_liked %}Unlike this post{% else %}Like this post{% endif %}"
+              aria-pressed="{% if user_has_liked %}true{% else %}false{% endif %}"
             >
               <i
                 class="{% if user_has_liked %} fas fa-heart text-red-600 {% else %} far fa-heart {% endif %}"
+                aria-hidden="true"
               ></i>
-              <span id="likeCount" class="font-medium">
+              <span
+                id="likeCount"
+                class="font-medium"
+                aria-label="{{ total_likes }} likes"
+              >
                 {{ total_likes }}
               </span>
             </button>
             {% else %}
-            <div class="flex items-center space-x-2 py-2 rounded-lg">
-              <i class="far fa-heart"></i>
+            <div
+              class="flex items-center space-x-2 py-2 rounded-lg"
+              aria-label="{{ total_likes }} likes"
+            >
+              <i class="far fa-heart" aria-hidden="true"></i>
               <span class="font-medium">{{ total_likes }}</span>
             </div>
             {% endif %}
@@ -132,125 +216,176 @@
           <!-- Comment Count -->
           <div
             class="flex items-center space-x-2 text-[#dedede] px-4 py-2 rounded-lg"
+            aria-label="{{ total_comments }} comments"
           >
-            <i class="far fa-comment"></i>
+            <i class="far fa-comment" aria-hidden="true"></i>
             <span class="font-medium">{{ total_comments }} Comments</span>
           </div>
         </div>
 
         <!-- Share Buttons -->
-        <div class="flex items-center space-x-2 sm:space-x-3">
+        <div
+          class="flex items-center space-x-2 sm:space-x-3"
+          role="group"
+          aria-label="Share options"
+        >
           <span
             class="text-[#dedede] text-sm font-medium uppercase tracking-wide mr-2 sm:mr-4"
+            id="share-label"
           >
             Share:
           </span>
           <button
             onclick="shareOn('facebook')"
-            class="w-8 h-8 text-blue-500 hover:bg-blue-500 hover:text-white rounded-lg transition-colors duration-300"
+            class="w-8 h-8 text-blue-500 hover:bg-blue-500 hover:text-white rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:ring-offset-[#222]"
             aria-label="Share on Facebook"
+            aria-describedby="share-label"
           >
-            <i class="fab fa-facebook-f"></i>
+            <i class="fab fa-facebook-f" aria-hidden="true"></i>
           </button>
           <button
             onclick="shareOn('twitter')"
-            class="w-8 h-8 text-blue-400 hover:bg-blue-400 hover:text-white rounded-lg transition-colors duration-300"
+            class="w-8 h-8 text-blue-400 hover:bg-blue-400 hover:text-white rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 focus:ring-offset-[#222]"
             aria-label="Share on Twitter"
+            aria-describedby="share-label"
           >
-            <i class="fab fa-twitter"></i>
+            <i class="fab fa-twitter" aria-hidden="true"></i>
           </button>
           <button
             onclick="shareOn('linkedin')"
-            class="w-8 h-8 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg transition-colors duration-300"
+            class="w-8 h-8 text-blue-600 hover:bg-blue-600 hover:text-white rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-blue-600 focus:ring-offset-2 focus:ring-offset-[#222]"
             aria-label="Share on LinkedIn"
+            aria-describedby="share-label"
           >
-            <i class="fab fa-linkedin-in"></i>
+            <i class="fab fa-linkedin-in" aria-hidden="true"></i>
           </button>
           <button
             onclick="shareOn('whatsapp')"
-            class="w-8 h-8 text-green-500 hover:bg-green-500 hover:text-white rounded-lg transition-colors duration-300"
+            class="w-8 h-8 text-green-500 hover:bg-green-500 hover:text-white rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-green-500 focus:ring-offset-2 focus:ring-offset-[#222]"
             aria-label="Share on WhatsApp"
+            aria-describedby="share-label"
           >
-            <i class="fab fa-whatsapp"></i>
+            <i class="fab fa-whatsapp" aria-hidden="true"></i>
           </button>
           <button
             onclick="copyLink()"
-            class="w-8 h-8 text-amber-700 hover:bg-amber-700 hover:text-white rounded-lg transition-colors duration-300"
-            aria-label="Copy link"
+            class="w-8 h-8 text-amber-700 hover:bg-amber-700 hover:text-white rounded-lg transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-700 focus:ring-offset-2 focus:ring-offset-[#222]"
+            aria-label="Copy link to clipboard"
+            aria-describedby="share-label"
           >
-            <i class="fas fa-link"></i>
+            <i class="fas fa-link" aria-hidden="true"></i>
           </button>
         </div>
       </div>
-    </div>
+    </aside>
 
     <!-- Comments Section -->
-    <div
-      class="bg-[#222] rounded-lg shadow-lg mt-8 p-4 sm:p-8 border border-[#434343] max-w-4xl ml-auto"
+    <section
+      class="bg-[#222] rounded-lg shadow-lg mt-8 p-2 sm:p-8 max-w-4xl ml-auto"
+      aria-labelledby="comments-heading"
     >
       <header>
-        <h2 class="text-2xl sm:text-3xl font-bold text-[#fefefe] mb-4 sm:mb-8">
+        <h2
+          id="comments-heading"
+          class="text-2xl sm:text-3xl font-bold text-[#fefefe] mb-4 sm:mb-8"
+        >
           Comments ({{ total_comments }})
         </h2>
       </header>
 
       <!-- Comments List -->
-      <div id="commentsList" class="space-y-4 sm:space-y-8">
+      <div
+        id="commentsList"
+        class="space-y-4 sm:space-y-8"
+        role="list"
+        aria-label="User comments"
+      >
         {% for comment in comments %}
         <article
-          class="comment bg-[#333] p-6 rounded-lg border border-[#434343]"
+          class="comment bg-[#333] p-4 sm:p-6 rounded-lg"
+          role="listitem"
+          itemscope
+          itemtype="https://schema.org/Comment"
         >
           <div class="flex items-start space-x-0 sm:space-x-4">
             <div
               class="w-12 h-12 bg-gradient-to-r from-green-600 to-blue-700 rounded-full max-sm:hidden flex items-center justify-center text-white font-bold text-lg"
+              aria-hidden="true"
             >
               {{ comment.author.username|first|upper }}
             </div>
             <div class="flex-1">
               <header class="flex items-center space-x-3 mb-3">
-                <!-- prettier-ignore -->
-                <h3 class="font-bold text-[#fefefe] text-base sm:text-lg">
-                  {{ comment.author.get_full_name|default:comment.author.username }}
+                <h3
+                  class="font-bold text-[#fefefe] text-base sm:text-lg"
+                  itemprop="author"
+                  itemscope
+                  itemtype="https://schema.org/Person"
+                >
+                  <span itemprop="name">
+                    {{comment.author.get_full_name|default:comment.author.username}}
+                  </span>
                 </h3>
-
-                <time class="text-xs sm:text-sm text-[#dedede]">
+                <time
+                  class="text-xs sm:text-sm text-[#dedede]"
+                  datetime="{{ comment.created_at|date:'c' }}"
+                  itemprop="dateCreated"
+                >
                   {{ comment.created_at|date:"F d, Y \a\t g:i A" }}
                 </time>
               </header>
-              <div class="text-[#dedede] mb-4 leading-relaxed">
+              <div class="text-[#dedede] mb-4 leading-relaxed" itemprop="text">
                 {{ comment.content|linebreaks }}
               </div>
               {% if user.is_authenticated %}
               <button
-                class="text-sm text-amber-400 hover:text-amber-300 reply-btn font-medium transition-colors duration-300"
+                class="text-sm text-amber-400 hover:text-amber-300 reply-btn font-medium transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-400 focus:ring-offset-2 focus:ring-offset-[#333]"
                 data-comment-id="{{ comment.id }}"
+                aria-label="Reply to {{ comment.author.get_full_name|default:comment.author.username }}'s comment"
               >
-                <i class="fas fa-reply mr-2"></i>Reply
+                <i class="fas fa-reply mr-2" aria-hidden="true"></i>Reply
               </button>
               {% endif %}
 
               <!-- Replies -->
               {% for reply in comment.get_replies %}
               <div
-                class="mt-6 ml-4 sm:ml-8 bg-[#2a2a2a] p-4 rounded-lg border-l-4 border-amber-700"
+                class="mt-6 ml-2 sm:ml-8 bg-[#2a2a2a] max-sm:px-2 p-4 rounded-lg border-l-4 border-amber-700"
+                role="article"
+                itemscope
+                itemtype="https://schema.org/Comment"
               >
                 <div class="flex items-start space-x-0 sm:space-x-4">
                   <div
                     class="w-10 h-10 bg-gradient-to-r from-purple-600 to-pink-700 rounded-full max-sm:hidden flex items-center justify-center text-white text-sm font-bold"
+                    aria-hidden="true"
                   >
                     {{ reply.author.username|first|upper }}
                   </div>
                   <div class="flex-1">
                     <header class="flex items-center space-x-2 mb-2">
-                      <!-- prettier-ignore -->
-                      <h4 class="font-semibold text-[#fefefe] text-sm sm:text-base">
-                        {{ reply.author.get_full_name|default:reply.author.username }}
+                      <h4
+                        class="font-semibold text-[#fefefe] text-sm sm:text-base"
+                        itemprop="author"
+                        itemscope
+                        itemtype="https://schema.org/Person"
+                      >
+                        <span itemprop="name">
+                          {{reply.author.get_full_name|default:reply.author.username}}
+                        </span>
                       </h4>
-                      <time class="text-xs text-[#dedede]">
+                      <time
+                        class="text-xs text-[#dedede]"
+                        datetime="{{ reply.created_at|date:'c' }}"
+                        itemprop="dateCreated"
+                      >
                         {{ reply.created_at|date:"F d, Y \a\t g:i A" }}
                       </time>
                     </header>
-                    <div class="text-[#dedede] text-sm leading-relaxed">
+                    <div
+                      class="text-[#dedede] text-sm leading-relaxed"
+                      itemprop="text"
+                    >
                       {{ reply.content|linebreaks }}
                     </div>
                   </div>
@@ -261,8 +396,15 @@
           </div>
         </article>
         {% empty %}
-        <div class="text-center py-8 sm:py-12 md:py-16">
-          <i class="fas fa-comments text-6xl text-[#555] mb-6"></i>
+        <div
+          class="text-center py-8 sm:py-12 md:py-16"
+          role="status"
+          aria-live="polite"
+        >
+          <i
+            class="fas fa-comments text-6xl text-[#555] mb-6"
+            aria-hidden="true"
+          ></i>
           <p class="text-[#dedede] text-lg">
             No comments yet. Be the first to share your thoughts!
           </p>
@@ -272,32 +414,44 @@
 
       <!-- Add Comment Form -->
       {% if user.is_authenticated %}
-      <div class="mb-12">
-        <div class="flex items-start sm:pace-x-4">
+      <div class="mt-4 mb-12">
+        <div class="flex items-start space-x-0 sm:space-x-4">
           <div
             class="w-12 h-12 bg-gradient-to-r from-amber-600 to-amber-800 rounded-full max-sm:hidden flex items-center justify-center text-white font-bold text-lg"
+            aria-hidden="true"
           >
             {{ user.username|first|upper }}
           </div>
           <div class="flex-1">
-            <form id="commentForm" method="post" class="space-y-4">
+            <form
+              id="commentForm"
+              method="post"
+              class="space-y-4"
+              aria-labelledby="add-comment-heading"
+            >
+              <h3 id="add-comment-heading" class="sr-only">Add a comment</h3>
               {% csrf_token %}
               <div class="relative">
+                <label for="id_content" class="sr-only">Your comment</label>
                 {{ comment_form.content }}
                 <style>
                   #id_content {
                     background-color: #333;
+                    border: 2px solid #434343;
                     border-radius: 8px;
-                    padding: 8px;
+                    padding: 12px;
                     color: #fefefe;
                     font-size: 16px;
                     line-height: 1.5;
                     resize: vertical;
                     min-height: 120px;
                     width: 100%;
+                    transition: border-color 0.3s ease;
                   }
                   #id_content:focus {
                     outline: none;
+                    border-color: #d97706;
+                    box-shadow: 0 0 0 3px rgba(217, 119, 6, 0.1);
                   }
                   #id_content::placeholder {
                     color: #9ca3af;
@@ -307,10 +461,14 @@
               <div class="flex justify-between items-center">
                 <button
                   type="submit"
-                  class="bg-amber-700 text-white px-6 py-3 rounded-lg hover:bg-amber-600 transition-colors duration-300 font-medium uppercase tracking-wide text-sm"
+                  class="bg-amber-700 text-white px-6 py-3 rounded-lg hover:bg-amber-600 focus:outline-none focus:ring-2 focus:ring-amber-700 focus:ring-offset-2 focus:ring-offset-[#222] transition-colors duration-300 font-medium uppercase tracking-wide text-sm"
+                  aria-describedby="comment-submit-help"
                 >
                   Post Comment
                 </button>
+                <span id="comment-submit-help" class="sr-only"
+                  >Submit your comment for review</span
+                >
               </div>
             </form>
           </div>
@@ -319,11 +477,13 @@
       {% else %}
       <div
         class="bg-[#333] border-2 border-[#434343] p-6 rounded-lg mb-4 sm:mb-8 md:mb-12 text-center"
+        role="alert"
+        aria-live="polite"
       >
         <p class="text-[#dedede] text-lg">
           <a
             href="{% url 'admin:login' %}"
-            class="text-amber-700 hover:text-amber-700 font-medium underline transition-colors duration-300"
+            class="text-amber-700 hover:text-amber-600 focus:text-amber-600 font-medium underline transition-colors duration-300 focus:outline-none focus:ring-2 focus:ring-amber-700 focus:ring-offset-2 focus:ring-offset-[#333]"
           >
             Login
           </a>
@@ -334,12 +494,17 @@
 
       <!-- Pagination -->
       {% if comments.has_other_pages %}
-      <nav class="flex justify-center mt-12" aria-label="Comments pagination">
+      <nav
+        class="flex justify-center mt-12"
+        aria-label="Comments pagination"
+        role="navigation"
+      >
         <div class="flex items-center space-x-2">
           {% if comments.has_previous %}
           <a
             href="?page={{ comments.previous_page_number }}"
-            class="px-4 py-2 bg-[#333] border-2 border-[#434343] rounded-lg hover:bg-amber-700 hover:border-amber-700 text-[#dedede] hover:text-white transition-colors duration-300 font-medium"
+            class="px-4 py-2 bg-[#333] border-2 border-[#434343] rounded-lg hover:bg-amber-700 hover:border-amber-700 focus:bg-amber-700 focus:border-amber-700 text-[#dedede] hover:text-white focus:text-white transition-colors duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-amber-700 focus:ring-offset-2"
+            aria-label="Go to previous page of comments"
           >
             Previous
           </a>
@@ -347,6 +512,8 @@
 
           <span
             class="px-4 py-2 bg-amber-700 text-white rounded-lg font-medium border-2 border-amber-700"
+            aria-current="page"
+            aria-label="Current page {{ comments.number }} of {{ comments.paginator.num_pages }}"
           >
             Page {{ comments.number }} of {{ comments.paginator.num_pages }}
           </span>
@@ -354,7 +521,8 @@
           {% if comments.has_next %}
           <a
             href="?page={{ comments.next_page_number }}"
-            class="px-4 py-2 bg-[#333] border-2 border-[#434343] rounded-lg hover:bg-amber-700 hover:border-amber-700 text-[#dedede] hover:text-white transition-colors duration-300 font-medium"
+            class="px-4 py-2 bg-[#333] border-2 border-[#434343] rounded-lg hover:bg-amber-700 hover:border-amber-700 focus:bg-amber-700 focus:border-amber-700 text-[#dedede] hover:text-white focus:text-white transition-colors duration-300 font-medium focus:outline-none focus:ring-2 focus:ring-amber-700 focus:ring-offset-2"
+            aria-label="Go to next page of comments"
           >
             Next
           </a>
@@ -362,7 +530,7 @@
         </div>
       </nav>
       {% endif %}
-    </div>
+    </section>
   </div>
 </section>
 {% endblock body %}
