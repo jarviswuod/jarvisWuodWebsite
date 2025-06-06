@@ -2,6 +2,8 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
 from django.utils import timezone
+from django_ckeditor_5.fields import CKEditor5Field
+
 
 # Create your models here.
 
@@ -20,7 +22,7 @@ class Blog(models.Model):
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='blog_posts')
-    content = models.TextField()
+    content = CKEditor5Field(config_name='extends', null=True)
     excerpt = models.TextField(max_length=300, blank=True)
     featured_image = models.ImageField(
         upload_to='blog_images/', blank=True, null=True)

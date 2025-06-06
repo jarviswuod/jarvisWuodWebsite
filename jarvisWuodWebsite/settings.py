@@ -13,9 +13,11 @@ https://docs.djangoproject.com/en/5.1/ref/settings/
 
 from pathlib import Path
 from django.conf import settings
+from .ckeditor_config import *
 
 import os
 import environ
+
 
 env = environ.Env()
 environ.Env.read_env()
@@ -67,6 +69,7 @@ INSTALLED_APPS = [
 
     'django.contrib.sitemaps',
     'admin_honeypot',
+    'django_ckeditor_5',
 
     'blogs.apps.BlogsConfig',
     'jobs.apps.JobsConfig',
