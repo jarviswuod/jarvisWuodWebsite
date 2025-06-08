@@ -5,6 +5,9 @@ from .forms import BookCallForm, MentorshipForm, ExpertiseForm, ResumeReviewForm
 
 from django.contrib import messages
 
+from blogs.models import Blog
+# from django.core.paginator import Paginator
+
 
 def about(request):
     context = {}
@@ -20,6 +23,7 @@ def pricing(request):
 
 def home(request):
     book_call_form = BookCallForm()
+    blogs = Blog.objects.filter(is_published=True)[:3]
 
     if request.method == 'POST':
         book_call_form = BookCallForm(request.POST)
@@ -41,7 +45,7 @@ def home(request):
 
             return redirect('home')
 
-    context = {'book_call_form': book_call_form}
+    context = {'book_call_form': book_call_form, "blogs": blogs}
     return render(request, "main/home.html", context)
 
 

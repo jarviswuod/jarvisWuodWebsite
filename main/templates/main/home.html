@@ -119,14 +119,14 @@
 </section>
 
 <section
-  id="services-section"
-  class="services-section bg-[#222] px-8"
-  aria-labelledby="services-heading"
+  id="how-the-mentorship-works-section"
+  class="how-the-mentorship-works-section bg-[#222] px-8"
+  aria-labelledby="how-the-mentorship-works-heading"
 >
   <div class="max-w-[1280px] py-12 mx-auto space-y-24">
     <header>
       <h2
-        id="services-heading"
+        id="how-the-mentorship-works-heading"
         class="text-left text-base font-bold uppercase text-amber-700 mb-4 max-w-6xl"
       >
         How the Mentorship Works
@@ -142,14 +142,14 @@
     <div
       class="services-list space-y-2 sm:space-y-6 md:space-y-8 lg:space-y-12"
     >
-      <!-- Mentorship Service -->
+      <!-- Step 1: Assessment & Custom Roadmap -->
       <article
         class="service-card grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
       >
         <figure class="w-full">
           <img
-            src="{% static '/media/images/illustration_of_someone_helping_a_team_onboard_steps.png' %}"
-            alt="Illustration of someone helping a team onboard steps"
+            src="{% static '/media/images/custom_software_development_illustration_by_a_team.webp' %}"
+            alt="Skills assessment and personalized roadmap illustration"
             width="640"
             height="480"
           />
@@ -158,26 +158,18 @@
           <h3
             class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
           >
-            1-on-1 Mentorship
+            Step 1: Assessment & Custom Roadmap
           </h3>
           <p class="text-base sm:text-lg/8 mb-8">
-            I help beginners and intermediates become confident web developers
-            with personalized guidance, weekly calls, and a proven roadmap. If
-            you're ready to take your skills seriously, let's work together.
+            We start with a comprehensive evaluation of your current abilities
+            and goals. I'll identify your strengths, knowledge gaps, and create
+            a personalized learning roadmap with weekly milestones—no generic
+            tutorials, everything tailored to your skill level.
           </p>
-
-          <a
-            class="w-1/2 text-sm sm:text-base tracking-normal sm:tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-medium uppercase border-2 border-amber-400 p-4 px-2 sm:px-4"
-            href="{% url 'home' %}"
-            aria-label="Learn more about 1-on-1 mentorship"
-          >
-            Learn more
-            <span class="ml-2 text-base sm:text-lg" aria-hidden="true">↓</span>
-          </a>
         </div>
       </article>
 
-      <!-- Software Service -->
+      <!-- Step 2: Weekly 1-on-1 Sessions & Code Reviews -->
       <article
         class="service-card grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
       >
@@ -185,41 +177,33 @@
           <h3
             class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
           >
-            Custom Software Solutions
+            Step 2: Weekly 1-on-1 Sessions & Code Reviews
           </h3>
           <p class="text-base sm:text-lg/8 mb-8">
-            Need a website or Mobile app that works and looks amazing? I build
-            full-stack solutions for startups, NGOs, and solo businesses. Let's
-            bring your idea to life.
+            Every week, we'll have focused 60-minute calls to review your
+            progress, debug code together, and tackle challenging concepts. I'll
+            review every line of code you write, providing detailed feedback on
+            best practices and professional coding standards.
           </p>
-
-          <a
-            class="w-1/2 text-sm sm:text-base tracking-normal sm:tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-medium uppercase border-2 border-amber-400 p-4 px-2 sm:px-4"
-            href="{% url 'home' %}"
-            aria-label="Learn more about custom software solutions"
-          >
-            Expore my Process
-            <span class="ml-2 text-base sm:text-lg" aria-hidden="true">↓</span>
-          </a>
         </div>
         <figure class="w-full max-md:row-start-1">
           <img
-            src="{% static '/media/images/custom_software_development_illustration_by_a_team.webp' %}"
-            alt="Custom software development illustration"
+            src="{% static '/media/images/illustration_of_someone_helping_a_team_onboard_steps.png' %}"
+            alt="One-on-one mentoring session and code review illustration"
             width="640"
             height="480"
           />
         </figure>
       </article>
 
-      <!-- Resume Service -->
+      <!-- Step 3: Hands-on Projects & Portfolio Building -->
       <article
         class="service-card grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
       >
         <figure class="w-full">
           <img
-            src="{% static '/media/images/illustration_of_resume_being_reviewed.webp' %}"
-            alt="illustration of resume being reviewed"
+            src="{% static '/media/images/hands_on_projects_portfolio_illustration.webp' %}"
+            alt="Hands-on coding projects and portfolio building illustration"
             width="640"
             height="480"
           />
@@ -228,23 +212,41 @@
           <h3
             class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
           >
-            Resume & LinkedIn Review
+            Step 3: Hands-on Projects & Portfolio Building
           </h3>
           <p class="text-base sm:text-lg/8 mb-8">
-            I'll optimize your resume, fine-tune your LinkedIn profile, and show
-            you how to apply for jobs the smart way. Get noticed by recruiters
-            and land more interviews.
+            Build real applications that showcase your skills. From responsive
+            websites to full-stack apps, you'll create portfolio pieces that
+            impress employers while learning through practical, real-world
+            development challenges.
           </p>
-
-          <a
-            class="w-1/2 text-sm sm:text-base tracking-normal sm:tracking-wide hover:text-black hover:bg-amber-200 duration-300 transform-all text-center font-medium uppercase border-2 border-amber-400 p-4 px-2 sm:px-4"
-            href="{% url 'home' %}"
-            aria-label="Learn more about resume and LinkedIn review services"
-          >
-            Learn more
-            <span class="ml-2 text-base sm:text-lg" aria-hidden="true">↓</span>
-          </a>
         </div>
+      </article>
+
+      <!-- Step 4: Career Preparation & Job Readiness -->
+      <article
+        class="service-card grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center"
+      >
+        <div class="flex flex-col text-[#dedede]">
+          <h3
+            class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
+          >
+            Step 4: Career Preparation & Job Readiness
+          </h3>
+          <p class="text-base sm:text-lg/8 mb-8">
+            Beyond coding skills, I'll prepare you for the job market. Interview
+            practice, portfolio optimization, resume refinement, and networking
+            strategies to confidently land your first or next developer role.
+          </p>
+        </div>
+        <figure class="w-full max-md:row-start-1">
+          <img
+            src="{% static '/media/images/illustration_of_resume_being_reviewed.webp' %}"
+            alt="Career preparation and job readiness illustration"
+            width="640"
+            height="480"
+          />
+        </figure>
       </article>
     </div>
   </div>
@@ -823,110 +825,90 @@
     </header>
 
     <div class="blog-posts">
+      {% if blogs %}
       <ul
         class="blog-grid grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-8"
       >
-        <!-- Blog Post 1 -->
-        <li class="blog-post">
-          <article>
-            <figure class="mb-4 md:mb-6">
-              <img
-                class="w-full"
-                src="{% static 'media/blogs/jarvis_wuod_x_account_profile.png' %}"
-                alt="jarvis wuod x account profile"
-                width="400"
-                height="250"
-              />
-            </figure>
-            <header>
-              <h3
-                class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
-              >
-                My Journey of Progress
-              </h3>
-              <p class="text-base sm:text-lg/8 mb-8">
-                Hard Truths, Habits, and Hustle
-              </p>
-            </header>
-            <a
-              class="underline text-amber-700"
-              href="https://jarviswuod.substack.com/p/hard-truths-habits-and-hustle"
-              aria-label="Read more about My Journey of Progress"
-            >
-              Learn More
-            </a>
-          </article>
-        </li>
+        {% for blog in blogs %}
 
-        <!-- Blog Post 2 -->
-        <li class="blog-post">
-          <article>
-            <figure class="mb-4 md:mb-6">
-              <img
-                class="w-full"
-                src="{% static '/media/blogs/image_about_personal_brand_growth.png' %}"
-                alt="Blog post thumbnail image about personal brand growth on
-              Twitter"
-                width="400"
-                height="250"
-              />
-            </figure>
-            <header>
-              <h3
-                class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
-              >
-                The 4-Step Blueprint
-              </h3>
-              <p class="text-base sm:text-lg/8 mb-8">
-                How I'm Supercharging My Personal Brand Growth on X
-              </p>
-            </header>
-            <a
-              class="underline text-amber-700"
-              href="https://jarviswuod.substack.com/p/how-im-supercharging-my-personal"
-              aria-label="Read more about The 4-Step Blueprint for personal brand growth"
-            >
-              Learn More
-            </a>
-          </article>
-        </li>
-
-        <!-- Blog Post 3 -->
         <li
-          class="blog-post col-span-1 sm:col-span-2 lg:col-span-1 max-w-full sm:max-w-1/2 lg:max-w-full self-center justify-self-center"
+          class="blog-post {% if forloop.counter == 3 %} col-span-1 sm:col-span-2 lg:col-span-1 max-w-full sm:max-w-1/2 lg:max-w-full self-center justify-self-center {% endif %}"
         >
           <article>
             <figure class="mb-4 md:mb-6">
+              <!--prettier-ignore-->
               <img
                 class="w-full"
-                src="{% static '/media/blogs/image_about_personal_transformation.png' %}"
-                alt="Blog
-              post thumbnail image about personal transformation"
+                alt="{{ blog.title }} thumbnail image"
                 width="400"
                 height="250"
+
+                {% if blog.featured_image %}
+                src="{{ blog.featured_image.url }}"
+                {% else %}
+                src="{% static 'media/images/no_img_illustration.png' %}"
+                {% endif %}
               />
             </figure>
             <header>
               <h3
                 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
               >
-                From Struggles to Strength
+                {{ blog.title }}
               </h3>
-              <p class="text-base sm:text-lg/8 mb-8">
-                How James Clear, Alex Hormozi, and Dan Koe are transforming my
-                life.
+              <p
+                class="text-base sm:text-lg/8 mb-8 line-clamp-3 leading-relaxed"
+                aria-label="Article excerpt"
+              >
+                {{ blog.excerpt }}
               </p>
             </header>
             <a
               class="underline text-amber-700"
-              href="https://jarviswuod.substack.com/p/from-struggles-to-strength"
-              aria-label="Read more about From Struggles to Strength"
+              href="{{ blog.get_absolute_url }}"
+              aria-label="Read article: {{ blog.title }}"
+              tabindex="0"
             >
               Learn More
             </a>
           </article>
         </li>
+
+        {% endfor %}
       </ul>
+      {% else %}
+      <!-- Empty State -->
+      <div
+        class="text-center py-12 sm:py-16 md:py-20 lg:py-24"
+        role="status"
+        aria-live="polite"
+      >
+        <i
+          class="fas fa-blog text-6xl md:text-7xl lg:text-8xl text-[#434343] mb-8"
+          aria-hidden="true"
+        ></i>
+        <h2 class="text-3xl sm:text-4xl font-semibold text-[#dedede] mb-6">
+          {% if search_query %} No blogs found for "{{ search_query }}" {% else
+          %} No blogs available yet {% endif %}
+        </h2>
+        <p
+          class="text-lg sm:text-xl text-[#dedede] mb-4 sm:mb-8 md:mb-12 max-w-xl mx-auto"
+        >
+          {% if search_query %} Try adjusting your search terms or browse all
+          blogs. {% else %} Check back later for amazing content! {% endif %}
+        </p>
+        {% if search_query %}
+        <a
+          href="{% url 'blog_list' %}"
+          class="inline-block border border-amber-700 text-[#dedede] hover:text-black px-8 py-4 font-medium uppercase text-sm tracking-wide hover:bg-amber-700 focus:bg-amber-700 focus:text-black focus:outline-none transition-colors"
+          aria-label="Clear search and view all blog posts"
+          tabindex="0"
+        >
+          View All Blogs
+        </a>
+        {% endif %}
+      </div>
+      {% endif %}
     </div>
   </div>
 </section>
