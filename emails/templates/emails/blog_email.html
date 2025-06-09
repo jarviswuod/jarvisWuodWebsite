@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{{ blog_title }}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+      /* Custom styles for email clients */
+      .email-container {
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      /* Dark mode support */
+      @media (prefers-color-scheme: dark) {
+        .dark-mode-bg {
+          background-color: #1f2937 !important;
+        }
+        .dark-mode-text {
+          color: #f9fafb !important;
+        }
+      }
+    </style>
+  </head>
+  <body class="bg-gray-100 py-8">
+    <div class="email-container bg-white rounded-lg shadow-lg overflow-hidden">
+      <!-- Header -->
+      <div class="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-6">
+        <h1 class="text-2xl font-bold text-white mb-2">📝 New Blog Post</h1>
+        <p class="text-blue-100">Fresh content from our blog</p>
+      </div>
+
+      <!-- Content -->
+      <div class="px-8 py-6">
+        <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ blog_title }}</h2>
+
+        <div class="prose max-w-none mb-6">
+          <div class="text-gray-600 leading-relaxed">
+            {{ blog_content|safe }}
+          </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center mb-6">
+          <a
+            href="{{ blog_url }}"
+            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
+          >
+            Read Full Article →
+          </a>
+        </div>
+
+        <!-- Author Info -->
+        <div class="border-t border-gray-200 pt-6">
+          <div class="flex items-center">
+            <div
+              class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg"
+            >
+              {{ author_name|first|upper }}
+            </div>
+            <div class="ml-4">
+              <p class="font-semibold text-gray-800">{{ author_name }}</p>
+              <p class="text-gray-600 text-sm">Blog Author</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Footer -->
+      <div class="bg-gray-50 px-8 py-6 border-t">
+        <div class="text-center text-gray-600 text-sm">
+          <p class="mb-2">Thanks for being a subscriber! 🙏</p>
+          <p class="mb-4">Follow us on social media for more updates</p>
+
+          <!-- Social Links -->
+          <div class="flex justify-center space-x-4 mb-4">
+            <a href="#" class="text-blue-600 hover:text-blue-800">Twitter</a>
+            <a href="#" class="text-blue-600 hover:text-blue-800">LinkedIn</a>
+            <a href="#" class="text-blue-600 hover:text-blue-800">Facebook</a>
+          </div>
+
+          <p class="text-xs text-gray-500">
+            You received this email because you subscribed to our blog updates.
+            <br />
+            <a href="#" class="text-blue-600 hover:underline">Unsubscribe</a> |
+            <a href="#" class="text-blue-600 hover:underline"
+              >Update Preferences</a
+            >
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

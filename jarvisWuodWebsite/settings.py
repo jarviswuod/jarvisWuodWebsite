@@ -75,7 +75,7 @@ INSTALLED_APPS = [
     'jobs.apps.JobsConfig',
     'main.apps.MainConfig',
     'newsletters.apps.NewslettersConfig',
-
+    'emails.apps.EmailsConfig',
 ]
 
 MIDDLEWARE = [
@@ -185,5 +185,7 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = env('EMAIL_HOST_USER')
 EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
+
+SITE_NAME = 'Jarvis Wuod'
 
 ACCOUNT_USERNAME_BLACKLIST = ['admin', 'root', 'user', 'strange',]

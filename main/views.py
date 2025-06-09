@@ -6,7 +6,6 @@ from .forms import BookCallForm, MentorshipForm, ExpertiseForm, ResumeReviewForm
 from django.contrib import messages
 
 from blogs.models import Blog
-# from django.core.paginator import Paginator
 
 
 def about(request):
