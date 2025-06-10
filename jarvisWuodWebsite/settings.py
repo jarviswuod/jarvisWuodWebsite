@@ -74,7 +74,6 @@ INSTALLED_APPS = [
     'blogs.apps.BlogsConfig',
     'jobs.apps.JobsConfig',
     'main.apps.MainConfig',
-    'newsletters.apps.NewslettersConfig',
     'emails.apps.EmailsConfig',
 ]
 
