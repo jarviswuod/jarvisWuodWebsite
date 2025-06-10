@@ -1,95 +1,211 @@
+{% load static %} {% load i18n %}
+
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{{ blog_title }}</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>
+      {{blog.title|escapejs}} - {{ blog.slug|escapejs }} | Jarvis Wuod
+    </title>
+  </head>
+  <body style="padding-bottom: 2rem">
+    <section
+      style="max-width: 64rem; margin: 0 auto"
+      id="blog-content"
+      data-title="{{ blog.title|escapejs }}"
+      data-slug="{{ blog.slug }}"
+      aria-labelledby="post-heading"
+    >
+      <div
+        style="padding-left: 0.8rem; padding-right: 0.8rem"
+        class="container"
+      >
+        <!-- Blog Header -->
+        <article itemscope itemtype="https://schema.org/BlogPosting">
+          <header>
+            <a
+              style="
+                max-width: 64rem;
+                margin: 1.2rem auto;
+                font-size: 1.4rem;
+                font-weight: 400;
+                color: #111;
+                display: block;
+                margin-bottom: 1rem;
+                text-align: center;
+                text-decoration: none;
+              "
+              href="http://jarviswuod.com/blogs"
+            >
+              Jarvis Wuod Newsletter
+            </a>
+            <hr
+              style="
+                display: block;
+                width: 100%;
+                height: 1px;
+                border: none;
+                border-bottom: 2px solid #e5e7eb;
+              "
+            />
+            <h1
+              id="post-heading"
+              class="main-heading"
+              style="
+                text-transform: capitalize;
+                font-size: 2rem;
+                margin-bottom: 1rem;
+                font-weight: 600;
+                color: #111;
+                line-height: 1.1;
+              "
+              itemprop="headline"
+            >
+              {{ blog.title }}
+            </h1>
+            <p
+              style="
+                font-size: 1.25rem;
+                margin-bottom: 2.4rem;
+                color: #666;
+                line-height: 1.1;
+              "
+            >
+              {{ blog.excerpt }}
+            </p>
+          </header>
+
+          <div
+            class="prose-content"
+            style="
+              color: #222;
+              line-height: 1.625;
+              font-size: 1rem;
+              max-width: 56rem;
+              margin-left: auto;
+            "
+            itemprop="articleBody"
+          >
+            {{ blog.content|safe }}
+          </div>
+
+          <!-- Hidden schema data -->
+          <meta
+            itemprop="dateModified"
+            content="{{ blog.updated_at|date:'c' }}"
+          />
+          <div
+            itemprop="publisher"
+            itemscope
+            itemtype="https://schema.org/Organization"
+            style="display: none"
+          >
+            <meta itemprop="name" content="Your Site Name" />
+            <div
+              itemprop="logo"
+              itemscope
+              itemtype="https://schema.org/ImageObject"
+            >
+              <meta
+                itemprop="url"
+                content="https://{{ request.META.HTTP_HOST }}{% static 'media/images/jarvis_wuod_logo.png' %}"
+              />
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
     <style>
-      /* Custom styles for email clients */
-      .email-container {
-        max-width: 600px;
-        margin: 0 auto;
+      /* Base prose styling for content images and formatting */
+      .prose-content img {
+        max-width: 100%;
+        height: auto;
+        margin: 1.5rem 0;
+        border-radius: 0.5rem;
+        display: none;
       }
 
-      /* Dark mode support */
-      @media (prefers-color-scheme: dark) {
-        .dark-mode-bg {
-          background-color: #1f2937 !important;
+      .prose-content p {
+        margin-bottom: 1rem;
+      }
+
+      .prose-content h2 {
+        font-size: 1.5rem;
+        font-weight: 600;
+        margin-top: 2rem;
+        margin-bottom: 1rem;
+        color: #111;
+      }
+
+      .prose-content h3 {
+        font-size: 1.25rem;
+        font-weight: 600;
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
+        color: #111;
+      }
+
+      .prose-content ul,
+      .prose-content ol {
+        margin: 1rem 0;
+        padding-left: 1.5rem;
+      }
+
+      .prose-content li {
+        margin-bottom: 0.5rem;
+      }
+
+      .prose-content blockquote {
+        border-left: 4px solid #e5e7eb;
+        padding-left: 1rem;
+        margin: 1.5rem 0;
+        font-style: italic;
+        color: #6b7280;
+      }
+
+      /* Media queries for responsive design */
+      @media (min-width: 640px) {
+        .main-heading {
+          font-size: 3.75rem !important;
+          margin-bottom: 3rem !important;
         }
-        .dark-mode-text {
-          color: #f9fafb !important;
+
+        .featured-image {
+          margin-bottom: 2rem !important;
+        }
+
+        .image-container {
+          height: 20rem !important;
+        }
+
+        .prose-content {
+          font-size: 1.125rem !important;
+        }
+      }
+
+      @media (min-width: 768px) {
+        .main-heading {
+          font-size: 4.5rem !important;
+          margin-bottom: 4rem !important;
+        }
+
+        .image-container {
+          height: 24rem !important;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .main-heading {
+          font-size: 6rem !important;
+          margin-bottom: 5rem !important;
+        }
+
+        .image-container {
+          height: 36rem !important;
         }
       }
     </style>
-  </head>
-  <body class="bg-gray-100 py-8">
-    <div class="email-container bg-white rounded-lg shadow-lg overflow-hidden">
-      <!-- Header -->
-      <div class="bg-gradient-to-r from-blue-600 to-purple-600 px-8 py-6">
-        <h1 class="text-2xl font-bold text-white mb-2">📝 New Blog Post</h1>
-        <p class="text-blue-100">Fresh content from our blog</p>
-      </div>
-
-      <!-- Content -->
-      <div class="px-8 py-6">
-        <h2 class="text-2xl font-bold text-gray-800 mb-4">{{ blog_title }}</h2>
-
-        <div class="prose max-w-none mb-6">
-          <div class="text-gray-600 leading-relaxed">
-            {{ blog_content|safe }}
-          </div>
-        </div>
-
-        <!-- Call to Action -->
-        <div class="text-center mb-6">
-          <a
-            href="{{ blog_url }}"
-            class="inline-block bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-8 rounded-lg transition-colors duration-200"
-          >
-            Read Full Article →
-          </a>
-        </div>
-
-        <!-- Author Info -->
-        <div class="border-t border-gray-200 pt-6">
-          <div class="flex items-center">
-            <div
-              class="w-12 h-12 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full flex items-center justify-center text-white font-bold text-lg"
-            >
-              {{ author_name|first|upper }}
-            </div>
-            <div class="ml-4">
-              <p class="font-semibold text-gray-800">{{ author_name }}</p>
-              <p class="text-gray-600 text-sm">Blog Author</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Footer -->
-      <div class="bg-gray-50 px-8 py-6 border-t">
-        <div class="text-center text-gray-600 text-sm">
-          <p class="mb-2">Thanks for being a subscriber! 🙏</p>
-          <p class="mb-4">Follow us on social media for more updates</p>
-
-          <!-- Social Links -->
-          <div class="flex justify-center space-x-4 mb-4">
-            <a href="#" class="text-blue-600 hover:text-blue-800">Twitter</a>
-            <a href="#" class="text-blue-600 hover:text-blue-800">LinkedIn</a>
-            <a href="#" class="text-blue-600 hover:text-blue-800">Facebook</a>
-          </div>
-
-          <p class="text-xs text-gray-500">
-            You received this email because you subscribed to our blog updates.
-            <br />
-            <a href="#" class="text-blue-600 hover:underline">Unsubscribe</a> |
-            <a href="#" class="text-blue-600 hover:underline"
-              >Update Preferences</a
-            >
-          </p>
-        </div>
-      </div>
-    </div>
   </body>
 </html>

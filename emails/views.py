@@ -1,5 +1,5 @@
 
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.core.mail import send_mail, send_mass_mail
 from django.template.loader import render_to_string
@@ -12,59 +12,52 @@ import logging
 from concurrent.futures import ThreadPoolExecutor
 from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
+from blogs.models import Blog
 
 logger = logging.getLogger(__name__)
 
-# Sample email list - replace with your actual 129 emails
 EMAIL_LIST = [
     'jarviswuod@gmail.com',
     'jarvis@afrisoltech.co.ke',
     'jarvisochieng2018@gmail.com',
-    # Add your 129 emails here
 ]
 
 
-def send_single_email(request):
+def send_single_email(request, slug):
+    blog = get_object_or_404(Blog, slug=slug, is_published=True)
+
     """
     Send a single blog email with HTML template
     """
     if request.method == 'POST':
         try:
-            # Get data from request
+
             data = json.loads(
                 request.body) if request.content_type == 'application/json' else request.POST
 
             recipient_email = data.get('email')
             blog_title = data.get('title', 'Latest Blog Post')
             blog_content = data.get('content', '')
-            blog_url = data.get('url', '#')
-            author_name = data.get('author', 'Blog Author')
 
             if not recipient_email:
                 return JsonResponse({'error': 'Email address is required'}, status=400)
 
-            # Render HTML email template
             html_content = render_to_string('emails/blog_email.html', {
-                'blog_title': blog_title,
-                'blog_content': blog_content,
-                'blog_url': blog_url,
-                'author_name': author_name,
+                'blog': blog,
+                'blog_title': blog.title,
                 'recipient_email': recipient_email,
             })
 
-            # Create plain text version
             text_content = strip_tags(html_content)
 
-            # Create email message
             email = EmailMultiAlternatives(
-                subject=f'New Blog Post: {blog_title}',
+                subject=blog.title,
                 body=text_content,
                 from_email=settings.DEFAULT_FROM_EMAIL,
                 to=[recipient_email]
             )
             email.attach_alternative(html_content, "text/html")
 
-            # Send email
             email.send()
 
             logger.info(f'Single email sent successfully to {recipient_email}')
@@ -77,7 +70,6 @@ def send_single_email(request):
             logger.error(f'Error sending single email: {str(e)}')
             return JsonResponse({'error': str(e)}, status=500)
 
-    # GET request - show form
     return render(request, 'emails/send_single.html')
 
 
