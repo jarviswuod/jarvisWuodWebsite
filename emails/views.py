@@ -5,6 +5,7 @@ from django.core.mail import send_mail, send_mass_mail
 from django.template.loader import render_to_string
 from django.utils.html import strip_tags
 from django.conf import settings
+from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 import json
@@ -31,21 +32,15 @@ def send_single_email(request, slug):
     """
     if request.method == 'POST':
         try:
+            user_email_input = request.POST.get('email')
+            print(f'email :  {user_email_input}')
 
-            data = json.loads(
-                request.body) if request.content_type == 'application/json' else request.POST
-
-            recipient_email = data.get('email')
-            blog_title = data.get('title', 'Latest Blog Post')
-            blog_content = data.get('content', '')
-
-            if not recipient_email:
-                return JsonResponse({'error': 'Email address is required'}, status=400)
+            if not user_email_input:
+                messages.error(request,  'Email address is required')
+                return redirect('send_single')
 
             html_content = render_to_string('emails/blog_email.html', {
-                'blog': blog,
-                'blog_title': blog.title,
-                'recipient_email': recipient_email,
+                'blog': blog
             })
 
             text_content = strip_tags(html_content)
@@ -54,26 +49,31 @@ def send_single_email(request, slug):
                 subject=blog.title,
                 body=text_content,
                 from_email=settings.DEFAULT_FROM_EMAIL,
-                to=[recipient_email]
+                to=[user_email_input]
             )
             email.attach_alternative(html_content, "text/html")
 
             email.send()
 
-            logger.info(f'Single email sent successfully to {recipient_email}')
-            return JsonResponse({
-                'success': True,
-                'message': f'Email sent successfully to {recipient_email}'
-            })
+            logger.info(
+                f'Single email sent successfully to {user_email_input}')
+
+            messages.success(
+                request,  f'Email sent successfully to {user_email_input}')
+            return redirect('emails:send_single')
 
         except Exception as e:
             logger.error(f'Error sending single email: {str(e)}')
-            return JsonResponse({'error': str(e)}, status=500)
+            messages.error(
+                request,  f'Error ::: {str(e)}')
+            return redirect('emails:send_single')
 
     return render(request, 'emails/send_single.html')
 
 
-def send_bulk_email(request):
+def send_bulk_email(request, slug):
+    blog = get_object_or_404(Blog, slug=slug, is_published=True)
+
     """
     Send bulk emails to all subscribers with optimizations
     Uses threading and batching for better performance
@@ -84,7 +84,7 @@ def send_bulk_email(request):
             data = json.loads(
                 request.body) if request.content_type == 'application/json' else request.POST
 
-            blog_title = data.get('title', 'Latest Blog Post')
+            blog_title = blog.title
             blog_content = data.get('content', '')
             blog_url = data.get('url', '#')
             author_name = data.get('author', 'Blog Author')
