@@ -18,18 +18,17 @@ from blogs.models import Blog
 logger = logging.getLogger(__name__)
 
 EMAIL_LIST = [
-    'jarviswuod@gmail.com',
-    'jarvis@afrisoltech.co.ke',
-    'jarvisochieng2018@gmail.com',
+    "test1@example.com",
+    "user2@testmail.org",
+    "demo3@samplesite.net",
+    "trial4@mockdomain.com",
+    "sample5@dummymail.co",
 ]
 
 
 def send_single_email(request, slug):
     blog = get_object_or_404(Blog, slug=slug, is_published=True)
 
-    """
-    Send a single blog email with HTML template
-    """
     if request.method == 'POST':
         try:
             user_email_input = request.POST.get('email')
@@ -37,7 +36,7 @@ def send_single_email(request, slug):
 
             if not user_email_input:
                 messages.error(request,  'Email address is required')
-                return redirect('send_single')
+                return redirect('emails:send_single', slug=slug)
 
             html_content = render_to_string('emails/blog_email.html', {
                 'blog': blog
@@ -60,13 +59,13 @@ def send_single_email(request, slug):
 
             messages.success(
                 request,  f'Email sent successfully to {user_email_input}')
-            return redirect('emails:send_single')
+            return redirect('emails:send_single', slug=slug)
 
         except Exception as e:
             logger.error(f'Error sending single email: {str(e)}')
             messages.error(
                 request,  f'Error ::: {str(e)}')
-            return redirect('emails:send_single')
+            return redirect('emails:send_single', slug=slug)
 
     return render(request, 'emails/send_single.html')
 
@@ -74,39 +73,21 @@ def send_single_email(request, slug):
 def send_bulk_email(request, slug):
     blog = get_object_or_404(Blog, slug=slug, is_published=True)
 
-    """
-    Send bulk emails to all subscribers with optimizations
-    Uses threading and batching for better performance
-    """
     if request.method == 'POST':
         try:
-            # Get data from request
-            data = json.loads(
-                request.body) if request.content_type == 'application/json' else request.POST
 
-            blog_title = blog.title
-            blog_content = data.get('content', '')
-            blog_url = data.get('url', '#')
-            author_name = data.get('author', 'Blog Author')
-
-            # Render HTML email template once
             html_content = render_to_string('emails/blog_email.html', {
-                'blog_title': blog_title,
-                'blog_content': blog_content,
-                'blog_url': blog_url,
-                'author_name': author_name,
+                'blog': blog
             })
 
-            # Create plain text version
             text_content = strip_tags(html_content)
 
-            # Optimization 1: Batch processing
+            # Batch processing
             def send_email_batch(email_batch):
-                """Send emails in batches to avoid overwhelming the server"""
                 messages = []
                 for email in email_batch:
                     msg = EmailMultiAlternatives(
-                        subject=f'New Blog Post: {blog_title}',
+                        subject=blog.title,
                         body=text_content,
                         from_email=settings.DEFAULT_FROM_EMAIL,
                         to=[email]
@@ -120,18 +101,21 @@ def send_bulk_email(request, slug):
                         msg.send()
                     return len(messages)
                 except Exception as e:
+                    print(f'Error sending email batch: {str(e)}')
                     logger.error(f'Error sending email batch: {str(e)}')
+                    messages.error(
+                        request, f'Error sending email batch: {str(e)}')
                     return 0
 
-            # Optimization 2: Split emails into batches of 10
-            batch_size = 10
+            # Split emails into batches of 5
+            batch_size = 5
             email_batches = [EMAIL_LIST[i:i + batch_size]
                              for i in range(0, len(EMAIL_LIST), batch_size)]
 
             total_sent = 0
             failed_emails = []
 
-            # Optimization 3: Use ThreadPoolExecutor for concurrent sending
+            # Use ThreadPoolExecutor for concurrent sending
             with ThreadPoolExecutor(max_workers=3) as executor:
                 future_to_batch = {executor.submit(
                     send_email_batch, batch): batch for batch in email_batches}
@@ -144,25 +128,40 @@ def send_bulk_email(request, slug):
                     except Exception as e:
                         failed_batch = future_to_batch[future]
                         failed_emails.extend(failed_batch)
+                        print(f'Batch failed: {str(e)}')
                         logger.error(f'Batch failed: {str(e)}')
+
+            print(
+                f'Bulk email completed. Sent: {total_sent}, Failed: {len(failed_emails)}')
 
             logger.info(
                 f'Bulk email completed. Sent: {total_sent}, Failed: {len(failed_emails)}')
+            print(
+                f'Bulk email completed. Sent: {total_sent}, Failed: {len(failed_emails)}')
+            messages.error(
+                request,   f'Bulk email completed. Sent: {total_sent}, Failed: {len(failed_emails)}')
+            return redirect('emails:send_bulk', slug=slug)
 
-            return JsonResponse({
-                'success': True,
+            print({
                 'message': f'Bulk email completed successfully',
                 'total_sent': total_sent,
                 'total_failed': len(failed_emails),
-                # Return first 10 failed emails
                 'failed_emails': failed_emails[:10]
             })
+            messages.success(request, {
+                'message': f'Bulk email completed successfully',
+                'total_sent': total_sent,
+                'total_failed': len(failed_emails),
+                'failed_emails': failed_emails[:10]
+            })
+            return redirect('emails:send_bulk', slug=slug)
 
         except Exception as e:
             logger.error(f'Error in bulk email sending: {str(e)}')
-            return JsonResponse({'error': str(e)}, status=500)
+            print(f'Error in bulk email sending: {str(e)}')
+            messages.error(request, f'Error in bulk email sending: {str(e)}')
+            return redirect('emails:send_bulk', slug=slug)
 
-    # GET request - show form
     return render(request, 'emails/send_bulk.html', {
         'total_subscribers': len(EMAIL_LIST)
     })
