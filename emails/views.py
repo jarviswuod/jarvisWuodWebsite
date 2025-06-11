@@ -1,4 +1,4 @@
-
+from django.contrib.admin.views.decorators import staff_member_required
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import JsonResponse
 from django.core.mail import send_mail, send_mass_mail
@@ -26,13 +26,13 @@ EMAIL_LIST = [
 ]
 
 
+@staff_member_required
 def send_single_email(request, slug):
     blog = get_object_or_404(Blog, slug=slug, is_published=True)
 
     if request.method == 'POST':
         try:
             user_email_input = request.POST.get('email')
-            print(f'email :  {user_email_input}')
 
             if not user_email_input:
                 messages.error(request,  'Email address is required')
@@ -64,12 +64,13 @@ def send_single_email(request, slug):
         except Exception as e:
             logger.error(f'Error sending single email: {str(e)}')
             messages.error(
-                request,  f'Error ::: {str(e)}')
+                request,  f'Error : {str(e)}')
             return redirect('emails:send_single', slug=slug)
 
     return render(request, 'emails/send_single.html')
 
 
+@staff_member_required
 def send_bulk_email(request, slug):
     blog = get_object_or_404(Blog, slug=slug, is_published=True)
 
@@ -82,7 +83,6 @@ def send_bulk_email(request, slug):
 
             text_content = strip_tags(html_content)
 
-            # Batch processing
             def send_email_batch(email_batch):
                 messages = []
                 for email in email_batch:
@@ -95,19 +95,16 @@ def send_bulk_email(request, slug):
                     msg.attach_alternative(html_content, "text/html")
                     messages.append(msg)
 
-                # Send batch
                 try:
                     for msg in messages:
                         msg.send()
                     return len(messages)
                 except Exception as e:
-                    print(f'Error sending email batch: {str(e)}')
                     logger.error(f'Error sending email batch: {str(e)}')
                     messages.error(
                         request, f'Error sending email batch: {str(e)}')
                     return 0
 
-            # Split emails into batches of 5
             batch_size = 5
             email_batches = [EMAIL_LIST[i:i + batch_size]
                              for i in range(0, len(EMAIL_LIST), batch_size)]
@@ -115,39 +112,25 @@ def send_bulk_email(request, slug):
             total_sent = 0
             failed_emails = []
 
-            # Use ThreadPoolExecutor for concurrent sending
             with ThreadPoolExecutor(max_workers=3) as executor:
                 future_to_batch = {executor.submit(
                     send_email_batch, batch): batch for batch in email_batches}
 
                 for future in future_to_batch:
                     try:
-                        # 30 second timeout per batch
                         sent_count = future.result(timeout=30)
                         total_sent += sent_count
                     except Exception as e:
                         failed_batch = future_to_batch[future]
                         failed_emails.extend(failed_batch)
-                        print(f'Batch failed: {str(e)}')
                         logger.error(f'Batch failed: {str(e)}')
-
-            print(
-                f'Bulk email completed. Sent: {total_sent}, Failed: {len(failed_emails)}')
 
             logger.info(
                 f'Bulk email completed. Sent: {total_sent}, Failed: {len(failed_emails)}')
-            print(
-                f'Bulk email completed. Sent: {total_sent}, Failed: {len(failed_emails)}')
-            messages.error(
+            messages.success(
                 request,   f'Bulk email completed. Sent: {total_sent}, Failed: {len(failed_emails)}')
             return redirect('emails:send_bulk', slug=slug)
 
-            print({
-                'message': f'Bulk email completed successfully',
-                'total_sent': total_sent,
-                'total_failed': len(failed_emails),
-                'failed_emails': failed_emails[:10]
-            })
             messages.success(request, {
                 'message': f'Bulk email completed successfully',
                 'total_sent': total_sent,
@@ -158,7 +141,6 @@ def send_bulk_email(request, slug):
 
         except Exception as e:
             logger.error(f'Error in bulk email sending: {str(e)}')
-            print(f'Error in bulk email sending: {str(e)}')
             messages.error(request, f'Error in bulk email sending: {str(e)}')
             return redirect('emails:send_bulk', slug=slug)
 

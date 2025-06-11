@@ -1,176 +1,67 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Send Bulk Email</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-  </head>
-  <body class="bg-gray-100 min-h-screen py-8">
-    <div class="max-w-2xl mx-auto bg-white rounded-lg shadow-lg p-8">
-      <h1 class="text-3xl font-bold text-gray-800 mb-4">
-        Send Bulk Blog Email
-      </h1>
-      <p class="text-gray-600 mb-8">
-        Send to {{ total_subscribers }} subscribers
-      </p>
+{% extends "base.html" %}
 
-      <form id="bulkEmailForm" class="space-y-6">
-        {% csrf_token %}
+<!-- HEAD SECTION -->
 
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
-            Blog Title
-          </label>
-          <input
-            type="text"
-            name="title"
-            required
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
+{% block meta %}
+<title>Send Bulk mail | Newsletter || Jarvis Wuod</title>
 
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
-            Blog Content
-          </label>
-          <textarea
-            name="content"
-            rows="6"
-            required
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          ></textarea>
-        </div>
+<meta
+  name="description"
+  content="Find the best remote software developer jobs, tech opportunities with visa sponsorship, and high-paying programming careers across Africa, USA, Europe and Asia. Updated daily"
+/>
 
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
-            Blog URL
-          </label>
-          <input
-            type="url"
-            name="url"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
+<meta
+  name="keywords"
+  content="remote developer jobs, work from home tech jobs, software engineer salary, entry level developer jobs, freelance coding work, visa sponsorship tech jobs, highest paying programming jobs, remote frontend developer, backend developer remote, software jobs no degree, junior developer openings, tech startups hiring, developer jobs africa, coding interview questions, web developer salary kenya, remote react jobs, python developer remote, javascript jobs, remote software engineer, tech jobs without experience, remote developer hiring, tech careers 2025, software companies hiring, remote coding interview, tech job application tips, tech jobs africa, remote developer jobs, global tech opportunities, fullstack developer positions, android developer jobs, web developer careers, tech job board, design jobs tech, african tech recruitment, kenyan developer jobs, nigerian tech opportunities, tech visa sponsorship, usa tech jobs, canada developer positions, uk tech careers, remote work tech, hybrid tech jobs, onsite developer roles, international tech positions, programming jobs board, coding careers, software engineer positions, tech recruitment platform, developer job search, tech industry opportunities, junior developer roles, senior tech positions, mid-level developer jobs"
+/>
 
-        <div>
-          <label class="block text-sm font-medium text-gray-700 mb-2">
-            Author Name
-          </label>
-          <input
-            type="text"
-            name="author"
-            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-          />
-        </div>
+<!-- Open Grapg Tags -->
+<meta
+  property="og:title"
+  content="Send Bulk mail | Newsletter || Jarvis Wuod"
+/>
+<meta
+  property="og:description"
+  content="Find the best remote software developer jobs, tech opportunities with visa sponsorship, and high-paying programming careers across Africa, USA, Europe and Asia. Updated daily"
+/>
 
-        <button
-          type="submit"
-          id="sendButton"
-          class="w-full bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
-        >
-          Send to All Subscribers ({{ total_subscribers }})
-        </button>
-      </form>
+<!-- Twitter/ X  Tags -->
+<meta
+  name="twitter:title"
+  content="Send Bulk mail | Newsletter || Jarvis Wuod"
+/>
+<meta
+  name="twitter:description"
+  content="Find the best remote software developer jobs, tech opportunities with visa sponsorship, and high-paying programming careers across Africa, USA, Europe and Asia. Updated daily"
+/>
 
-      <div id="progress" class="mt-6 hidden">
-        <div
-          class="bg-blue-100 border border-blue-400 text-blue-700 px-4 py-3 rounded-lg"
-        >
-          <p class="font-semibold">Sending emails...</p>
-          <div class="w-full bg-blue-200 rounded-full h-2 mt-2">
-            <div
-              class="bg-blue-600 h-2 rounded-full transition-all duration-300"
-              style="width: 0%"
-              id="progressBar"
-            ></div>
-          </div>
-        </div>
-      </div>
+{% endblock meta %}
 
-      <div id="result" class="mt-6 hidden"></div>
-    </div>
+<!-- BODY SECTION -->
 
-    <script>
-      document
-        .getElementById("bulkEmailForm")
-        .addEventListener("submit", async function (e) {
-          e.preventDefault();
+{% block body %}
 
-          const formData = new FormData(this);
-          const data = Object.fromEntries(formData);
-          const sendButton = document.getElementById("sendButton");
-          const progressDiv = document.getElementById("progress");
-          const progressBar = document.getElementById("progressBar");
-          const resultDiv = document.getElementById("result");
+<section class="bg-black text-white my-8">
+  <div
+    class="max-w-2xl mx-auto px-4 my-4 sm:my-8 md:my-12 lg:my-16 border border-gray-500 rounded-lg p-4"
+  >
+    <h1 class="text-3xl font-bold mb-8">Send Bulk Blog Email</h1>
+    <p class="text-[#dedede] mb-8">
+      Send to {{ total_subscribers }} subscribers
+    </p>
 
-          // Show progress
-          sendButton.disabled = true;
-          sendButton.textContent = "Sending...";
-          progressDiv.classList.remove("hidden");
+    <form action="" method="post" class="space-y-6">
+      {% csrf_token %}
 
-          // Simulate progress
-          let progress = 0;
-          const progressInterval = setInterval(() => {
-            progress += 10;
-            progressBar.style.width = progress + "%";
-            if (progress >= 90) clearInterval(progressInterval);
-          }, 500);
+      <button
+        type="submit"
+        class="w-full bg-blue-600 hover:bg-blue-700 text-white font-semibold py-3 px-6 rounded-lg transition-colors"
+      >
+        Send to All Subscribers ({{ total_subscribers }})
+      </button>
+    </form>
 
-          try {
-            const response = await fetch(window.location.href, {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-                "X-CSRFToken": data.csrfmiddlewaretoken,
-              },
-              body: JSON.stringify(data),
-            });
-
-            const result = await response.json();
-
-            // Complete progress
-            clearInterval(progressInterval);
-            progressBar.style.width = "100%";
-
-            setTimeout(() => {
-              progressDiv.classList.add("hidden");
-
-              if (result.success) {
-                resultDiv.className =
-                  "mt-6 p-4 bg-green-100 border border-green-400 text-green-700 rounded-lg";
-                resultDiv.innerHTML = `
-                            <h3 class="font-semibold">Bulk Email Complete!</h3>
-                            <p>Successfully sent: ${result.total_sent}</p>
-                            <p>Failed: ${result.total_failed}</p>
-                            ${
-                              result.failed_emails.length > 0
-                                ? '<p class="text-sm mt-2">Some emails failed: ' +
-                                  result.failed_emails.slice(0, 3).join(", ") +
-                                  "...</p>"
-                                : ""
-                            }
-                        `;
-              } else {
-                resultDiv.className =
-                  "mt-6 p-4 bg-red-100 border border-red-400 text-red-700 rounded-lg";
-                resultDiv.textContent = result.error || "An error occurred";
-              }
-
-              resultDiv.classList.remove("hidden");
-              sendButton.disabled = false;
-              sendButton.textContent =
-                "Send to All Subscribers ({{ total_subscribers }})";
-            }, 1000);
-          } catch (error) {
-            console.error("Error:", error);
-            clearInterval(progressInterval);
-            progressDiv.classList.add("hidden");
-            sendButton.disabled = false;
-            sendButton.textContent =
-              "Send to All Subscribers ({{ total_subscribers }})";
-          }
-        });
-    </script>
-  </body>
-</html>
+    <div id="result" class="mt-6 hidden"></div>
+  </div>
+</section>
+{% endblock body %}
