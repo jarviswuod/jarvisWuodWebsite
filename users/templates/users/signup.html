@@ -1,10 +1,40 @@
-{% extends 'users/base.html' %}
-<!---->
-{% block title %}Sign Up - Authentication App {%endblock %}
-<!---->
-{% block content %}
+{% extends "base.html" %} {% load static %}
+
+<!-- HEAD SECTION -->
+
+{% block meta %}
+<title>Sign Up | Jarvis Wuod</title>
+
+<meta
+  name="description"
+  content="Join Jarvis Wuod to access the best remote software developer jobs, tech opportunities with visa sponsorship, and high-paying programming careers across Africa, USA, Europe, and Asia. Create your account today!"
+/>
+
+<meta
+  name="keywords"
+  content="remote developer jobs, software engineer careers, tech jobs Africa, visa sponsorship tech jobs, high-paying programming jobs, sign up Jarvis Wuod"
+/>
+
+<!-- Open Graph Tags -->
+<meta property="og:title" content="Sign Up | Jarvis Wuod" />
+<meta
+  property="og:description"
+  content="Join Jarvis Wuod to access the best remote software developer jobs, tech opportunities with visa sponsorship, and high-paying programming careers across Africa, USA, Europe, and Asia. Create your account today!"
+/>
+
+<!-- Twitter/X Tags -->
+<meta name="twitter:title" content="Sign Up | Jarvis Wuod" />
+<meta
+  name="twitter:description"
+  content="Join Jarvis Wuod to access the best remote software developer jobs, tech opportunities with visa sponsorship, and high-paying programming careers across Africa, USA, Europe, and Asia. Create your account today!"
+/>
+{% endblock meta %}
+
+<!-- BODY SECTION -->
+
+{% block body %}
 <div
-  class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8"
+  class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 bg-white"
 >
   <div class="max-w-md w-full space-y-8">
     <div class="text-center">

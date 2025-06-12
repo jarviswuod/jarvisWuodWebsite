@@ -73,7 +73,6 @@ class CustomPasswordResetConfirmView(PasswordResetConfirmView):
 
 
 def dashboard(request):
-    """Simple dashboard view for authenticated users"""
     return render(request, 'users/dashboard.html')
 
 

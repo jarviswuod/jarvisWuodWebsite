@@ -1,17 +1,47 @@
-{% extends 'users/base.html' %}
-<!---->
-{% block title %}Dashboard - Authentication App{% endblock %}
-<!---->
-{% block content %}
+{% extends "base.html" %} {% load static %}
+
+<!-- HEAD SECTION -->
+
+{% block meta %}
+<title>Dashboard | Jarvis Wuod</title>
+
+<meta
+  name="description"
+  content="Join Jarvis Wuod to access the best remote software developer jobs, tech opportunities with visa sponsorship, and high-paying programming careers across Africa, USA, Europe, and Asia. Create your account today!"
+/>
+
+<meta
+  name="keywords"
+  content="remote developer jobs, software engineer careers, tech jobs Africa, visa sponsorship tech jobs, high-paying programming jobs, sign up Jarvis Wuod"
+/>
+
+<!-- Open Graph Tags -->
+<meta property="og:title" content="Dashboard | Jarvis Wuod" />
+<meta
+  property="og:description"
+  content="Join Jarvis Wuod to access the best remote software developer jobs, tech opportunities with visa sponsorship, and high-paying programming careers across Africa, USA, Europe, and Asia. Create your account today!"
+/>
+
+<!-- Twitter/X Tags -->
+<meta name="twitter:title" content="Dashboard | Jarvis Wuod" />
+<meta
+  name="twitter:description"
+  content="Join Jarvis Wuod to access the best remote software developer jobs, tech opportunities with visa sponsorship, and high-paying programming careers across Africa, USA, Europe, and Asia. Create your account today!"
+/>
+{% endblock meta %}
+
+<!-- BODY SECTION -->
+
+{% block body %}
 <div class="min-h-screen bg-gray-50 py-12">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="bg-white overflow-hidden shadow-xl rounded-lg">
       <div class="gradient-bg px-6 py-8">
         <div class="text-center">
-          <h1 class="text-3xl font-bold text-white">
+          <h1 class="text-3xl font-bold text-black">
             Welcome to your Dashboard
           </h1>
-          <p class="mt-2 text-blue-100">Hello, {{ user.get_full_name }}!</p>
+          <p class="mt-2 text-black">Hello, {{ user.get_full_name }}!</p>
         </div>
       </div>
 
