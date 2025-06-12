@@ -5,6 +5,7 @@ from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, CustomPasswordResetForm, CustomSetPasswordForm
+from django.utils.http import url_has_allowed_host_and_scheme
 
 
 class CustomLoginView(LoginView):
@@ -13,6 +14,9 @@ class CustomLoginView(LoginView):
     redirect_authenticated_user = True
 
     def get_success_url(self):
+        next_url = self.request.GET.get('next')
+        if next_url and url_has_allowed_host_and_scheme(next_url, allowed_hosts={self.request.get_host()}):
+            return next_url
         return reverse_lazy('home')
 
     def form_invalid(self, form):
