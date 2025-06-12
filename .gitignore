@@ -1,5 +1,6 @@
 venv
 blog_images
+avatars
 node_modules
 .vscode
 .env

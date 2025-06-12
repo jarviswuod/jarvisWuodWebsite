@@ -42,6 +42,7 @@ urlpatterns = [
     path('', include('jobs.urls')),
     path('', include('blogs.urls')),
     path('', include('emails.urls')),
+    path('', include('users.urls')),
 
 
     path('sitemap.xml', sitemap, {'sitemaps': sitemaps},

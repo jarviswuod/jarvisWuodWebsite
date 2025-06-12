@@ -75,6 +75,7 @@ INSTALLED_APPS = [
     'jobs.apps.JobsConfig',
     'main.apps.MainConfig',
     'emails.apps.EmailsConfig',
+    'users.apps.UsersConfig',
 ]
 
 MIDDLEWARE = [
