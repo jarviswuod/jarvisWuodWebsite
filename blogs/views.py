@@ -203,11 +203,38 @@ def add_comment(request, slug):
         content=content
     )
 
+    subject = "New Comment on Your Blog Post"
+    message = f"""
+    Hi {request.user.username},
+    You have added a new comment on the blog post "{blog.title}".
+    Check it out here: {request.build_absolute_uri(blog.get_absolute_url())}
+    """
+    email_address = request.user.email
+    print(f"email_address:{email_address}")
+    print()
+    print()
+    send_mail(subject, message,
+              'jarviswuod@gmail.com', [email_address])
+
     if parent_id:
         try:
             parent_comment = Comment.objects.get(id=parent_id)
             comment.parent = parent_comment
             comment.save()
+
+            subject = "Response to Your Comment"
+            message = f"""
+            Hi {parent_comment.author.username},
+            You have received a response to your comment on the blog post "{blog.title}".
+            Check it out here: {request.build_absolute_uri(blog.get_absolute_url())}
+            """
+            email_address = parent_comment.author.email
+            print(f"email_address:{email_address}")
+            print()
+            print()
+
+            send_mail(subject, message,
+                      'jarviswuod@gmail.com', [email_address])
         except Comment.DoesNotExist:
             pass
 
