@@ -47,3 +47,48 @@ class UserProfile(models.Model):
 
     def __str__(self):
         return f"{self.user.username}'s Profile"
+
+
+class UserEmailPreferences(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+    notify_on_blog_comments = models.BooleanField(default=True)
+    notify_on_comment_replies = models.BooleanField(default=True)
+    notify_on_thread_activity = models.BooleanField(default=False)
+
+    def __str__(self):
+        return f"{self.user.username} - Email Preferences"
+
+
+# Updated notification functions with user preferences
+def send_blog_author_notification_with_preferences(comment, blog_url):
+    """Notify blog author with preference check"""
+    try:
+        preferences, created = UserEmailPreferences.objects.get_or_create(
+            user=comment.blog.author
+        )
+
+        if not preferences.notify_on_blog_comments:
+            return
+
+        # Rest of the notification code...
+        send_blog_author_notification(comment, blog_url)
+
+    except Exception as e:
+        logger.error(f"Failed to send blog author notification: {str(e)}")
+
+
+def send_reply_notification_with_preferences(comment, blog_url):
+    """Notify parent comment author with preference check"""
+    try:
+        preferences, created = UserEmailPreferences.objects.get_or_create(
+            user=comment.parent.author
+        )
+
+        if not preferences.notify_on_comment_replies:
+            return
+
+        # Rest of the notification code...
+        send_reply_notification(comment, blog_url)
+
+    except Exception as e:
+        logger.error(f"Failed to send reply notification: {str(e)}")

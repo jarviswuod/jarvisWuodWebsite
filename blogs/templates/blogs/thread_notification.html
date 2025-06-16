@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>New Activity in Discussion</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+      }
+      .container {
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .header {
+        background: #f8f9fa;
+        padding: 20px;
+        border-radius: 5px;
+        margin-bottom: 20px;
+      }
+      .comment-box {
+        background: #ffffff;
+        border: 1px solid #ddd;
+        padding: 15px;
+        border-radius: 5px;
+        margin: 15px 0;
+      }
+      .author {
+        font-weight: bold;
+        color: #007bff;
+      }
+      .timestamp {
+        color: #6c757d;
+        font-size: 0.9em;
+      }
+      .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background: #007bff;
+        color: white;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 15px 0;
+      }
+      .footer {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #eee;
+        font-size: 0.9em;
+        color: #6c757d;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="header">
+        <h2>New Comment in Discussion</h2>
+      </div>
+
+      <p>Hi there,</p>
+
+      <p>
+        There's new activity in a discussion you've participated in on "<strong
+          >{{ blog.title }}</strong
+        >":
+      </p>
+
+      <div class="comment-box">
+        <div class="author">{{ comment.author.username }}</div>
+        <div class="timestamp">
+          {{ comment.created_at|date:"F d, Y at g:i A" }}
+        </div>
+        <div style="margin-top: 10px">{{ comment.content|linebreaks }}</div>
+      </div>
+
+      <a href="{{ blog_url }}" class="button">Join the Discussion</a>
+
+      <div class="footer">
+        <p>Best regards,<br />Your Blog Team</p>
+        <p>
+          <small
+            >You received this email because you've commented on this blog post.
+            You can manage your email preferences in your account
+            settings.</small
+          >
+        </p>
+      </div>
+    </div>
+  </body>
+</html>

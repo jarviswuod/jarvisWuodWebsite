@@ -5,9 +5,6 @@ from django.utils import timezone
 from django_ckeditor_5.fields import CKEditor5Field
 
 
-# Create your models here.
-
-
 class NewsletterSubscriber(models.Model):
     email_address = models.EmailField(unique=True)
     subscribed_at = models.DateTimeField(auto_now_add=True)

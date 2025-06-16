@@ -1,4 +1,3 @@
-
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -7,9 +6,18 @@ from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
 
+
+from django.template.loader import render_to_string
+from django.contrib.sites.shortcuts import get_current_site
+from django.conf import settings
+from django.utils.html import strip_tags
+import logging
+
 from django.db.models import Q
 from .models import NewsletterSubscriber, Blog, Like, Comment, Share
 from .forms import NewsletterForm, CommentForm
+
+logger = logging.getLogger(__name__)
 
 
 def blogs(request):
@@ -53,6 +61,7 @@ def blogs(request):
 def blog_detail(request, slug):
     blog = get_object_or_404(Blog, slug=slug, is_published=True)
     comments = blog.comments.filter(is_active=True, parent=None)
+    comment_form = CommentForm()
 
     # Check if user has liked the blog
     user_has_liked = False
@@ -60,25 +69,8 @@ def blog_detail(request, slug):
         user_has_liked = Like.objects.filter(
             user=request.user, blog=blog).exists()
 
-    # Handle comment form
-    comment_form = CommentForm()
-    if request.method == 'POST' and request.user.is_authenticated:
-        comment_form = CommentForm(request.POST)
-        if comment_form.is_valid():
-            new_comment = comment_form.save(commit=False)
-            new_comment.blog = blog
-            new_comment.author = request.user
-
-            # Handle reply to comment
-            parent_id = request.POST.get('parent_id')
-            if parent_id:
-                parent_comment = get_object_or_404(Comment, id=parent_id)
-                new_comment.parent = parent_comment
-
-            new_comment.save()
-            messages.success(
-                request, 'Your comment has been added successfully!')
-            return redirect('blog_detail', slug=slug)
+    # Adding a comment
+    add_comment(request, slug)
 
     # Pagination for comments
     paginator = Paginator(comments, 10)
@@ -98,9 +90,6 @@ def blog_detail(request, slug):
 
 
 def newsletter_subscription(request):
-    """
-    Dedicated newsletter subscription page
-    """
     form = NewsletterForm()
 
     if request.method == 'POST':
@@ -121,9 +110,6 @@ def newsletter_subscription(request):
 
 
 def newsletter_success(request):
-    """
-    Success page for new newsletter subscribers
-    """
     return render(request, 'blogs/newsletter_success.html')
 
 
@@ -171,6 +157,145 @@ def send_newsletter_confirmation_email(request, email_address):
 
 @login_required
 @require_POST
+def add_comment(request, slug):
+    blog = get_object_or_404(Blog, slug=slug)
+
+    # comment_form = CommentForm()
+    if request.method == 'POST':
+        comment_form = CommentForm(request.POST)
+        if comment_form.is_valid():
+            new_comment = comment_form.save(commit=False)
+            new_comment.blog = blog
+            new_comment.author = request.user
+
+            parent_id = request.POST.get('parent_id')
+            if parent_id:
+                parent_comment = get_object_or_404(Comment, id=parent_id)
+                new_comment.parent = parent_comment
+
+            new_comment.save()
+
+            send_comment_notifications(request, new_comment)
+
+
+def send_comment_notifications(request, comment):
+    current_site = get_current_site(request)
+    blog_url = f"https://{current_site.domain}/blog/{comment.blog.slug}/"
+
+    # 1. Notify blog author on comment
+    if comment.blog.author.email and comment.blog.author != comment.author:
+        send_blog_author_notification(comment, blog_url)
+
+    # 2. Notify the parent comment author (If it's a reply)
+    if comment.parent and comment.parent.author.email and comment.parent.author != comment.author:
+        send_reply_notification(comment, blog_url)
+
+    # 3. Notify other commenters in the thread
+    notify_thread_participants(comment, blog_url)
+
+
+def send_blog_author_notification(comment, blog_url):
+    try:
+        subject = f'New comment on your blog: "{comment.blog.title}"'
+
+        html_message = render_to_string('blogs/new_comment_notification.html', {
+            'blog_author': comment.blog.author,
+            'comment': comment,
+            'blog': comment.blog,
+            'blog_url': blog_url,
+        })
+
+        plain_message = strip_tags(html_message)
+
+        send_mail(
+            subject=subject,
+            message=plain_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[comment.blog.author.email],
+            html_message=html_message,
+            fail_silently=False,
+        )
+
+        logger.info(
+            f"Blog author notification sent to {comment.blog.author.email}")
+
+    except Exception as e:
+        logger.error(f"Failed to send blog author notification: {str(e)}")
+
+
+def send_reply_notification(comment, blog_url):
+    try:
+        subject = f'Reply to your comment on "{comment.blog.title}"'
+
+        html_message = render_to_string('blogs/reply_notification.html', {
+            'parent_author': comment.parent.author,
+            'comment': comment,
+            'parent_comment': comment.parent,
+            'blog': comment.blog,
+            'blog_url': blog_url,
+        })
+
+        plain_message = strip_tags(html_message)
+
+        send_mail(
+            subject=subject,
+            message=plain_message,
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            recipient_list=[comment.parent.author.email],
+            html_message=html_message,
+            fail_silently=False,
+        )
+
+        logger.info(
+            f"Reply notification sent to {comment.parent.author.email}")
+
+    except Exception as e:
+        logger.error(f"Failed to send reply notification: {str(e)}")
+
+
+def notify_thread_participants(comment, blog_url):
+    """Notify other participants in the comment thread"""
+    try:
+        thread_participants = Comment.objects.filter(
+            blog=comment.blog
+        ).exclude(
+            author=comment.author
+        ).exclude(
+            author=comment.blog.author
+        ).values_list('author__email', flat=True).distinct()
+
+        # Remove empty emails
+        participant_emails = [email for email in thread_participants if email]
+
+        if participant_emails:
+            subject = f'New comment on "{comment.blog.title}"'
+
+            html_message = render_to_string('blogs/thread_notification.html', {
+                'comment': comment,
+                'blog': comment.blog,
+                'blog_url': blog_url,
+            })
+
+            plain_message = strip_tags(html_message)
+
+            send_mail(
+                subject=subject,
+                message=plain_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=participant_emails,
+                html_message=html_message,
+                fail_silently=False,
+            )
+
+            logger.info(
+                f"Thread notifications sent to {len(participant_emails)} participants")
+
+    except Exception as e:
+        logger.error(f"Failed to send thread notifications: {str(e)}")
+
+
+@login_required
+@require_POST
 def toggle_like(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     like, created = Like.objects.get_or_create(user=request.user, blog=blog)
@@ -184,69 +309,6 @@ def toggle_like(request, slug):
     return JsonResponse({
         'liked': liked,
         'total_likes': blog.total_likes()
-    })
-
-
-@login_required
-@require_POST
-def add_comment(request, slug):
-    blog = get_object_or_404(Blog, slug=slug)
-    content = request.POST.get('content', '').strip()
-    parent_id = request.POST.get('parent_id')
-
-    if not content:
-        return JsonResponse({'success': False, 'error': 'Comment content is required'})
-
-    comment = Comment.objects.create(
-        blog=blog,
-        author=request.user,
-        content=content
-    )
-
-    subject = "New Comment on Your Blog Post"
-    message = f"""
-    Hi {request.user.username},
-    You have added a new comment on the blog post "{blog.title}".
-    Check it out here: {request.build_absolute_uri(blog.get_absolute_url())}
-    """
-    email_address = request.user.email
-    print(f"email_address:{email_address}")
-    print()
-    print()
-    send_mail(subject, message,
-              'jarviswuod@gmail.com', [email_address])
-
-    if parent_id:
-        try:
-            parent_comment = Comment.objects.get(id=parent_id)
-            comment.parent = parent_comment
-            comment.save()
-
-            subject = "Response to Your Comment"
-            message = f"""
-            Hi {parent_comment.author.username},
-            You have received a response to your comment on the blog post "{blog.title}".
-            Check it out here: {request.build_absolute_uri(blog.get_absolute_url())}
-            """
-            email_address = parent_comment.author.email
-            print(f"email_address:{email_address}")
-            print()
-            print()
-
-            send_mail(subject, message,
-                      'jarviswuod@gmail.com', [email_address])
-        except Comment.DoesNotExist:
-            pass
-
-    return JsonResponse({
-        'success': True,
-        'comment': {
-            'id': comment.id,
-            'author': comment.author.username,
-            'content': comment.content,
-            'created_at': comment.created_at.strftime('%B %d, %Y at %I:%M %p'),
-            'parent_id': comment.parent.id if comment.parent else None
-        }
     })
 
 
