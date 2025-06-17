@@ -63,16 +63,14 @@ def blog_detail(request, slug):
     comments = blog.comments.filter(is_active=True, parent=None)
     comment_form = CommentForm()
 
-    # Check if user has liked the blog
     user_has_liked = False
     if request.user.is_authenticated:
         user_has_liked = Like.objects.filter(
             user=request.user, blog=blog).exists()
 
-    # Adding a comment
-    add_comment(request, slug)
+    add_comment(request, blog)
 
-    # Pagination for comments
+    # Pagination
     paginator = Paginator(comments, 10)
     page_number = request.GET.get('page')
     comments_page = paginator.get_page(page_number)
@@ -157,10 +155,8 @@ def send_newsletter_confirmation_email(request, email_address):
 
 @login_required
 @require_POST
-def add_comment(request, slug):
-    blog = get_object_or_404(Blog, slug=slug)
+def add_comment(request, blog):
 
-    # comment_form = CommentForm()
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
         if comment_form.is_valid():
@@ -186,11 +182,11 @@ def send_comment_notifications(request, comment):
     if comment.blog.author.email and comment.blog.author != comment.author:
         send_blog_author_notification(comment, blog_url)
 
-    # 2. Notify the parent comment author (If it's a reply)
+    # 2. Notify the parent comment author
     if comment.parent and comment.parent.author.email and comment.parent.author != comment.author:
         send_reply_notification(comment, blog_url)
 
-    # 3. Notify other commenters in the thread
+    # 3. Notify other commenters in thread
     notify_thread_participants(comment, blog_url)
 
 
@@ -254,7 +250,6 @@ def send_reply_notification(comment, blog_url):
 
 
 def notify_thread_participants(comment, blog_url):
-    """Notify other participants in the comment thread"""
     try:
         thread_participants = Comment.objects.filter(
             blog=comment.blog
