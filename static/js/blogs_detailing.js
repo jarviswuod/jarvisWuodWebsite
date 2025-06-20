@@ -1,5 +1,5 @@
 // Get CSRF token
-function getCookie(name) {
+const getCookie = (name) => {
   let cookieValue = null;
   if (document.cookie && document.cookie !== "") {
     const cookies = document.cookie.split(";");
@@ -12,7 +12,7 @@ function getCookie(name) {
     }
   }
   return cookieValue;
-}
+};
 const csrftoken = getCookie("csrftoken");
 
 // Like functionality
@@ -44,7 +44,7 @@ document.getElementById("likeBtn")?.addEventListener("click", function () {
 });
 
 // Share functionality
-function shareOn(platform) {
+const shareOn = (platform) => {
   const blogElement = document.getElementById("blog-content");
   let shareUrl = "";
 
@@ -86,9 +86,9 @@ function shareOn(platform) {
       body: `platform=${platform}`,
     });
   }
-}
+};
 
-function copyLink() {
+const copyLink = () => {
   navigator.clipboard.writeText(window.location.href).then(() => {
     alert("Link copied to clipboard!");
 
@@ -102,7 +102,7 @@ function copyLink() {
       body: "platform=copy_link",
     });
   });
-}
+};
 
 // Auto-hide messages
 setTimeout(() => {
@@ -155,3 +155,45 @@ document.querySelectorAll(".reply-btn").forEach((btn) => {
     }
   });
 });
+
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+// USER MODAL BACKDROP
+// ------------------------------------------------------------------------------------------------------
+// ------------------------------------------------------------------------------------------------------
+const showModalBackdrop = () => {
+  const modalBackdrop = document.getElementById("modalBackdrop");
+  modalBackdrop.classList.remove("hidden");
+  modalBackdrop.classList.add("flex");
+};
+
+const showModal = (modalId) => {
+  document
+    .querySelectorAll(".modal")
+    .forEach((modal) => modal.classList.add("hidden"));
+  document.getElementById(modalId).classList.remove("hidden");
+};
+
+const closeModal = () => {
+  document.getElementById("modalBackdrop").classList.add("hidden");
+  // pendingAction = null;
+};
+
+const showLogin = () => {
+  showModal("loginModal");
+};
+
+const showSignup = () => {
+  showModal("signupModal");
+};
+
+const showPasswordReset = () => {
+  showModal("passwordResetModal");
+};
+
+const scrollToCommentForm = () => {
+  const commentsSection = document.getElementById("commentFormSection");
+  if (commentsSection) {
+    commentsSection.scrollIntoView({ behavior: "smooth" });
+  }
+};
