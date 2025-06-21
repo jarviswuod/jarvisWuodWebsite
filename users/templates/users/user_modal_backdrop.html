@@ -25,7 +25,10 @@
         </button>
       </p>
 
-      <form class="space-y-4" onsubmit="handleLogin(event)">
+      <form class="space-y-4" method="POST" action="">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="login_form" />
+
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">
             Username
@@ -93,7 +96,10 @@
         </button>
       </p>
 
-      <form class="space-y-4" onsubmit="handleSignup(event)">
+      <form class="space-y-4" method="POST" action="">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="signup_form" />
+
         <div class="grid grid-cols-2 gap-4">
           <div>
             <label class="block text-sm font-medium text-gray-700 mb-2">
@@ -195,7 +201,10 @@
         password.
       </p>
 
-      <form class="space-y-4" onsubmit="handlePasswordReset(event)">
+      <form class="space-y-4" method="POST" action="">
+        {% csrf_token %}
+        <input type="hidden" name="form_type" value="password_reset_form" />
+
         <div>
           <label class="block text-sm font-medium text-gray-700 mb-2">
             Email Address

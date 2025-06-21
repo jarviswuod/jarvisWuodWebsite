@@ -59,6 +59,19 @@ def blogs(request):
 
 
 def blog_detail(request, slug):
+
+    # User Modal Backdrop
+    if request.method == 'POST':
+        print("working POST method")
+        form_type = request.POST.get('form_type')
+        print(form_type)
+        if form_type == 'login_form':
+            print(f"form_type: {form_type}")
+        if form_type == 'signup_form':
+            print(f"form_type: {form_type}")
+        if form_type == 'password_reset_form':
+            print(f"form_type: {form_type}")
+
     blog = get_object_or_404(Blog, slug=slug, is_published=True)
     comments = blog.comments.filter(is_active=True, parent=None)
     comment_form = CommentForm()
