@@ -175,7 +175,9 @@ const showModal = (modalId) => {
 };
 
 const closeModal = () => {
-  document.getElementById("modalBackdrop").classList.add("hidden");
+  const modalBackdrop = document.getElementById("modalBackdrop");
+  modalBackdrop.classList.add("hidden");
+  modalBackdrop.classList.remove("flex");
   // pendingAction = null;
 };
 

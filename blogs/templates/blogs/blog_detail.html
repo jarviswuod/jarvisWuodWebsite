@@ -288,7 +288,11 @@
     </aside>
 
     <!-- User Modal Backdrop -->
+    {% if not user.is_authenticated %}
+    <!-- -->
     {% include "users/user_modal_backdrop.html" %}
+    <!-- -->
+    {% endif %}
 
     <!-- Comments Section -->
     <section
