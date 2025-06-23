@@ -1,10 +1,11 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
 from django.core.mail import send_mail
+from django.contrib.auth import authenticate, login
 
 
 from django.template.loader import render_to_string
@@ -60,18 +61,6 @@ def blogs(request):
 
 def blog_detail(request, slug):
 
-    # User Modal Backdrop
-    if request.method == 'POST':
-        print("working POST method")
-        form_type = request.POST.get('form_type')
-        print(form_type)
-        if form_type == 'login_form':
-            print(f"form_type: {form_type}")
-        if form_type == 'signup_form':
-            print(f"form_type: {form_type}")
-        if form_type == 'password_reset_form':
-            print(f"form_type: {form_type}")
-
     blog = get_object_or_404(Blog, slug=slug, is_published=True)
     comments = blog.comments.filter(is_active=True, parent=None)
     comment_form = CommentForm()
@@ -81,12 +70,18 @@ def blog_detail(request, slug):
         user_has_liked = Like.objects.filter(
             user=request.user, blog=blog).exists()
 
-    add_comment(request, blog)
+    # Comment handling
+    add_comment(request, blog, slug)
 
     # Pagination
     paginator = Paginator(comments, 10)
     page_number = request.GET.get('page')
     comments_page = paginator.get_page(page_number)
+
+    # User modal handling
+    modal_response = handle_user_modal_forms(request, slug)
+    if modal_response:
+        return modal_response
 
     context = {
         'blog': blog,
@@ -161,6 +156,109 @@ def send_newsletter_confirmation_email(request, email_address):
         messages.warning(
             request, "Subscription successful, but there was an issue sending the confirmation email.")
 
+
+def handle_user_modal_forms(request, slug=None):
+    from django.contrib.auth.models import User
+    from django.contrib.auth import authenticate, login
+    from django.contrib import messages
+    from django.core.mail import send_mail
+    from django.template.loader import render_to_string
+    from django.utils.html import strip_tags
+    from django.conf import settings
+    from django.contrib.auth.tokens import default_token_generator
+    from django.utils.encoding import force_bytes
+    from django.utils.http import urlsafe_base64_encode
+
+    if request.method != 'POST':
+        return None
+
+    form_type = request.POST.get('form_type')
+
+    if form_type == 'login_form':
+        username = request.POST.get('username')
+        password = request.POST.get('password')
+
+        user = authenticate(request, username=username, password=password)
+        if user is not None:
+            login(request, user)
+            messages.success(request, "You have successfully logged in!")
+        else:
+            messages.error(request, "Invalid username or password!")
+
+    elif form_type == 'signup_form':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name')
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password1 = request.POST.get('password1')
+        password2 = request.POST.get('password2')
+
+        if password1 != password2:
+            messages.error(request, "Passwords do not match!")
+
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "Username already exists!")
+
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Email already registered!")
+
+        try:
+            user = User.objects.create_user(
+                username=username,
+                email=email,
+                password=password1,
+                first_name=first_name,
+                last_name=last_name
+            )
+
+            login(request, user)
+            messages.success(
+                request, "Account created and logged in successfully!")
+
+        except Exception as e:
+            messages.error(request, "Registration failed. Please try again.")
+
+    elif form_type == 'password_reset_form':
+        email = request.POST.get('email')
+
+        try:
+            user = User.objects.get(email=email)
+
+            token = default_token_generator.make_token(user)
+            uid = urlsafe_base64_encode(force_bytes(user.pk))
+
+            reset_url = f"{request.build_absolute_uri('/')[:-1]}/password-reset-confirm/{uid}/{token}/"
+
+            html_message = render_to_string('users/password_reset_email.html', {
+                'user': user,
+                'reset_url': reset_url,
+                'domain': request.get_host(),
+                'protocol': 'https' if request.is_secure() else 'http',
+                'uid': uid,
+                'token': token,
+                'uidb64': uid,
+            })
+            plain_message = strip_tags(html_message)
+
+            send_mail(
+                subject='Your Password Reset Request on Jarvis Wuod',
+                message=plain_message,
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[email],
+                html_message=html_message,
+                fail_silently=False,
+            )
+            messages.success(
+                request, "Please check your email, Password reset email sent successfully!")
+
+        except User.DoesNotExist:
+            messages.error(request, "No user found with this email address!")
+        except Exception as e:
+            messages.error(
+                request, f"Failed to send reset email. Please try again. {e}")
+
+    return redirect(f"{reverse('blog_detail', kwargs={'slug': slug})}#engagementSection")
+
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////
 # ACTION VIEWS
 # /////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -168,7 +266,7 @@ def send_newsletter_confirmation_email(request, email_address):
 
 @login_required
 @require_POST
-def add_comment(request, blog):
+def add_comment(request, blog, slug):
 
     if request.method == 'POST':
         comment_form = CommentForm(request.POST)
@@ -185,6 +283,7 @@ def add_comment(request, blog):
             new_comment.save()
 
             send_comment_notifications(request, new_comment)
+            return redirect(f"{reverse('blog_detail', kwargs={'slug': slug})}#commentsSection")
 
 
 def send_comment_notifications(request, comment):
