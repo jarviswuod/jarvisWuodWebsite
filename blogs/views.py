@@ -282,7 +282,7 @@ def add_comment(request, blog, slug):
 
             new_comment.save()
 
-            send_comment_notifications(request, new_comment)
+            # send_comment_notifications(request, new_comment)git 
             return redirect(f"{reverse('blog_detail', kwargs={'slug': slug})}#commentsSection")
 
 
