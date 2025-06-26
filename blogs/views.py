@@ -31,8 +31,8 @@ def blogs(request):
         if form.is_valid():
             email_address = form.cleaned_data['email_address']
             subscriber = form.save()
-            send_newsletter_confirmation_email(
-                request, subscriber.email_address)
+            # send_newsletter_confirmation_email(
+            #     request, subscriber.email_address)
             return redirect('newsletter_success')
         else:
             messages.error(
@@ -104,8 +104,8 @@ def newsletter_subscription(request):
         if form.is_valid():
             email_address = form.cleaned_data['email_address']
             subscriber = form.save()
-            send_newsletter_confirmation_email(
-                request, subscriber.email_address)
+            # send_newsletter_confirmation_email(
+            #     request, subscriber.email_address)
             return redirect('newsletter_success')
         else:
             messages.error(
@@ -282,7 +282,7 @@ def add_comment(request, blog, slug):
 
             new_comment.save()
 
-            # send_comment_notifications(request, new_comment)git 
+            # send_comment_notifications(request, new_comment)git
             return redirect(f"{reverse('blog_detail', kwargs={'slug': slug})}#commentsSection")
 
 
