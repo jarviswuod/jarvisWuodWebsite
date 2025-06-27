@@ -4,6 +4,9 @@ from django.core.mail import send_mail
 from .forms import BookCallForm, MentorshipForm, ExpertiseForm, ResumeReviewForm
 
 from django.contrib import messages
+from django.conf import settings
+from django.contrib.admin.views.decorators import staff_member_required
+from django.http import HttpResponse, Http404
 
 from blogs.models import Blog
 
@@ -114,6 +117,25 @@ def contact(request):
     }
 
     return render(request, 'main/contact.html', context)
+
+
+@staff_member_required
+def view_log_file(request, filename):
+    file_path = settings.BASE_DIR / 'logs' / filename
+
+    if not file_path.exists():
+        raise Http404("Log file not found.")
+
+    MAX_FILE_SIZE = 10 * 1024 * 1024  # 10MB limit
+    if file_path.stat().st_size > MAX_FILE_SIZE:
+        return HttpResponse("File too large to display.", status=413)
+
+    try:
+        with open(file_path, 'r', encoding='utf-8', errors='replace') as file:
+            content = file.read()
+            return HttpResponse(content, content_type='text/plain; charset=utf-8')
+    except (IOError, OSError):
+        raise Http404("Could not read log file.")
 
 
 # ////////////////////////////////////////////////////////////////////////////////////////////

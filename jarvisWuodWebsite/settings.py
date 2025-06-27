@@ -15,6 +15,7 @@ from pathlib import Path
 from django.conf import settings
 from .ckeditor_config import *
 
+from .logging import LOGGING, parse_admins_json
 import os
 import environ
 
@@ -198,6 +199,8 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY')
 DEFAULT_FROM_EMAIL = env('EMAIL_HOST_USER')
 SERVER_EMAIL = env('EMAIL_HOST_USER')
+
+ADMINS = parse_admins_json(env('ADMINS_JSON', default='[]'))
 
 SITE_NAME = 'Jarvis Wuod'
 

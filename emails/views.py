@@ -9,12 +9,12 @@ from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 from django.views.decorators.http import require_http_methods
 import json
-import logging
 from concurrent.futures import ThreadPoolExecutor
 from django.core.mail import EmailMultiAlternatives
 from django.db import transaction
 from blogs.models import Blog
 
+import logging
 logger = logging.getLogger(__name__)
 
 EMAIL_LIST = [
