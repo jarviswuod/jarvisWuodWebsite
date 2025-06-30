@@ -68,7 +68,7 @@ class Comment(models.Model):
         'self', on_delete=models.CASCADE, null=True, blank=True, related_name='replies')
 
     class Meta:
-        ordering = ['created_at']
+        ordering = ['-created_at']
 
     def __str__(self):
         return f'Comment by {self.author.username} on {self.blog.title}'
