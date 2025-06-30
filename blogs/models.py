@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django.utils import timezone
 from django_ckeditor_5.fields import CKEditor5Field
 
 
@@ -23,7 +22,7 @@ class Blog(models.Model):
     excerpt = models.TextField(max_length=300, blank=True)
     featured_image = models.ImageField(
         upload_to='blog_images/', blank=True, null=True)
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
 
@@ -47,7 +46,7 @@ class Like(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     blog = models.ForeignKey(
         Blog, on_delete=models.CASCADE, related_name='likes')
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
         unique_together = ('user', 'blog')
@@ -61,7 +60,7 @@ class Comment(models.Model):
         Blog, on_delete=models.CASCADE, related_name='comments')
     author = models.ForeignKey(User, on_delete=models.CASCADE)
     content = models.TextField()
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
     parent = models.ForeignKey(
@@ -91,7 +90,7 @@ class Share(models.Model):
     blog = models.ForeignKey(
         Blog, on_delete=models.CASCADE, related_name='shares')
     platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES)
-    created_at = models.DateTimeField(default=timezone.now)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return f'{self.user.username} shared {self.blog.title} on {self.platform}'

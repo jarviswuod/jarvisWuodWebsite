@@ -8,7 +8,7 @@ class BookCall(models.Model):
     email_address = models.EmailField()
     phone_number = models.CharField(max_length=20, blank=True)
 
-    submitted_at = models.DateTimeField(auto_now_add=True, null=True)
+    submitted_at = models.DateTimeField(auto_now_add=True)
 
 
 class MentorshipContact(models.Model):
