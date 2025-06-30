@@ -1,3 +1,5 @@
+import json
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -14,11 +16,25 @@ from django.conf import settings
 from django.utils.html import strip_tags
 import logging
 
+
 from django.db.models import Q
 from .models import NewsletterSubscriber, Blog, Like, Comment, Share
 from .forms import NewsletterForm, CommentForm
 
+from .utils import convert_utc_to_local
+from django.utils import timezone
+
 logger = logging.getLogger(__name__)
+
+
+@csrf_exempt
+def set_timezone(request):
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        timezone = data.get('timezone', 'UTC')
+        request.session['user_timezone'] = timezone
+        return JsonResponse({'status': 'success'})
+    return JsonResponse({'status': 'error'}, status=400)
 
 
 def blogs(request):
@@ -60,10 +76,20 @@ def blogs(request):
 
 
 def blog_detail(request, slug):
+    user_timezone = request.session.get('user_timezone', 'UTC')
 
     blog = get_object_or_404(Blog, slug=slug, is_published=True)
     comments = blog.comments.filter(is_active=True, parent=None)
     comment_form = CommentForm()
+
+    blog.created_at = convert_utc_to_local(blog.created_at, user_timezone)
+    blog.updated_at = convert_utc_to_local(blog.updated_at, user_timezone)
+
+    for comment in comments:
+        comment.created_at = convert_utc_to_local(
+            comment.created_at, user_timezone)
+        comment.updated_at = convert_utc_to_local(
+            comment.updated_at, user_timezone)
 
     user_has_liked = False
     if request.user.is_authenticated:

@@ -1,5 +1,5 @@
 from django.urls import path
-from .views import newsletter_subscription, newsletter_success, blogs, blog_detail, toggle_like, add_comment, share_blog
+from .views import newsletter_subscription, newsletter_success, blogs, blog_detail, toggle_like, add_comment, share_blog, set_timezone
 
 urlpatterns = [
     path('newsletter/', newsletter_subscription,
@@ -11,5 +11,7 @@ urlpatterns = [
     path('blog/<slug:slug>/like/', toggle_like, name='toggle_like'),
     path('blog/<slug:slug>/comment/', add_comment, name='add_comment'),
     path('blog/<slug:slug>/share/', share_blog, name='share_blog'),
+
+    path('set-timezone/', set_timezone, name='set_timezone'),
 
 ]

@@ -79,6 +79,9 @@ INSTALLED_APPS = [
     'users.apps.UsersConfig',
 ]
 
+USE_TZ = True
+TIME_ZONE = 'UTC'
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',

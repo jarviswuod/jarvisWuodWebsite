@@ -4,3 +4,4 @@ django-sitemap-generate==0.7.0
 django-admin-honeypot-updated-2021==1.2.0
 Pillow==11.2.1
 django-ckeditor-5==0.2.18
+pytz==2025.2
