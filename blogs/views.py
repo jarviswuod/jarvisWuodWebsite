@@ -24,6 +24,10 @@ from .forms import NewsletterForm, CommentForm
 from .utils import convert_utc_to_local
 from django.utils import timezone
 
+import os
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
 logger = logging.getLogger(__name__)
 
 
@@ -266,22 +270,32 @@ def handle_user_modal_forms(request, slug=None):
             })
             plain_message = strip_tags(html_message)
 
-            send_mail(
+            # REPLACE THIS SECTION - SendGrid API instead of send_mail
+            message = Mail(
+                from_email=settings.DEFAULT_FROM_EMAIL,  # Your verified sender
+                to_emails=email,  # recipient email
                 subject='Your Password Reset Request on Jarvis Wuod',
-                message=plain_message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=[email],
-                html_message=html_message,
-                fail_silently=False,
+                html_content=html_message,
+                plain_text_content=plain_message  # Optional: plain text version
             )
-            messages.success(
-                request, "Please check your email, Password reset email sent successfully!")
+
+            try:
+                sg = SendGridAPIClient(
+                    api_key=os.environ.get('SENDGRID_API_KEY'))
+                response = sg.send(message)
+                print(f"Email sent! Status code: {response.status_code}")
+                messages.success(
+                    request, "Please check your email, Password reset email sent successfully!")
+            except Exception as sendgrid_error:
+                print(f"SendGrid error: {sendgrid_error}")
+                messages.error(
+                    request, f"Failed to send reset email. Please try again.")
 
         except User.DoesNotExist:
             messages.error(request, "No user found with this email address!")
         except Exception as e:
             messages.error(
-                request, f"Failed to send reset email. Please try again. {e}")
+                request, f"Failed to send reset email. Please try again.")
 
     return redirect(f"{reverse('blog_detail', kwargs={'slug': slug})}#engagementSection")
 
