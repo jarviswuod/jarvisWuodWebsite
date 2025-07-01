@@ -4,8 +4,15 @@ from django.contrib.auth.views import LoginView, PasswordResetView, PasswordRese
 from django.contrib import messages
 from django.urls import reverse_lazy
 from django.views.generic import CreateView
+from django.template.loader import render_to_string
+from django.conf import settings
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+import logging
 from .forms import CustomUserCreationForm, CustomAuthenticationForm, CustomPasswordResetForm, CustomSetPasswordForm
 from django.utils.http import url_has_allowed_host_and_scheme
+
+logger = logging.getLogger(__name__)
 
 
 class CustomLoginView(LoginView):
@@ -55,6 +62,37 @@ class CustomPasswordResetView(PasswordResetView):
     html_email_template_name = 'users/password_reset_email.html'
     subject_template_name = 'users/password_reset_subject.txt'
     success_url = reverse_lazy('users:password_reset_done')
+
+    def send_mail(self, subject_template_name, email_template_name,
+                  context, from_email, to_email, html_email_template_name=None):
+        """
+        Override the default send_mail method to use SendGrid
+        """
+        # Render the subject
+        subject = render_to_string(subject_template_name, context).strip()
+
+        # Render the email content
+        html_content = render_to_string(
+            html_email_template_name or email_template_name, context)
+        text_content = render_to_string(
+            email_template_name, context) if html_email_template_name else html_content
+
+        message = Mail(
+            from_email=from_email or settings.DEFAULT_FROM_EMAIL,
+            to_emails=to_email,
+            subject=subject,
+            html_content=html_content,
+            plain_text_content=text_content
+        )
+
+        try:
+            sg = SendGridAPIClient(api_key=settings.SENDGRID_API_KEY)
+            response = sg.send(message)
+            logger.info(
+                f"Password reset email sent! Status code: {response.status_code}")
+        except Exception as sendgrid_error:
+            logger.error(f"SendGrid error: {sendgrid_error}")
+            raise
 
     def form_valid(self, form):
         messages.success(self.request, 'Password reset email has been sent!')

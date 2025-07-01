@@ -1,6 +1,4 @@
-
-from django.shortcuts import render, redirect
-from django.core.mail import send_mail
+from django.shortcuts import render, redirect, reverse
 from .forms import BookCallForm, MentorshipForm, ExpertiseForm, ResumeReviewForm
 
 from django.contrib import messages
@@ -9,6 +7,12 @@ from django.contrib.admin.views.decorators import staff_member_required
 from django.http import HttpResponse, Http404
 
 from blogs.models import Blog
+
+from sendgrid import SendGridAPIClient
+from sendgrid.helpers.mail import Mail
+
+import logging
+logger = logging.getLogger(__name__)
 
 
 def about(request):
@@ -31,19 +35,11 @@ def home(request):
         book_call_form = BookCallForm(request.POST)
         if book_call_form.is_valid():
             book_call_contact = book_call_form.save()
+            full_name = book_call_contact.full_name
+            email = book_call_contact.email_address
 
-            try:
-                send_confirmation_email(
-                    name=book_call_contact.full_name,
-                    email=book_call_contact.email_address,
-                )
-                messages.success(
-                    request, "Thank you for booking a call!")
-
-            except Exception as e:
-                print(f"Email error: {e}")
-                messages.error(
-                    request, "There was an error with your submission. Please check the form and try again.")
+            first_free_call_email_confirmation(
+                request=request, full_name=full_name, email=email)
 
             return redirect('home')
 
@@ -64,51 +60,38 @@ def contact(request):
 
             if mentorship_form.is_valid():
                 mentorship_contact = mentorship_form.save()
+                subject = 'Your Call Booking Confirmation Developer Mentorship Support Program'
+                message = 'Thank you for booking a call...'
+                email = mentorship_contact.email_address
 
-                send_mail(
-                    'Your Call Booking Confirmation Developer Mentorship Support Program',
-                    'Thank you for booking a call...',
-                    'jarviswuod@gmail.com',
-                    [mentorship_contact.email_address],
-                    fail_silently=False,
-                )
-                messages.success(
-                    request, "Thank you for your mentorship inquiry!")
-                return redirect('contact')
+                contact_page_boooking_email_confirmation(
+                    request=request, subject=subject, message=message, email=email)
 
         elif form_type == 'expertise':
             expertise_form = ExpertiseForm(request.POST)
 
             if expertise_form.is_valid():
                 expertise_contact = expertise_form.save()
+                subject = 'Your Call Booking Confirmation Hire an Expert'
+                message = 'Thank you for booking a call...'
+                email = expertise_contact.email_address
 
-                send_mail(
-                    'Your Call Booking Confirmation Hire an Expert',
-                    'Thank you for booking a call...',
-                    'jarviswuod@gmail.com',
-                    [expertise_contact.email_address],
-                    fail_silently=False,
-                )
-                messages.success(
-                    request, "Thank you for your expertise inquiry!")
-                return redirect('contact')
+                contact_page_boooking_email_confirmation(
+                    request=request, subject=subject, message=message, email=email)
 
         elif form_type == 'resume_review':
             resume_review_form = ResumeReviewForm(request.POST, request.FILES)
 
             if resume_review_form.is_valid():
                 resume_review_contact = resume_review_form.save()
+                subject = 'Your Call Booking Confirmation Resume Review Service'
+                message = 'Thank you for booking a call...'
+                email = resume_review_contact.email_address
 
-                send_mail(
-                    'Your Call Booking Confirmation Resume Review Service',
-                    'Thank you for booking a call...',
-                    'jarviswuod@gmail.com',
-                    [resume_review_contact.email_address],
-                    fail_silently=False,
-                )
-                messages.success(
-                    request, "Thank you for submitting your resume!")
-                return redirect('contact')
+                contact_page_boooking_email_confirmation(
+                    request=request, subject=subject, message=message, email=email)
+
+        return redirect(f"{reverse('contact')}#contact-selection")
 
     context = {
         'mentorship_form': mentorship_form,
@@ -143,15 +126,15 @@ def view_log_file(request, filename):
 # ////////////////////////////////////////////////////////////////////////////////////////////
 
 
-def send_confirmation_email(name, email):
-    subject = "Application Received"
+def first_free_call_email_confirmation(request, full_name, email):
+    subject = "Web Development Mentorship Free Call Booking"
     message = f"""
-    Hi {name},
+    Hi {full_name},
 
     Your application for web development mentorship program has been successfuly received.
 
     Details:
-        Name: {name}
+        Name: {full_name}
         Email: {email}
         Interest: Web development Mentorship Program
 
@@ -160,4 +143,43 @@ def send_confirmation_email(name, email):
     Regards,
     Jarvis
     """
-    send_mail(subject, message, 'jarviswuod@gmail.com', [email])
+
+    message = Mail(
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to_emails=email,
+        subject=subject,
+        plain_text_content=message
+    )
+
+    try:
+        sg = SendGridAPIClient(
+            api_key=settings.SENDGRID_API_KEY)
+        response = sg.send(message)
+        logger.info(f"Email sent successfully: {response.status_code}")
+        messages.success(
+            request, "Thank you for booking a call! Kindly check your inbox or spam folder for confirmation email.")
+    except Exception as sendgrid_error:
+        logger.error(f"SendGrid error: {sendgrid_error}")
+        messages.error(
+            request, "There was an error with your submission. Please check the form and try again.")
+
+
+def contact_page_boooking_email_confirmation(request, subject, message, email):
+    message = Mail(
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to_emails=email,
+        subject=subject,
+        plain_text_content=message
+    )
+
+    try:
+        sg = SendGridAPIClient(
+            api_key=settings.SENDGRID_API_KEY)
+        response = sg.send(message)
+        logger.info(f"Email sent successfully: {response.status_code}")
+        messages.success(
+            request, "Successfully submited Your request. Kindly check your inbox or spam folder for confirmation email.")
+    except Exception as sendgrid_error:
+        logger.error(f"SendGrid error: {sendgrid_error}")
+        messages.error(
+            request, "There was an error with your submission. Please check the form and try again.")

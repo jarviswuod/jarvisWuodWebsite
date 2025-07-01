@@ -183,16 +183,6 @@ STATICFILES_DIRS = [
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
-# Email settings
-# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-# EMAIL_HOST = 'smtp.gmail.com'
-# EMAIL_PORT = 587
-# EMAIL_USE_TLS = True
-# EMAIL_HOST_USER = env('EMAIL_HOST_USER')
-# EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
-# DEFAULT_FROM_EMAIL = EMAIL_HOST_USER
-
-
 # Email Send Grid API Key
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
 EMAIL_HOST = 'smtp.sendgrid.net'
@@ -202,6 +192,7 @@ EMAIL_HOST_USER = 'apikey'
 EMAIL_HOST_PASSWORD = env('SENDGRID_API_KEY')
 DEFAULT_FROM_EMAIL = env('EMAIL_HOST_USER')
 SERVER_EMAIL = env('EMAIL_HOST_USER')
+SENDGRID_API_KEY = env('SENDGRID_API_KEY')
 
 ADMINS = parse_admins_json(env('ADMINS_JSON', default='[]'))
 

@@ -6,16 +6,12 @@ from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
 from django.core.paginator import Paginator
-from django.core.mail import send_mail
 from django.contrib.auth import authenticate, login
-
 
 from django.template.loader import render_to_string
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
 from django.utils.html import strip_tags
-import logging
-
 
 from django.db.models import Q
 from .models import NewsletterSubscriber, Blog, Like, Comment, Share
@@ -24,10 +20,10 @@ from .forms import NewsletterForm, CommentForm
 from .utils import convert_utc_to_local
 from django.utils import timezone
 
-import os
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
+import logging
 logger = logging.getLogger(__name__)
 
 
@@ -49,10 +45,9 @@ def blogs(request):
         form = NewsletterForm(request.POST)
 
         if form.is_valid():
-            email_address = form.cleaned_data['email_address']
+            email = form.cleaned_data['email_address']
             subscriber = form.save()
-            # send_newsletter_confirmation_email(
-            #     request, subscriber.email_address)
+            success_newsletter_subscription_email(request=request, email=email)
             return redirect('newsletter_success')
         else:
             messages.error(
@@ -132,10 +127,9 @@ def newsletter_subscription(request):
         form = NewsletterForm(request.POST)
 
         if form.is_valid():
-            email_address = form.cleaned_data['email_address']
+            email = form.cleaned_data['email_address']
             subscriber = form.save()
-            # send_newsletter_confirmation_email(
-            #     request, subscriber.email_address)
+            success_newsletter_subscription_email(request=request, email=email)
             return redirect('newsletter_success')
         else:
             messages.error(
@@ -153,10 +147,8 @@ def newsletter_success(request):
 # HELPER FUNCTIONS
 # ////////////////////////////////////////////////////////////////////////////////////////////
 
-def send_newsletter_confirmation_email(request, email_address):
-    """
-    Send newsletter confirmation email and handle success/error messaging
-    """
+def success_newsletter_subscription_email(request, email):
+
     subject = "Welcome to Jarvis Wuod's Newsletter"
     message = f"""
     Hi there,
@@ -178,23 +170,28 @@ def send_newsletter_confirmation_email(request, email_address):
     Jarvis Wuod
     """
 
+    message = Mail(
+        from_email=settings.DEFAULT_FROM_EMAIL,
+        to_emails=email,
+        subject=subject,
+        plain_text_content=message
+    )
+
     try:
-        send_mail(subject, message, 'jarviswuod@gmail.com', [email_address])
+        sg = SendGridAPIClient(
+            api_key=settings.SENDGRID_API_KEY)
+        response = sg.send(message)
+        logger.info(f"Email sent successfully: {response.status_code}")
         messages.success(
             request, "You have successfully subscribed to the weekly newsletter!")
-    except Exception as e:
+    except Exception as sendgrid_error:
+        logger.error(f"SendGrid warning: {sendgrid_error}")
         messages.warning(
             request, "Subscription successful, but there was an issue sending the confirmation email.")
 
 
 def handle_user_modal_forms(request, slug=None):
     from django.contrib.auth.models import User
-    from django.contrib.auth import authenticate, login
-    from django.contrib import messages
-    from django.core.mail import send_mail
-    from django.template.loader import render_to_string
-    from django.utils.html import strip_tags
-    from django.conf import settings
     from django.contrib.auth.tokens import default_token_generator
     from django.utils.encoding import force_bytes
     from django.utils.http import urlsafe_base64_encode
@@ -270,24 +267,23 @@ def handle_user_modal_forms(request, slug=None):
             })
             plain_message = strip_tags(html_message)
 
-            # REPLACE THIS SECTION - SendGrid API instead of send_mail
             message = Mail(
-                from_email=settings.DEFAULT_FROM_EMAIL,  # Your verified sender
-                to_emails=email,  # recipient email
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                to_emails=email,
                 subject='Your Password Reset Request on Jarvis Wuod',
                 html_content=html_message,
-                plain_text_content=plain_message  # Optional: plain text version
+                plain_text_content=plain_message
             )
 
             try:
                 sg = SendGridAPIClient(
-                    api_key=os.environ.get('SENDGRID_API_KEY'))
+                    api_key=settings.SENDGRID_API_KEY)
                 response = sg.send(message)
-                print(f"Email sent! Status code: {response.status_code}")
+                logger.info(f"Email sent! Status code: {response.status_code}")
                 messages.success(
                     request, "Please check your email, Password reset email sent successfully!")
             except Exception as sendgrid_error:
-                print(f"SendGrid error: {sendgrid_error}")
+                logger.error(f"SendGrid error: {sendgrid_error}")
                 messages.error(
                     request, f"Failed to send reset email. Please try again.")
 
@@ -322,7 +318,7 @@ def add_comment(request, blog, slug):
 
             new_comment.save()
 
-            # send_comment_notifications(request, new_comment)git
+            send_comment_notifications(request, new_comment)
             return redirect(f"{reverse('blog_detail', kwargs={'slug': slug})}#commentsSection")
 
 
@@ -343,62 +339,42 @@ def send_comment_notifications(request, comment):
 
 
 def send_blog_author_notification(comment, blog_url):
-    try:
-        subject = f'New comment on your blog: "{comment.blog.title}"'
+    subject = f'New comment on your blog: "{comment.blog.title}"'
 
-        html_message = render_to_string('blogs/new_comment_notification.html', {
-            'blog_author': comment.blog.author,
-            'comment': comment,
-            'blog': comment.blog,
-            'blog_url': blog_url,
-        })
+    context = {
+        'blog_author': comment.blog.author,
+        'comment': comment,
+        'blog': comment.blog,
+        'blog_url': blog_url,
+    }
 
-        plain_message = strip_tags(html_message)
-
-        send_mail(
-            subject=subject,
-            message=plain_message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[comment.blog.author.email],
-            html_message=html_message,
-            fail_silently=False,
-        )
-
-        logger.info(
-            f"Blog author notification sent to {comment.blog.author.email}")
-
-    except Exception as e:
-        logger.error(f"Failed to send blog author notification: {str(e)}")
+    _send_email_notification(
+        subject=subject,
+        template_name='blogs/new_comment_notification.html',
+        context=context,
+        recipient_email=comment.blog.author.email,
+        notification_type='Blog author notification'
+    )
 
 
 def send_reply_notification(comment, blog_url):
-    try:
-        subject = f'Reply to your comment on "{comment.blog.title}"'
+    subject = f'Reply to your comment on "{comment.blog.title}"'
 
-        html_message = render_to_string('blogs/reply_notification.html', {
-            'parent_author': comment.parent.author,
-            'comment': comment,
-            'parent_comment': comment.parent,
-            'blog': comment.blog,
-            'blog_url': blog_url,
-        })
+    context = {
+        'parent_author': comment.parent.author,
+        'comment': comment,
+        'parent_comment': comment.parent,
+        'blog': comment.blog,
+        'blog_url': blog_url,
+    }
 
-        plain_message = strip_tags(html_message)
-
-        send_mail(
-            subject=subject,
-            message=plain_message,
-            from_email=settings.DEFAULT_FROM_EMAIL,
-            recipient_list=[comment.parent.author.email],
-            html_message=html_message,
-            fail_silently=False,
-        )
-
-        logger.info(
-            f"Reply notification sent to {comment.parent.author.email}")
-
-    except Exception as e:
-        logger.error(f"Failed to send reply notification: {str(e)}")
+    _send_email_notification(
+        subject=subject,
+        template_name='blogs/reply_notification.html',
+        context=context,
+        recipient_email=comment.parent.author.email,
+        notification_type='Reply notification'
+    )
 
 
 def notify_thread_participants(comment, blog_url):
@@ -417,28 +393,52 @@ def notify_thread_participants(comment, blog_url):
         if participant_emails:
             subject = f'New comment on "{comment.blog.title}"'
 
-            html_message = render_to_string('blogs/thread_notification.html', {
+            context = {
                 'comment': comment,
                 'blog': comment.blog,
                 'blog_url': blog_url,
-            })
+            }
 
-            plain_message = strip_tags(html_message)
-
-            send_mail(
-                subject=subject,
-                message=plain_message,
-                from_email=settings.DEFAULT_FROM_EMAIL,
-                recipient_list=participant_emails,
-                html_message=html_message,
-                fail_silently=False,
-            )
-
-            logger.info(
-                f"Thread notifications sent to {len(participant_emails)} participants")
+            for email in participant_emails:
+                _send_email_notification(
+                    subject=subject,
+                    template_name='blogs/thread_notification.html',
+                    context=context,
+                    recipient_email=email,
+                    notification_type='Thread notification'
+                )
 
     except Exception as e:
         logger.error(f"Failed to send thread notifications: {str(e)}")
+
+
+def _send_email_notification(subject, template_name, context, recipient_email, notification_type):
+    """Private helper to send email notifications with consistent error handling."""
+    try:
+        html_message = render_to_string(template_name, context)
+        plain_message = strip_tags(html_message)
+
+        message = Mail(
+            from_email=settings.DEFAULT_FROM_EMAIL,
+            to_emails=recipient_email,
+            subject=subject,
+            html_content=html_message,
+            plain_text_content=plain_message
+        )
+
+        try:
+            sg = SendGridAPIClient(
+                api_key=settings.SENDGRID_API_KEY)
+            response = sg.send(message)
+            logger.info(f"Email sent! Status code: {response.status_code}")
+        except Exception as sendgrid_error:
+            logger.error(f"SendGrid error: {sendgrid_error}")
+
+        logger.info(f"{notification_type} sent to {recipient_email}")
+
+    except Exception as e:
+        logger.error(f"Failed to send {notification_type.lower()}: {str(e)}")
+        raise
 
 
 @login_required
