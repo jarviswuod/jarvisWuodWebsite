@@ -34,8 +34,8 @@ Before you begin, ensure you have the following installed:
 ### 1. Clone the Repository
 
 ```bash
-git clone <your-repository-url>
-cd jarvis-portfolio-website
+git clone git@github.com:jarviswuod/jarvisWuodWebsite.git
+cd jarvisWuodWebsite
 ```
 
 ### 2. Set Up Virtual Environment
@@ -62,20 +62,22 @@ pip install -r requirements.txt
 Create a `.env` file in the project root:
 
 ```env
+# Environment Settings
+ENVIRONMENT=development
+
 # Django Settings
-SECRET_KEY=your-secret-key-here
-DEBUG=True
-ALLOWED_HOSTS=localhost,127.0.0.1
+SECRET_KEY=django-insecure-your-secret-key-here
+ALLOWED_HOSTS=localhost,127.0.0.1,yourdomain.com,www.yourdomain.com
 
-# Database (SQLite is default for development)
-DATABASE_URL=sqlite:///db.sqlite3
+# Email Configuration
+EMAIL_HOST_USER=your-email@example.com
+EMAIL_HOST_PASSWORD=your-email-password
 
-# Email Configuration (SendGrid)
-SENDGRID_API_KEY=your-sendgrid-api-key
-FROM_EMAIL=your-email@example.com
+# SendGrid Configuration
+SENDGRID_API_KEY=SG.your-sendgrid-api-key-here
 
-# Security
-ADMIN_HONEYPOT_EMAIL_ADMINS=True
+# Admin Configuration
+ADMINS_JSON=[{"name": "Your Name", "email": "your-email@example.com"}]
 ```
 
 ### 5. Database Setup
@@ -107,7 +109,7 @@ Visit `http://127.0.0.1:8000` to view your website!
 ## 📁 Project Structure
 
 ```
-jarvis-portfolio-website/
+jarvisWuodWebsite/
 ├── manage.py
 ├── requirements.txt
 ├── .env
@@ -171,14 +173,25 @@ python manage.py collectstatic
 
 ## 📝 Key Components
 
+### Environment Variables Setup
+
+Your `.env` file controls important project settings:
+
+- **ENVIRONMENT**: Set to `development` for local development
+- **SECRET_KEY**: Django's secret key for security (keep this secret!)
+- **ALLOWED_HOSTS**: Domains allowed to serve your application
+- **EMAIL_HOST_USER**: Your email for sending notifications
+- **EMAIL_HOST_PASSWORD**: Password for your email account
+- **SENDGRID_API_KEY**: API key for SendGrid email service
+- **ADMINS_JSON**: JSON array of admin users for error notifications
+
+**Important**: Never commit your actual `.env` file to version control. The example above shows the structure, but use your real values.
+
 ### CKEditor Integration
 
 - Rich text editor for blog posts and content
 - Configured for optimal user experience
 - Supports images, links, and formatted text
-
-### TailwindCSS Styling
-
 - Utility-first CSS framework
 - Responsive design out of the box
 - Easy customization and theming
