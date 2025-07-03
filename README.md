@@ -18,7 +18,7 @@ A modern portfolio website built with Django and TailwindCSS to showcase web dev
 - **Frontend**: TailwindCSS + JavaScript
 - **Database**: SQLite (Development)
 - **Editor**: CKEditor 5 for rich text editing
-- **Email**: SendGrid integration for contact forms
+- **Email**: SendGrid integration for contact forms, password reset and email notifications
 - **Environment**: Python virtual environment with django-environ
 
 ## 📋 Prerequisites
@@ -38,7 +38,7 @@ git clone git@github.com:jarviswuod/jarvisWuodWebsite.git
 cd jarvisWuodWebsite
 ```
 
-### 2. Set Up Virtual Environment
+### 2. Set Up and Activate Virtual Environment
 
 ```bash
 # Create virtual environment
@@ -122,7 +122,7 @@ jarvisWuodWebsite/
 │   └── images/
 ├── media/
 ├── templates/
-└── your_project/
+└── jarvisWuodWebsite/
     ├── settings.py
     ├── urls.py
     └── wsgi.py
@@ -161,14 +161,14 @@ python manage.py collectstatic
 
 ### Accessing Admin Interface
 
-1. Navigate to `http://127.0.0.1:8000/admin/`
+1. Navigate to `http://127.0.0.1:8000/strange/`
 2. Login with your superuser credentials
 3. Manage your portfolio content, blog posts, and job listings
 
 ### Admin Honeypot Security
 
-- The real admin is at `/admin/`
-- Fake admin honeypot is at `/admin-honeypot/` (catches malicious attempts)
+- The real admin is at `/strange/`
+- Fake admin honeypot is at `/admin/` (catches malicious attempts)
 - Check logs for security alerts
 
 ## 📝 Key Components
@@ -201,6 +201,7 @@ Your `.env` file controls important project settings:
 - Automatic sitemap generation
 - Meta tags optimization
 - Clean URL structure
+- robots.txt file for web crawlers
 
 ### Logging
 
@@ -278,11 +279,13 @@ python manage.py collectstatic --clear
 
 ### Planned Features
 
-- **Background Tasks**: Celery integration for email processing
-- **User Authentication**: Registration and login system
-- **API Endpoints**: REST API for mobile app integration
+- **Background Tasks**: Celery and redis/RabbitMQ integration for email processing
+- **API Endpoints**: REST API for both mobile app and React.js integrations
 - **Testing Suite**: Comprehensive test coverage
 - **Frontend Framework**: Potential React.js integration
+- **Containerization**: Docker for application packaging and deployment
+- **Orchestration**: Kubernetes for container management and scaling
+- **CI/CD Pipeline**: GitHub Actions/Jenkins for automated testing and deployment
 
 ### Performance Optimization
 
