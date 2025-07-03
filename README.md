@@ -17,6 +17,8 @@ A modern portfolio website built with Django and TailwindCSS to showcase web dev
 - **Backend**: Django 5.0.14
 - **Frontend**: TailwindCSS + JavaScript
 - **Database**: SQLite (Development)
+- **WSGI Server**: Gunicorn (production)
+- **Web Server**: Nginx (production)
 - **Editor**: CKEditor 5 for rich text editing
 - **Email**: SendGrid integration for contact forms, password reset and email notifications
 - **Environment**: Python virtual environment with django-environ
@@ -91,11 +93,11 @@ python manage.py migrate
 python manage.py createsuperuser
 ```
 
-### 6. Static Files Setup
+### 6. Set up TailwindCSS
 
 ```bash
-# Collect static files
-python manage.py collectstatic --noinput
+npm install -D tailwindcss postcss autoprefixer
+npx tailwindcss init
 ```
 
 ### 7. Run Development Server
