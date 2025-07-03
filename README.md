@@ -116,6 +116,10 @@ jarvisWuodWebsite/
 ├── db.sqlite3
 ├── logs/
 │   └── django.log
+├── node/
+│   ├── package-lock.json/
+│   ├── package.json/
+│   └── tailwind.config.js
 ├── static/
 │   ├── css/
 │   ├── js/
