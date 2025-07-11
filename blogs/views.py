@@ -2,6 +2,7 @@ import json
 from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib.auth.decorators import login_required
+from django.db.models import Q
 from django.contrib import messages
 from django.http import JsonResponse
 from django.views.decorators.http import require_POST
@@ -382,7 +383,7 @@ def notify_thread_participants(comment, blog_url):
         root_comment = comment.parent if comment.parent else comment
 
         thread_participants = Comment.objects.filter(
-            models.Q(parent=root_comment) | models.Q(id=root_comment.id)
+            Q(parent=root_comment) | Q(id=root_comment.id)
         ).exclude(
             author=comment.author
         ).exclude(
