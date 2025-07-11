@@ -324,7 +324,7 @@ def add_comment(request, blog, slug):
 
 def send_comment_notifications(request, comment):
     current_site = get_current_site(request)
-    blog_url = f"https://{current_site.domain}/blog/{comment.blog.slug}/"
+    blog_url = f"https://{current_site.domain}/blog/{comment.blog.slug}/#commentsSection"
 
     # 1. Notify blog author on comment
     if comment.blog.author.email and comment.blog.author != comment.author:
@@ -379,8 +379,10 @@ def send_reply_notification(comment, blog_url):
 
 def notify_thread_participants(comment, blog_url):
     try:
+        root_comment = comment.parent if comment.parent else comment
+
         thread_participants = Comment.objects.filter(
-            blog=comment.blog
+            models.Q(parent=root_comment) | models.Q(id=root_comment.id)
         ).exclude(
             author=comment.author
         ).exclude(
