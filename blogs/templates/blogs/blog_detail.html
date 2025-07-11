@@ -350,6 +350,7 @@
                   itemprop="dateCreated"
                 >
                   {{ comment.created_at|date:"F d, Y \a\t g:i A" }}
+                  ({{comment.created_at|timesince}})
                 </time>
               </header>
               <div class="text-[#dedede] mb-4 leading-relaxed" itemprop="text">
@@ -398,6 +399,7 @@
                         itemprop="dateCreated"
                       >
                         {{ reply.created_at|date:"F d, Y \a\t g:i A" }}
+                        ({{reply.created_at|timesince}})
                       </time>
                     </header>
                     <div
