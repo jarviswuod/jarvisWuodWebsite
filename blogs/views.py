@@ -24,6 +24,8 @@ from django.utils import timezone
 from sendgrid import SendGridAPIClient
 from sendgrid.helpers.mail import Mail
 
+import threading
+
 import logging
 logger = logging.getLogger(__name__)
 
@@ -177,6 +179,8 @@ def success_newsletter_subscription_email(request, email):
         subject=subject,
         plain_text_content=message
     )
+    threading.Thread()
+    thread.start()
 
     try:
         sg = SendGridAPIClient(
