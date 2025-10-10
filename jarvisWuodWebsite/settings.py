@@ -68,6 +68,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'django.contrib.sites',
+
     'django.contrib.sitemaps',
     'admin_honeypot',
     'django_ckeditor_5',
@@ -77,7 +79,80 @@ INSTALLED_APPS = [
     'main.apps.MainConfig',
     'emails.apps.EmailsConfig',
     'users.apps.UsersConfig',
+
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+
+    # Social auths
+    'allauth.socialaccount.providers.google',
+    'allauth.socialaccount.providers.github',
+    'allauth.socialaccount.providers.twitter',
+    'allauth.socialaccount.providers.linkedin_oauth2',
 ]
+
+SOCIALACCOUNT_PROVIDERS = {
+    'google': {
+        'APP': {
+            'client_id': env('OAUTH_GOOGLE_CLIENT_ID'),
+            'secret': env('OAUTH_GOOGLE_SECRET'),
+            'key': ''
+        },
+        'SCOPE': [
+            'profile',
+            'email'
+        ],
+        'AUTH_PARAMS': {
+            'access_type': 'online',
+            'prompt': 'consent'
+        }
+    },
+    'github': {
+        'APP': {
+            'client_id': env('OAUTH_GITHUB_CLIENT_ID'),
+            'secret': env('OAUTH_GITHUB_SECRET'),
+            'key': ''
+        },
+        'SCOPE': [
+            'read:user',
+            'user:email',
+        ],
+        'AUTH_PARAMS': {
+            'prompt': 'consent'
+        }
+    },
+    'twitter': {
+        'APP': {
+            'client_id': env('OAUTH_TWITTER_CLIENT_ID'),
+            'secret': env('OAUTH_TWITTER_SECRET'),
+            'key': ''
+        },
+    },
+    "linkedin_oauth2": {
+        "APP": {
+            "client_id": env('OAUTH_LINKEDIN_CLIENT_ID'),
+            "secret":  env('OAUTH_LINKEDIN_SECRET'),
+            "key": ""  # not used, leave empty
+        },
+        "SCOPE": ["r_liteprofile", "r_emailaddress"],
+        "PROFILE_FIELDS": ["id", "first-name", "last-name", "email-address", "picture-url"]
+    },
+
+}
+
+ACCOUNT_EMAIL_VERIFICATION = "optional"  # or "mandatory"
+ACCOUNT_UNIQUE_EMAIL = True
+
+ACCOUNT_SIGNUP_FIELDS = ["email*", "username*", "password1*", "password2*"]
+
+SOCIALACCOUNT_LOGIN_ON_GET = True
+SOCIALACCOUNT_AUTO_SIGNUP = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION = True
+SOCIALACCOUNT_EMAIL_AUTHENTICATION_AUTO_CONNECT = True
+SOCIALACCOUNT_EMAIL_VERIFICATION = 'none'
+
+
+SOCIALACCOUNT_ADAPTER = 'users.adapters.SocialAccountAdapter'
 
 USE_TZ = True
 TIME_ZONE = 'UTC'
@@ -90,6 +165,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+
+    'allauth.account.middleware.AccountMiddleware',
 ]
 
 ROOT_URLCONF = 'jarvisWuodWebsite.urls'
@@ -133,6 +210,8 @@ DATABASES = {
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
 LOGIN_URL = 'users:login'
+LOGIN_REDIRECT_URL = '/'
+
 
 AUTH_PASSWORD_VALIDATORS = [
     {
@@ -197,5 +276,8 @@ SENDGRID_API_KEY = env('SENDGRID_API_KEY')
 ADMINS = parse_admins_json(env('ADMINS_JSON', default='[]'))
 
 SITE_NAME = 'Jarvis Wuod'
+SITE_ID = 1
+ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"   # or "https" in production
+ACCOUNT_DEFAULT_DOMAIN = "localhost:8000"
 
 ACCOUNT_USERNAME_BLACKLIST = ['admin', 'root', 'user', 'strange',]
