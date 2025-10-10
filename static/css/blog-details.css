@@ -105,7 +105,12 @@
 
 .blog-content-area figure {
   text-align: center;
-  margin: 2rem 0;
+  margin: 2rem auto;
+}
+
+.blog-content-area figure img {
+  margin: 0 auto;
+  display: block;
 }
 
 .blog-content-area figcaption {
