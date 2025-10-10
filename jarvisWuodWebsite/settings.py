@@ -276,7 +276,7 @@ SENDGRID_API_KEY = env('SENDGRID_API_KEY')
 ADMINS = parse_admins_json(env('ADMINS_JSON', default='[]'))
 
 SITE_NAME = 'Jarvis Wuod'
-SITE_ID = 1
+SITE_ID = 2
 ACCOUNT_DEFAULT_HTTP_PROTOCOL = "http"   # or "https" in production
 ACCOUNT_DEFAULT_DOMAIN = "localhost:8000"
 

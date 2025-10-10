@@ -1,5 +1,4 @@
 {% extends "base.html" %} {% load static %}
-
 <!-- HEAD SECTION -->
 
 {% block meta %}
@@ -133,7 +132,7 @@
       {% endif %}
 
       <div
-        class="prose text-[#dedede] leading-relaxed text-base sm:text-lg max-w-4xl ml-auto"
+        class="blog-content-area prose text-[#dedede] leading-relaxed text-base sm:text-lg max-w-4xl ml-auto"
         itemprop="articleBody"
       >
         {{ blog.content|safe }}

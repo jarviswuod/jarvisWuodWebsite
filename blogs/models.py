@@ -18,7 +18,8 @@ class Blog(models.Model):
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='blog_posts')
-    content = CKEditor5Field(config_name='extends', null=True)
+    # content = CKEditor5Field(config_name='extends', null=True)
+    content = models.TextField(null=True, blank=True)
     excerpt = models.TextField(max_length=300, blank=True)
     featured_image = models.ImageField(
         upload_to='blog_images/', blank=True, null=True)
