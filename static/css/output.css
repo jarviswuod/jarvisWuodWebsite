@@ -1115,8 +1115,28 @@ video {
   height: 24rem;
 }
 
+.h-\[10rem\] {
+  height: 10rem;
+}
+
 .h-full {
   height: 100%;
+}
+
+.h-\[90rem\] {
+  height: 90rem;
+}
+
+.h-\[60rem\] {
+  height: 60rem;
+}
+
+.h-\[40rem\] {
+  height: 40rem;
+}
+
+.h-\[42rem\] {
+  height: 42rem;
 }
 
 .max-h-24 {
@@ -2284,6 +2304,10 @@ video {
 .py-8 {
   padding-top: 2rem;
   padding-bottom: 2rem;
+}
+
+.pb-2 {
+  padding-bottom: 0.5rem;
 }
 
 .pb-4 {
