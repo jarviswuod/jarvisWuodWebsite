@@ -1,9 +1,12 @@
 {% load socialaccount %}
 
-<div class="w-full md:w-80 my-8 m-auto space-y-3 font-semibold text-gray-700">
+<form class="w-full md:w-80 my-8 m-auto space-y-3 font-semibold text-gray-700">
+  <input type="hidden" name="next" value="{{ request.path }}" />
+  <input type="hidden" name="next" value="{{ request.get_full_path }}" />
+
   <a
     class="relative flex items-center p-4 rounded-full border !no-underline hover:!text-inherit hover:!bg-gray-100 w-full"
-    href="{% provider_login_url 'google' %}"
+    href="{% provider_login_url 'google' %}?next={{ request.get_full_path|urlencode }}"
   >
     <svg
       class="w-6 h-6 absolute left-4"
@@ -32,7 +35,7 @@
 
   <a
     class="relative flex items-center p-4 rounded-full border !no-underline hover:!text-inherit hover:!bg-gray-100 w-full"
-    href="{% provider_login_url 'github' %}"
+    href="{% provider_login_url 'github' %}?next={{ request.get_full_path|urlencode }}"
   >
     <svg
       class="w-6 h-6 absolute left-4"
@@ -48,7 +51,7 @@
 
   <a
     class="relative flex items-center p-4 rounded-full border !no-underline hover:!text-inherit hover:!bg-gray-100 w-full"
-    href="{% provider_login_url 'twitter' %}"
+    href="{% provider_login_url 'twitter' %}?next={{ request.get_full_path|urlencode }}"
   >
     <svg
       class="w-6 h-6 absolute left-4"
@@ -61,7 +64,7 @@
     </svg>
     <span class="text-center w-full">Sign in with X</span>
   </a>
-</div>
+</form>
 
 <div class="relative flex items-center my-4 mt-10">
   <div class="flex-grow border-t border-gray-300"></div>
