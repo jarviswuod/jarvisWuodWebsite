@@ -50,6 +50,8 @@
       </p>
     </div>
 
+    {% include "users/social_logins.html" %}
+
     <div class="bg-white py-8 px-6 shadow-lg rounded-lg">
       <form class="space-y-6" method="post">
         {% csrf_token %}
@@ -148,7 +150,6 @@
         </div>
       </form>
     </div>
-    {% include "users/social_logins.html" %}
   </div>
 </div>
 {% endblock %}

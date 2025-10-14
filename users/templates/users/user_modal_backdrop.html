@@ -9,16 +9,20 @@
   <!-- Login Modal -->
   <div
     id="loginModal"
-    class="modal modal--login bg-white rounded-lg shadow-xl max-w-md w-full transform transition-all"
+    class="modal modal--login bg-white rounded-lg shadow-xl max-w-md w-full transform transition-all h-[42rem] overflow-auto"
   >
-    <div class="flex justify-between items-center p-6 border-b">
-      <h2 class="text-2xl font-bold text-gray-900">Sign in to your account</h2>
-      <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
-        <i class="fas fa-times text-xl"></i>
-      </button>
-    </div>
-
-    <div class="p-6">
+    <div class="p-6 pb-2 border-b">
+      <div class="flex justify-between items-center">
+        <h2 class="text-2xl font-bold text-gray-900">
+          Sign in to your account
+        </h2>
+        <button
+          onclick="closeModal()"
+          class="text-gray-400 hover:text-gray-600"
+        >
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
       <p class="mb-4 text-sm text-gray-600">
         Or
         <button
@@ -28,7 +32,10 @@
           create a new account
         </button>
       </p>
+    </div>
 
+    <div class="p-6">{% include "users/social_logins.html" %}</div>
+    <div class="p-6">
       <form class="space-y-4" method="POST" action="">
         {% csrf_token %}
         <input type="hidden" name="form_type" value="login_form" />
@@ -81,16 +88,18 @@
   <!-- Signup Modal -->
   <div
     id="signupModal"
-    class="modal modal--signup bg-white rounded-lg shadow-xl max-w-md w-full transform transition-all hidden"
+    class="modal modal--signup bg-white rounded-lg shadow-xl max-w-md w-full transform transition-all hidden h-[42rem] overflow-auto"
   >
-    <div class="flex justify-between items-center p-6 border-b">
-      <h2 class="text-2xl font-bold text-gray-900">Create your account</h2>
-      <button onclick="closeModal()" class="text-gray-400 hover:text-gray-600">
-        <i class="fas fa-times text-xl"></i>
-      </button>
-    </div>
-
-    <div class="p-6">
+    <div class="p-6 pb-2 border-b">
+      <div class="flex justify-between items-center">
+        <h2 class="text-2xl font-bold text-gray-900">Create your account</h2>
+        <button
+          onclick="closeModal()"
+          class="text-gray-400 hover:text-gray-600"
+        >
+          <i class="fas fa-times text-xl"></i>
+        </button>
+      </div>
       <p class="mb-4 text-sm text-gray-600">
         Or
         <button
@@ -100,7 +109,11 @@
           sign in to your existing account
         </button>
       </p>
+    </div>
 
+    <div class="p-6">{% include "users/social_logins.html" %}</div>
+
+    <div class="p-6">
       <form class="space-y-4" method="POST" action="">
         {% csrf_token %}
         <input type="hidden" name="form_type" value="signup_form" />
