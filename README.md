@@ -1,14 +1,14 @@
-# Jarvis Web Portfolio Website
+# Jarvis Wuod
 
-A modern portfolio website built with Django and TailwindCSS to showcase web development skills, share technical blogs, and post web developer job opportunities for the community.
+Is a modern portfolio website built with Django and TailwindCSS to showcase web dev skills, share technical blogs, and post web dev opportunities for the community.
 
 ## 🚀 Features
 
 - **Portfolio Showcase**: Display your projects, skills, and experience
-- **Blog System**: Share technical articles and insights with integrated CKEditor
-- **Job Board**: Post and share web developer job opportunities
+- **Blog System**: Share technical articles and insights with integrated WYSIWYG
+- **Job Board**: Post and share web dev job opportunities
 - **Responsive Design**: Mobile-first design using TailwindCSS
-- **Admin Interface**: Easy content management through Django admin
+- **Admin Interface**: Easy content management through default Django admin
 - **SEO Optimized**: Built-in sitemap generation for better search visibility
 - **Security**: Admin honeypot protection against malicious attacks
 
