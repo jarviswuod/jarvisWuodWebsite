@@ -179,11 +179,11 @@
             <button
               data-slug="{{ blog.slug }}"
               class="likeBtn flex items-center space-x-2 py-2"
-              aria-label="{% if user_has_liked %}Unlike this post{% else %}Like this post{% endif %}"
-              aria-pressed="{% if user_has_liked %}true{% else %}false{% endif %}"
+              aria-label="{% if blog_is_liked %}Unlike this post{% else %}Like this post{% endif %}"
+              aria-pressed="{% if blog_is_liked %}true{% else %}false{% endif %}"
             >
               <i
-                class="{% if user_has_liked %} fas fa-heart text-red-600 {% else %} far fa-heart {% endif %}"
+                class="{% if blog_is_liked %}fas fa-heart text-red-600 {% else %}far fa-heart {% endif %} text-2xl"
                 aria-hidden="true"
               ></i>
               <span
@@ -547,11 +547,11 @@
           data-slug="{{ blog.slug }}"
           id="likeBtn"
           class="likeBtn flex flex-col items-center justify-center py-2"
-          aria-label="{% if user_has_liked %}Unlike this post{% else %}Like this post{% endif %}"
-          aria-pressed="{% if user_has_liked %}true{% else %}false{% endif %}"
+          aria-label="{% if blog_is_liked %}Unlike this post{% else %}Like this post{% endif %}"
+          aria-pressed="{% if blog_is_liked %}true{% else %}false{% endif %}"
         >
           <i
-            class="{% if user_has_liked %} fas fa-heart text-red-600 {% else %} far fa-heart {% endif %} text-2xl"
+            class="{% if blog_is_liked %}fas fa-heart text-red-600 {% else %}far fa-heart {% endif %} text-2xl"
             aria-hidden="true"
           ></i>
           <span
