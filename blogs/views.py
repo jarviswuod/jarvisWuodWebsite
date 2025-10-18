@@ -93,10 +93,13 @@ def blog_detail(request, slug):
         comment.updated_at = convert_utc_to_local(
             comment.updated_at, user_timezone)
 
-    user_has_liked = False
+    blog_is_liked = False
+    ip = get_client_ip(request)
     if request.user.is_authenticated:
-        user_has_liked = Like.objects.filter(
-            user=request.user, blog=blog).exists()
+        blog_is_liked = Like.objects.filter(
+            blog=blog, user=request.user).exists()
+    else:
+        blog_is_liked = Like.objects.filter(blog=blog, ip_address=ip).exists()
 
     # Comment handling
     add_comment(request, blog, slug)
