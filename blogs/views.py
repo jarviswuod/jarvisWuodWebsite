@@ -118,7 +118,7 @@ def blog_detail(request, slug):
         'blog': blog,
         'comments': comments_page,
         'comment_form': comment_form,
-        'user_has_liked': user_has_liked,
+        'blog_is_liked': blog_is_liked,
         'total_likes': blog.total_likes(),
         'total_comments': blog.total_comments(),
     }
