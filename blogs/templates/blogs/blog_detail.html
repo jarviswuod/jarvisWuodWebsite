@@ -183,7 +183,7 @@
               aria-pressed="{% if user_has_liked %}true{% else %}false{% endif %}"
             >
               <i
-                class="{% if user_has_liked %} fas fa-heart text-red-600 {% else %} far fa-heart {% endif %}"
+                class="{% if user_has_liked %}fas fa-heart text-red-600 {% else %}far fa-heart {% endif %} text-2xl"
                 aria-hidden="true"
               ></i>
               <span
@@ -551,7 +551,7 @@
           aria-pressed="{% if user_has_liked %}true{% else %}false{% endif %}"
         >
           <i
-            class="{% if user_has_liked %} fas fa-heart text-red-600 {% else %} far fa-heart {% endif %} text-2xl"
+            class="{% if user_has_liked %}fas fa-heart text-red-600 {% else %}far fa-heart {% endif %} text-2xl"
             aria-hidden="true"
           ></i>
           <span
