@@ -448,22 +448,29 @@ def _send_email_notification(subject, template_name, context, recipient_email, n
         raise
 
 
-@login_required
 @require_POST
 def toggle_like(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
-    like, created = Like.objects.get_or_create(user=request.user, blog=blog)
+    ip = get_client_ip(request)
+
+    if request.user.is_authenticated:
+        like_filter = {'blog': blog, 'user': request.user}
+    else:
+        like_filter = {'blog': blog, 'ip_address': ip}
+
+    like, created = Like.objects.get_or_create(**like_filter)
+    liked = created
 
     if not created:
         like.delete()
         liked = False
-    else:
-        liked = True
 
-    return JsonResponse({
-        'liked': liked,
-        'total_likes': blog.total_likes()
-    })
+    return JsonResponse({'liked': liked, 'total_likes': blog.likes.count()})
+
+
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    return x_forwarded_for.split(',')[0] if x_forwarded_for else request.META.get('REMOTE_ADDR')
 
 
 @login_required

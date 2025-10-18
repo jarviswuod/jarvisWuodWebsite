@@ -44,16 +44,20 @@ class Blog(models.Model):
 
 
 class Like(models.Model):
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
     blog = models.ForeignKey(
         Blog, on_delete=models.CASCADE, related_name='likes')
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('user', 'blog')
-
-    def __str__(self):
-        return f'{self.user.username} likes {self.blog.title}'
+        constraints = [
+            models.UniqueConstraint(
+                fields=['blog', 'user'], name='unique_user_like'),
+            models.UniqueConstraint(
+                fields=['blog', 'ip_address'], name='unique_ip_like'),
+        ]
 
 
 class Comment(models.Model):
