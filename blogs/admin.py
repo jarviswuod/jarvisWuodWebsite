@@ -67,7 +67,7 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Like)
 class LikeAdmin(admin.ModelAdmin):
-    list_display = ['user', 'blog', 'created_at']
+    list_display = ['user', 'ip_address', 'blog', 'created_at']
     list_filter = ['created_at', 'blog']
     search_fields = ['user__username', 'blog__title']
     ordering = ['-created_at']
@@ -75,7 +75,7 @@ class LikeAdmin(admin.ModelAdmin):
 
 @admin.register(Share)
 class ShareAdmin(admin.ModelAdmin):
-    list_display = ['user', 'blog', 'platform', 'created_at']
+    list_display = ['user', 'ip_address', 'blog', 'platform', 'created_at']
     list_filter = ['platform', 'created_at', 'blog']
     search_fields = ['user__username', 'blog__title']
     ordering = ['-created_at']

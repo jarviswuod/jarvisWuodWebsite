@@ -208,3 +208,10 @@ const scrollToCommentForm = () => {
     commentsSection.scrollIntoView({ behavior: "smooth" });
   }
 };
+
+const scrollToShareSection = () => {
+  const engagementSection = document.getElementById("engagementSection");
+  if (engagementSection) {
+    engagementSection.scrollIntoView({ behavior: "smooth" });
+  }
+};

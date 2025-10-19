@@ -121,6 +121,7 @@ def blog_detail(request, slug):
         'blog_is_liked': blog_is_liked,
         'total_likes': blog.total_likes(),
         'total_comments': blog.total_comments(),
+        'total_shares': blog.total_shares(),
     }
 
     return render(request, 'blogs/blog_detail.html', context)
@@ -476,18 +477,63 @@ def get_client_ip(request):
     return x_forwarded_for.split(',')[0] if x_forwarded_for else request.META.get('REMOTE_ADDR')
 
 
-@login_required
 @require_POST
 def share_blog(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     platform = request.POST.get('platform')
+    ip = get_client_ip(request)
+
+    if request.user.is_authenticated:
+        share_filter = {'blog': blog,
+                        'platform': platform, 'user': request.user}
+    else:
+        share_filter = {'blog': blog, 'platform': platform, 'ip_address': ip}
 
     if platform in ['facebook', 'twitter', 'linkedin', 'whatsapp', 'email', 'copy_link']:
-        Share.objects.create(
-            user=request.user,
-            blog=blog,
-            platform=platform
-        )
+        Share.objects.create(**share_filter)
         return JsonResponse({'success': True, 'message': f'Blog shared on {platform}'})
 
     return JsonResponse({'success': False, 'error': 'Invalid platform'})
+
+
+# @login_required
+# @require_POST
+# def share_blog(request, slug):
+#     blog = get_object_or_404(Blog, slug=slug)
+#     platform = request.POST.get('platform')
+
+#     if platform in ['facebook', 'twitter', 'linkedin', 'whatsapp', 'email', 'copy_link']:
+#         Share.objects.create(
+#             user=request.user,
+#             blog=blog,
+#             platform=platform
+#         )
+#         return JsonResponse({'success': True, 'message': f'Blog shared on {platform}'})
+
+#     return JsonResponse({'success': False, 'error': 'Invalid platform'})
+
+
+# @require_POST
+# def share_blog(request, slug):
+#     blog = get_object_or_404(Blog, slug=slug)
+#     platform = request.POST.get('platform')
+#     ip = get_client_ip(request)
+
+#     if platform in ['facebook', 'twitter', 'linkedin', 'whatsapp', 'email', 'copy_link']:
+#         if request.user.is_authenticated:
+#             Share.objects.create(
+#                 user=request.user,
+#                 blog=blog,
+#                 platform=platform
+#             )
+
+#         else:
+#             Share.objects.create(
+#                 ip_address=ip,
+#                 blog=blog,
+#                 platform=platform
+#             )
+
+#         return JsonResponse({'success': True, 'message': f'Blog shared on {platform}'})
+
+#     return JsonResponse({'success': False, 'error': 'Invalid platform'})

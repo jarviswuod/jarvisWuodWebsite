@@ -38,6 +38,9 @@ class Blog(models.Model):
     def total_likes(self):
         return self.likes.count()
 
+    def total_shares(self):
+        return self.shares.count()
+
     def total_comments(self):
         return self.comments.filter(is_active=True, parent=None).count()
 
@@ -90,11 +93,13 @@ class Share(models.Model):
         ('copy_link', 'Copy Link'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
     blog = models.ForeignKey(
         Blog, on_delete=models.CASCADE, related_name='shares')
     platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user.username} shared {self.blog.title} on {self.platform}'
+        return f'{self.blog.title} shared on {self.platform}'
