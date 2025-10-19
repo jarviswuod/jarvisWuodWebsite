@@ -25,6 +25,9 @@ environ.Env.read_env()
 
 ENVIRONMENT = env('ENVIRONMENT', default='production')
 
+# Google analytics
+GA_ID = env(f"GA_ID_{ENVIRONMENT.upper()}", default="")
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -43,10 +46,6 @@ else:
     DEBUG = False
 
  # DEBUG context processor
-
-
-def global_debug(request):
-    return {'debug': settings.DEBUG}
 
 
 ALLOWED_HOSTS = env.list("ALLOWED_HOSTS")
@@ -186,7 +185,8 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
 
                 # DEBUG context processor
-                'jarvisWuodWebsite.settings.global_debug',
+                'jarvisWuodWebsite.context_processors.global_debug',
+                'jarvisWuodWebsite.context_processors.google_analytics',
             ],
         },
     },
