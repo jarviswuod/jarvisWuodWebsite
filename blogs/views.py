@@ -93,10 +93,13 @@ def blog_detail(request, slug):
         comment.updated_at = convert_utc_to_local(
             comment.updated_at, user_timezone)
 
-    user_has_liked = False
+    blog_is_liked = False
+    ip = get_client_ip(request)
     if request.user.is_authenticated:
-        user_has_liked = Like.objects.filter(
-            user=request.user, blog=blog).exists()
+        blog_is_liked = Like.objects.filter(
+            blog=blog, user=request.user).exists()
+    else:
+        blog_is_liked = Like.objects.filter(blog=blog, ip_address=ip).exists()
 
     # Comment handling
     add_comment(request, blog, slug)
@@ -115,9 +118,10 @@ def blog_detail(request, slug):
         'blog': blog,
         'comments': comments_page,
         'comment_form': comment_form,
-        'user_has_liked': user_has_liked,
+        'blog_is_liked': blog_is_liked,
         'total_likes': blog.total_likes(),
         'total_comments': blog.total_comments(),
+        'total_shares': blog.total_shares(),
     }
 
     return render(request, 'blogs/blog_detail.html', context)
@@ -448,36 +452,88 @@ def _send_email_notification(subject, template_name, context, recipient_email, n
         raise
 
 
-@login_required
 @require_POST
 def toggle_like(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
-    like, created = Like.objects.get_or_create(user=request.user, blog=blog)
+    ip = get_client_ip(request)
+
+    if request.user.is_authenticated:
+        like_filter = {'blog': blog, 'user': request.user}
+    else:
+        like_filter = {'blog': blog, 'ip_address': ip}
+
+    like, created = Like.objects.get_or_create(**like_filter)
+    liked = created
 
     if not created:
         like.delete()
         liked = False
-    else:
-        liked = True
 
-    return JsonResponse({
-        'liked': liked,
-        'total_likes': blog.total_likes()
-    })
+    return JsonResponse({'liked': liked, 'total_likes': blog.likes.count()})
 
 
-@login_required
+def get_client_ip(request):
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    return x_forwarded_for.split(',')[0] if x_forwarded_for else request.META.get('REMOTE_ADDR')
+
+
 @require_POST
 def share_blog(request, slug):
     blog = get_object_or_404(Blog, slug=slug)
     platform = request.POST.get('platform')
+    ip = get_client_ip(request)
+
+    if request.user.is_authenticated:
+        share_filter = {'blog': blog,
+                        'platform': platform, 'user': request.user}
+    else:
+        share_filter = {'blog': blog, 'platform': platform, 'ip_address': ip}
 
     if platform in ['facebook', 'twitter', 'linkedin', 'whatsapp', 'email', 'copy_link']:
-        Share.objects.create(
-            user=request.user,
-            blog=blog,
-            platform=platform
-        )
+        Share.objects.create(**share_filter)
         return JsonResponse({'success': True, 'message': f'Blog shared on {platform}'})
 
     return JsonResponse({'success': False, 'error': 'Invalid platform'})
+
+
+# @login_required
+# @require_POST
+# def share_blog(request, slug):
+#     blog = get_object_or_404(Blog, slug=slug)
+#     platform = request.POST.get('platform')
+
+#     if platform in ['facebook', 'twitter', 'linkedin', 'whatsapp', 'email', 'copy_link']:
+#         Share.objects.create(
+#             user=request.user,
+#             blog=blog,
+#             platform=platform
+#         )
+#         return JsonResponse({'success': True, 'message': f'Blog shared on {platform}'})
+
+#     return JsonResponse({'success': False, 'error': 'Invalid platform'})
+
+
+# @require_POST
+# def share_blog(request, slug):
+#     blog = get_object_or_404(Blog, slug=slug)
+#     platform = request.POST.get('platform')
+#     ip = get_client_ip(request)
+
+#     if platform in ['facebook', 'twitter', 'linkedin', 'whatsapp', 'email', 'copy_link']:
+#         if request.user.is_authenticated:
+#             Share.objects.create(
+#                 user=request.user,
+#                 blog=blog,
+#                 platform=platform
+#             )
+
+#         else:
+#             Share.objects.create(
+#                 ip_address=ip,
+#                 blog=blog,
+#                 platform=platform
+#             )
+
+#         return JsonResponse({'success': True, 'message': f'Blog shared on {platform}'})
+
+#     return JsonResponse({'success': False, 'error': 'Invalid platform'})
