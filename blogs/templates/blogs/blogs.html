@@ -126,25 +126,19 @@
             aria-label="Read article: {{ blog.title }}"
             tabindex="0"
           >
-            {% if blog.featured_image %}
+            <!--prettier-ignore-->
+            <img
+                class="w-full"
+                alt="{{ blog.title }} Featured image"
+                width="400"
+                height="250"
 
-            <div
-              class="h-64 sm:h-72 md:h-80 lg:h-96 w-full block bg-cover bg-center"
-              style="background-image: url('{{ blog.featured_image.url }}')"
-              role="img"
-              aria-label="Featured image for {{ blog.title }}"
-            ></div>
-            {% else %}
-
-            <div
-              class="h-64 sm:h-72 md:h-80 lg:h-96 w-full block bg-cover bg-center"
-              style="
-                background-image: url('{% static 'media/images/no_img_illustration.png' %}');
-              "
-              role="img"
-              aria-label="Default image placeholder"
-            ></div>
-            {% endif %}
+                {% if blog.featured_image %}
+                src="{{ blog.featured_image.url }}"
+                {% else %}
+                src="{% static 'media/images/no_img_illustration.png' %}"
+                {% endif %}
+              />
           </a>
 
           <div class="px-2 sm:px-4">

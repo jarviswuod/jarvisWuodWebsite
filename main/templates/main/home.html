@@ -41,6 +41,8 @@
 <!-- BODY SECTION -->
 
 {% block body %}
+
+<!-- HERO SECTION -->
 <section
   class="home-hero-section relative bg-cover bg-center px-8"
   style="
@@ -95,6 +97,7 @@
   </div>
 </section>
 
+<!-- STATS SECTION -->
 <section
   class="stats-section my-16 md:my-24 sm:px-8"
   aria-labelledby="stats-heading"
@@ -118,6 +121,7 @@
   </dl>
 </section>
 
+<!-- HOW MENTORSHIP WORKS SECTION -->
 <section
   id="how-the-mentorship-works-section"
   class="how-the-mentorship-works-section bg-[#222] px-8"
@@ -252,6 +256,7 @@
   </div>
 </section>
 
+<!-- TESTIMONIALS SECTION -->
 <section class="my-12 px-8" aria-labelledby="testimonials-heading">
   <div class="max-w-[1280px] text-xl/9 mx-auto">
     <header>
@@ -628,6 +633,7 @@
   </div>
 </section>
 
+<!-- BOOK-A-CALL SECTION -->
 <section
   id="book-a-call"
   class="contact-section my-12 md:my-16 sm:px-8"
@@ -709,6 +715,7 @@
   </div>
 </section>
 
+<!-- PROJECTS SECTION -->
 <section class="projects-section my-12 px-8" aria-labelledby="projects-built">
   <div class="max-w-7xl mx-auto py-12">
     <header>
@@ -804,6 +811,7 @@
   </div>
 </section>
 
+<!-- BLOGS SECTION -->
 <section
   class="blog-section mt-12 px-8 bg-[#222]"
   aria-labelledby="blogs-section"
@@ -835,11 +843,17 @@
           class="blog-post {% if forloop.counter == 3 %} col-span-1 sm:col-span-2 lg:col-span-1 max-w-full sm:max-w-1/2 lg:max-w-full self-center justify-self-center {% endif %}"
         >
           <article>
-            <figure class="mb-4 md:mb-6">
-              <!--prettier-ignore-->
-              <img
+            <a
+              href="{{ blog.get_absolute_url }}"
+              class="post-thumbnail-link mb-2 sm:mb-4"
+              aria-label="Read article: {{ blog.title }}"
+              tabindex="0"
+            >
+              <figure class="mb-4 md:mb-6">
+                <!--prettier-ignore-->
+                <img
                 class="w-full"
-                alt="{{ blog.title }} thumbnail image"
+                alt="{{ blog.title }} feature image"
                 width="400"
                 height="250"
 
@@ -849,12 +863,20 @@
                 src="{% static 'media/images/no_img_illustration.png' %}"
                 {% endif %}
               />
-            </figure>
+              </figure>
+            </a>
             <header>
               <h3
                 class="text-xl sm:text-2xl md:text-3xl lg:text-4xl mb-4 lg:mb-6 text-[#fefefe] font-semibold"
               >
-                {{ blog.title }}
+                <a
+                  href="{{ blog.get_absolute_url }}"
+                  class="hover:underline underline-offset-4 focus:underline focus:outline-none"
+                  aria-label="Read article: {{ blog.title }}"
+                  tabindex="0"
+                >
+                  {{ blog.title }}
+                </a>
               </h3>
               <p
                 class="text-base sm:text-lg/8 mb-8 line-clamp-3 leading-relaxed"
