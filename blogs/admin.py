@@ -16,7 +16,7 @@ class BlogAdmin(admin.ModelAdmin):
     list_display = ['title', 'author', 'is_published',
                     'created_at', 'total_likes', 'total_comments']
     list_filter = ['is_published', 'created_at', 'author']
-    search_fields = ['title', 'content', 'excerpt']
+    search_fields = ['title', 'content', 'excerpt', 'about_me']
     prepopulated_fields = {'slug': ('title',)}
     readonly_fields = ['created_at', 'updated_at']
     ordering = ['-created_at']
@@ -26,7 +26,7 @@ class BlogAdmin(admin.ModelAdmin):
             'fields': ('title', 'slug', 'author', 'excerpt')
         }),
         ('Content', {
-            'fields': ('content', 'featured_image')
+            'fields': ('featured_image', 'content', 'about_me')
         }),
         ('Publishing', {
             'fields': ('is_published',)
@@ -67,7 +67,7 @@ class CommentAdmin(admin.ModelAdmin):
 
 @admin.register(Like)
 class LikeAdmin(admin.ModelAdmin):
-    list_display = ['user', 'blog', 'created_at']
+    list_display = ['user', 'ip_address', 'blog', 'created_at']
     list_filter = ['created_at', 'blog']
     search_fields = ['user__username', 'blog__title']
     ordering = ['-created_at']
@@ -75,7 +75,7 @@ class LikeAdmin(admin.ModelAdmin):
 
 @admin.register(Share)
 class ShareAdmin(admin.ModelAdmin):
-    list_display = ['user', 'blog', 'platform', 'created_at']
+    list_display = ['user', 'ip_address', 'blog', 'platform', 'created_at']
     list_filter = ['platform', 'created_at', 'blog']
     search_fields = ['user__username', 'blog__title']
     ordering = ['-created_at']

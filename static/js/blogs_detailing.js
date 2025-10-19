@@ -16,7 +16,6 @@ const getCookie = (name) => {
 const csrftoken = getCookie("csrftoken");
 
 // Like functionality
-// Select all like buttons (multiple instances)
 document.querySelectorAll(".likeBtn").forEach((btn) => {
   btn.addEventListener("click", function () {
     const slug = this.dataset.slug;
@@ -52,34 +51,6 @@ document.querySelectorAll(".likeBtn").forEach((btn) => {
       });
   });
 });
-
-// document.getElementById("likeBtn")?.addEventListener("click", function () {
-//   console.log(21212);
-//   const slug = this.dataset.slug;
-
-//   fetch(`/blog/${slug}/like/`, {
-//     method: "POST",
-//     headers: {
-//       "X-CSRFToken": csrftoken,
-//       "Content-Type": "application/json",
-//     },
-//   })
-//     .then((response) => response.json())
-//     .then((data) => {
-//       const btn = document.getElementById("likeBtn");
-//       const icon = btn.querySelector("i");
-//       const count = document.getElementById("likeCount");
-
-//       icon.className = data.liked
-//         ? "fas fa-heart text-red-600"
-//         : "far fa-heart";
-//       btn.setAttribute(
-//         "aria-label",
-//         data.liked ? "Unlike this post" : "Like this post"
-//       );
-//       count.textContent = data.total_likes;
-//     });
-// });
 
 // Share functionality
 const shareOn = (platform) => {
@@ -235,5 +206,12 @@ const scrollToCommentForm = () => {
   const commentsSection = document.getElementById("commentFormSection");
   if (commentsSection) {
     commentsSection.scrollIntoView({ behavior: "smooth" });
+  }
+};
+
+const scrollToShareSection = () => {
+  const engagementSection = document.getElementById("engagementSection");
+  if (engagementSection) {
+    engagementSection.scrollIntoView({ behavior: "smooth" });
   }
 };

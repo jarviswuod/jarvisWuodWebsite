@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django_ckeditor_5.fields import CKEditor5Field
 
 
 class NewsletterSubscriber(models.Model):
@@ -18,11 +17,11 @@ class Blog(models.Model):
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='blog_posts')
-    # content = CKEditor5Field(config_name='extends', null=True)
-    content = models.TextField(null=True, blank=True)
     excerpt = models.TextField(max_length=300, blank=True)
     featured_image = models.ImageField(
         upload_to='blog_images/', blank=True, null=True)
+    content = models.TextField(null=True, blank=True)
+    about_me = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
@@ -39,8 +38,11 @@ class Blog(models.Model):
     def total_likes(self):
         return self.likes.count()
 
+    def total_shares(self):
+        return self.shares.count()
+
     def total_comments(self):
-        return self.comments.filter(is_active=True).count()
+        return self.comments.filter(is_active=True, parent=None).count()
 
 
 class Like(models.Model):
@@ -91,11 +93,13 @@ class Share(models.Model):
         ('copy_link', 'Copy Link'),
     ]
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.ForeignKey(
+        User, on_delete=models.CASCADE, null=True, blank=True)
+    ip_address = models.GenericIPAddressField(null=True, blank=True)
     blog = models.ForeignKey(
         Blog, on_delete=models.CASCADE, related_name='shares')
     platform = models.CharField(max_length=20, choices=PLATFORM_CHOICES)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
-        return f'{self.user.username} shared {self.blog.title} on {self.platform}'
+        return f'{self.blog.title} shared on {self.platform}'
