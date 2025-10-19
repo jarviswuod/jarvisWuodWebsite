@@ -2884,6 +2884,14 @@ video {
   background: #555;
 }
 
+#engagementSection {
+  scroll-margin-top: 24rem;
+}
+
+#commentFormSection {
+  scroll-margin-top: 16rem;
+}
+
 ul::-webkit-scrollbar {
   display: none;
 }
