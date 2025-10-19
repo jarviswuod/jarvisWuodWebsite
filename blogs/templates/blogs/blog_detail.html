@@ -536,10 +536,17 @@
       </nav>
       {% endif %}
     </section>
+
+    <div
+      class="blog-content-area prose text-[#dedede] leading-relaxed text-base sm:text-lg max-w-4xl ml-auto"
+      itemprop="articleBody"
+    >
+      {{ blog.about_me|safe }}
+    </div>
   </div>
 
   <!-- Floating Sharing Panel -->
-  <aside class="fixed top-1/3 right-8 sm:right-12 lg:right-24 text-_xl">
+  <aside class="fixed top-1/3 right-8 sm:right-12 lg:right-24">
     <ul class="flex flex-col items-center justify-center">
       <li>
         <!-- Like Button -->

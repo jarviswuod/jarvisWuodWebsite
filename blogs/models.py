@@ -1,7 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.urls import reverse
-from django_ckeditor_5.fields import CKEditor5Field
 
 
 class NewsletterSubscriber(models.Model):
@@ -18,11 +17,11 @@ class Blog(models.Model):
     slug = models.SlugField(unique=True)
     author = models.ForeignKey(
         User, on_delete=models.CASCADE, related_name='blog_posts')
-    # content = CKEditor5Field(config_name='extends', null=True)
-    content = models.TextField(null=True, blank=True)
     excerpt = models.TextField(max_length=300, blank=True)
     featured_image = models.ImageField(
         upload_to='blog_images/', blank=True, null=True)
+    content = models.TextField(null=True, blank=True)
+    about_me = models.TextField(null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     is_published = models.BooleanField(default=True)
@@ -40,7 +39,7 @@ class Blog(models.Model):
         return self.likes.count()
 
     def total_comments(self):
-        return self.comments.filter(is_active=True).count()
+        return self.comments.filter(is_active=True, parent=None).count()
 
 
 class Like(models.Model):
