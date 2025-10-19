@@ -184,7 +184,7 @@ def success_newsletter_subscription_email(request, email):
         plain_text_content=message
     )
     threading.Thread()
-    thread.start()
+    # thread.start()
 
     try:
         sg = SendGridAPIClient(
