@@ -3322,10 +3322,6 @@ ul {
     margin-top: 1rem;
   }
 
-  .sm\:h-72 {
-    height: 18rem;
-  }
-
   .sm\:h-80 {
     height: 20rem;
   }
@@ -3559,10 +3555,6 @@ ul {
     margin-bottom: 2rem;
   }
 
-  .md\:h-80 {
-    height: 20rem;
-  }
-
   .md\:h-96 {
     height: 24rem;
   }
@@ -3717,10 +3709,6 @@ ul {
 
   .lg\:hidden {
     display: none;
-  }
-
-  .lg\:h-96 {
-    height: 24rem;
   }
 
   .lg\:h-\[36rem\] {
